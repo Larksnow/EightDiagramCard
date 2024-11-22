@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: CardData
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: CardData
   m_Data:
     m_SerializedData: []
-  m_GUID: bb37a735a7b1d8d4d8a1e140c3f24c90
+  m_GUID: 79faee78fdd026549b72cf4387d7cffe
   m_SerializeEntries:
-  - m_GUID: 8c9cfa26abfee488c85f1582747f6a02
-    m_Address: Presistent
+  - m_GUID: a041c611c80cb3041999b077a1aac15d
+    m_Address: BaseYin
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a238487d593231f41add93c3b85b1c67
-    m_Address: NormalBattle
+  - m_GUID: a1b9f4aee8a2f6a44a356d66e9dda062
+    m_Address: BaseYang
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -31,5 +31,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 3016e4d86021f9c489abed3c5e31642e, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 592c0324094c0574eb5dbc54942e5f73, type: 2}
-    - {fileID: 11400000, guid: a4dfa2481aea3d84daa46686402609b9, type: 2}
+    - {fileID: 11400000, guid: 6c58e409143b44344a77567d94bdebf5, type: 2}
+    - {fileID: 11400000, guid: fde222e125362e34b8851f8663dfda56, type: 2}
