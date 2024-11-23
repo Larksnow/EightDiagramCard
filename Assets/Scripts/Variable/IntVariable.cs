@@ -10,6 +10,7 @@ public class IntVariable : ScriptableObject
     public void SetValue(int value)
     {
         currentValue = value;
+        // When this int variable changes, it will raise the event tells every subscriber that it has changed
         valueChangedEvent.RaiseEvent(value,this);
     }
 }

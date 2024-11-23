@@ -38,7 +38,7 @@ public class DiagramManager : MonoBehaviour
         //TODO: ADD a select targetCharacter function using switch case
         foreach (var effect in diagramData.effects)
         {
-            effect.Execute(player, player);
+            effect.Execute(player);
         }
     }
     

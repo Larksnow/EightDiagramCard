@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d619d6e178a3ee643ba6777c360f7948, type: 3}
   m_Name: EnemyHealthChangeEvent
   m_EditorClassIdentifier: 
-  description: 
+  description: "\u6BCF\u5F53\u8840\u91CF\u88AB\u4FEE\u6539\u65F6, \u901A\u77E5\u6240\u6709\u8BA2\u9605\u8005\uFF08\u76D1\u542C\u5668\uFF09\u5F53\u524D\u8840\u91CF\u53D1\u751F\u4E86\u53D8\u5316\u3002\n\u8BA2\u9605\u8005\u53EF\u66F4\u65B0UI\uFF0C\u64AD\u653E\u7279\u6548\uFF0C\u68C0\u6D4B\u6B7B\u4EA1"
   lastSender: 

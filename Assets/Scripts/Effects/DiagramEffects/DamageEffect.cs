@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class DamageEffect : Effect
 {
-    public override void Execute(CharacterBase from, CharacterBase target)
+    public override void Execute(CharacterBase target)
     {
-        if (target == null) return;
         switch (targetType){
             case EffectTargetType.Self:
             case EffectTargetType.Single:

@@ -6,10 +6,12 @@ public class CharacterBase : MonoBehaviour
 {
     public int maxHp;
     public IntVariable hp;
+    // Property to manage the character's current health and trigger events when modified
+    // These are stored in a SO called CharacterHP (IntVariable type)
     public int CurrentHP {get => hp.currentValue; set => hp.SetValue(value);}
     public int MaxHP {get => hp.maxValue;}
     
-    private bool isDead;
+    public bool isDead;
     protected virtual void Start(){
         hp.maxValue = maxHp;
         CurrentHP = MaxHP;

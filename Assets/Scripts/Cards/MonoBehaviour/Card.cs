@@ -65,13 +65,13 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         GetComponent<SortingGroup>().sortingOrder = originalLayerOrder;
     }
 
-    public void ExecuteCardEffect(CharacterBase from, CharacterBase target)
+    public void ExecuteCardEffect(CharacterBase target)
     {
         //TODO: 消耗法力， 回收卡牌
         discardCardEvent.RaiseEvent(this, this);
         foreach (var effect in cardData.effects)
         {
-            effect.Execute(from, target);
+            effect.Execute(target);
         }
     }
 }

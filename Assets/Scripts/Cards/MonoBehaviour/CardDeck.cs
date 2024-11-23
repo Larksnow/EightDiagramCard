@@ -18,12 +18,20 @@ public class CardDeck : MonoBehaviour
     public GameObject discardUI;
     public float animationTime;
 
+    [Header("Broadcast Events")]
+    public IntEventSO drawCardEvent;
+    public IntEventSO discardCardEvent;
+
     // 测试用
     private void Start()
     {
         InitializeDrawDeck();
         InitializeDiscardDeck();
-        DrawCard(7);
+        NewTurnDrawCard(5);
+    }
+    public void NewTurnDrawCard(int amount)
+    {
+        DrawCard(amount);
     }
 
     public void InitializeDrawDeck()

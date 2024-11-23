@@ -8,6 +8,5 @@ public abstract class Effect : ScriptableObject
 
     public EffectTargetType targetType;
 
-    //TODO: 看看 from有没有必要，不然就删除
-    public abstract void Execute(CharacterBase from, CharacterBase target);
+    public abstract void Execute(CharacterBase target);
 }
