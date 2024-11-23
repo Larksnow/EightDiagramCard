@@ -51,10 +51,8 @@ public class CardLayoutManager : MonoBehaviour
         else
         {
             float cardAngle = (cardNumber - 1) * angleBetweenCards / 2;
-            Debug.Log("angleBetweenCards: " + angleBetweenCards);
             float totalAngle = Mathf.Min(maxAngle, cardAngle);
             float currentCardAngle = totalAngle > 0 ? 2 * totalAngle / (cardNumber - 1) : 0;
-            Debug.Log("currentCardAngle: " + currentCardAngle);
             for (int i = 0; i < cardNumber; i++)
             {
                 var pos = FanCardPosition(totalAngle - i * currentCardAngle);

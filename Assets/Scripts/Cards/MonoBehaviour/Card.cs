@@ -32,10 +32,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         nameText.text = data.cardName;
         descriptionTest.text = data.cardDescription;
     }
-    void OnMousedDown()
-    {
-        Debug.Log("Card clicked");
-    }
 
     public void UpdateCardPositionRotation(Vector3 position, Quaternion rotation)
     {

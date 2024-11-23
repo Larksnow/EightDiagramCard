@@ -35,8 +35,8 @@ public class CardDeck : MonoBehaviour
                 drawDeck.Add(item.cardData);
             }
         }
-
-        //TODO:洗牌/更新抽牌堆、弃牌堆数字
+        //TODO:更新抽牌堆、弃牌堆数字
+        ShuffDeck();
     }
 
     [ContextMenu("TestDrawCard")]
@@ -48,7 +48,13 @@ public class CardDeck : MonoBehaviour
         {
             if(drawDeck.Count == 0)
             {
-            //TODO:洗牌/更新抽牌堆、弃牌堆数字
+            //TODO:更新抽牌堆、弃牌堆数字
+                foreach (var item in discardDeck)
+                {
+                    drawDeck.Add(item);
+                }
+                ShuffDeck();
+                // TODO: 洗牌动画
             }
             CardDataSO drawedCardData = drawDeck[0];
             drawDeck.RemoveAt(0);
@@ -80,6 +86,26 @@ public class CardDeck : MonoBehaviour
             currentCard.GetComponent<SortingGroup>().sortingOrder = i;
             currentCard.UpdateCardPositionRotation(cardTransform.position, cardTransform.rotation);
         }
-        
+    }
+
+    private void ShuffDeck()
+    {
+        discardDeck.Clear();
+        //TODO: update UI number
+        for (int i = 0; i < drawDeck.Count; ++i)
+        {
+            CardDataSO temp = drawDeck[i];
+            int randomIndex = Random.Range(i, drawDeck.Count);
+            drawDeck[i] = drawDeck[randomIndex];
+            drawDeck[randomIndex] = temp;
+        }
+    }
+
+    public void DiscardCard(Card card)
+    {
+        discardDeck.Add(card.cardData);
+        handCardObjectList.Remove(card);
+        cardManager.DiscardCard(card.gameObject);
+        SetCardLayout(0);
     }
 }
