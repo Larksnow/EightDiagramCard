@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using DG.Tweening;
-using System.Net.WebSockets;
-using Unity.PlasticSCM.Editor.WebApi;
+using TMPro;
 
 public class CardDeck : MonoBehaviour
 {
@@ -15,12 +13,16 @@ public class CardDeck : MonoBehaviour
     private List<Card> handCardObjectList = new();
     public Transform deckPosition;
     public Transform discardPosition;
+
+    public GameObject deckUI;
+    public GameObject discardUI;
     public float animationTime;
 
     // 测试用
     private void Start()
     {
         InitializeDrawDeck();
+        InitializeDiscardDeck();
         DrawCard(3);
     }
 
@@ -39,6 +41,11 @@ public class CardDeck : MonoBehaviour
         ShuffDeck();
     }
 
+    private void InitializeDiscardDeck()
+    {
+        discardDeck.Clear();
+    }
+
     [ContextMenu("TestDrawCard")]
     public void TestDrawCard()
     {
@@ -51,10 +58,7 @@ public class CardDeck : MonoBehaviour
             if (drawDeck.Count == 0)
             {
             //TODO:更新抽牌堆、弃牌堆数字
-                foreach (var item in discardDeck)
-                {
-                    drawDeck.Add(item);
-                }
+                RefillDrawDeckFromDiscard();
                 ShuffDeck();
                 // TODO: 洗牌动画
             }
@@ -103,11 +107,38 @@ public class CardDeck : MonoBehaviour
         }
     }
 
+    private void RefillDrawDeckFromDiscard()
+    {
+        if (discardDeck.Count == 0)
+        {
+            Debug.Log("No cards in discard pile to refill draw deck.");
+            return;
+        }
+
+        drawDeck.AddRange(discardDeck);
+        discardDeck.Clear();
+    }
+    public void DiscardAllCards()
+    {
+        for (int i = 0; i < handCardObjectList.Count; ++i)
+        {
+            var cardToDiscard = handCardObjectList[0];
+            DiscardCard(cardToDiscard);
+            //TODO:: discard animation
+        }
+    }
+
     public void DiscardCard(Card card)
     {
         discardDeck.Add(card.cardData);
         handCardObjectList.Remove(card);
         cardManager.DiscardCard(card.gameObject);
         SetCardLayout(0);
+    }
+
+    private void UpdateDeckNumber()
+    {
+        deckUI.GetComponentInChildren<TextMeshPro>().text = drawDeck.Count.ToString();
+        discardUI.GetComponentInChildren<TextMeshPro>().text = discardDeck.Count.ToString();
     }
 }
