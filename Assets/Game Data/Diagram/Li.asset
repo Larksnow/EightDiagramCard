@@ -18,3 +18,5 @@ MonoBehaviour:
   description: 
   diagramType: 5
   diagramPattern: 010000000000000001000000
+  effects:
+  - {fileID: 11400000, guid: 64896f0668dfb5d4c903d450e521b823, type: 2}

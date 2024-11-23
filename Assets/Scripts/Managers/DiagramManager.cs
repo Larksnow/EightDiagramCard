@@ -7,10 +7,13 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class DiagramManager : MonoBehaviour
 {
     public List<DiagramDataSO> diagramDataList;
+    public Player player;
+    public CharacterBase targetCharacter;
 
     private void Awake()
     {
         InitializeDiagramDataList();
+        player = FindObjectOfType<Player>();
     }
     
     #region Load ALL DiagramDataSO from Addressable
@@ -32,6 +35,11 @@ public class DiagramManager : MonoBehaviour
 
     public void ApplyDiagramEffect(DiagramDataSO diagramData)
     {
-        //TODO: Apply Effect
-    } 
+        //TODO: ADD a select targetCharacter function using switch case
+        foreach (var effect in diagramData.effects)
+        {
+            effect.Execute(player, player);
+        }
+    }
+    
 }

@@ -12,5 +12,6 @@ public class DiagramDataSO : ScriptableObject
     public string description;
     public DiagramType diagramType; 
     public List<CardType> diagramPattern; //TODO: 卦的图案
-    //TODO: 卦的基础效果
+    
+    public List<Effect> effects;
 }

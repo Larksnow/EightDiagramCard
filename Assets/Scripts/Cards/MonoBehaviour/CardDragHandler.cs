@@ -16,6 +16,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private void Awake()
     {
         currentCard = GetComponent<Card>();
+        canExecute = false;
         diagramChecker = GameObject.Find("DiagramChecker").GetComponent<DiagramChecker>();
     }
 
@@ -40,9 +41,10 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if(canExecute)
         {
-            //TODO: 1.Excute Card effect
-            //TODO: 2.更新计数器，计数器里再触发卦的效果 
-            diagramChecker.updateDiagramChecker(currentCard);
+            // Cards only affect player himself
+            CardType yao = currentCard.cardData.cardType;
+            currentCard.ExecuteCardEffect(currentCard.player, currentCard.player); 
+            diagramChecker.updateDiagramChecker(yao);
         }
         else
         {

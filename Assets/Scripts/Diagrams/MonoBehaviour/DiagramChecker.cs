@@ -11,9 +11,9 @@ public class DiagramChecker : MonoBehaviour
     public Card cardPlayed;
     public DiagramManager diagramManager;
 
-    public void updateDiagramChecker(Card card)
+    public void updateDiagramChecker(CardType cardType)
     {
-        yaoList.Insert(0, card.cardData.cardType);
+        yaoList.Insert(0, cardType);
         // Limit the list to maxCount elements
         if (yaoList.Count > maxCount)
         {

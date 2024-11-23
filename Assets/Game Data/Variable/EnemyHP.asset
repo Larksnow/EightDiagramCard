@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18b0836e18f80fc45a2a5d4b5a6ae688, type: 3}
-  m_Name: Zhen
+  m_Script: {fileID: 11500000, guid: df7461bb14357344c89b1e0cdc8e201e, type: 3}
+  m_Name: EnemyHP
   m_EditorClassIdentifier: 
-  diagramName: Zhen
-  patternSprite: {fileID: 0}
-  nameSprite: {fileID: 0}
+  maxValue: 0
+  currentValue: 0
+  valueChangedEvent: {fileID: 11400000, guid: 814c96139c623664a8df4904c7d7df49, type: 2}
   description: 
-  diagramType: 2
-  diagramPattern: 000000000000000001000000

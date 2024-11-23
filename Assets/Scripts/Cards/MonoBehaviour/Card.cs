@@ -20,6 +20,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public int originalLayerOrder;
     public bool isAnimating;
 
+    public Player player;
+    [Header("Broadcast Event")]
+    public ObjectEventSO discardCardEvent;
+
     void Start()
     {
         Init(cardData);    
@@ -31,6 +35,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         costText.text = data.cost.ToString();
         nameText.text = data.cardName;
         descriptionTest.text = data.cardDescription;
+        player = GameObject.FindObjectOfType<Player>();
     }
 
     public void UpdateCardPositionRotation(Vector3 position, Quaternion rotation)
@@ -58,5 +63,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         transform.SetPositionAndRotation(originalPosition, originalRotation);
         GetComponent<SortingGroup>().sortingOrder = originalLayerOrder;
+    }
+
+    public void ExecuteCardEffect(CharacterBase from, CharacterBase target)
+    {
+        //TODO: 消耗法力， 回收卡牌
+        discardCardEvent.RaiseEvent(this, this);
+        foreach (var effect in cardData.effects)
+        {
+            effect.Execute(from, target);
+        }
     }
 }

@@ -28,3 +28,10 @@ public enum DiagramType
     // 艮
     Gen
 }
+
+public enum EffectTargetType
+{
+    Self,
+    All,
+    Single
+}
