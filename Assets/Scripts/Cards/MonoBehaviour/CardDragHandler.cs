@@ -11,10 +11,14 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private bool canMove;
     private bool canExecute;
 
+    private DiagramChecker diagramChecker;
+
     private void Awake()
     {
         currentCard = GetComponent<Card>();
+        diagramChecker = GameObject.Find("DiagramChecker").GetComponent<DiagramChecker>();
     }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         canMove = true;
@@ -36,7 +40,9 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if(canExecute)
         {
-            //TODO:Excute Card effect
+            //TODO: 1.Excute Card effect
+            //TODO: 2.更新计数器，计数器里再触发卦的效果 
+            diagramChecker.updateDiagramChecker(currentCard);
         }
         else
         {

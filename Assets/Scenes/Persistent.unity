@@ -155,6 +155,8 @@ MonoBehaviour:
   cardLayoutManager: {fileID: 1015175757}
   deckPosition: {fileID: 1200602512}
   discardPosition: {fileID: 479771555}
+  deckUI: {fileID: 0}
+  discardUI: {fileID: 0}
   animationTime: 1
 --- !u!4 &123222011
 Transform:
@@ -563,6 +565,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &857652145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 857652146}
+  - component: {fileID: 857652147}
+  m_Layer: 0
+  m_Name: DiagramChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &857652146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857652145}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &857652147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857652145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 918a4c19b921ce94d8df0e6e7282d6dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yaoList: 
+  cardPlayed: {fileID: 0}
+  diagramManager: {fileID: 1489945570}
 --- !u!1 &1015175755
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +746,51 @@ Transform:
   m_LocalPosition: {x: -10, y: -6, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1489945569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1489945571}
+  - component: {fileID: 1489945570}
+  m_Layer: 0
+  m_Name: DiagramManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1489945570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489945569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436390a4e58999b44928f598ae1ad4c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diagramDataList: []
+--- !u!4 &1489945571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489945569}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -853,10 +947,12 @@ SceneRoots:
   - {fileID: 315631385}
   - {fileID: 660061478}
   - {fileID: 828971799}
+  - {fileID: 1489945571}
   - {fileID: 1015175756}
   - {fileID: 1890907369}
   - {fileID: 123222011}
   - {fileID: 2142600640}
+  - {fileID: 857652146}
   - {fileID: 822859208}
   - {fileID: 1200602512}
   - {fileID: 479771555}

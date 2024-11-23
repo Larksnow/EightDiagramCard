@@ -23,7 +23,7 @@ public class CardDeck : MonoBehaviour
     {
         InitializeDrawDeck();
         InitializeDiscardDeck();
-        DrawCard(3);
+        DrawCard(7);
     }
 
     public void InitializeDrawDeck()

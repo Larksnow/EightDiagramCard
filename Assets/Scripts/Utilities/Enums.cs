@@ -9,7 +9,7 @@ public enum CardType
     Yang
 }
 
-public enum Gua
+public enum DiagramType
 {
     // 乾
     Qian,
@@ -25,6 +25,6 @@ public enum Gua
     Li,
     // 兑
     Dui,
-    // 震
-    Chen
+    // 艮
+    Gen
 }
