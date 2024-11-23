@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-   [Header(header: "Card Components")]
+   [Header("Card Components")]
    public CardDataSO cardData;
    public TextMeshPro nameText, costText, descriptionTest;
    public int cardCost;
