@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.Pool;
-
+[DefaultExecutionOrder(-100)]
 public class PoolTool : MonoBehaviour
 {
     public GameObject objPrefab;
     private ObjectPool<GameObject> pool; 
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         pool = new ObjectPool<GameObject>(
             createFunc:()=>Instantiate(objPrefab, transform),

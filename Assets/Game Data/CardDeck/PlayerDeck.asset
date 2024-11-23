@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e35baf7dcbbda41a18874ed5e14118, type: 3}
   m_Name: PlayerDeck
   m_EditorClassIdentifier: 
+  CardDeckEntryList: []

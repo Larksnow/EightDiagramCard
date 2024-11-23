@@ -19,6 +19,12 @@ public class CardManager : MonoBehaviour
         InitializeCardDataList();
         InitializeBaseCardDeck();
     }
+
+    private void OnDisable()
+    {
+        //Make sure card is disbale after game shut down
+        playerHoldDeck.CardDeckEntryList.Clear();
+    }
     private void InitializeBaseCardDeck()
     {
         foreach (var item in baseCardDeck.CardDeckEntryList)
@@ -44,8 +50,11 @@ public class CardManager : MonoBehaviour
     }
     #endregion
 
+    // When draw a card, get the card Game Object from pool
     public GameObject GetCardFromPool(){
-        return poolTool.GetObjectFromPool();
+        var cardObj = poolTool.GetObjectFromPool();
+        cardObj.transform.localScale = Vector3.zero; 
+        return cardObj;
     }
 
     public void DiscardCard(GameObject card){

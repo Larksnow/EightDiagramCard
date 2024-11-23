@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using DG.Tweening;
+using System.Net.WebSockets;
 
 public class CardDeck : MonoBehaviour
 {
     public CardManager cardManager;
+    public CardLayoutManager cardLayoutManager;
     private List<CardDataSO> drawDeck = new();
     private List<CardDataSO> discardDeck = new();
     private List<Card> handCardObjectList = new();
+    public Transform deckPosition;
+    public Transform discardPosition;
 
     // 测试用
     private void Start()
     {
         InitializeDrawDeck();
+        DrawCard(3);
     }
 
     public void InitializeDrawDeck()
@@ -47,6 +54,27 @@ public class CardDeck : MonoBehaviour
             // Initialize this drawed card
             card.Init(drawedCardData);
             handCardObjectList.Add(card);
+            var delay = i * 0.2f;
+            SetCardLayout(delay);
+        }
+    }
+
+    private void SetCardLayout(float delay)
+    {
+        for (int i = 0; i < handCardObjectList.Count; ++i)
+        {
+            Card currentCard = handCardObjectList[i];
+            CardTransform cardTransform = cardLayoutManager.GetCardTransform(i, handCardObjectList.Count);
+            currentCard.transform.SetPositionAndRotation(cardTransform.position, cardTransform.rotation);
+            // Card enlarge animation
+            currentCard.transform.DOScale(Vector3.one, 0.2f).SetDelay(delay).onComplete = () =>
+            {
+                currentCard.transform.DOMove(cardTransform.position, 0.5f);
+                currentCard.transform.DORotateQuaternion(cardTransform.rotation, 0.5f);
+            };         
+            // Set card order
+            currentCard.GetComponent<SortingGroup>().sortingOrder = i;
+           
         }
     }
 }
