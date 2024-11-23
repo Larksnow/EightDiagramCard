@@ -28,10 +28,10 @@ public class CardDeck : MonoBehaviour
     {
         drawDeck.Clear();
         // Add all cards in player's deck to draw deck
-        foreach (var item in cardManager.playerHoldDeck.CardDeckEntryList) 
+        foreach (var item in cardManager.playerHoldDeck.CardDeckEntryList)
         {
-            for(int i = 0; i < item.amount; ++i)
-            { 
+            for (int i = 0; i < item.amount; ++i)
+            {
                 drawDeck.Add(item.cardData);
             }
         }
@@ -40,13 +40,15 @@ public class CardDeck : MonoBehaviour
     }
 
     [ContextMenu("TestDrawCard")]
-    public void TestDrawCard(){
+    public void TestDrawCard()
+    {
         DrawCard(1);
     }
-    private void DrawCard(int amount){
+    private void DrawCard(int amount)
+    {
         for (int i = 0; i < amount; ++i)
         {
-            if(drawDeck.Count == 0)
+            if (drawDeck.Count == 0)
             {
             //TODO:更新抽牌堆、弃牌堆数字
                 foreach (var item in discardDeck)
@@ -65,6 +67,29 @@ public class CardDeck : MonoBehaviour
             handCardObjectList.Add(card);
             var delay = i * 0.2f;
             SetCardLayout(delay);
+        }
+    }
+
+    [ContextMenu("TestDiscardCard")]
+    public void TestDiscardCard()
+    {
+        DiscardCard(1); 
+    }
+
+    private void DiscardCard(int amount)
+    {
+        for (int i = 0; i < amount; ++i)
+        {
+            if (handCardObjectList.Count == 0)
+            {
+                Debug.LogWarning("No cards left in hand to discard.");
+                return;
+            }
+            var cardToDiscard = handCardObjectList[0];
+            handCardObjectList.RemoveAt(0);
+            discardDeck.Add(cardToDiscard.cardData);
+            cardManager.DiscardCard(cardToDiscard.gameObject);
+            SetCardLayout(0.2f * i);
         }
     }
 
