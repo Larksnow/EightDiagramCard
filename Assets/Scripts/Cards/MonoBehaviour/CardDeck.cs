@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using DG.Tweening;
 using System.Net.WebSockets;
+using Unity.PlasticSCM.Editor.WebApi;
 
 public class CardDeck : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class CardDeck : MonoBehaviour
     private List<Card> handCardObjectList = new();
     public Transform deckPosition;
     public Transform discardPosition;
+    public float animationTime;
 
     // 测试用
     private void Start()
@@ -53,6 +55,7 @@ public class CardDeck : MonoBehaviour
             var card = cardManager.GetCardFromPool().GetComponent<Card>();
             // Initialize this drawed card
             card.Init(drawedCardData);
+            card.transform.position = deckPosition.position;
             handCardObjectList.Add(card);
             var delay = i * 0.2f;
             SetCardLayout(delay);
@@ -65,16 +68,18 @@ public class CardDeck : MonoBehaviour
         {
             Card currentCard = handCardObjectList[i];
             CardTransform cardTransform = cardLayoutManager.GetCardTransform(i, handCardObjectList.Count);
-            currentCard.transform.SetPositionAndRotation(cardTransform.position, cardTransform.rotation);
-            // Card enlarge animation
-            currentCard.transform.DOScale(Vector3.one, 0.2f).SetDelay(delay).onComplete = () =>
-            {
-                currentCard.transform.DOMove(cardTransform.position, 0.5f);
-                currentCard.transform.DORotateQuaternion(cardTransform.rotation, 0.5f);
-            };         
+            // Card draw animation
+            currentCard.isAnimating = true;
+            currentCard.transform.DOScale(Vector3.one, animationTime).SetDelay(delay);
+            currentCard.transform.DOMove(cardTransform.position, animationTime).onComplete = () => currentCard.isAnimating = false;
+            currentCard.transform.DORotateQuaternion(cardTransform.rotation, animationTime);
             // Set card order
             currentCard.GetComponent<SortingGroup>().sortingOrder = i;
-           
+
+            // Store a copy of current card transform
+            currentCard.GetComponent<SortingGroup>().sortingOrder = i;
+            currentCard.UpdateCardPositionRotation(cardTransform.position, cardTransform.rotation);
         }
+        
     }
 }

@@ -155,6 +155,7 @@ MonoBehaviour:
   cardLayoutManager: {fileID: 1015175757}
   deckPosition: {fileID: 1200602512}
   discardPosition: {fileID: 479771555}
+  animationTime: 1
 --- !u!4 &123222011
 Transform:
   m_ObjectHideFlags: 0
@@ -279,9 +280,40 @@ Transform:
   m_GameObject: {fileID: 479771553}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.21, y: -4.64, z: 0}
+  m_LocalPosition: {x: 10, y: -6, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &485184947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 485184948}
+  m_Layer: 0
+  m_Name: CardHoverPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &485184948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485184947}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -606,10 +638,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f37ce98c47c3d04bbe57709d5b52f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHorizontal: 1
+  isHorizontal: 0
   maxWidth: 9
+  maxAngle: 14
   cardSpacing: 2
   centerPoint: {x: 0, y: -5.2, z: 0}
+  radius: 25
+  angleBetweenCards: 5
   cardPositions: []
   cardRotations: []
 --- !u!1 &1200602510
@@ -690,7 +725,7 @@ Transform:
   m_GameObject: {fileID: 1200602510}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.83, y: -4.64, z: 0}
+  m_LocalPosition: {x: -10, y: -6, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -856,3 +891,4 @@ SceneRoots:
   - {fileID: 822859208}
   - {fileID: 1200602512}
   - {fileID: 479771555}
+  - {fileID: 485184948}
