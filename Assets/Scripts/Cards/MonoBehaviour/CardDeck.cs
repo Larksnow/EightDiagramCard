@@ -70,29 +70,6 @@ public class CardDeck : MonoBehaviour
         }
     }
 
-    [ContextMenu("TestDiscardCard")]
-    public void TestDiscardCard()
-    {
-        DiscardCard(1); 
-    }
-
-    private void DiscardCard(int amount)
-    {
-        for (int i = 0; i < amount; ++i)
-        {
-            if (handCardObjectList.Count == 0)
-            {
-                Debug.LogWarning("No cards left in hand to discard.");
-                return;
-            }
-            var cardToDiscard = handCardObjectList[0];
-            handCardObjectList.RemoveAt(0);
-            discardDeck.Add(cardToDiscard.cardData);
-            cardManager.DiscardCard(cardToDiscard.gameObject);
-            SetCardLayout(0.2f * i);
-        }
-    }
-
     private void SetCardLayout(float delay)
     {
         for (int i = 0; i < handCardObjectList.Count; ++i)
