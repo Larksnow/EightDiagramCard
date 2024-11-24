@@ -69,6 +69,8 @@ public class CardDeck : MonoBehaviour
                 RefillDrawDeckFromDiscard();
                 ShuffDeck();
             }
+            // No cards in both deck
+            if (drawDeck.Count == 0) return;
             CardDataSO drawedCardData = drawDeck[0];
             drawDeck.RemoveAt(0);
             // Raise IntEvent to update UI number

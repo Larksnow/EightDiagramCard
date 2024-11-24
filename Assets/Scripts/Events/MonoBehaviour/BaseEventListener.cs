@@ -9,11 +9,13 @@ public class BaseEventListener<T> : MonoBehaviour
     public BaseEventSO<T> eventSO;
     public UnityEvent<T> response;
 
+    public int priority = 0;
+
     private void OnEnable()
     {
         if(eventSO!=null)
         {
-            eventSO.OnEventRaised += OnEventRaised;
+            eventSO.RegisterListener(OnEventRaised, priority);
         }
     }
 
@@ -21,7 +23,7 @@ public class BaseEventListener<T> : MonoBehaviour
     {
         if (eventSO != null)
         {
-            eventSO.OnEventRaised -= OnEventRaised;
+            eventSO.UnregisterListener(OnEventRaised);
         }
     }
 

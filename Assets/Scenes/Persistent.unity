@@ -138,8 +138,8 @@ GameObject:
   - component: {fileID: 123222011}
   - component: {fileID: 123222010}
   - component: {fileID: 123222012}
-  - component: {fileID: 123222013}
   - component: {fileID: 123222014}
+  - component: {fileID: 123222015}
   m_Layer: 0
   m_Name: CardDeck
   m_TagString: Untagged
@@ -212,34 +212,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &123222013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123222009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSO: {fileID: 11400000, guid: 586e65e5bda664e48af347e449b1de9d, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 123222010}
-        m_TargetAssemblyTypeName: CardDeck, Assembly-CSharp
-        m_MethodName: NewTurnDrawCard
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  priority: 0
 --- !u!114 &123222014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +241,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  priority: 0
+--- !u!114 &123222015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123222009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 586e65e5bda664e48af347e449b1de9d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 123222010}
+        m_TargetAssemblyTypeName: CardDeck, Assembly-CSharp
+        m_MethodName: NewTurnDrawCard
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 1
 --- !u!1 &193565714
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +323,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  priority: 0
 --- !u!114 &193565716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +352,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  priority: 0
 --- !u!114 &193565717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +414,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  priority: 0
 --- !u!114 &193565720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +443,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  priority: 0
 --- !u!114 &193565721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,6 +472,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  priority: 0
 --- !u!114 &193565722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +501,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  priority: 0
 --- !u!114 &193565723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,6 +530,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  priority: 0
 --- !u!4 &250792701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2587459734040191100, guid: 91fa5ce57960ad04fa25f9e3ef6236b4, type: 3}
@@ -1336,6 +1346,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  priority: 0
 --- !u!1 &2079601606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,6 +1519,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  priority: 0
 --- !u!4 &1198210019697215434
 Transform:
   m_ObjectHideFlags: 0
@@ -1915,6 +1927,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  priority: 0
 --- !u!114 &7177020580710331343
 MonoBehaviour:
   m_ObjectHideFlags: 0

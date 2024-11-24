@@ -78,6 +78,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void UpdateCardState()
     {
+        Debug.Log("Player mana:" + player.CurrentMana);
         isAvailable = player.CurrentMana >= cardData.cost;
         costText.color = isAvailable ? Color.white : Color.red;
     }
