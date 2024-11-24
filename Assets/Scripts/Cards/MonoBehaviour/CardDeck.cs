@@ -19,15 +19,14 @@ public class CardDeck : MonoBehaviour
     public float animationTime;
 
     [Header("Broadcast Events")]
-    public IntEventSO drawCardEvent;
-    public IntEventSO discardCardEvent;
+    public IntEventSO drawCountEvent;
+    public IntEventSO discardCountEvent;
 
     // 测试用
     private void Start()
     {
         InitializeDrawDeck();
         InitializeDiscardDeck();
-        NewTurnDrawCard(5);
     }
     public void NewTurnDrawCard(int amount)
     {
@@ -45,7 +44,6 @@ public class CardDeck : MonoBehaviour
                 drawDeck.Add(item.cardData);
             }
         }
-        //TODO:更新抽牌堆、弃牌堆数字
         ShuffDeck();
     }
 
@@ -65,13 +63,14 @@ public class CardDeck : MonoBehaviour
         {
             if (drawDeck.Count == 0)
             {
-            //TODO:更新抽牌堆、弃牌堆数字
                 RefillDrawDeckFromDiscard();
                 ShuffDeck();
-                // TODO: 洗牌动画
             }
             CardDataSO drawedCardData = drawDeck[0];
             drawDeck.RemoveAt(0);
+            // Raise IntEvent to update UI number
+            drawCountEvent.RaiseEvent(drawDeck.Count, this);
+
             var card = cardManager.GetCardFromPool().GetComponent<Card>();
             // Initialize this drawed card
             card.Init(drawedCardData);
@@ -105,7 +104,10 @@ public class CardDeck : MonoBehaviour
     private void ShuffDeck()
     {
         discardDeck.Clear();
-        //TODO: update UI number
+        // Raise IntEvent to update UI number
+        drawCountEvent.RaiseEvent(drawDeck.Count, this);
+        discardCountEvent.RaiseEvent(discardDeck.Count, this);
+        // TODO: 洗牌动画
         for (int i = 0; i < drawDeck.Count; ++i)
         {
             CardDataSO temp = drawDeck[i];
@@ -126,14 +128,16 @@ public class CardDeck : MonoBehaviour
         drawDeck.AddRange(discardDeck);
         discardDeck.Clear();
     }
+
     public void DiscardAllCards()
     {
         for (int i = 0; i < handCardObjectList.Count; ++i)
         {
-            var cardToDiscard = handCardObjectList[0];
-            DiscardCard(cardToDiscard);
-            //TODO:: discard animation
+            discardDeck.Add(handCardObjectList[i].cardData);
+            cardManager.DiscardCard(handCardObjectList[i].gameObject); 
         }
+        handCardObjectList.Clear();
+        discardCountEvent.RaiseEvent(discardDeck.Count, this);
     }
 
     public void DiscardCard(object obj)
@@ -142,12 +146,9 @@ public class CardDeck : MonoBehaviour
         discardDeck.Add(card.cardData);
         handCardObjectList.Remove(card);
         cardManager.DiscardCard(card.gameObject);
+        // Raise IntEvent to update UI number
+        discardCountEvent.RaiseEvent(discardDeck.Count, this);
         SetCardLayout(0);
     }
 
-    private void UpdateDeckNumber()
-    {
-        deckUI.GetComponentInChildren<TextMeshPro>().text = drawDeck.Count.ToString();
-        discardUI.GetComponentInChildren<TextMeshPro>().text = discardDeck.Count.ToString();
-    }
 }

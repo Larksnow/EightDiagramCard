@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    private bool isPlayTrun = false;
-    private bool isEnemyTurn = false;
+    private bool isPlayTrun;
+    private bool isEnemyTurn;
 
     public bool battleEnd = true;
     
