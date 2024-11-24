@@ -13,6 +13,7 @@ public class GamePlayPannel : MonoBehaviour
     public GameObject endTurnButton;
 
     public GameObject manaUI;
+    public GameObject diagramPannel;
     
     [Header("Broadcast Events")]
     public ObjectEventSO playerTurnEndEvent;
@@ -55,4 +56,15 @@ public class GamePlayPannel : MonoBehaviour
         endTurnButton.GetComponent<EndTurnButton>().pressEnabled = true;
     }
     
+    #region Diagram Pannel
+    public void AddOneYaoToDiagramPannel(int cardType)
+    {
+        diagramPannel.GetComponent<DiagramPannel>().AddOneYao(cardType);
+    }
+    public void HighlightDiagram()
+    {
+        diagramPannel.GetComponent<DiagramPannel>().HighlightTop3();
+    }
+    #endregion
+
 }

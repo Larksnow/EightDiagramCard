@@ -10,6 +10,8 @@ public class DiagramChecker : MonoBehaviour
 
     public Card cardPlayed;
     public DiagramManager diagramManager;
+    public IntEventSO addOneYaoEvent;
+    public ObjectEventSO triggerDiagramEvent;
 
     public void updateDiagramChecker(CardType cardType)
     {
@@ -19,6 +21,9 @@ public class DiagramChecker : MonoBehaviour
         {
             yaoList.RemoveAt(yaoList.Count - 1); // Remove the first element
         }
+
+        addOneYaoEvent.RaiseEvent((int)cardType, this);
+
         checkPattern();
     }
 
@@ -33,6 +38,7 @@ public class DiagramChecker : MonoBehaviour
             if (upYao == item.diagramPattern[0] && midYao == item.diagramPattern[1] && downYao == item.diagramPattern[2])
             {
                 Debug.Log("Pattern Matched: " + item.diagramName);
+                triggerDiagramEvent.RaiseEvent(null, this);
                 diagramManager.ApplyDiagramEffect(item);
             }
         } 
