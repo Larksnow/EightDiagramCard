@@ -8,7 +8,9 @@ public class BaseEventListener<T> : MonoBehaviour
 {
     public BaseEventSO<T> eventSO;
     public UnityEvent<T> response;
-
+    
+    // This priority is used to determine the order of response when multiple listeners are registered to the same event.
+    // Lower value of priority will be executed first.
     public int priority = 0;
 
     private void OnEnable()

@@ -13,17 +13,17 @@ public class DiagramPannel : MonoBehaviour
 
     private int maxCount = 6;
 
-    private List<GameObject> yaos = new();
+    [SerializeField] private List<GameObject> yaos = new();
 
     public void AddOneYao(int cardType)
     {
         GameObject newYao = Instantiate(yao, transform);
         newYao.GetComponent<SpriteRenderer>().sprite = cardType == 0 ? yinSprite : yangSprite;
-        yaos.Insert(0, newYao);
+        yaos.Add(newYao);
         if (yaos.Count > maxCount)
         {
-            Destroy(yaos[^1]);
-            yaos.RemoveAt(yaos.Count - 1);
+            Destroy(yaos[0]);
+            yaos.RemoveAt(0);
         }
 
         UpdateYaoPositions();
@@ -43,13 +43,21 @@ public class DiagramPannel : MonoBehaviour
 
     private void UpdateYaoPositions()
     {
-        // 第一个爻始终在最下方, 不需要更新
-        if (yaos.Count <= 1) return;
-        for (int i = 1; i < yaos.Count; i++)
+        for (int i = 0; i < yaos.Count; i++)
         {
             GameObject yao = yaos[i];
-            Vector3 newPos = yao.transform.position + new Vector3(0, verticalSpace, 0);
+            Vector3 newPos = transform.position + new Vector3(0, i * verticalSpace, 0);
             yao.transform.DOMove(newPos, animationDuration).SetEase(Ease.OutExpo);
         }
+    }
+
+    public void ResetDiagramPannel()
+    {
+        foreach (GameObject yao in yaos)
+        {
+            SpriteRenderer sprite = yao.GetComponent<SpriteRenderer>();
+            sprite.DOFade(0f, animationDuration).OnComplete(() => Destroy(yao));
+        }
+        yaos.Clear();
     }
 }

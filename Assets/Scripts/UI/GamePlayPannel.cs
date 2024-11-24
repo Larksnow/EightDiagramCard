@@ -25,6 +25,8 @@ public class GamePlayPannel : MonoBehaviour
 
     public void OnEndTurnButtonClicked()
     {
+        // Rest DiagramePannel When player turn ended
+        diagramPannel.GetComponent<DiagramPannel>().ResetDiagramPannel();
         playerTurnEndEvent.RaiseEvent(null, this);
     }
 

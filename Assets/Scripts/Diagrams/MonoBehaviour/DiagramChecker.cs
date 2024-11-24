@@ -7,8 +7,6 @@ public class DiagramChecker : MonoBehaviour
 {
     public List<CardType> yaoList;
     private int maxCount = 6;
-
-    public Card cardPlayed;
     public DiagramManager diagramManager;
     public IntEventSO addOneYaoEvent;
     public ObjectEventSO triggerDiagramEvent;
@@ -42,5 +40,10 @@ public class DiagramChecker : MonoBehaviour
                 diagramManager.ApplyDiagramEffect(item);
             }
         } 
+    }
+
+    public void ResetChecker()
+    {
+        yaoList.Clear();
     }
 }
