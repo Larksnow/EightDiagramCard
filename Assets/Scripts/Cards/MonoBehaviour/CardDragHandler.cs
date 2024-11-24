@@ -27,11 +27,13 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!currentCard.isAvailable) return;
         canMove = true;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (!currentCard.isAvailable) return;
         if (canMove)
         {
            currentCard.isAnimating = true;
@@ -44,6 +46,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!currentCard.isAvailable) return;
         if(canExecute)
         {
             CardType yao = currentCard.cardData.cardType;

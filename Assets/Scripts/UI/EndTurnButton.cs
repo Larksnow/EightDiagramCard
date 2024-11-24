@@ -9,6 +9,7 @@ public class EndTurnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public float hoverScaleMultiplier = 1.1f; // Scale multiplier for hover
     public float clickScaleMultiplier = 1.2f; // Scale multiplier for click
     public float animationDuration = 0.1f;
+
     public bool pressEnabled;
 
     private void Awake()
@@ -24,7 +25,7 @@ public class EndTurnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         sequence.Append(transform.DOScale(originalScale * clickScaleMultiplier, animationDuration).SetEase(Ease.OutExpo));
         // Scale back to original size
         sequence.Append(transform.DOScale(originalScale, 1).SetEase(Ease.OutExpo));
-
+        RotateEndTurnButton();
         gamePlayPannel.OnEndTurnButtonClicked();
     }
 
@@ -36,5 +37,11 @@ public class EndTurnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerExit(PointerEventData eventData)
     {
         transform.DOScale(originalScale, animationDuration).SetEase(Ease.OutExpo);
+    }
+
+    public void RotateEndTurnButton()
+    {
+        Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, 0, 180);
+        transform.DORotateQuaternion(targetRotation, 1).SetEase(Ease.OutQuint);
     }
 }

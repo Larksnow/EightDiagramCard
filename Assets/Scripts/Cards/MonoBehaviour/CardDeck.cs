@@ -17,6 +17,7 @@ public class CardDeck : MonoBehaviour
     public GameObject deckUI;
     public GameObject discardUI;
     public float animationTime;
+    public Player player;
 
     [Header("Broadcast Events")]
     public IntEventSO drawCountEvent;
@@ -59,6 +60,8 @@ public class CardDeck : MonoBehaviour
     }
     private void DrawCard(int amount)
     {
+        // Max hand limit is 10
+        if (handCardObjectList.Count >= 10) return;
         for (int i = 0; i < amount; ++i)
         {
             if (drawDeck.Count == 0)
@@ -87,6 +90,7 @@ public class CardDeck : MonoBehaviour
         {
             Card currentCard = handCardObjectList[i];
             CardTransform cardTransform = cardLayoutManager.GetCardTransform(i, handCardObjectList.Count);
+            currentCard.UpdateCardState();
             // Card draw animation
             currentCard.isAnimating = true;
             currentCard.transform.DOScale(Vector3.one, animationTime).SetDelay(delay);

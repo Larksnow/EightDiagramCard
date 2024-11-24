@@ -11,6 +11,8 @@ public class GamePlayPannel : MonoBehaviour
     public GameObject discardDeckUI;
 
     public GameObject endTurnButton;
+
+    public GameObject manaUI;
     
     [Header("Broadcast Events")]
     public ObjectEventSO playerTurnEndEvent;
@@ -18,6 +20,11 @@ public class GamePlayPannel : MonoBehaviour
     private void OnEnable()
     {
         // 在这里添加你的UI 元素和事件处理程序
+    }
+
+    public void OnEndTurnButtonClicked()
+    {
+        playerTurnEndEvent.RaiseEvent(null, this);
     }
 
     public void UpdateDrawDeckAmount(int amount)
@@ -31,9 +38,21 @@ public class GamePlayPannel : MonoBehaviour
         TextMeshPro number = discardDeckUI.GetComponentInChildren<TextMeshPro>();
         number.text = amount.ToString();
     }
-
-    public void OnEndTurnButtonClicked()
+    public void UpdateManaAmount(int amount)
     {
-        playerTurnEndEvent.RaiseEvent(null, this);
+        TextMeshPro number = manaUI.GetComponentInChildren<TextMeshPro>();
+        number.text = amount.ToString();
     }
+
+    public void OnEnemyTurnBegin()
+    {
+        endTurnButton.GetComponent<EndTurnButton>().pressEnabled = false;
+    }
+
+    public void OnPlayerTurnBegin()
+    {
+        endTurnButton.GetComponent<EndTurnButton>().RotateEndTurnButton();
+        endTurnButton.GetComponent<EndTurnButton>().pressEnabled = true;
+    }
+    
 }

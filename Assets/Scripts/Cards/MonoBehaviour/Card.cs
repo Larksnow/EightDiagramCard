@@ -19,10 +19,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Quaternion originalRotation;
     public int originalLayerOrder;
     public bool isAnimating;
-
+    public bool isAvailable;
     public Player player;
     [Header("Broadcast Event")]
     public ObjectEventSO discardCardEvent;
+    public IntEventSO costManaEvent;
 
     void Start()
     {
@@ -67,11 +68,17 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void ExecuteCardEffect(CharacterBase target)
     {
-        //TODO: 消耗法力， 回收卡牌
+        costManaEvent.RaiseEvent(cardData.cost, this);
         discardCardEvent.RaiseEvent(this, this);
         foreach (var effect in cardData.effects)
         {
             effect.Execute(target);
         }
+    }
+
+    public void UpdateCardState()
+    {
+        isAvailable = player.CurrentMana >= cardData.cost;
+        costText.color = isAvailable ? Color.white : Color.red;
     }
 }

@@ -30,9 +30,11 @@ public class TurnManager : MonoBehaviour
             {
                 timeCounter = 0f;
                 EnemyTurnBegin();
+                //FOR TEST
+                EnemyTurnEnd();
             }
         }
-        if (isPlayTrun)
+        else if (isPlayTrun)
         {
             timeCounter += Time.deltaTime;
             if (timeCounter >= playerTurnDuration)
@@ -61,12 +63,14 @@ public class TurnManager : MonoBehaviour
     public void EnemyTurnBegin()
     {
         isEnemyTurn = true;
+        Debug.Log("Enemy Turn Begin");
         enemyTurnBegin.RaiseEvent(null, this);
     }
 
     public void EnemyTurnEnd()
     {
         isEnemyTurn = false;
+        Debug.Log("Enemy Turn End");
         enemyTurnEnd.RaiseEvent(null, this);
     }
 }
