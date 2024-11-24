@@ -1,21 +1,27 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class NewBehaviourScript : MonoBehaviour
+public class HealthBarContorller : MonoBehaviour
 {
     private CharacterBase currentCharacter;
-    
-    [Header("Elements")]
-    public Transform healthBarTransform;
-    private UIDocument healthBarDocument;
-    private ProgressBar healthBar;
+
+    [Header("Health Bar")]
+    public GameObject fillBarObj;
+    public GameObject amountObj;
+    private SpriteRenderer fillBar;
+    private TextMeshPro amountText;
+
+    private Vector3 originalFilledScale;
 
     private void Awake()
     {
         currentCharacter = GetComponent<CharacterBase>();
+        fillBar = fillBarObj.GetComponent<SpriteRenderer>();
+        amountText = amountObj.GetComponent<TextMeshPro>();
     }
 
     private void Start()
@@ -23,19 +29,12 @@ public class NewBehaviourScript : MonoBehaviour
         InitHealthBar();
     }
 
-    private void MoveToWorldPosition(VisualElement element, Vector3 worldPosition, Vector2 size)
-    {
-        Rect rect = RuntimePanelUtils.CameraTransformWorldToPanelRect(element.panel, worldPosition, size, Camera.main);
-        element.transform.position = rect.position;
-    }
 
     [ContextMenu("InitHealthBar")]
     private void InitHealthBar()
     {
-        healthBarDocument = GetComponent<UIDocument>();
-        healthBar = healthBarDocument.rootVisualElement.Q<ProgressBar>("HealthBar");
-        healthBar.highValue = currentCharacter.MaxHP;
-        MoveToWorldPosition(healthBar, healthBarTransform.position, Vector2.zero);
+        originalFilledScale = fillBar.transform.localScale;
+        amountText.text = $"{currentCharacter.MaxHP}/{currentCharacter.MaxHP}";
     }
 
     // 测试用
@@ -43,18 +42,20 @@ public class NewBehaviourScript : MonoBehaviour
     {
         UpdateHealth();
     }
-    
+
     public void UpdateHealth()
     {
-        if(currentCharacter.isDead)
+        if (currentCharacter.isDead)
         {
-            healthBar.style.display = DisplayStyle.None;
+            fillBar.enabled = false;
             return;
         }
-        if(healthBar!=null)
+        if (fillBar != null)
         {
-            healthBar.title = $"{currentCharacter.CurrentHP}/{currentCharacter.MaxHP}";
-            healthBar.value = currentCharacter.CurrentHP;
+            fillBar.enabled = true;
+            // 需要保证Sprite的Pivot为(X = 0, Y = 0,5)
+            fillBar.transform.localScale = new Vector3((currentCharacter.CurrentHP / (float)currentCharacter.MaxHP) * originalFilledScale.x, originalFilledScale.y, originalFilledScale.z);
+            amountText.text = $"{currentCharacter.CurrentHP}/{currentCharacter.MaxHP}";
         }
     }
 }
