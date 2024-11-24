@@ -29,9 +29,8 @@ public class TurnManager : MonoBehaviour
             if (timeCounter >= enemyTurnDuration) 
             {
                 timeCounter = 0f;
-                EnemyTurnBegin();
-                //FOR TEST
                 EnemyTurnEnd();
+                isPlayTrun = true;
             }
         }
         else if (isPlayTrun)
@@ -52,7 +51,7 @@ public class TurnManager : MonoBehaviour
         isPlayTrun = true;
         isEnemyTurn = false;
         battleEnd = false;
-        timeCounter = 0f;
+        timeCounter = 0;
     }
 
     public void PlayerTurnBegin()
