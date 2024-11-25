@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using DG.Tweening;
 using TMPro;
+using System.Collections;
 
 public class CardDeck : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class CardDeck : MonoBehaviour
     [Header("Broadcast Events")]
     public IntEventSO drawCountEvent;
     public IntEventSO discardCountEvent;
+
+    private bool discardDeckUIUpdated;
 
     // 测试用
     private void Start()
@@ -139,12 +142,35 @@ public class CardDeck : MonoBehaviour
 
     public void DiscardAllCards()
     {
-        while (handCardObjectList.Count > 0)
+        discardCountEvent.RaiseEvent(discardDeck.Count + handCardObjectList.Count, this);
+        discardDeckUIUpdated = true;
+
+        int remainingCoroutines = handCardObjectList.Count; // 计数器
+        for (int i = handCardObjectList.Count - 1; i >= 0; --i)
         {
-            DiscardCard(handCardObjectList[0]); // Always process the first card
+            float delay = (handCardObjectList.Count - i - 1) * 0.1f;
+            DiscardCardWithDelay(handCardObjectList[i], delay, () =>
+            {
+                remainingCoroutines--;
+                if (remainingCoroutines == 0)
+                {
+                    discardDeckUIUpdated = false;
+                }
+            });
         }
         handCardObjectList.Clear();
-        discardCountEvent.RaiseEvent(discardDeck.Count, this);
+    }
+
+    private void DiscardCardWithDelay(object obj, float delay, System.Action onComplete)
+    {
+        StartCoroutine(DiscardCardCoroutine(obj, delay, onComplete));
+    }
+
+    private IEnumerator DiscardCardCoroutine(object obj, float delay, System.Action onComplete)
+    {
+        yield return new WaitForSeconds(delay);
+        DiscardCard(obj); // 调用原始的 DiscardCard 方法
+        onComplete?.Invoke();
     }
 
     public void DiscardCard(object obj)
@@ -163,7 +189,7 @@ public class CardDeck : MonoBehaviour
             card.isAnimating = false;
         };
         // Raise IntEvent to update UI number
-        discardCountEvent.RaiseEvent(discardDeck.Count, this);
+        if (!discardDeckUIUpdated) discardCountEvent.RaiseEvent(discardDeck.Count, this);
         SetCardLayout(0);
     }
 
