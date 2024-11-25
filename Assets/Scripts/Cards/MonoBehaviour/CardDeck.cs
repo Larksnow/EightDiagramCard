@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using DG.Tweening;
 using TMPro;
+using System.Collections;
 
 public class CardDeck : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class CardDeck : MonoBehaviour
     private List<Card> handCardObjectList = new();
     public Transform deckPosition;
     public Transform discardPosition;
+    public CardDeckAnimation cardDeckAnimation;
 
     public GameObject deckUI;
     public GameObject discardUI;
@@ -28,6 +30,8 @@ public class CardDeck : MonoBehaviour
     {
         InitializeDrawDeck();
         InitializeDiscardDeck();
+        // 测试用
+        NewTurnDrawCard(5);
     }
     public void NewTurnDrawCard(int amount)
     {
@@ -138,7 +142,7 @@ public class CardDeck : MonoBehaviour
         for (int i = 0; i < handCardObjectList.Count; ++i)
         {
             discardDeck.Add(handCardObjectList[i].cardData);
-            cardManager.DiscardCard(handCardObjectList[i].gameObject); 
+            cardManager.DiscardCard(handCardObjectList[i].gameObject);
         }
         handCardObjectList.Clear();
         discardCountEvent.RaiseEvent(discardDeck.Count, this);
@@ -146,9 +150,15 @@ public class CardDeck : MonoBehaviour
 
     public void DiscardCard(object obj)
     {
-        Card card = obj as Card;
+        StartCoroutine(DiscardWithAnimation(obj as Card));
+    }
+
+    private IEnumerator DiscardWithAnimation(Card card, int index = 0)
+    {
         discardDeck.Add(card.cardData);
         handCardObjectList.Remove(card);
+        // 播放弃牌动画并等待完成
+        yield return cardDeckAnimation.CardTransferAnimation(discardPosition, true, card, index);
         cardManager.DiscardCard(card.gameObject);
         // Raise IntEvent to update UI number
         discardCountEvent.RaiseEvent(discardDeck.Count, this);
