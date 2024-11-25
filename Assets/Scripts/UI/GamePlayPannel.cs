@@ -15,16 +15,22 @@ public class GamePlayPannel : MonoBehaviour
 
     public GameObject manaUI;
     public GameObject diagramPannel;
-    public GameObject triggerDiagramUI;
+    public GameObject dialogBox;
+    public float uiFadeDuration;
 
-    public float uiFadeDuration = 0.5f;
+    private TextMeshPro triggerDiagramText;
+    private int lastManaAmount;
+    private SpriteRenderer manaImage;
+    private TextMeshPro manaAmountText;
 
     [Header("Broadcast Events")]
     public ObjectEventSO playerTurnEndEvent;
     // 
     private void OnEnable()
     {
-        // 在这里添加你的UI 元素和事件处理程序
+        triggerDiagramText = diagramPannel.GetComponentInChildren<TextMeshPro>();
+        manaImage = manaUI.GetComponentInChildren<SpriteRenderer>();
+        manaAmountText = manaUI.GetComponentInChildren<TextMeshPro>();
     }
 
     public void OnEndTurnButtonClicked()
@@ -47,8 +53,27 @@ public class GamePlayPannel : MonoBehaviour
     }
     public void UpdateManaAmount(int amount)
     {
+        if (lastManaAmount != 0 && amount == 0) UseUpManaUI();
+        if (lastManaAmount == 0 && amount != 0) RecoverManaUI();
         TextMeshPro number = manaUI.GetComponentInChildren<TextMeshPro>();
         number.text = amount.ToString();
+        lastManaAmount = amount;
+    }
+
+    private void UseUpManaUI()
+    {
+        manaImage.color = new Color(manaImage.color.r, manaImage.color.g, manaImage.color.b, 0.5f);
+        manaAmountText.color = new Color(manaAmountText.color.r, manaAmountText.color.g, manaAmountText.color.b, 0.5f);
+        dialogBox.gameObject.SetActive(true);
+        dialogBox.GetComponentInChildren<TextMeshPro>().text = "没有足够法力。";
+    }
+
+    private void RecoverManaUI()
+    {
+        manaImage.color = new Color(manaImage.color.r, manaImage.color.g, manaImage.color.b, 1f);
+        manaAmountText.color = new Color(manaAmountText.color.r, manaAmountText.color.g, manaAmountText.color.b, 1f);
+        dialogBox.gameObject.SetActive(false);
+        dialogBox.GetComponentInChildren<TextMeshPro>().text = "";
     }
 
     public void OnEnemyTurnBegin()
@@ -72,14 +97,13 @@ public class GamePlayPannel : MonoBehaviour
         string diagramName = obj as string;
         Debug.Log("Trigger Diagram: " + diagramName);
         diagramPannel.GetComponent<DiagramPannel>().HighlightTop3();
-        TextMeshPro diagramText = triggerDiagramUI.GetComponent<TextMeshPro>();
-        diagramText.text = diagramName;
-        diagramText.color = new Color(diagramText.color.r, diagramText.color.g, diagramText.color.b, 1f);
+        triggerDiagramText.text = diagramName;
+        triggerDiagramText.color = new Color(triggerDiagramText.color.r, triggerDiagramText.color.g, triggerDiagramText.color.b, 1f);
 
         Sequence textAnimationSequence = DOTween.Sequence();
-        textAnimationSequence.Append(diagramText.DOFade(0f, uiFadeDuration)).onComplete = () =>
+        textAnimationSequence.Append(triggerDiagramText.DOFade(0f, uiFadeDuration)).onComplete = () =>
         {
-            diagramText.text = "";
+            triggerDiagramText.text = "";
         };
     }
     #endregion
