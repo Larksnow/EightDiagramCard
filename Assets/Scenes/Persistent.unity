@@ -165,8 +165,7 @@ MonoBehaviour:
   discardPosition: {fileID: 479771555}
   deckUI: {fileID: 0}
   discardUI: {fileID: 0}
-  animationTime: 0.5
-  player: {fileID: 0}
+  animationTime: 1
   drawCountEvent: {fileID: 11400000, guid: 896ef2753b089a14fb5ce60e21a286fa, type: 2}
   discardCountEvent: {fileID: 11400000, guid: 045d6d3c916df07478a58b2555a83f30, type: 2}
 --- !u!4 &123222011
@@ -662,7 +661,7 @@ Transform:
   m_GameObject: {fileID: 479771553}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: -6, z: 0}
+  m_LocalPosition: {x: 10, y: -4.98, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1355,7 +1354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleEnd: 0
-  enemyTurnDuration: 2
+  enemyTurnDuration: 1
   playerTurnDuration: 1.5
   playerTurnBegin: {fileID: 11400000, guid: 586e65e5bda664e48af347e449b1de9d, type: 2}
   enemyTurnBegin: {fileID: 11400000, guid: 73d8f4af027dd2945907115a955c7147, type: 2}

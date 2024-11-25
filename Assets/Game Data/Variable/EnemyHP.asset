@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7461bb14357344c89b1e0cdc8e201e, type: 3}
   m_Name: EnemyHP
   m_EditorClassIdentifier: 
-  maxValue: 0
-  currentValue: 0
+  maxValue: 30
+  currentValue: 30
   valueChangedEvent: {fileID: 11400000, guid: 814c96139c623664a8df4904c7d7df49, type: 2}
   description: 

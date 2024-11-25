@@ -17,7 +17,6 @@ public class CardDeck : MonoBehaviour
     public GameObject deckUI;
     public GameObject discardUI;
     public float animationTime;
-    public Player player;
 
     [Header("Broadcast Events")]
     public IntEventSO drawCountEvent;
@@ -95,13 +94,16 @@ public class CardDeck : MonoBehaviour
             currentCard.UpdateCardState();
             // Card draw animation
             currentCard.isAnimating = true;
-            currentCard.transform.DOScale(Vector3.one, animationTime).SetDelay(delay);
-            currentCard.transform.DOMove(cardTransform.position, animationTime).onComplete = () => currentCard.isAnimating = false;
-            currentCard.transform.DORotateQuaternion(cardTransform.rotation, animationTime);
+            Sequence cardAnimationSequence = DOTween.Sequence();
+            cardAnimationSequence
+            .Append(currentCard.transform.DOScale(Vector3.one, animationTime).SetDelay(delay)).SetEase(Ease.InOutQuart)
+            .Join(currentCard.transform.DOMove(cardTransform.position, animationTime)).SetEase(Ease.InOutQuart)
+            .Join(currentCard.transform.DORotateQuaternion(cardTransform.rotation, animationTime)).SetEase(Ease.InOutQuart)
+            .OnComplete(() =>
+            {
+                currentCard.isAnimating = false;
+            });
             // Set card order
-            currentCard.GetComponent<SortingGroup>().sortingOrder = i;
-
-            // Store a copy of current card transform
             currentCard.GetComponent<SortingGroup>().sortingOrder = i;
             currentCard.UpdateCardPositionRotation(cardTransform.position, cardTransform.rotation);
         }
@@ -137,10 +139,9 @@ public class CardDeck : MonoBehaviour
 
     public void DiscardAllCards()
     {
-        for (int i = 0; i < handCardObjectList.Count; ++i)
+        while (handCardObjectList.Count > 0)
         {
-            discardDeck.Add(handCardObjectList[i].cardData);
-            cardManager.DiscardCard(handCardObjectList[i].gameObject); 
+            DiscardCard(handCardObjectList[0]); // Always process the first card
         }
         handCardObjectList.Clear();
         discardCountEvent.RaiseEvent(discardDeck.Count, this);
@@ -151,7 +152,16 @@ public class CardDeck : MonoBehaviour
         Card card = obj as Card;
         discardDeck.Add(card.cardData);
         handCardObjectList.Remove(card);
-        cardManager.DiscardCard(card.gameObject);
+        card.isAnimating = true;
+        Sequence cardAnimationSequence = DOTween.Sequence();
+        cardAnimationSequence
+        .Append(card.gameObject.transform.DOScale(0, animationTime).SetEase(Ease.InOutQuart)).SetDelay(0.2f)
+        .Join(card.gameObject.transform.DOMove(discardPosition.position, animationTime).SetEase(Ease.InOutQuart))
+        .onComplete = () =>
+        {
+            cardManager.DiscardCard(card.gameObject);
+            card.isAnimating = false;
+        };
         // Raise IntEvent to update UI number
         discardCountEvent.RaiseEvent(discardDeck.Count, this);
         SetCardLayout(0);

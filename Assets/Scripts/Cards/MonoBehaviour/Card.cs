@@ -20,6 +20,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public int originalLayerOrder;
     public bool isAnimating;
     public bool isAvailable;
+    public bool isDraging;
     public Player player;
     [Header("Broadcast Event")]
     public ObjectEventSO discardCardEvent;
@@ -48,7 +49,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(isAnimating) return;
+        if(isAnimating || isDraging) return;
         transform.position = new Vector3(originalPosition.x, -3.5f, 0);
         transform.rotation = Quaternion.identity;
         GetComponent<SortingGroup>().sortingOrder = 20;
@@ -56,7 +57,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if(isAnimating) return;
+        if(isAnimating || isDraging) return;
         ResetCardTransform();
     }
 

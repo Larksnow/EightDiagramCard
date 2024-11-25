@@ -27,28 +27,32 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (currentCard.isAnimating) return;
         if (!currentCard.isAvailable) return;
         canMove = true;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (currentCard.isAnimating) return;
         if (!currentCard.isAvailable) return;
         if (canMove)
         {
-           currentCard.isAnimating = true;
-           Vector3 screenPos = new(Input.mousePosition.x, Input.mousePosition.y, 10);
-           Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
-           currentCard.transform.position = worldPos;
-           canExecute = worldPos.y > 0f;
+            currentCard.isDraging = true;
+            Vector3 screenPos = new(Input.mousePosition.x, Input.mousePosition.y, 10);
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+            currentCard.transform.position = worldPos;
+            canExecute = worldPos.y > 0f;
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (currentCard.isAnimating) return;
         if (!currentCard.isAvailable) return;
-        if(canExecute)
+        if(canExecute && currentCard.isDraging && canMove)
         {
+            currentCard.isDraging = false;
             CardType yao = currentCard.cardData.cardType;
             // Cards only affect player himself
             currentCard.ExecuteCardEffect(currentCard.player); 
@@ -57,7 +61,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         else
         {
             currentCard.ResetCardTransform();
-            currentCard.isAnimating = false;
+            currentCard.isDraging = false;
         }
     }
 }
