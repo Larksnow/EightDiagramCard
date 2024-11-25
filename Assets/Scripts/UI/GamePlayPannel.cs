@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 //This script controls all the UI elements in the battle scene
 public class GamePlayPannel : MonoBehaviour
 {
@@ -14,7 +15,10 @@ public class GamePlayPannel : MonoBehaviour
 
     public GameObject manaUI;
     public GameObject diagramPannel;
-    
+    public GameObject triggerDiagramUI;
+
+    public float uiFadeDuration = 0.5f;
+
     [Header("Broadcast Events")]
     public ObjectEventSO playerTurnEndEvent;
     // 
@@ -57,16 +61,26 @@ public class GamePlayPannel : MonoBehaviour
         endTurnButton.GetComponent<EndTurnButton>().RotateEndTurnButton();
         endTurnButton.GetComponent<EndTurnButton>().pressEnabled = true;
     }
-    
+
     #region Diagram Pannel
     public void AddOneYaoToDiagramPannel(int cardType)
     {
         diagramPannel.GetComponent<DiagramPannel>().AddOneYao(cardType);
     }
-    public void HighlightDiagram()
+    public void TriggerDiagram(object obj)
     {
+        string diagramName = obj as string;
+        Debug.Log("Trigger Diagram: " + diagramName);
         diagramPannel.GetComponent<DiagramPannel>().HighlightTop3();
+        TextMeshPro diagramText = triggerDiagramUI.GetComponent<TextMeshPro>();
+        diagramText.text = diagramName;
+        diagramText.color = new Color(diagramText.color.r, diagramText.color.g, diagramText.color.b, 1f);
+
+        Sequence textAnimationSequence = DOTween.Sequence();
+        textAnimationSequence.Append(diagramText.DOFade(0f, uiFadeDuration)).onComplete = () =>
+        {
+            diagramText.text = "";
+        };
     }
     #endregion
-
 }

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b0836e18f80fc45a2a5d4b5a6ae688, type: 3}
   m_Name: Dui
   m_EditorClassIdentifier: 
-  diagramName: Dui
+  diagramName: "\u5151"
   patternSprite: {fileID: 0}
   nameSprite: {fileID: 0}
   description: 
   diagramType: 6
   diagramPattern: 000000000100000001000000
+  effects: []
