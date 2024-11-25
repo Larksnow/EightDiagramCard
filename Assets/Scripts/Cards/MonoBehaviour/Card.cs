@@ -21,6 +21,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public bool isAnimating;
     public bool isAvailable;
     public bool isDraging;
+    public bool isMouseOver;
     public Player player;
     [Header("Broadcast Event")]
     public ObjectEventSO discardCardEvent;
@@ -28,7 +29,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Start()
     {
-        Init(cardData);    
+        Init(cardData);
     }
     public void Init(CardDataSO data)
     {
@@ -38,6 +39,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         nameText.text = data.cardName;
         descriptionTest.text = data.cardDescription;
         player = GameObject.FindObjectOfType<Player>();
+        isMouseOver = false;
     }
 
     public void UpdateCardPositionRotation(Vector3 position, Quaternion rotation)
@@ -49,7 +51,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(isAnimating || isDraging) return;
+        if (isAnimating || isDraging) return;
+        isMouseOver = true;
         transform.position = new Vector3(originalPosition.x, -3.5f, 0);
         transform.rotation = Quaternion.identity;
         GetComponent<SortingGroup>().sortingOrder = 20;
@@ -57,7 +60,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if(isAnimating || isDraging) return;
+        if (isAnimating || isDraging) return;
+        isMouseOver = false;
         ResetCardTransform();
     }
 

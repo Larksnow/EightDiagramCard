@@ -27,8 +27,10 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!currentCard.isMouseOver) return;
         if (currentCard.isAnimating) return;
         if (!currentCard.isAvailable) return;
+        Debug.Log("Can Move");
         canMove = true;
     }
 
@@ -50,12 +52,12 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (currentCard.isAnimating) return;
         if (!currentCard.isAvailable) return;
-        if(canExecute && currentCard.isDraging && canMove)
+        if (canExecute && currentCard.isDraging && canMove)
         {
             currentCard.isDraging = false;
             CardType yao = currentCard.cardData.cardType;
             // Cards only affect player himself
-            currentCard.ExecuteCardEffect(currentCard.player); 
+            currentCard.ExecuteCardEffect(currentCard.player);
             diagramChecker.updateDiagramChecker(yao);
         }
         else
