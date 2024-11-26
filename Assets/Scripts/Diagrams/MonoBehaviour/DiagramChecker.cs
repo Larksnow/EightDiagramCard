@@ -5,22 +5,22 @@ using UnityEngine;
 
 public class DiagramChecker : MonoBehaviour
 {
-    public List<CardType> yaoList;
+    public List<CardDataSO> yaoList;
     private int maxCount = 6;
     public DiagramManager diagramManager;
     public IntEventSO addOneYaoEvent;
     public ObjectEventSO triggerDiagramEvent;
 
-    public void updateDiagramChecker(CardType cardType)
+    public void updateDiagramChecker(CardDataSO cardData)
     {
-        yaoList.Insert(0, cardType);
+        yaoList.Insert(0, cardData);
         // Limit the list to maxCount elements
         if (yaoList.Count > maxCount)
         {
             yaoList.RemoveAt(yaoList.Count - 1); // Remove the first element
         }
 
-        addOneYaoEvent.RaiseEvent((int)cardType, this);
+        addOneYaoEvent.RaiseEvent((int)cardData.cardType, this);
 
         checkPattern();
     }
@@ -33,11 +33,11 @@ public class DiagramChecker : MonoBehaviour
             var upYao = yaoList[0];
             var midYao = yaoList[1];
             var downYao = yaoList[2];
-            if (upYao == item.diagramPattern[0] && midYao == item.diagramPattern[1] && downYao == item.diagramPattern[2])
+            if (upYao.cardType == item.diagramPattern[0] && midYao.cardType == item.diagramPattern[1] && downYao.cardType == item.diagramPattern[2])
             {
                 Debug.Log("Pattern Matched: " + item.diagramName);
                 triggerDiagramEvent.RaiseEvent(item.diagramName, this);
-                diagramManager.ApplyDiagramEffect(item);
+                diagramManager.ApplyDiagramEffect(item, upYao, midYao, downYao);
             }
         } 
     }
