@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class DiagramPannel : MonoBehaviour
@@ -11,10 +12,12 @@ public class DiagramPannel : MonoBehaviour
     public Color highlightColor = Color.red;
     public float animationDuration;
 
+    public TextMeshPro triggerDiagramText;
     private int maxCount = 6;
 
     [SerializeField] private List<GameObject> yaos = new();
 
+    #region Called by GamePlayPannel
     public void AddOneYao(int cardType)
     {
         GameObject newYao = Instantiate(yao, transform);
@@ -29,11 +32,35 @@ public class DiagramPannel : MonoBehaviour
         UpdateYaoPositions();
     }
 
+    public void TriggerDiagram(DiagramDataSO diagramData, float fadeDuration)
+    {
+        HighlightTop3();
+        triggerDiagramText.text = diagramData.diagramName;
+        triggerDiagramText.color = diagramData.diagramColor;
+
+        Sequence textAnimationSequence = DOTween.Sequence();
+        textAnimationSequence.Append(triggerDiagramText.DOFade(0f, fadeDuration)).onComplete = () =>
+        {
+            triggerDiagramText.text = "";
+        };
+    }
+    public void ResetDiagramPannel()
+    {
+        foreach (GameObject yao in yaos)
+        {
+            SpriteRenderer sprite = yao.GetComponent<SpriteRenderer>();
+            sprite.DOFade(0f, animationDuration).OnComplete(() => Destroy(yao));
+        }
+        yaos.Clear();
+    }
+    #endregion
+
     // 触发一卦时高亮所在的三个爻
-    public void HighlightTop3()
+    private void HighlightTop3()
     {
         if (yaos.Count < 3) return;
-        for (int i = yaos.Count - 3; i < yaos.Count; i++) {
+        for (int i = yaos.Count - 3; i < yaos.Count; i++)
+        {
             GameObject yao = yaos[i];
             Sequence sequence = DOTween.Sequence();
             sequence.Append(yao.transform.DOScale(1.2f, animationDuration).SetEase(Ease.OutCubic));
@@ -51,13 +78,4 @@ public class DiagramPannel : MonoBehaviour
         }
     }
 
-    public void ResetDiagramPannel()
-    {
-        foreach (GameObject yao in yaos)
-        {
-            SpriteRenderer sprite = yao.GetComponent<SpriteRenderer>();
-            sprite.DOFade(0f, animationDuration).OnComplete(() => Destroy(yao));
-        }
-        yaos.Clear();
-    }
 }

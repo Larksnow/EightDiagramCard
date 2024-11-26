@@ -19,7 +19,6 @@ public class GamePlayPannel : MonoBehaviour
     public float uiFadeDuration;
     public float dialogBoxDuration;
 
-    private TextMeshPro triggerDiagramText;
     private SpriteRenderer manaImage;
     private TextMeshPro manaAmountText;
     private bool hasAvailableCard;
@@ -28,7 +27,6 @@ public class GamePlayPannel : MonoBehaviour
     public ObjectEventSO playerTurnEndEvent;
     private void OnEnable()
     {
-        triggerDiagramText = diagramPannel.GetComponentInChildren<TextMeshPro>();
         manaImage = manaUI.GetComponentInChildren<SpriteRenderer>();
         manaAmountText = manaUI.GetComponentInChildren<TextMeshPro>();
     }
@@ -63,6 +61,18 @@ public class GamePlayPannel : MonoBehaviour
     {
         TextMeshPro number = discardDeckUI.GetComponentInChildren<TextMeshPro>();
         number.text = amount.ToString();
+    }
+    #endregion
+
+    #region Diagram Pannel
+    public void AddOneYaoToDiagramPannel(int cardType)
+    {
+        diagramPannel.GetComponent<DiagramPannel>().AddOneYao(cardType);
+    }
+    public void TriggerDiagram(object obj)
+    {
+        DiagramDataSO diagramData = obj as DiagramDataSO;
+        diagramPannel.GetComponent<DiagramPannel>().TriggerDiagram(diagramData, uiFadeDuration);
     }
     #endregion
 
@@ -111,25 +121,4 @@ public class GamePlayPannel : MonoBehaviour
     }
     #endregion
 
-
-    #region Diagram Pannel
-    public void AddOneYaoToDiagramPannel(int cardType)
-    {
-        diagramPannel.GetComponent<DiagramPannel>().AddOneYao(cardType);
-    }
-    public void TriggerDiagram(object obj)
-    {
-        string diagramName = obj as string;
-        Debug.Log("Trigger Diagram: " + diagramName);
-        diagramPannel.GetComponent<DiagramPannel>().HighlightTop3();
-        triggerDiagramText.text = diagramName;
-        triggerDiagramText.color = new Color(triggerDiagramText.color.r, triggerDiagramText.color.g, triggerDiagramText.color.b, 1f);
-
-        Sequence textAnimationSequence = DOTween.Sequence();
-        textAnimationSequence.Append(triggerDiagramText.DOFade(0f, uiFadeDuration)).onComplete = () =>
-        {
-            triggerDiagramText.text = "";
-        };
-    }
-    #endregion
 }

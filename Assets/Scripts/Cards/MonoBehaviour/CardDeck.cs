@@ -61,7 +61,7 @@ public class CardDeck : MonoBehaviour
     {
         DrawCard(1);
     }
-    private void DrawCard(int amount)
+    public void DrawCard(int amount)
     {
         // Max hand limit is 10
         if (handCardObjectList.Count >= 10) return;

@@ -61,7 +61,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (canExecute && currentCard.isDraging && canMove)
         {
             currentCard.isDraging = false;
-            CardType yao = currentCard.cardData.cardType;
+            CardDataSO yao = currentCard.cardData;
             // Cards only affect player himself
             currentCard.ExecuteCardEffect(currentCard.player);
             diagramChecker.updateDiagramChecker(yao);

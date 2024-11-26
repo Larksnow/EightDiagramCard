@@ -10,6 +10,7 @@ public class CardDataSO : ScriptableObject
     public Sprite cardSprite;
     public CardType cardType;
     public int cost;
+    public int canExecuteTimes;
    
     public List<Effect> effects;
 }

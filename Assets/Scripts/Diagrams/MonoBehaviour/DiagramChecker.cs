@@ -36,7 +36,7 @@ public class DiagramChecker : MonoBehaviour
             if (upYao.cardType == item.diagramPattern[0] && midYao.cardType == item.diagramPattern[1] && downYao.cardType == item.diagramPattern[2])
             {
                 Debug.Log("Pattern Matched: " + item.diagramName);
-                triggerDiagramEvent.RaiseEvent(item.diagramName, this);
+                triggerDiagramEvent.RaiseEvent(item, this);
                 diagramManager.ApplyDiagramEffect(item, upYao, midYao, downYao);
             }
         } 
