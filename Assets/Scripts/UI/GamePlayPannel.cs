@@ -17,15 +17,14 @@ public class GamePlayPannel : MonoBehaviour
     public GameObject diagramPannel;
     public GameObject dialogBox;
     public float uiFadeDuration;
+    public float dialogBoxDuration;
 
     private TextMeshPro triggerDiagramText;
-    private int lastManaAmount;
     private SpriteRenderer manaImage;
     private TextMeshPro manaAmountText;
 
     [Header("Broadcast Events")]
     public ObjectEventSO playerTurnEndEvent;
-    // 
     private void OnEnable()
     {
         triggerDiagramText = diagramPannel.GetComponentInChildren<TextMeshPro>();
@@ -53,27 +52,36 @@ public class GamePlayPannel : MonoBehaviour
     }
     public void UpdateManaAmount(int amount)
     {
-        if (lastManaAmount != 0 && amount == 0) UseUpManaUI();
-        if (lastManaAmount == 0 && amount != 0) RecoverManaUI();
         TextMeshPro number = manaUI.GetComponentInChildren<TextMeshPro>();
         number.text = amount.ToString();
-        lastManaAmount = amount;
     }
 
-    private void UseUpManaUI()
+    public void LackOfMana()
     {
+        StartCoroutine(LackOfManaCoroutine());
+    }
+
+    private IEnumerator LackOfManaCoroutine()
+    {
+        var dialogText = dialogBox.GetComponentInChildren<TextMeshPro>();
+        var dialogBackground = dialogBox.GetComponentInChildren<SpriteRenderer>();
+        if (dialogText.color.a != 1f) yield break; // 如果提示框已经显示，则不重复显示
+        // 法力ui变暗
         manaImage.color = new Color(manaImage.color.r, manaImage.color.g, manaImage.color.b, 0.5f);
         manaAmountText.color = new Color(manaAmountText.color.r, manaAmountText.color.g, manaAmountText.color.b, 0.5f);
-        dialogBox.gameObject.SetActive(true);
-        dialogBox.GetComponentInChildren<TextMeshPro>().text = "没有足够法力。";
-    }
+        // 显示提示框
+        dialogBox.SetActive(true);
+        dialogText.text = "没有足够法力。";
+        yield return new WaitForSeconds(dialogBoxDuration);
+        // 淡入淡出
+        Sequence fadeSequence = DOTween.Sequence();
+        fadeSequence.Append(manaImage.DOFade(1f, 0.5f)).Join(manaAmountText.DOFade(1f, 0.5f)).Join(dialogBackground.DOFade(0f, 0.5f)).Join(dialogText.DOFade(0f, 0.5f)).OnComplete(() =>
+        {
 
-    private void RecoverManaUI()
-    {
-        manaImage.color = new Color(manaImage.color.r, manaImage.color.g, manaImage.color.b, 1f);
-        manaAmountText.color = new Color(manaAmountText.color.r, manaAmountText.color.g, manaAmountText.color.b, 1f);
-        dialogBox.gameObject.SetActive(false);
-        dialogBox.GetComponentInChildren<TextMeshPro>().text = "";
+            dialogBackground.color = new Color(dialogBackground.color.r, dialogBackground.color.g, dialogBackground.color.b, 1f);
+            dialogText.color = new Color(dialogText.color.r, dialogText.color.g, dialogText.color.b, 1f);
+            dialogBox.SetActive(false);
+        });
     }
 
     public void OnEnemyTurnBegin()

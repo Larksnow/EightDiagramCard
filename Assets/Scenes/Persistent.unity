@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 193565721}
   - component: {fileID: 193565723}
   - component: {fileID: 193565722}
+  - component: {fileID: 193565724}
   m_Layer: 0
   m_Name: GamePlayPannel
   m_TagString: Untagged
@@ -371,6 +372,7 @@ MonoBehaviour:
   diagramPannel: {fileID: 1721429166}
   dialogBox: {fileID: 257936497}
   uiFadeDuration: 1
+  dialogBoxDuration: 1
   playerTurnEndEvent: {fileID: 11400000, guid: b70699de3920f8f43bdf2a54645b4173, type: 2}
 --- !u!4 &193565718
 Transform:
@@ -535,6 +537,35 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GamePlayPannel, Assembly-CSharp
         m_MethodName: AddOneYaoToDiagramPannel
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &193565724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193565714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: c3d9be9e30bacae49aab36ee1c0b92ae, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 193565717}
+        m_TargetAssemblyTypeName: GamePlayPannel, Assembly-CSharp
+        m_MethodName: LackOfMana
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
