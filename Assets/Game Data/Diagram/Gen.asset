@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Gen
   m_EditorClassIdentifier: 
   diagramName: "\u826E"
+  diagramColor: {r: 0.4862745, g: 0.36862746, b: 0.047058824, a: 1}
   patternSprite: {fileID: 0}
   nameSprite: {fileID: 0}
   description: 
   diagramType: 7
   diagramPattern: 010000000000000000000000
+  yinBuff: 0
+  yangBuff: 0
   effects: []

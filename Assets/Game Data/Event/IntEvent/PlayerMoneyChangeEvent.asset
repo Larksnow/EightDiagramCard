@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d619d6e178a3ee643ba6777c360f7948, type: 3}
   m_Name: PlayerMoneyChangeEvent
   m_EditorClassIdentifier: 
-  description: 
-  lastSender: 
+  description: "\u73A9\u5BB6\u6240\u6301\u91D1\u5E01\u6539\u53D8"
+  lastSender: PlayerMoney (IntVariable)

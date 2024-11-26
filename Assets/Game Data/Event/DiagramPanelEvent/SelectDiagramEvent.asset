@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33ee30f7ec807f74abeab0f5824f73d2, type: 3}
-  m_Name: AllDamageEffect
+  m_Script: {fileID: 11500000, guid: 589d6281563883542816f5bf71e9a4da, type: 3}
+  m_Name: SelectDiagramEvent
   m_EditorClassIdentifier: 
-  value: 4
-  targetType: 1
+  description: 
+  lastSender: 

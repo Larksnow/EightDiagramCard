@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Dui
   m_EditorClassIdentifier: 
   diagramName: "\u5151"
+  diagramColor: {r: 0.4745098, g: 0.4509804, b: 0.45882353, a: 1}
   patternSprite: {fileID: 0}
   nameSprite: {fileID: 0}
   description: 
   diagramType: 6
   diagramPattern: 000000000100000001000000
-  effects: []
+  yinBuff: 0
+  yangBuff: 0
+  effects:
+  - {fileID: 11400000, guid: 39ee7c3438aa555469c7252c8e270596, type: 2}

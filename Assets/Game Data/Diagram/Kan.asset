@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Kan
   m_EditorClassIdentifier: 
   diagramName: "\u574E"
+  diagramColor: {r: 0, g: 0, b: 0, a: 1}
   patternSprite: {fileID: 0}
   nameSprite: {fileID: 0}
   description: 
   diagramType: 4
   diagramPattern: 000000000100000000000000
+  yinBuff: 0
+  yangBuff: 0
   effects: []

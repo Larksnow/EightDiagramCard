@@ -19,4 +19,9 @@ public class DamageEffect : Effect
                 break;
         }
     }
+    public override void Execute(DiagramDataSO diagramData)
+    {
+        throw new System.NotImplementedException();
+    }
+
 }

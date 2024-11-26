@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d619d6e178a3ee643ba6777c360f7948, type: 3}
   m_Name: DrawCardEvent
   m_EditorClassIdentifier: 
-  description: 
-  lastSender: 
+  description: "\u62BD\u724C\u65F6\u62BDvalue\u5F20\u724C"
+  lastSender: DrawCardEffect (DrawCardEffect)

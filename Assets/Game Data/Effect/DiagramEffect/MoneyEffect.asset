@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e74e88143b09a28429edea8b4e0776ab, type: 3}
   m_Name: MoneyEffect
   m_EditorClassIdentifier: 
-  value: 0
+  value: 1
   targetType: 0

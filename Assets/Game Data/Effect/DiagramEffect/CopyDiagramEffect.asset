@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed53de345b4cca44a8a2367ccb99b1e, type: 3}
+  m_Name: CopyDiagramEffect
+  m_EditorClassIdentifier: 
+  value: 0
+  targetType: 0
+  diagramManager: {fileID: 0}
+  chooseDiagramEvent: {fileID: 11400000, guid: 1a0395118cb532041b756389527781b4, type: 2}
+  diagramDataToCopy: {fileID: 11400000, guid: 9bab22bf9e88fa14589ccd7ba470f487, type: 2}

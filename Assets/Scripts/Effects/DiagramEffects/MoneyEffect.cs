@@ -12,4 +12,9 @@ public class MoneyEffect : Effect
             Debug.Log("Money effect can only be applied to player characters.");
         player.CurrentMoney += value;
     }
+
+    public override void Execute(DiagramDataSO diagramData)
+    {
+        throw new System.NotImplementedException();
+    }
 }

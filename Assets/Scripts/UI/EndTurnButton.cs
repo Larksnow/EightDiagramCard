@@ -4,7 +4,7 @@ using DG.Tweening;
 
 public class EndTurnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public GamePlayPannel gamePlayPannel;
+    public GamePlayPanel gamePlayPannel;
     private Vector3 originalScale;
     public float hoverScaleMultiplier = 1.1f; // Scale multiplier for hover
     public float clickScaleMultiplier = 1.2f; // Scale multiplier for click
@@ -15,7 +15,7 @@ public class EndTurnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private void Awake()
     {
         originalScale = transform.localScale;
-        gamePlayPannel = FindObjectOfType<GamePlayPannel>();
+        gamePlayPannel = FindObjectOfType<GamePlayPanel>();
     }
     public void OnMouseDown()
     {   

@@ -197,8 +197,13 @@ public class CardDeck : MonoBehaviour
         CheckAllAvailable();
     }
 
-    private void CheckAllAvailable()
+    public void CheckAllAvailable()
     {
+        for (int i = 0; i < handCardObjectList.Count; ++i)
+        {
+            handCardObjectList[i].UpdateCardState();
+        }
+
         // 检查手上有没有能出的牌
         foreach (var card in handCardObjectList)
         {

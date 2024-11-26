@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 //This script controls all the UI elements in the battle scene
-public class GamePlayPannel : MonoBehaviour
+public class GamePlayPanel : MonoBehaviour
 {
     // 在这里引用各种UI Object
     // 比如 public GameObject cardDeckUI = cardDeck(Prefab) 
@@ -15,6 +15,7 @@ public class GamePlayPannel : MonoBehaviour
     public GameObject manaUI;
     public GameObject diagramPannel;
     public GameObject dialogBox;
+    public GameObject selectDiagramPannel;
 
     public float uiFadeDuration;
     public float dialogBoxDuration;
@@ -35,7 +36,7 @@ public class GamePlayPannel : MonoBehaviour
     public void OnEndTurnButtonClicked()
     {
         // Rest DiagramePannel When player turn ended
-        diagramPannel.GetComponent<DiagramPannel>().ResetDiagramPannel();
+        diagramPannel.GetComponent<DiagramPanel>().ResetDiagramPannel();
         playerTurnEndEvent.RaiseEvent(null, this);
     }
     public void OnEnemyTurnBegin()
@@ -67,12 +68,12 @@ public class GamePlayPannel : MonoBehaviour
     #region Diagram Pannel
     public void AddOneYaoToDiagramPannel(int cardType)
     {
-        diagramPannel.GetComponent<DiagramPannel>().AddOneYao(cardType);
+        diagramPannel.GetComponent<DiagramPanel>().AddOneYao(cardType);
     }
     public void TriggerDiagram(object obj)
     {
         DiagramDataSO diagramData = obj as DiagramDataSO;
-        diagramPannel.GetComponent<DiagramPannel>().TriggerDiagram(diagramData, uiFadeDuration);
+        diagramPannel.GetComponent<DiagramPanel>().TriggerDiagram(diagramData, uiFadeDuration);
     }
     #endregion
 
@@ -121,4 +122,10 @@ public class GamePlayPannel : MonoBehaviour
     }
     #endregion
 
+    #region Select Diagram Pannel
+    public void SelectDiagram()
+    {
+        selectDiagramPannel.SetActive(true);
+    }
+    #endregion
 }

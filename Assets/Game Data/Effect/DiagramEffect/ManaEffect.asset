@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a10e52cea85484f88cf8408398a95f, type: 3}
   m_Name: ManaEffect
   m_EditorClassIdentifier: 
-  value: 0
+  value: 1
   targetType: 0

@@ -10,4 +10,8 @@ public class ManaEffect : Effect
         // value 为增加的魔力值
         player.UpdateMana(-value);
     }
+    public override void Execute(DiagramDataSO diagramData)
+    {
+        throw new System.NotImplementedException();
+    }
 }

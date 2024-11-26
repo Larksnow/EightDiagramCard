@@ -3,7 +3,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class DiagramPannel : MonoBehaviour
+public class DiagramPanel : MonoBehaviour
 {
     public float verticalSpace;
     public GameObject yao;

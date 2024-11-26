@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7461bb14357344c89b1e0cdc8e201e, type: 3}
   m_Name: PlayerMoney
   m_EditorClassIdentifier: 
-  maxValue: 0
-  currentValue: 0
-  valueChangedEvent: {fileID: 0}
+  maxValue: 999999
+  currentValue: 1
+  valueChangedEvent: {fileID: 11400000, guid: 75fabfbb0d346e5469d108d79de16af0, type: 2}
   description: 

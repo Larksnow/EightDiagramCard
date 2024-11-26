@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : CharacterBase
 {
+public CardDeck cardDeck;
     public IntVariable playerMana;
     public IntVariable playerMoney;
     public int maxMana;
@@ -25,5 +26,6 @@ public class Player : CharacterBase
     public void UpdateMana(int cost)
     {
         CurrentMana = Mathf.Clamp(CurrentMana - cost, 0, maxMana);
+        cardDeck.CheckAllAvailable();
     }
 }

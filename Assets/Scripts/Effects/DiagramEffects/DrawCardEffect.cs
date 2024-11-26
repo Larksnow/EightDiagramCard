@@ -9,4 +9,8 @@ public class DrawCardEffect : Effect
     {
         drawCardEvent.RaiseEvent(value, this);
     }
+    public override void Execute(DiagramDataSO diagramData)
+    {
+        throw new System.NotImplementedException();
+    }
 }
