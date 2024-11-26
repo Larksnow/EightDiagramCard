@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b0836e18f80fc45a2a5d4b5a6ae688, type: 3}
   m_Name: Qian
   m_EditorClassIdentifier: 
-  diagramName: Qian
+  diagramName: "\u4E7E"
   patternSprite: {fileID: 0}
   nameSprite: {fileID: 0}
   description: "\u89E6\u53D1\u6B64\u5366\u65F6\u5BF9\u6240\u6709\u654C\u4EBA\u9020\u6210\u4F24\u5BB3"
   diagramType: 0
   diagramPattern: 010000000100000001000000
+  effects: []
