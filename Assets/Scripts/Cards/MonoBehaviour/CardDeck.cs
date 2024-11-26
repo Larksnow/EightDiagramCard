@@ -22,6 +22,7 @@ public class CardDeck : MonoBehaviour
     [Header("Broadcast Events")]
     public IntEventSO drawCountEvent;
     public IntEventSO discardCountEvent;
+    public ObjectEventSO checkAvailableCardEvent;
 
     private bool discardDeckUIUpdated;
 
@@ -85,6 +86,7 @@ public class CardDeck : MonoBehaviour
             handCardObjectList.Add(card);
             var delay = i * 0.2f;
             SetCardLayout(delay);
+            CheckAllAvailable();
         }
     }
 
@@ -191,6 +193,21 @@ public class CardDeck : MonoBehaviour
         // Raise IntEvent to update UI number
         if (!discardDeckUIUpdated) discardCountEvent.RaiseEvent(discardDeck.Count, this);
         SetCardLayout(0);
+
+        CheckAllAvailable();
     }
 
+    private void CheckAllAvailable()
+    {
+        // 检查手上有没有能出的牌
+        foreach (var card in handCardObjectList)
+        {
+            if (card.isAvailable)
+            {
+                checkAvailableCardEvent.RaiseEvent(true, this);
+                return;
+            }
+        }
+        checkAvailableCardEvent.RaiseEvent(false, this);
+    }
 }

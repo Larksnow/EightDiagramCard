@@ -168,6 +168,7 @@ MonoBehaviour:
   animationTime: 1
   drawCountEvent: {fileID: 11400000, guid: 896ef2753b089a14fb5ce60e21a286fa, type: 2}
   discardCountEvent: {fileID: 11400000, guid: 045d6d3c916df07478a58b2555a83f30, type: 2}
+  checkAvailableCardEvent: {fileID: 11400000, guid: a996c23459b01d74c89b1757388bfc97, type: 2}
 --- !u!4 &123222011
 Transform:
   m_ObjectHideFlags: 0
@@ -288,6 +289,7 @@ GameObject:
   - component: {fileID: 193565723}
   - component: {fileID: 193565722}
   - component: {fileID: 193565724}
+  - component: {fileID: 193565725}
   m_Layer: 0
   m_Name: GamePlayPannel
   m_TagString: Untagged
@@ -566,6 +568,35 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GamePlayPannel, Assembly-CSharp
         m_MethodName: LackOfMana
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &193565725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193565714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: a996c23459b01d74c89b1757388bfc97, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 193565717}
+        m_TargetAssemblyTypeName: GamePlayPannel, Assembly-CSharp
+        m_MethodName: UpdateHasAvailableCard
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

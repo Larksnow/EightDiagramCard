@@ -8,20 +8,21 @@ public class GamePlayPannel : MonoBehaviour
 {
     // 在这里引用各种UI Object
     // 比如 public GameObject cardDeckUI = cardDeck(Prefab) 
+    [Header("UI Objects")]
     public GameObject cardDeckUI;
     public GameObject discardDeckUI;
-
     public GameObject endTurnButton;
-
     public GameObject manaUI;
     public GameObject diagramPannel;
     public GameObject dialogBox;
+
     public float uiFadeDuration;
     public float dialogBoxDuration;
 
     private TextMeshPro triggerDiagramText;
     private SpriteRenderer manaImage;
     private TextMeshPro manaAmountText;
+    private bool hasAvailableCard;
 
     [Header("Broadcast Events")]
     public ObjectEventSO playerTurnEndEvent;
@@ -32,13 +33,26 @@ public class GamePlayPannel : MonoBehaviour
         manaAmountText = manaUI.GetComponentInChildren<TextMeshPro>();
     }
 
+    #region End Turn Button
     public void OnEndTurnButtonClicked()
     {
         // Rest DiagramePannel When player turn ended
         diagramPannel.GetComponent<DiagramPannel>().ResetDiagramPannel();
         playerTurnEndEvent.RaiseEvent(null, this);
     }
+    public void OnEnemyTurnBegin()
+    {
+        endTurnButton.GetComponent<EndTurnButton>().pressEnabled = false;
+    }
 
+    public void OnPlayerTurnBegin()
+    {
+        endTurnButton.GetComponent<EndTurnButton>().RotateEndTurnButton();
+        endTurnButton.GetComponent<EndTurnButton>().pressEnabled = true;
+    }
+    #endregion
+
+    #region Card Deck UI
     public void UpdateDrawDeckAmount(int amount)
     {
         TextMeshPro number = cardDeckUI.GetComponentInChildren<TextMeshPro>();
@@ -50,12 +64,21 @@ public class GamePlayPannel : MonoBehaviour
         TextMeshPro number = discardDeckUI.GetComponentInChildren<TextMeshPro>();
         number.text = amount.ToString();
     }
+    #endregion
+
+    #region Mana UI
     public void UpdateManaAmount(int amount)
     {
         TextMeshPro number = manaUI.GetComponentInChildren<TextMeshPro>();
         number.text = amount.ToString();
     }
-
+    public void UpdateHasAvailableCard(object obj)
+    {
+        bool hasAvailable = (bool)obj;
+        hasAvailableCard = hasAvailable;
+        manaImage.color = new Color(manaImage.color.r, manaImage.color.g, manaImage.color.b, hasAvailable ? 1f : 0.5f);
+        manaAmountText.color = new Color(manaAmountText.color.r, manaAmountText.color.g, manaAmountText.color.b, hasAvailable ? 1f : 0.5f);
+    }
     public void LackOfMana()
     {
         StartCoroutine(LackOfManaCoroutine());
@@ -75,25 +98,19 @@ public class GamePlayPannel : MonoBehaviour
         yield return new WaitForSeconds(dialogBoxDuration);
         // 淡入淡出
         Sequence fadeSequence = DOTween.Sequence();
-        fadeSequence.Append(manaImage.DOFade(1f, 0.5f)).Join(manaAmountText.DOFade(1f, 0.5f)).Join(dialogBackground.DOFade(0f, 0.5f)).Join(dialogText.DOFade(0f, 0.5f)).OnComplete(() =>
-        {
+        fadeSequence.Append(dialogBackground.DOFade(0f, 0.5f)).Join(dialogText.DOFade(0f, 0.5f));
+        if (hasAvailableCard)
+            fadeSequence.Join(manaImage.DOFade(1f, 0.5f)).Join(manaAmountText.DOFade(1f, 0.5f));
 
+        fadeSequence.OnComplete(() =>
+        {
             dialogBackground.color = new Color(dialogBackground.color.r, dialogBackground.color.g, dialogBackground.color.b, 1f);
             dialogText.color = new Color(dialogText.color.r, dialogText.color.g, dialogText.color.b, 1f);
             dialogBox.SetActive(false);
         });
     }
+    #endregion
 
-    public void OnEnemyTurnBegin()
-    {
-        endTurnButton.GetComponent<EndTurnButton>().pressEnabled = false;
-    }
-
-    public void OnPlayerTurnBegin()
-    {
-        endTurnButton.GetComponent<EndTurnButton>().RotateEndTurnButton();
-        endTurnButton.GetComponent<EndTurnButton>().pressEnabled = true;
-    }
 
     #region Diagram Pannel
     public void AddOneYaoToDiagramPannel(int cardType)
