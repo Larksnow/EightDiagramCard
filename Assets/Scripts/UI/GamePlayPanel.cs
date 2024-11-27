@@ -130,7 +130,7 @@ public class GamePlayPanel : MonoBehaviour
     }
     #endregion
 
-    #region 
+    #region Numbers
     public void ShowDamageNumber(object obj)
     {
         float diminishDuration = 0.5f;

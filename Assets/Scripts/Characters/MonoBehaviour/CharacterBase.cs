@@ -19,22 +19,28 @@ public class CharacterBase : MonoBehaviour
     [Header("Broadcast Events")]
     public ObjectEventSO takeDamageEvent;
 
-    public int maxHp;
-    public IntVariable hp;
-    public IntVariable mitiNumber;
+    public int maxHP;
+    public int currentHP;
+    public int currentMiti;
+    public int currentShield;
+    // public int maxHp;
+    // public IntVariable hp;
+    // public IntVariable mitiNumber;
     // Property to manage the character's current health and trigger events when modified
     // These are stored in a SO called CharacterHP (IntVariable type)
-    public int CurrentHP { get => hp.currentValue; set => hp.SetValue(value); }
-    public int MaxHP { get => hp.maxValue; }
-    public int CurrentMiti { get => mitiNumber.currentValue; set => mitiNumber.SetValue(value); }
+    // public int MaxHP { get => hp.maxValue; }
+    // public int CurrentHP { get => hp.currentValue; set => hp.SetValue(value); }
+    // public int CurrentMiti { get => mitiNumber.currentValue; set => mitiNumber.SetValue(value); }
+    // public int CurrentShield { get; set; }
 
     // This list store all the buff SOs which stores the number
     public List<IntVariable> buffList;
     public bool isDead;
     protected virtual void Start()
     {
-        hp.maxValue = maxHp;
-        CurrentHP = MaxHP;
+        currentHP = maxHP;
+        currentMiti = 0;
+        currentShield = 0;
         //TODO: Load all buff SO using addressable asset (virtual, player and enemy have their own SOs)
     }
 
@@ -42,19 +48,18 @@ public class CharacterBase : MonoBehaviour
     public virtual void TakeDamage(int amount)
     {
         Damage damage = new(new Vector3(transform.position.x, transform.position.y + 3, transform.position.z), amount);
-        // TODO:: Apply miti before taking damage -> （damage * 0.75）向下取整 
-        if (CurrentMiti > 1)
+        if (currentMiti > 1)
         {
             amount = Mathf.FloorToInt(0.75f * amount);
             UpdateMitiNumber(-1);
         }
-        if (CurrentHP > amount)
+        if (currentHP > amount)
         {
-            CurrentHP -= amount;
+            currentHP -= amount;
         }
-        if (CurrentHP <= 0)
+        if (currentHP <= 0)
         {
-            CurrentHP = 0;
+            currentHP = 0;
             //TODO: Die
             isDead = true;
         }
@@ -66,12 +71,20 @@ public class CharacterBase : MonoBehaviour
 
     public virtual void UpdateMitiNumber(int value) // decrease one miti
     {
-        Debug.Log($"Before Update: CurrentMiti = {CurrentMiti}");
-        CurrentMiti += value;
-        Debug.Log($"After Update: CurrentMiti = {CurrentMiti}");
-        if (CurrentMiti < 0)
+        Debug.Log($"Before Update: CurrentMiti = {currentMiti}");
+        currentMiti += value;
+        Debug.Log($"After Update: CurrentMiti = {currentMiti}");
+        if (currentMiti < 0)
         {
-            CurrentMiti = 0;
+            currentMiti = 0;
         }
+    }
+
+    public virtual void UpdateShield(int value)
+    {
+        Debug.Log($"Before Update: CurrentShield = {currentShield}");
+        currentShield += value;
+        Debug.Log($"After Update: CurrentShield = {currentShield}");
+        if (currentShield < 0) currentShield = 0;
     }
 }

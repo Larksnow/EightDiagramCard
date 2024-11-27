@@ -18,9 +18,10 @@ public CardDeck cardDeck;
         CurrentMana = playerMana.maxValue;
     }
 
-    public void NewTrun()
+    public void NewTurn()
     {
         CurrentMana = maxMana;
+        currentShield = 0;
     }
 
     public void UpdateMana(int cost)

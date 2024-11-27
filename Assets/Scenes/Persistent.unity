@@ -1367,7 +1367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1483719595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1415,8 +1415,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8
-  m_fontSizeBase: 8
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2243,9 +2243,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fe01cf09898e104cb72ce6d122905e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 66
-  hp: {fileID: 11400000, guid: 53c071cfa2ce29f47bc15cddcc214e54, type: 2}
-  takeDamageEvent: {fileID: 0}
+  takeDamageEvent: {fileID: 11400000, guid: 9237822ab6080dc4fa5d52a7651c586b, type: 2}
+  maxHP: 66
+  currentHP: 66
+  currentMiti: 0
+  currentShield: 0
+  buffList: []
   isDead: 0
   cardDeck: {fileID: 123222010}
   playerMana: {fileID: 11400000, guid: 29337ea89cf66dd4a96606d86d78705d, type: 2}
@@ -2321,9 +2324,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1198210019697215434}
   - component: {fileID: 4159704446289960109}
+  - component: {fileID: 7177020580710331343}
   - component: {fileID: 7177020580710331342}
   - component: {fileID: 1039990635726146836}
-  - component: {fileID: 7177020580710331343}
+  - component: {fileID: 7177020580710331344}
   m_Layer: 7
   m_Name: Player
   m_TagString: player
@@ -2462,6 +2466,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fillBarObj: {fileID: 1883049516}
   amountObj: {fileID: 1305937961}
+--- !u!114 &7177020580710331344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932974873154258021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 586e65e5bda664e48af347e449b1de9d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4159704446289960109}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: NewTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
 --- !u!1001 &7912220575968286300
 PrefabInstance:
   m_ObjectHideFlags: 0
