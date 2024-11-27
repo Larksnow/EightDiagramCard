@@ -8,6 +8,5 @@ public abstract class Effect : ScriptableObject
 
     public EffectTargetType targetType;
 
-    public abstract void Execute(CharacterBase target);
-    public abstract void Execute(DiagramDataSO diagramData);
+    public abstract void Execute(CharacterBase target, DiagramDataSO diagramData);
 }

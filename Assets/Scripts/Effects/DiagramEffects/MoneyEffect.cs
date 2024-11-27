@@ -5,16 +5,11 @@ using UnityEngine;
 
 public class MoneyEffect : Effect
 {
-    public override void Execute(CharacterBase target)
+    public override void Execute(CharacterBase target, DiagramDataSO diagramData)
     {
         Player player = target as Player;
         if (player == null) 
             Debug.Log("Money effect can only be applied to player characters.");
         player.CurrentMoney += value;
-    }
-
-    public override void Execute(DiagramDataSO diagramData)
-    {
-        throw new System.NotImplementedException();
     }
 }

@@ -70,10 +70,10 @@ public class DiagramManager : MonoBehaviour
             {
                 case DiagramType.Li:// 随机选择单体作为目标
                     GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
-                    effect.Execute(enemies[Random.Range(0, enemies.Length)].GetComponent<CharacterBase>());
+                    effect.Execute(enemies[Random.Range(0, enemies.Length)].GetComponent<CharacterBase>(), null);
                     break;
                 default:
-                    effect.Execute(player);
+                    effect.Execute(player, null);
                     break;
             }
         }

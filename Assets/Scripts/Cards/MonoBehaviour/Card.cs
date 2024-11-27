@@ -83,7 +83,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         discardCardEvent.RaiseEvent(this, this);
         foreach (var effect in cardData.effects)
         {
-            effect.Execute(target);
+            effect.Execute(target, null);
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageEffect : Effect
 {
-    public override void Execute(CharacterBase target)
+    public override void Execute(CharacterBase target, DiagramDataSO diagramData)
     {
         switch (targetType){
             case EffectTargetType.Self:
@@ -19,9 +19,4 @@ public class DamageEffect : Effect
                 break;
         }
     }
-    public override void Execute(DiagramDataSO diagramData)
-    {
-        throw new System.NotImplementedException();
-    }
-
 }

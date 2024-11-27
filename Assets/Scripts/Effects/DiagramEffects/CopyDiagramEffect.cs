@@ -9,7 +9,7 @@ public class CopyDiagramEffect : Effect
     public DiagramDataSO diagramDataToCopy = null;
 
     /// 复制除乾卦外的其他任何一种卦象打出
-    public override void Execute(CharacterBase target)
+    public override void Execute(CharacterBase target, DiagramDataSO diagramData)
     {
         if (diagramManager == null)
         {
@@ -34,8 +34,4 @@ public class CopyDiagramEffect : Effect
         diagramManager.ApplyDiagramEffect(diagramDataToCopy);
     }
 
-    public override void Execute(DiagramDataSO diagramData)
-    {
-        throw new System.NotImplementedException();
-    }
 }

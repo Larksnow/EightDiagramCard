@@ -5,12 +5,8 @@ public class DrawCardEffect : Effect
 {
     public IntEventSO drawCardEvent;
 
-    public override void Execute(CharacterBase target)
+    public override void Execute(CharacterBase target, DiagramDataSO diagramData)
     {
         drawCardEvent.RaiseEvent(value, this);
-    }
-    public override void Execute(DiagramDataSO diagramData)
-    {
-        throw new System.NotImplementedException();
     }
 }
