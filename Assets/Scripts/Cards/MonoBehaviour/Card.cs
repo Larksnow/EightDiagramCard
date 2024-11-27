@@ -27,8 +27,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public ObjectEventSO discardCardEvent;
     public IntEventSO costManaEvent;
 
+    private PauseManager pauseManager;
+
+
     void Start()
     {
+        pauseManager = PauseManager.Instance;
         Init(cardData);
     }
     public void Init(CardDataSO data)
@@ -51,6 +55,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (pauseManager.IsPaused()) return;
         if (isAnimating || isDraging) return;
         isMouseOver = true;
         transform.position = new Vector3(originalPosition.x, -3.5f, 0);
@@ -60,6 +65,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (pauseManager.IsPaused()) return;
         if (isAnimating || isDraging) return;
         isMouseOver = false;
         ResetCardTransform();

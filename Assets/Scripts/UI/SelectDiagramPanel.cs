@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class SelectDiagramPanel : MonoBehaviour
 {
+    private PauseManager pauseManager;
     public CopyDiagramEffect copyDiagramEffect;
     public DiagramDataSO kunData, zhenData, xunData, kanData, liData, genData, duiData;
 
@@ -14,6 +15,7 @@ public class SelectDiagramPanel : MonoBehaviour
 
     private void Awake()
     {
+        pauseManager = PauseManager.Instance;
         // 初始化字典映射
         diagramDataMapping = new Dictionary<string, DiagramDataSO>
         {
@@ -26,7 +28,13 @@ public class SelectDiagramPanel : MonoBehaviour
             { "Dui", duiData }
         };
     }
-
+    private void OnEnable() {
+        pauseManager.PauseGame();
+    }
+    private void OnDisable()
+    {
+        pauseManager.UnpauseGame();
+    }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0)) // 检测鼠标左键点击

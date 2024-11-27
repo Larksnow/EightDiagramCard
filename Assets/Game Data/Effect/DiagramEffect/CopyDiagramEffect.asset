@@ -15,5 +15,5 @@ MonoBehaviour:
   value: 0
   targetType: 0
   diagramManager: {fileID: 0}
-  chooseDiagramEvent: {fileID: 11400000, guid: 1a0395118cb532041b756389527781b4, type: 2}
-  diagramDataToCopy: {fileID: 11400000, guid: 9bab22bf9e88fa14589ccd7ba470f487, type: 2}
+  selectDiagramEvent: {fileID: 11400000, guid: 1a0395118cb532041b756389527781b4, type: 2}
+  diagramDataToCopy: {fileID: 11400000, guid: 5df2ef9137a6c814da3c221efc831a48, type: 2}

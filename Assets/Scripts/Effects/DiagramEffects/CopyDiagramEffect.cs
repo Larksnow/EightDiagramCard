@@ -5,7 +5,7 @@ using UnityEngine;
 public class CopyDiagramEffect : Effect
 {
     public DiagramManager diagramManager;
-    public ObjectEventSO chooseDiagramEvent;
+    public ObjectEventSO selectDiagramEvent;
     public DiagramDataSO diagramDataToCopy = null;
 
     /// 复制除乾卦外的其他任何一种卦象打出
@@ -28,10 +28,10 @@ public class CopyDiagramEffect : Effect
 
     private IEnumerator WaitForCopyDiagram()
     {
-        chooseDiagramEvent.RaiseEvent(null, this);
+        diagramDataToCopy = null;
+        selectDiagramEvent.RaiseEvent(null, this);
         yield return new WaitUntil(() => diagramDataToCopy != null);
         diagramManager.ApplyDiagramEffect(diagramDataToCopy);
-        diagramDataToCopy = null;
     }
 
     public override void Execute(DiagramDataSO diagramData)
