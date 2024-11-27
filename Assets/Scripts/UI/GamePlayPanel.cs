@@ -16,6 +16,7 @@ public class GamePlayPanel : MonoBehaviour
     public GameObject diagramPannel;
     public GameObject dialogBox;
     public GameObject selectDiagramPannel;
+    public GameObject damageNumberUI;
 
     public float uiFadeDuration;
     public float dialogBoxDuration;
@@ -126,6 +127,37 @@ public class GamePlayPanel : MonoBehaviour
     public void SelectDiagram()
     {
         selectDiagramPannel.SetActive(true);
+    }
+    #endregion
+
+    #region 
+    public void ShowDamageNumber(object obj)
+    {
+        float diminishDuration = 0.5f;
+        float descentDuration = 1f;
+        int descentHeight = 5;
+        CharacterBase.Damage damage = (CharacterBase.Damage)obj;
+        TextMeshPro damageNumber = damageNumberUI.GetComponent<TextMeshPro>();
+        Color originalColor = damageNumber.color;
+        Vector3 originPosition = damageNumberUI.transform.position;
+        Vector3 originScale = damageNumberUI.transform.localScale;
+
+        damageNumberUI.SetActive(true);
+        damageNumberUI.transform.position = damage.position;
+        damageNumber.text = damage.amount.ToString();
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(damageNumberUI.transform.DOScale(damageNumberUI.transform.localScale * 0.4f, diminishDuration))
+        .Join(damageNumber.DOColor(Color.white, diminishDuration))
+        .Join(damageNumberUI.transform.DOMove(damageNumberUI.transform.position + new Vector3(1, -0.5f, 0), diminishDuration))
+        .Append(damageNumberUI.transform.DOMove(new Vector3(damageNumberUI.transform.position.x + 1, damageNumberUI.transform.position.y - descentHeight, damageNumberUI.transform.position.z), descentDuration))
+        .Join(damageNumber.DOFade(0f, descentDuration))
+        .OnComplete(() =>
+        {
+            damageNumberUI.SetActive(false);
+            damageNumber.color = originalColor;
+            damageNumberUI.transform.localScale = originScale;
+            damageNumberUI.transform.position = originPosition;
+        });
     }
     #endregion
 }

@@ -315,6 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 30
   hp: {fileID: 11400000, guid: 5d36e5b8dbe66cc418e42f04aca57ab5, type: 2}
+  takeDamageEvent: {fileID: 0}
   isDead: 0
 --- !u!114 &393218279
 MonoBehaviour:

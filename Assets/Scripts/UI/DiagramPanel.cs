@@ -34,14 +34,19 @@ public class DiagramPanel : MonoBehaviour
 
     public void TriggerDiagram(DiagramDataSO diagramData, float fadeDuration)
     {
+        Debug.Log("TriggerDiagram");
+        Debug.Log("kill " + DOTween.Kill(triggerDiagramText, true) + " tweeens");
+
         HighlightTop3();
+
+        Vector3 originalTextScale = triggerDiagramText.transform.localScale;
+        Sequence textAnimationSequence = DOTween.Sequence();
         triggerDiagramText.text = diagramData.diagramName;
         triggerDiagramText.color = diagramData.diagramColor;
-
-        Sequence textAnimationSequence = DOTween.Sequence();
-        textAnimationSequence.Append(triggerDiagramText.DOFade(0f, fadeDuration)).onComplete = () =>
+        textAnimationSequence.Append(triggerDiagramText.transform.DOScale(originalTextScale * 1.2f, animationDuration).SetEase(Ease.OutCubic)).SetId(triggerDiagramText).Join(triggerDiagramText.DOFade(0f, fadeDuration)).SetId(triggerDiagramText).onComplete = () =>
         {
             triggerDiagramText.text = "";
+            triggerDiagramText.transform.localScale = originalTextScale;
         };
     }
     public void ResetDiagramPannel()
