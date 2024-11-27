@@ -19,7 +19,6 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private void Awake()
     {
         pauseManager = PauseManager.Instance;
-        Debug.Log("pauseManager: " + pauseManager);
         diagramChecker = DiagramChecker.Instance;
         currentCard = GetComponent<Card>();
     }

@@ -34,9 +34,6 @@ public class DiagramPanel : MonoBehaviour
 
     public void TriggerDiagram(DiagramDataSO diagramData, float fadeDuration)
     {
-        Debug.Log("TriggerDiagram");
-        Debug.Log("kill " + DOTween.Kill(triggerDiagramText, true) + " tweeens");
-
         HighlightTop3();
 
         Vector3 originalTextScale = triggerDiagramText.transform.localScale;

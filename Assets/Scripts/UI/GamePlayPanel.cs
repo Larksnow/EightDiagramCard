@@ -16,7 +16,7 @@ public class GamePlayPanel : MonoBehaviour
     public GameObject diagramPannel;
     public GameObject dialogBox;
     public GameObject selectDiagramPannel;
-    public GameObject damageNumberUI;
+    public DamageNumberPool damageNumberPool;
 
     public float uiFadeDuration;
     public float dialogBoxDuration;
@@ -24,6 +24,7 @@ public class GamePlayPanel : MonoBehaviour
     private SpriteRenderer manaImage;
     private TextMeshPro manaAmountText;
     private bool hasAvailableCard;
+    private bool isDamageNumberAnimating;    // 是否有DamageNumber正在播放动画
 
     [Header("Broadcast Events")]
     public ObjectEventSO playerTurnEndEvent;
@@ -130,34 +131,52 @@ public class GamePlayPanel : MonoBehaviour
     }
     #endregion
 
-    #region Numbers
+    #region Damage Number
     public void ShowDamageNumber(object obj)
     {
+        if (isDamageNumberAnimating)
+        {
+            // 如果正在动画中，延迟执行
+            StartCoroutine(DelayedShowDamageNumber(obj));
+            return;
+        }
+
+        StartShowDamageNumber(obj);
+    }
+
+    private IEnumerator DelayedShowDamageNumber(object obj)
+    {
+        yield return new WaitForSeconds(0.5f);
+        StartShowDamageNumber(obj);
+    }
+
+    private void StartShowDamageNumber(object obj)
+    {
+        // TODO: 如果有三次连续伤害，可能需要优化
+        isDamageNumberAnimating = true;
+
         float diminishDuration = 0.5f;
         float descentDuration = 1f;
         int descentHeight = 5;
+        GameObject damageNumber = damageNumberPool.GetObjectFromPool();
         CharacterBase.Damage damage = (CharacterBase.Damage)obj;
-        TextMeshPro damageNumber = damageNumberUI.GetComponent<TextMeshPro>();
-        Color originalColor = damageNumber.color;
-        Vector3 originPosition = damageNumberUI.transform.position;
-        Vector3 originScale = damageNumberUI.transform.localScale;
+        TextMeshPro text = damageNumber.GetComponent<TextMeshPro>();
+        Vector3 originPosition = damageNumber.transform.position;
+        Vector3 originScale = damageNumber.transform.localScale;
 
-        damageNumberUI.SetActive(true);
-        damageNumberUI.transform.position = damage.position;
-        damageNumber.text = damage.amount.ToString();
+        damageNumber.transform.position = damage.position;
+        text.text = damage.amount.ToString();
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(damageNumberUI.transform.DOScale(damageNumberUI.transform.localScale * 0.4f, diminishDuration))
-        .Join(damageNumber.DOColor(Color.white, diminishDuration))
-        .Join(damageNumberUI.transform.DOMove(damageNumberUI.transform.position + new Vector3(1, -0.5f, 0), diminishDuration))
-        .Append(damageNumberUI.transform.DOMove(new Vector3(damageNumberUI.transform.position.x + 1, damageNumberUI.transform.position.y - descentHeight, damageNumberUI.transform.position.z), descentDuration))
-        .Join(damageNumber.DOFade(0f, descentDuration))
-        .OnComplete(() =>
-        {
-            damageNumberUI.SetActive(false);
-            damageNumber.color = originalColor;
-            damageNumberUI.transform.localScale = originScale;
-            damageNumberUI.transform.position = originPosition;
-        });
+        sequence.Append(damageNumber.transform.DOScale(damageNumber.transform.localScale * 0.4f, diminishDuration))
+            .Join(text.DOColor(Color.white, diminishDuration))
+            .Join(damageNumber.transform.DOMove(damageNumber.transform.position + new Vector3(1, -0.5f, 0), diminishDuration))
+            .Append(damageNumber.transform.DOMove(new Vector3(damageNumber.transform.position.x + 1, damageNumber.transform.position.y - descentHeight, damageNumber.transform.position.z), descentDuration))
+            .Join(text.DOFade(0f, descentDuration))
+            .OnComplete(() =>
+            {
+                isDamageNumberAnimating = false;
+                damageNumberPool.ReleaseObjectToPool(damageNumber);
+            });
     }
     #endregion
 }

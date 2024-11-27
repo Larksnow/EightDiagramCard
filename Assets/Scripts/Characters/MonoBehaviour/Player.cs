@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : CharacterBase
@@ -16,6 +14,7 @@ public CardDeck cardDeck;
     {
         playerMana.maxValue = maxMana;
         CurrentMana = playerMana.maxValue;
+        // TODO: buff更新（现在在PlayerTurnBegin事件中更新)
     }
 
     public void NewTurn()

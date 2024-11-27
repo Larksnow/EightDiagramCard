@@ -55,7 +55,6 @@ public class SelectDiagramPanel : MonoBehaviour
             {
                 // 检查点击的是否是 SelectDiagramPanel 的子物体
                 string diagramName = hit.collider.gameObject.name;
-                Debug.Log($"Clicked on: {diagramName}");
 
                 if (diagramDataMapping.TryGetValue(diagramName, out var diagramData))
                 {

@@ -22,7 +22,6 @@ public class HoverHandler : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Debug.Log("OnPointerEnter");
         for (int i = 0; i < targetTransforms.Count; i++)
         {
             targetTransforms[i].localScale = originalScales[i] * scaleMultiplier;
@@ -31,7 +30,6 @@ public class HoverHandler : MonoBehaviour
 
     private void OnMouseExit()
     {
-        Debug.Log("OnPointerExit");
         for (int i = 0; i < targetTransforms.Count; i++)
         {
             targetTransforms[i].localScale = originalScales[i];

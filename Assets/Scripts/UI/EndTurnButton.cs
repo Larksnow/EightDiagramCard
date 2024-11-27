@@ -10,6 +10,7 @@ public class EndTurnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public float clickScaleMultiplier = 1.2f; // Scale multiplier for click
     public float animationDuration = 0.1f;
 
+    private bool isRotating;
     public bool pressEnabled;
     private PauseManager pauseManager;
 
@@ -20,7 +21,8 @@ public class EndTurnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         gamePlayPannel = FindObjectOfType<GamePlayPanel>();
     }
     public void OnMouseDown()
-    {   
+    {
+        if (isRotating) return;
         if (pauseManager.IsPaused()) return;
         if (!pressEnabled) return;
         Sequence sequence = DOTween.Sequence();
@@ -34,19 +36,25 @@ public class EndTurnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (isRotating) return;
         if (pauseManager.IsPaused()) return;
         transform.DOScale(originalScale * hoverScaleMultiplier, animationDuration).SetEase(Ease.OutExpo);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (isRotating) return;
         if (pauseManager.IsPaused()) return;
         transform.DOScale(originalScale, animationDuration).SetEase(Ease.OutExpo);
     }
 
     public void RotateEndTurnButton()
     {
+        if (isRotating) return;
         Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, 0, 180);
-        transform.DORotateQuaternion(targetRotation, 1).SetEase(Ease.OutQuint);
+        transform.DORotateQuaternion(targetRotation, 1).SetEase(Ease.OutQuint).OnComplete(() =>
+        {
+            isRotating = false;
+        });
     }
 }
