@@ -11,14 +11,17 @@ public class EndTurnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public float animationDuration = 0.1f;
 
     public bool pressEnabled;
+    private PauseManager pauseManager;
 
     private void Awake()
     {
+        pauseManager = PauseManager.Instance;
         originalScale = transform.localScale;
         gamePlayPannel = FindObjectOfType<GamePlayPanel>();
     }
     public void OnMouseDown()
     {   
+        if (pauseManager.IsPaused()) return;
         if (!pressEnabled) return;
         Sequence sequence = DOTween.Sequence();
         // Scale up
@@ -31,11 +34,13 @@ public class EndTurnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (pauseManager.IsPaused()) return;
         transform.DOScale(originalScale * hoverScaleMultiplier, animationDuration).SetEase(Ease.OutExpo);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (pauseManager.IsPaused()) return;
         transform.DOScale(originalScale, animationDuration).SetEase(Ease.OutExpo);
     }
 
