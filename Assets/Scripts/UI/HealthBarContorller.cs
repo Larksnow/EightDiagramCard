@@ -34,10 +34,9 @@ public class HealthBarContorller : MonoBehaviour
     private void InitHealthBar()
     {
         originalFilledScale = fillBar.transform.localScale;
-        amountText.text = $"{currentCharacter.MaxHP}/{currentCharacter.MaxHP}";
+        amountText.text = $"{currentCharacter.maxHP}/{currentCharacter.maxHP}";
     }
 
-    // 测试用
     private void Update()
     {
         UpdateHealth();
@@ -54,8 +53,8 @@ public class HealthBarContorller : MonoBehaviour
         {
             fillBar.enabled = true;
             // 需要保证Sprite的Pivot为(X = 0, Y = 0,5)
-            fillBar.transform.localScale = new Vector3((currentCharacter.CurrentHP / (float)currentCharacter.MaxHP) * originalFilledScale.x, originalFilledScale.y, originalFilledScale.z);
-            amountText.text = $"{currentCharacter.CurrentHP}/{currentCharacter.MaxHP}";
+            fillBar.transform.localScale = new Vector3(currentCharacter.currentHP / (float)currentCharacter.maxHP * originalFilledScale.x, originalFilledScale.y, originalFilledScale.z);
+            amountText.text = $"{currentCharacter.currentHP}/{currentCharacter.maxHP}";
         }
     }
 }

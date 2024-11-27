@@ -1,58 +1,83 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CharacterBase : MonoBehaviour
 {
-    public int maxHp;
-    public IntVariable hp;
-    public IntVariable mitiNumber;
-    // Property to manage the character's current health and trigger events when modified
-    // These are stored in a SO called CharacterHP (IntVariable type)
-    public int CurrentHP {get => hp.currentValue; set => hp.SetValue(value);}
-    public int MaxHP {get => hp.maxValue;}
-    public int CurrentMiti {get => mitiNumber.currentValue; set => mitiNumber.SetValue(value);}
-    
+    public struct Damage
+    {
+        public Vector3 position;
+        public int amount;
+        public Damage(Vector3 pos, int amount)
+        {
+            this.position = pos;
+            this.amount = amount;
+        }
+    }
+
+    [Header("Broadcast Events")]
+    public ObjectEventSO takeDamageEvent;
+
+    public int maxHP;
+    public int currentHP;
+    public int currentMiti;
+    public int currentShield;
+
     // This list store all the buff SOs which stores the number
-    public List<IntVariable> buffList;
     public bool isDead;
-    protected virtual void Start(){
-        hp.maxValue = maxHp;
-        CurrentHP = MaxHP;
+    protected virtual void Start()
+    {
+        currentHP = maxHP;
+        currentMiti = 0;
+        currentShield = 0;
         //TODO: Load all buff SO using addressable asset (virtual, player and enemy have their own SOs)
     }
 
     // 所有伤害向上取整，所有受伤向下取整
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int amount)
     {
-        // TODO:: Apply miti before taking damage -> （damage * 0.75）向下取整 
-        if (CurrentMiti > 1) {
-            damage = Mathf.FloorToInt(0.75f * damage);
+        Damage damage = new(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), amount);
+        if (currentMiti > 1)
+        {
+            amount = Mathf.FloorToInt(0.75f * amount);
             UpdateMitiNumber(-1);
         }
-        if (CurrentHP > damage)
+
+        takeDamageEvent.RaiseEvent(damage, amount);
+
+        if (currentHP > amount)
         {
-            CurrentHP -= damage;
+            currentHP -= amount;
         }
-        if (CurrentHP <= 0)
+        if (currentHP <= 0)
         {
-            CurrentHP =  0;
+            currentHP = 0;
             //TODO: Die
             isDead = true;
         }
     }
 
-    public virtual void Die(){}
+    public virtual void Die() { }
 
-    public virtual void Heal(int healAmount){}
+    public virtual void Heal(int healAmount) { }
 
     public virtual void UpdateMitiNumber(int value) // decrease one miti
     {
-        Debug.Log($"Before Update: CurrentMiti = {CurrentMiti}");
-        CurrentMiti += value;
-        Debug.Log($"After Update: CurrentMiti = {CurrentMiti}");
-        if (CurrentMiti < 0) {
-            CurrentMiti = 0;
+        Debug.Log($"Before Update: CurrentMiti = {currentMiti}");
+        currentMiti += value;
+        if (currentMiti < 0)
+        {
+            currentMiti = 0;
         }
+        Debug.Log($"After Update: CurrentMiti = {currentMiti}");
+    }
+
+    public virtual void UpdateShield(int value)
+    {
+        Debug.Log($"Before Update: CurrentShield = {currentShield}");
+        currentShield += value;
+        if (currentShield < 0) currentShield = 0;
+        Debug.Log($"After Update: CurrentShield = {currentShield}");
     }
 }

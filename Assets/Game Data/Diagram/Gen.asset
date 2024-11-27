@@ -21,4 +21,5 @@ MonoBehaviour:
   diagramPattern: 010000000000000000000000
   yinBuff: 0
   yangBuff: 0
-  effects: []
+  effects:
+  - {fileID: 11400000, guid: 9bb0bcdfb656bf646a8ceef4058a35e7, type: 2}

@@ -9,7 +9,6 @@ public class MitiEffect : Effect
     int number = 1; //每次该效果施加的层数
     public override void Execute(CharacterBase target, DiagramDataSO diagramData)
     {
-        Debug.Log("MitiEffect");
         switch (targetType)
         {
             case EffectTargetType.Self:
