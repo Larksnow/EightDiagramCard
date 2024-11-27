@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Li
   m_EditorClassIdentifier: 
   diagramName: "\u79BB"
+  diagramColor: {r: 0.41960785, g: 0.18039216, b: 0.6, a: 1}
   patternSprite: {fileID: 0}
   nameSprite: {fileID: 0}
   description: 
   diagramType: 5
   diagramPattern: 010000000000000001000000
+  yinBuff: 0
+  yangBuff: 0
   effects:
   - {fileID: 11400000, guid: 64896f0668dfb5d4c903d450e521b823, type: 2}

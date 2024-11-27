@@ -12,11 +12,16 @@ public class DamageEffect : Effect
                 target.TakeDamage(value);
                 break;
             case EffectTargetType.All:
-                foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+                foreach (var enemy in GameObject.FindGameObjectsWithTag("enemy"))
                 {
                     enemy.GetComponent<CharacterBase>().TakeDamage(value);
                 }
                 break;
         }
     }
+    public override void Execute(DiagramDataSO diagramData)
+    {
+        throw new System.NotImplementedException();
+    }
+
 }

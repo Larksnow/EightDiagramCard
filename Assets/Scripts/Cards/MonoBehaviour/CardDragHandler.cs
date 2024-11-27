@@ -11,14 +11,17 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private bool canMove;
     private bool canExecute;
 
+    private PauseManager pauseManager;
     private DiagramChecker diagramChecker;
 
     public ObjectEventSO lackOfManaEvent;
 
     private void Awake()
     {
+        pauseManager = PauseManager.Instance;
+        Debug.Log("pauseManager: " + pauseManager);
+        diagramChecker = DiagramChecker.Instance;
         currentCard = GetComponent<Card>();
-        diagramChecker = GameObject.Find("DiagramChecker").GetComponent<DiagramChecker>();
     }
 
     private void OnDisable()
@@ -29,6 +32,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (pauseManager.IsPaused()) return;
         if (!currentCard.isMouseOver) return;
         if (currentCard.isAnimating) return;
         if (!currentCard.isAvailable)
@@ -61,7 +65,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (canExecute && currentCard.isDraging && canMove)
         {
             currentCard.isDraging = false;
-            CardType yao = currentCard.cardData.cardType;
+            CardDataSO yao = currentCard.cardData;
             // Cards only affect player himself
             currentCard.ExecuteCardEffect(currentCard.player);
             diagramChecker.updateDiagramChecker(yao);
