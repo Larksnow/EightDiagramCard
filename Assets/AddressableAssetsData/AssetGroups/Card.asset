@@ -17,8 +17,18 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 79faee78fdd026549b72cf4387d7cffe
   m_SerializeEntries:
+  - m_GUID: 18e2751ad0e7413458d06401c4f3857b
+    m_Address: KunYin
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3778c1d447a479b428bc92e3c383a530
     m_Address: QianYin
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f6bada764b9f8540abfe28932ed8101
+    m_Address: KunYang
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

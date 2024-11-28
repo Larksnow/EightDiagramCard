@@ -25,6 +25,8 @@ public class CardDeck : MonoBehaviour
     public ObjectEventSO checkAvailableCardEvent;
 
     private bool discardDeckUIUpdated;
+    private int costChangeTimer;  // 卡牌减费计时器（每打一张牌倒数一，为零时还原cost）
+    private int costChangeAmount;  // 卡牌减费数值
 
     // 测试用
     private void Start()
@@ -81,7 +83,7 @@ public class CardDeck : MonoBehaviour
 
             var card = cardManager.GetCardFromPool().GetComponent<Card>();
             // Initialize this drawed card
-            card.Init(drawedCardData);
+            card.Init(drawedCardData, costChangeTimer != 0, costChangeAmount);
             card.transform.position = deckPosition.position;
             handCardObjectList.Add(card);
             var delay = i * 0.2f;
@@ -195,6 +197,15 @@ public class CardDeck : MonoBehaviour
         SetCardLayout(0);
 
         CheckAllAvailable();
+
+        if (costChangeTimer > 0)
+        {
+            costChangeTimer--;
+            if (costChangeTimer == 0)
+            {
+                UpdateCardCost(true);
+            }
+        }
     }
 
     public void CheckAllAvailable()
@@ -214,5 +225,24 @@ public class CardDeck : MonoBehaviour
             }
         }
         checkAvailableCardEvent.RaiseEvent(false, this);
+    }
+
+    // 更新手牌花费
+    // 持续更新到之后打出'sustainedNumber'张牌
+    public void UpdateCardCost(bool reset, int costChange = -1, int sustaindNumber = 1)
+    {
+        if (!reset) {
+            costChangeTimer = sustaindNumber;
+            costChangeAmount = costChange;
+        }
+        foreach (var card in handCardObjectList)
+        {
+            if (reset)
+            {
+                card.ResetCardCost();
+                continue;
+            }
+            card.UpdateCardCost(costChange);
+        }
     }
 }

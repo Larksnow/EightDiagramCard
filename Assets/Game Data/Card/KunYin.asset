@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7030717f4aa801f41947c7e901d18baa, type: 3}
-  m_Name: BaseYin
+  m_Name: KunYin
   m_EditorClassIdentifier: 
-  cardName: "\u9634\u723B"
+  cardName: "(\u5764)\u9634\u723B"
   cardDescription: "\u53EF\u4F5C\u4E3A<color=\"blue\">\u9634\u723B</color>\u7EC4\u6210<color=\"grey\">\u5366\u8C61</color>"
   cardSprite: {fileID: 21300000, guid: fef087fa88c0c42459f5dba2589259e1, type: 3}
   cardType: 0
-  cost: 0
-  effects: []
+  cost: 2
+  effects:
+  - {fileID: 11400000, guid: 1ecb4d70342ee014aa32bf4afadca578, type: 2}

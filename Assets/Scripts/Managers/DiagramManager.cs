@@ -35,7 +35,7 @@ public class DiagramManager : MonoBehaviour
     }
     #endregion
 
-    public void ApplyDiagramEffect(DiagramDataSO diagramData, CardDataSO upYao = null, CardDataSO midYao = null, CardDataSO downYao = null)
+    public void ApplyDiagramEffect(DiagramDataSO triggered, CardDataSO upYao = null, CardDataSO midYao = null, CardDataSO downYao = null)
     {
         Debug.Log("Applying Diagram Effect");
         if (upYao != null)
@@ -43,33 +43,33 @@ public class DiagramManager : MonoBehaviour
             foreach (var effect in upYao.effects)
             {
                 // 爻的效果要么直接作用在玩家身上，要么把自己的effect直接给下面的卦
-                effect.Execute(player, diagramData);
+                effect.Execute(player, triggered, upYao.cardType);
             }
         }
         if (midYao != null)
         {
             foreach (var effect in midYao.effects)
             {
-                effect.Execute(player, diagramData);
+                effect.Execute(player, triggered, midYao.cardType);
             }
         }
         if (downYao != null)
         {
             foreach (var effect in downYao.effects)
             {
-                effect.Execute(player, diagramData);
+                effect.Execute(player, triggered, downYao.cardType);
             }
         }
-        foreach (var effect in diagramData.effects)
+        foreach (var effect in triggered.effects)
         {
-            switch (diagramData.diagramType)
+            switch (triggered.diagramType)
             {
                 case DiagramType.Li:// 随机选择单体作为目标
                     GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
-                    effect.Execute(enemies[Random.Range(0, enemies.Length)].GetComponent<CharacterBase>(), diagramData);
+                    effect.Execute(enemies[Random.Range(0, enemies.Length)].GetComponent<CharacterBase>(), triggered);
                     break;
                 default:
-                    effect.Execute(player, diagramData);
+                    effect.Execute(player, triggered);
                     break;
             }
         }

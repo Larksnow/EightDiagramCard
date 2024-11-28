@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ManaEffect", menuName = "Diagram Effects/Mana Effect")]
 public class ManaEffect : Effect
 {
-    public override void Execute(CharacterBase target, DiagramDataSO diagramData)
+    public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
         Player player = target as Player;
         if (player == null) Debug.Log("Mana effect can only be applied to player");

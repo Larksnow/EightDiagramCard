@@ -16,4 +16,5 @@ MonoBehaviour:
   targetType: 0
   diagramManager: {fileID: 0}
   selectDiagramEvent: {fileID: 11400000, guid: 1a0395118cb532041b756389527781b4, type: 2}
-  diagramDataToCopy: {fileID: 11400000, guid: 5df2ef9137a6c814da3c221efc831a48, type: 2}
+  diagramDataToCopy: {fileID: 11400000, guid: cc12add7ae241aa4e9c12401a6e95609, type: 2}
+  qianData: {fileID: 11400000, guid: ca794eceb0d007241b69e13ad893cd57, type: 2}

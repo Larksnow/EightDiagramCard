@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CopyDiagramEffect", menuName = "Diagram Effects/Copy Diagram Effect")]
@@ -7,16 +8,13 @@ public class CopyDiagramEffect : Effect
     public DiagramManager diagramManager;
     public ObjectEventSO selectDiagramEvent;
     public DiagramDataSO diagramDataToCopy = null;
+    public DiagramDataSO qianData;
+    public HashSet<DiagramType> enhancedCopyTypes = new();
 
-    private DiagramDataSO qianData;
 
-    /// 复制除乾卦外的其他任何一种卦象打出
-    public override void Execute(CharacterBase target, DiagramDataSO diagramData)
+    // 复制除乾卦外的其他任何一种卦象打出
+    public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
-        if (diagramData.diagramType != DiagramType.Qian)
-            Debug.LogWarning("CopyDiagramEffect can only be used with Qian diagram");
-
-        qianData = diagramData;
         if (diagramManager == null)
         {
             GameObject diagramManagerObject = GameObject.Find("DiagramManager");
@@ -37,14 +35,11 @@ public class CopyDiagramEffect : Effect
         diagramDataToCopy = null;
         selectDiagramEvent.RaiseEvent(null, this);
         yield return new WaitUntil(() => diagramDataToCopy != null);
-        // 如果有buff加成，触发两次
-        if (qianData.yangBuff || qianData.yinBuff)
+        // 如果此时触发的是被复制加成过的卦象，则触发两次
+        if ((qianData.yangBuff || qianData.yinBuff) && enhancedCopyTypes.Contains(diagramDataToCopy.diagramType))
         {
-
             diagramManager.ApplyDiagramEffect(diagramDataToCopy);
-            // 触发后清除卦上的buff
-            qianData.yinBuff = false;
-            qianData.yangBuff = false;
+            // TODO: buff重置
         }
         diagramManager.ApplyDiagramEffect(diagramDataToCopy);
     }

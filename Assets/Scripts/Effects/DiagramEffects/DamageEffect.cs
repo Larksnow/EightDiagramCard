@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class DamageEffect : Effect
 {
-    public override void Execute(CharacterBase target, DiagramDataSO diagramData)
+    public DiagramDataSO zhenData;
+    
+    public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
-        switch (targetType){
+        switch (targetType)
+        {
             case EffectTargetType.Self:
             case EffectTargetType.Single:
                 target.TakeDamage(value);
