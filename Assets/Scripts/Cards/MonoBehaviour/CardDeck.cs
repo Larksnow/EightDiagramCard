@@ -60,6 +60,7 @@ public class CardDeck : MonoBehaviour
         discardDeck.Clear();
     }
 
+    #region Draw Card
     [ContextMenu("TestDrawCard")]
     public void TestDrawCard()
     {
@@ -80,18 +81,60 @@ public class CardDeck : MonoBehaviour
             if (drawDeck.Count == 0) return;
             CardDataSO drawedCardData = drawDeck[0];
             drawDeck.RemoveAt(0);
-            // Raise IntEvent to update UI number
-            drawCountEvent.RaiseEvent(drawDeck.Count, this);
-
-            var card = cardManager.GetCardFromPool().GetComponent<Card>();
-            // Initialize this drawed card
-            card.Init(drawedCardData, costChangeTimer != 0, costChangeAmount);
-            card.transform.position = deckPosition.position;
-            handCardObjectList.Add(card);
+            DrawCardByCardData(drawedCardData);
             var delay = i * 0.2f;
             SetCardLayout(delay);
         }
     }
+
+    public void DrawCardByType(object obj)
+    {
+        DrawCardEffect.Draws draws = (DrawCardEffect.Draws)obj;
+        int amount = draws.amount;
+        CardType cardType = draws.cardType;
+        for (int i = 0; i < amount; ++i)
+        {
+            if (drawDeck.Count == 0)
+            {
+                RefillDrawDeckFromDiscard();
+                ShuffDeck();
+            }
+            CardDataSO cardData = null;
+            // 在抽牌堆中找到指定类型的卡牌
+            for (int j = 0; j < drawDeck.Count; ++j)
+            {
+                if (drawDeck[j].cardType == cardType)
+                {
+                    cardData = drawDeck[j];
+                    drawDeck.RemoveAt(j);
+                    DrawCardByCardData(cardData);
+                    var delay = i * 0.2f;
+                    SetCardLayout(delay);
+                    break;
+                }
+            }
+
+            // 卡牌类型不在抽牌堆中, 尝试从弃牌堆中抽牌
+            if (cardData == null)
+            {
+                RefillDrawDeckFromDiscard();
+                ShuffDeck();
+                i--;
+            }
+        }
+    }
+    private void DrawCardByCardData(CardDataSO drawedCardData)
+    {
+        // Raise IntEvent to update UI number
+        drawCountEvent.RaiseEvent(drawDeck.Count, this);
+
+        var card = cardManager.GetCardFromPool().GetComponent<Card>();
+        // Initialize this drawed card
+        card.Init(drawedCardData, costChangeTimer != 0, costChangeAmount);
+        card.transform.position = deckPosition.position;
+        handCardObjectList.Add(card);
+    }
+    #endregion
 
     private void SetCardLayout(float delay)
     {
@@ -146,6 +189,7 @@ public class CardDeck : MonoBehaviour
         discardDeck.Clear();
     }
 
+    #region Discard Card
     public void DiscardAllCards()
     {
         discardCountEvent.RaiseEvent(discardDeck.Count + handCardObjectList.Count, this);
@@ -209,6 +253,7 @@ public class CardDeck : MonoBehaviour
 
         SetCardLayout(0);
     }
+    #endregion
 
     public void CheckAllCardsState()
     {

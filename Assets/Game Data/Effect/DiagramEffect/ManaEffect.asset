@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: ManaEffect
   m_EditorClassIdentifier: 
   value: 1
-  targetType: 0
+  duiData: {fileID: 11400000, guid: 9bab22bf9e88fa14589ccd7ba470f487, type: 2}
+  buffValue: 1

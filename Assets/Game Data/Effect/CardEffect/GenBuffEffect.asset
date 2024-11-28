@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d619d6e178a3ee643ba6777c360f7948, type: 3}
-  m_Name: DrawCardEvent
+  m_Script: {fileID: 11500000, guid: d6d144e56edd14c48915c3eaab3406c1, type: 3}
+  m_Name: GenBuffEffect
   m_EditorClassIdentifier: 
-  description: "\u62BD\u724C\u65F6\u62BDvalue\u5F20\u724C"
-  lastSender: 
+  value: 0
+  genData: {fileID: 11400000, guid: 4145540640d8f6247a3cf0eebfded0fc, type: 2}

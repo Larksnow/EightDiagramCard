@@ -6,10 +6,16 @@ using UnityEngine;
 public class MitiEffect : Effect
 {
     // 坚硬（受到伤害降低25%，受击后减少一层）
-    int number = 1; //每次该效果施加的层数
+    public int buffNumber = 1; // 有buff时额外层数
+    public DiagramDataSO genData;
+
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
-        Debug.Log($"Passing {number} to {target}");
-        target.UpdateMitiNumber(number);
+        int mitiAmount = value;
+        if (genData.yangBuff || genData.yinBuff) 
+        {
+            mitiAmount += buffNumber;
+        }
+        target.UpdateMitiNumber(mitiAmount);
     }
 }

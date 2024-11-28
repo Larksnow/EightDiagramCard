@@ -319,7 +319,6 @@ MonoBehaviour:
   currentHP: 30
   currentMiti: 0
   currentShield: 0
-  buffList: []
   isDead: 0
 --- !u!114 &393218279
 MonoBehaviour:

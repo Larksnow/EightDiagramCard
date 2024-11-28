@@ -137,8 +137,10 @@ GameObject:
   m_Component:
   - component: {fileID: 123222011}
   - component: {fileID: 123222010}
+  - component: {fileID: 123222018}
   - component: {fileID: 123222012}
   - component: {fileID: 123222016}
+  - component: {fileID: 123222017}
   - component: {fileID: 123222014}
   - component: {fileID: 123222015}
   m_Layer: 0
@@ -170,6 +172,7 @@ MonoBehaviour:
   drawCountEvent: {fileID: 11400000, guid: 896ef2753b089a14fb5ce60e21a286fa, type: 2}
   discardCountEvent: {fileID: 11400000, guid: 045d6d3c916df07478a58b2555a83f30, type: 2}
   checkAvailableCardEvent: {fileID: 11400000, guid: a996c23459b01d74c89b1757388bfc97, type: 2}
+  costChangeTimer: 0
 --- !u!4 &123222011
 Transform:
   m_ObjectHideFlags: 0
@@ -266,13 +269,71 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 8
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   priority: 1
 --- !u!114 &123222016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123222009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 0c388b29e37027b4296b8549061c1bd6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 123222010}
+        m_TargetAssemblyTypeName: CardDeck, Assembly-CSharp
+        m_MethodName: DrawCardByType
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &123222017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123222009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 6f12887f60fd6684691607065a080619, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 123222010}
+        m_TargetAssemblyTypeName: CardDeck, Assembly-CSharp
+        m_MethodName: DrawCardByType
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &123222018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1374,6 +1435,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1250782471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1250782473}
+  - component: {fileID: 1250782472}
+  m_Layer: 0
+  m_Name: DiagramBuffManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1250782472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250782471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea191582ee168d748a640e3aa9c54ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  qianData: {fileID: 11400000, guid: ca794eceb0d007241b69e13ad893cd57, type: 2}
+  duiData: {fileID: 11400000, guid: 9bab22bf9e88fa14589ccd7ba470f487, type: 2}
+  liData: {fileID: 11400000, guid: 5df2ef9137a6c814da3c221efc831a48, type: 2}
+  zhenData: {fileID: 11400000, guid: cdb8af52253528c4890d44b82dfcbc21, type: 2}
+  xunData: {fileID: 11400000, guid: cc12add7ae241aa4e9c12401a6e95609, type: 2}
+  kanData: {fileID: 11400000, guid: 0b87f56ae84ee8c438edf2353a91688c, type: 2}
+  genData: {fileID: 11400000, guid: 4145540640d8f6247a3cf0eebfded0fc, type: 2}
+  kunData: {fileID: 11400000, guid: cb5792b6320488942b06261e6cdca4c4, type: 2}
+--- !u!4 &1250782473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250782471}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1305937961 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4800281062125848611, guid: 91fa5ce57960ad04fa25f9e3ef6236b4, type: 3}
@@ -2061,6 +2174,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2422712199498033285, guid: 9b4774e093114b0479d3f8934170c937, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422712199498033285, guid: 9b4774e093114b0479d3f8934170c937, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 2766265845265028520, guid: 9b4774e093114b0479d3f8934170c937, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2766265845265028520, guid: 9b4774e093114b0479d3f8934170c937, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6924020790265645426, guid: 9b4774e093114b0479d3f8934170c937, type: 3}
       propertyPath: m_Name
       value: ManaUI
@@ -2542,6 +2671,7 @@ SceneRoots:
   - {fileID: 1029215190}
   - {fileID: 828971799}
   - {fileID: 1489945571}
+  - {fileID: 1250782473}
   - {fileID: 2055254222}
   - {fileID: 1015175756}
   - {fileID: 1890907369}
@@ -2553,9 +2683,9 @@ SceneRoots:
   - {fileID: 479771555}
   - {fileID: 2079601607}
   - {fileID: 1927460052}
-  - {fileID: 1786773677}
   - {fileID: 193565718}
   - {fileID: 1198210019697215434}
+  - {fileID: 1786773677}
   - {fileID: 8755146873954146836}
   - {fileID: 2095200061326374212}
   - {fileID: 4741043562658219262}

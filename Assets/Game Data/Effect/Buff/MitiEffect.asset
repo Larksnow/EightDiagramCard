@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MitiEffect
   m_EditorClassIdentifier: 
   value: 1
-  targetType: 0
+  genData: {fileID: 11400000, guid: 4145540640d8f6247a3cf0eebfded0fc, type: 2}

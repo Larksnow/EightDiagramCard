@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d619d6e178a3ee643ba6777c360f7948, type: 3}
-  m_Name: DrawCardEvent
+  m_Script: {fileID: 11500000, guid: d670b1b6f80970f4c99b5f3273be4a28, type: 3}
+  m_Name: DuiBuffEffect
   m_EditorClassIdentifier: 
-  description: "\u62BD\u724C\u65F6\u62BDvalue\u5F20\u724C"
-  lastSender: 
+  value: 0
+  duiData: {fileID: 11400000, guid: 9bab22bf9e88fa14589ccd7ba470f487, type: 2}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    private bool isPlayTrun;
+    private bool isPlayTurn;
     private bool isEnemyTurn;
 
     public bool battleEnd = true;
@@ -30,17 +30,17 @@ public class TurnManager : MonoBehaviour
             {
                 timeCounter = 0f;
                 EnemyTurnEnd();
-                isPlayTrun = true;
+                isPlayTurn = true;
             }
         }
-        else if (isPlayTrun)
+        else if (isPlayTurn)
         {
             timeCounter += Time.deltaTime;
             if (timeCounter >= playerTurnDuration)
             {
                 timeCounter = 0f;
                 PlayerTurnBegin();
-                isPlayTrun = false;
+                isPlayTurn = false;
             }
         }
     }
@@ -48,7 +48,7 @@ public class TurnManager : MonoBehaviour
     [ContextMenu("Battle Start")]
     public void BattleStart()
     {
-        isPlayTrun = true;
+        isPlayTurn = true;
         isEnemyTurn = false;
         battleEnd = false;
         timeCounter = 0;

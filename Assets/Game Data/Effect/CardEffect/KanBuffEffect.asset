@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d619d6e178a3ee643ba6777c360f7948, type: 3}
-  m_Name: DrawCardEvent
+  m_Script: {fileID: 11500000, guid: 17d85dfe21604fc4a9fd598cf2aa3da6, type: 3}
+  m_Name: KanBuffEffect
   m_EditorClassIdentifier: 
-  description: "\u62BD\u724C\u65F6\u62BDvalue\u5F20\u724C"
-  lastSender: 
+  value: 0
+  kanData: {fileID: 11400000, guid: 0b87f56ae84ee8c438edf2353a91688c, type: 2}

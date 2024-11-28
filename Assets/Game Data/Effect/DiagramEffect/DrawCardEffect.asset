@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: DrawCardEffect
   m_EditorClassIdentifier: 
   value: 1
-  targetType: 0
   drawCardEvent: {fileID: 11400000, guid: 2bed7af5d47d5464ba47cd28d209882d, type: 2}
+  drawYinCardEvent: {fileID: 11400000, guid: 6f12887f60fd6684691607065a080619, type: 2}
+  drawYangCardEvent: {fileID: 11400000, guid: 0c388b29e37027b4296b8549061c1bd6, type: 2}
+  xunData: {fileID: 11400000, guid: cc12add7ae241aa4e9c12401a6e95609, type: 2}
+  yinBuffCardNumber: 1
+  yangBuffCardNumber: 1

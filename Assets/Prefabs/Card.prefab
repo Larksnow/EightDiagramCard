@@ -361,6 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878f3eeaefbefe942ba3be6ea8b60ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diagramChecker: {fileID: 0}
   lackOfManaEvent: {fileID: 11400000, guid: c3d9be9e30bacae49aab36ee1c0b92ae, type: 2}
 --- !u!114 &4957398844697821035
 MonoBehaviour:
@@ -386,7 +387,9 @@ MonoBehaviour:
   isAnimating: 0
   isAvailable: 0
   isDraging: 0
+  isReducedCost: 0
   isMouseOver: 0
+  reducedCost: 0
   player: {fileID: 0}
   discardCardEvent: {fileID: 11400000, guid: 44f0722ed078e5e41bf03a6b52c3b3d5, type: 2}
   costManaEvent: {fileID: 11400000, guid: 329fc4d449ba8f04fbf71967cd344ebe, type: 2}

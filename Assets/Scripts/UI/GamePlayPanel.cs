@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using System.Linq;
 //This script controls all the UI elements in the battle scene
 public class GamePlayPanel : MonoBehaviour
 {
@@ -83,7 +84,21 @@ public class GamePlayPanel : MonoBehaviour
     public void UpdateManaAmount(int amount)
     {
         TextMeshPro number = manaUI.GetComponentInChildren<TextMeshPro>();
+        int currentAmount = int.Parse(number.text);
+        if (currentAmount == amount) return;
+        bool isIncrease = int.Parse(number.text) < amount;
         number.text = amount.ToString();
+
+        // 先放大，然后恢复到原大小
+        if (isIncrease)
+        {
+            Transform uiTransform = manaUI.transform;
+            uiTransform.DOScale(1.1f, uiFadeDuration / 6).SetEase(Ease.OutCubic)
+                .OnComplete(() =>
+                {
+                    uiTransform.DOScale(1f, uiFadeDuration / 6).SetEase(Ease.OutCubic);
+                });
+        }
     }
     public void UpdateHasAvailableCard(object obj)
     {
