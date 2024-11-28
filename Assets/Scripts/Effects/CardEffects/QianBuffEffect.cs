@@ -9,6 +9,7 @@ public class QianBuffEffect : Effect
 
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
+        if (triggered == null) return;
         copyDiagramEffect.enhancedCopyTypes.Add(triggered.diagramType);
         qianData.yangBuff = true;
         qianData.yinBuff = true;

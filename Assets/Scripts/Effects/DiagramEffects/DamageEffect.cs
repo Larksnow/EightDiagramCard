@@ -5,19 +5,29 @@ using UnityEngine;
 public class DamageEffect : Effect
 {
     public DiagramDataSO zhenData;
-    
+    public float zhenMultiplier = 0.7f;
+    public float zhenBuffMultiplier = 0.1f;
+
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
-        switch (targetType)
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+        int damage = value;
+        switch (triggered.diagramType)
         {
-            case EffectTargetType.Self:
-            case EffectTargetType.Single:
-                target.TakeDamage(value);
+            case DiagramType.Li:// 随机选择单体作为目标
+                target = enemies[Random.Range(0, enemies.Length)].GetComponent<CharacterBase>();
+                target.TakeDamage(damage);
                 break;
-            case EffectTargetType.All:
-                foreach (var enemy in GameObject.FindGameObjectsWithTag("enemy"))
+            case DiagramType.Zhen:
+                damage = Mathf.RoundToInt(value * zhenMultiplier);
+                foreach (var enemy in enemies)
                 {
-                    enemy.GetComponent<CharacterBase>().TakeDamage(value);
+                    if (zhenData.yangBuff || zhenData.yinBuff)
+                    {
+                        // 如果震卦有buff，则伤害加10%
+                        damage += Mathf.RoundToInt(value * 0.1f);
+                    }
+                    enemy.GetComponent<CharacterBase>().TakeDamage(damage);
                 }
                 break;
         }

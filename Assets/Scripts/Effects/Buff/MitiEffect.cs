@@ -9,17 +9,7 @@ public class MitiEffect : Effect
     int number = 1; //每次该效果施加的层数
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
-        {
-            switch (targetType)
-            {
-                case EffectTargetType.Self:
-                    Debug.Log($"Passing {number} to {target}");
-                    target.UpdateMitiNumber(number);
-                    break;
-                case EffectTargetType.Single:
-                case EffectTargetType.All:
-                    break;
-            }
-        }
+        Debug.Log($"Passing {number} to {target}");
+        target.UpdateMitiNumber(number);
     }
 }

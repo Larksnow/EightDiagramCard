@@ -62,16 +62,7 @@ public class DiagramManager : MonoBehaviour
         }
         foreach (var effect in triggered.effects)
         {
-            switch (triggered.diagramType)
-            {
-                case DiagramType.Li:// 随机选择单体作为目标
-                    GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
-                    effect.Execute(enemies[Random.Range(0, enemies.Length)].GetComponent<CharacterBase>(), triggered);
-                    break;
-                default:
-                    effect.Execute(player, triggered);
-                    break;
-            }
+            effect.Execute(player, triggered);
         }
     }
 }

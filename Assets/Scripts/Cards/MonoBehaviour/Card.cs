@@ -22,7 +22,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public bool isAnimating;
     public bool isAvailable;
     public bool isDraging;
+    [SerializeField] private bool isReducedCost;
     public bool isMouseOver;
+    public int reducedCost;
     public Player player;
 
     [Header("Broadcast Event")]
@@ -30,7 +32,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public IntEventSO costManaEvent;
 
     private PauseManager pauseManager;
-    private bool isReducedCost;
 
 
     void Start()
@@ -41,16 +42,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void Init(CardDataSO data, bool reducedCost = false, int reducedCostValue = 0)
     {
         cardData = data;
-        cardCost = data.cost;
+        cardCost = data.cost - reducedCostValue;
         cardSprite.sprite = data.cardSprite;
         costText.text = data.cost.ToString();
         nameText.text = data.cardName;
         descriptionTest.text = data.cardDescription;
-        player = GameObject.FindObjectOfType<Player>();
+        player = FindObjectOfType<Player>();
         isMouseOver = false;
-
-        UpdateCardState();
-        if (reducedCost) UpdateCardCost(reducedCostValue);
+        isReducedCost = reducedCost;
+        UpdateCardCost(reducedCostValue);
     }
 
     public void UpdateCardPositionRotation(Vector3 position, Quaternion rotation)
@@ -94,28 +94,39 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-    public void UpdateCardState()
+    // 保险函数
+    public void SetIfReducedCost(bool isReducedCost)
     {
-        isAvailable = player.CurrentMana >= cardData.cost;
-        UpdateCardCostColor();
+        this.isReducedCost = isReducedCost;
+        if (isReducedCost)
+            UpdateCardCost(reducedCost);
+        else
+            ResetCardCost();
     }
 
     public void UpdateCardCost(int costChange)
     {
+        if (costChange > 0) Debug.LogWarning("Card cost cannot be increased.");
         isReducedCost = costChange < 0;
-        cardCost += costChange;
+        cardCost = cardData.cost + costChange;
         if (cardCost < 0) cardCost = 0;
 
-        // 更新UI
         costText.text = cardCost.ToString();
-        UpdateCardCostColor();
+        CheckCardAvailable();
     }
+
     public void ResetCardCost()
     {
         isReducedCost = false;
         cardCost = cardData.cost;
 
         costText.text = cardData.cost.ToString();
+        CheckCardAvailable();
+    }
+
+    public void CheckCardAvailable()
+    {
+        isAvailable = player.CurrentMana >= cardCost;
         UpdateCardCostColor();
     }
 

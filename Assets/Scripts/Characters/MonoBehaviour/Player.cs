@@ -26,6 +26,6 @@ public CardDeck cardDeck;
     public void UpdateMana(int cost)
     {
         CurrentMana = Mathf.Clamp(CurrentMana - cost, 0, maxMana);
-        cardDeck.CheckAllAvailable();
+        cardDeck.CheckAllCardsState();
     }
 }

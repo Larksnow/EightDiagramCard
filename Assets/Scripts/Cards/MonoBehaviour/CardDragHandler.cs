@@ -10,16 +10,16 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     Card currentCard;
     private bool canMove;
     private bool canExecute;
+    public DiagramChecker diagramChecker;
 
     private PauseManager pauseManager;
-    private DiagramChecker diagramChecker;
 
     public ObjectEventSO lackOfManaEvent;
 
     private void Awake()
     {
+        diagramChecker = GameObject.Find("DiagramChecker").GetComponent<DiagramChecker>();
         pauseManager = PauseManager.Instance;
-        diagramChecker = DiagramChecker.Instance;
         currentCard = GetComponent<Card>();
     }
 

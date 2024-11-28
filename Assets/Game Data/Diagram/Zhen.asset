@@ -22,4 +22,4 @@ MonoBehaviour:
   yinBuff: 0
   yangBuff: 0
   effects:
-  - {fileID: 11400000, guid: 007ed9a4f5bb6db42aa8b9eb90ad9a22, type: 2}
+  - {fileID: 11400000, guid: 64896f0668dfb5d4c903d450e521b823, type: 2}
