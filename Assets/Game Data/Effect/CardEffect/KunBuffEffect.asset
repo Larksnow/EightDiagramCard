@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: KunBuffEffect
   m_EditorClassIdentifier: 
   value: 0
-  targetType: 0
   cardDeck: {fileID: 0}
+  reducedCost: 1
+  numOfReduced: 1

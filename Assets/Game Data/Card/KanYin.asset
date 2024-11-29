@@ -16,6 +16,7 @@ MonoBehaviour:
   cardDescription: "\u53EF\u4F5C\u4E3A<color=\"blue\">\u9634\u723B</color>\u7EC4\u6210<color=\"grey\">\u5366\u8C61</color>"
   cardSprite: {fileID: 21300000, guid: fef087fa88c0c42459f5dba2589259e1, type: 3}
   cardType: 0
+  color: {r: 0, g: 0, b: 0, a: 1}
   cost: 2
   effects:
   - {fileID: 11400000, guid: cab2acb393a943b448153076661601ee, type: 2}

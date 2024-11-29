@@ -9,6 +9,7 @@ public class DiagramManager : MonoBehaviour
     public List<DiagramDataSO> diagramDataList;
     public Player player;
     // public CharacterBase targetCharacter;
+    public ObjectEventSO activateCardEvent;
 
     private void Awake()
     {
@@ -44,6 +45,7 @@ public class DiagramManager : MonoBehaviour
             {
                 // 爻的效果要么直接作用在玩家身上，要么把自己的effect直接给下面的卦
                 effect.Execute(player, triggered, upYao.cardType);
+                activateCardEvent.RaiseEvent(upYao, this);
             }
         }
         if (midYao != null)
@@ -51,6 +53,7 @@ public class DiagramManager : MonoBehaviour
             foreach (var effect in midYao.effects)
             {
                 effect.Execute(player, triggered, midYao.cardType);
+                activateCardEvent.RaiseEvent(midYao, this);
             }
         }
         if (downYao != null)
@@ -58,6 +61,7 @@ public class DiagramManager : MonoBehaviour
             foreach (var effect in downYao.effects)
             {
                 effect.Execute(player, triggered, downYao.cardType);
+                activateCardEvent.RaiseEvent(downYao, this);
             }
         }
         foreach (var effect in triggered.effects)

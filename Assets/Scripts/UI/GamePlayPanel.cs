@@ -58,13 +58,33 @@ public class GamePlayPanel : MonoBehaviour
     public void UpdateDrawDeckAmount(int amount)
     {
         TextMeshPro number = cardDeckUI.GetComponentInChildren<TextMeshPro>();
+        int currentAmount = int.Parse(number.text);
+        if (currentAmount == amount) return;
         number.text = amount.ToString();
+
+        // 先放大，然后恢复到原大小
+        Transform uiTransform = cardDeckUI.transform;
+        uiTransform.DOScale(1.1f, uiFadeDuration / 6).SetEase(Ease.OutCubic)
+            .OnComplete(() =>
+            {
+                uiTransform.DOScale(1f, uiFadeDuration / 6).SetEase(Ease.OutCubic);
+            });
     }
 
     public void UpdateDiscardDeckAmount(int amount)
     {
         TextMeshPro number = discardDeckUI.GetComponentInChildren<TextMeshPro>();
         number.text = amount.ToString();
+        int currentAmount = int.Parse(number.text);
+        if (currentAmount == amount) return;
+        number.text = amount.ToString();
+
+        Transform uiTransform = discardDeckUI.transform;
+        uiTransform.DOScale(1.1f, uiFadeDuration / 6).SetEase(Ease.OutCubic)
+            .OnComplete(() =>
+            {
+                uiTransform.DOScale(1f, uiFadeDuration / 6).SetEase(Ease.OutCubic);
+            });
     }
     #endregion
 
@@ -86,19 +106,14 @@ public class GamePlayPanel : MonoBehaviour
         TextMeshPro number = manaUI.GetComponentInChildren<TextMeshPro>();
         int currentAmount = int.Parse(number.text);
         if (currentAmount == amount) return;
-        bool isIncrease = int.Parse(number.text) < amount;
         number.text = amount.ToString();
 
-        // 先放大，然后恢复到原大小
-        if (isIncrease)
-        {
-            Transform uiTransform = manaUI.transform;
-            uiTransform.DOScale(1.1f, uiFadeDuration / 6).SetEase(Ease.OutCubic)
-                .OnComplete(() =>
-                {
-                    uiTransform.DOScale(1f, uiFadeDuration / 6).SetEase(Ease.OutCubic);
-                });
-        }
+        Transform uiTransform = manaUI.transform;
+        uiTransform.DOScale(1.1f, uiFadeDuration / 6).SetEase(Ease.OutCubic)
+            .OnComplete(() =>
+            {
+                uiTransform.DOScale(1f, uiFadeDuration / 6).SetEase(Ease.OutCubic);
+            });
     }
     public void UpdateHasAvailableCard(object obj)
     {

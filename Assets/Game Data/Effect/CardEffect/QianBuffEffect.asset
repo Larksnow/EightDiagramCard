@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: QianBuffEffect
   m_EditorClassIdentifier: 
   value: 0
-  targetType: 0
   qianData: {fileID: 11400000, guid: ca794eceb0d007241b69e13ad893cd57, type: 2}
   copyDiagramEffect: {fileID: 11400000, guid: eebbfc7a97c3a03419710d56cbbe878b, type: 2}
