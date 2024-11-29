@@ -35,11 +35,6 @@ public class CardDeck : MonoBehaviour
         InitializeDiscardDeck();
         costChangeTimer = 0;
     }
-    public void NewTurnDrawCard(int amount)
-    {
-        costChangeTimer = 0;
-        DrawCard(amount);
-    }
 
     public void InitializeDrawDeck()
     {
@@ -64,14 +59,27 @@ public class CardDeck : MonoBehaviour
     [ContextMenu("TestDrawCard")]
     public void TestDrawCard()
     {
-        DrawCard(1);
+        CardRequest drawRequest = new(1, CardType.Any);
+        DrawCard(drawRequest);
     }
-    public void DrawCard(int amount)
+
+    public void NewTurnDrawCard(int amount)
     {
-        // Max hand limit is 10
-        if (handCardObjectList.Count >= 10) return;
+        // TODO, 这个数量从player那里读取
+        CardRequest newTurnDrawRequest = new(5, CardType.Any);
+        DrawCard(newTurnDrawRequest);
+    }
+
+    public void DrawCard(object obj)
+    {
+        // Unpack request data from effect's delivery
+        CardRequest drawRequest = (CardRequest)obj;
+        int amount = drawRequest.amount;
+        CardType cardType = drawRequest.cardType;
+
         for (int i = 0; i < amount; ++i)
         {
+            if (handCardObjectList.Count >= 10) return;  // Max hand limit is 10
             if (drawDeck.Count == 0)
             {
                 RefillDrawDeckFromDiscard();
@@ -79,60 +87,26 @@ public class CardDeck : MonoBehaviour
             }
             // No cards in both deck
             if (drawDeck.Count == 0) return;
-            CardDataSO drawedCardData = drawDeck[0];
-            drawDeck.RemoveAt(0);
-            DrawCardByCardData(drawedCardData);
+            // Find the card with type in deck
+            int index = 0;
+            if (cardType != CardType.Any)
+            {
+                index = drawDeck.FindIndex(x => x.cardType == cardType);
+                if (index == -1) continue; // No card of specified type found
+            }
+
+            CardDataSO drawedCardData = drawDeck[index];
+            drawDeck.RemoveAt(index);
+            // Raise IntEvent to update UI number
+            drawCountEvent.RaiseEvent(drawDeck.Count, this);
+            var card = cardManager.GetCardFromPool().GetComponent<Card>();
+            // Initialize this drawed card
+            card.Init(drawedCardData);
+            card.transform.position = deckPosition.position;
+            handCardObjectList.Add(card);
             var delay = i * 0.2f;
             SetCardLayout(delay);
         }
-    }
-
-    public void DrawCardByType(object obj)
-    {
-        DrawCardEffect.Draws draws = (DrawCardEffect.Draws)obj;
-        int amount = draws.amount;
-        CardType cardType = draws.cardType;
-        for (int i = 0; i < amount; ++i)
-        {
-            if (drawDeck.Count == 0)
-            {
-                RefillDrawDeckFromDiscard();
-                ShuffDeck();
-            }
-            CardDataSO cardData = null;
-            // 在抽牌堆中找到指定类型的卡牌
-            for (int j = 0; j < drawDeck.Count; ++j)
-            {
-                if (drawDeck[j].cardType == cardType)
-                {
-                    cardData = drawDeck[j];
-                    drawDeck.RemoveAt(j);
-                    DrawCardByCardData(cardData);
-                    var delay = i * 0.2f;
-                    SetCardLayout(delay);
-                    break;
-                }
-            }
-
-            // 卡牌类型不在抽牌堆中, 尝试从弃牌堆中抽牌
-            if (cardData == null)
-            {
-                RefillDrawDeckFromDiscard();
-                ShuffDeck();
-                i--;
-            }
-        }
-    }
-    private void DrawCardByCardData(CardDataSO drawedCardData)
-    {
-        // Raise IntEvent to update UI number
-        drawCountEvent.RaiseEvent(drawDeck.Count, this);
-
-        var card = cardManager.GetCardFromPool().GetComponent<Card>();
-        // Initialize this drawed card
-        card.Init(drawedCardData, costChangeTimer != 0, costChangeAmount);
-        card.transform.position = deckPosition.position;
-        handCardObjectList.Add(card);
     }
     #endregion
 

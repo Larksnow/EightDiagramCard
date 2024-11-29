@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33ee30f7ec807f74abeab0f5824f73d2, type: 3}
-  m_Name: DamageEffect
+  m_Name: SingleDamageEffect
   m_EditorClassIdentifier: 
-  value: 10
-  zhenData: {fileID: 11400000, guid: cdb8af52253528c4890d44b82dfcbc21, type: 2}
-  liData: {fileID: 11400000, guid: 5df2ef9137a6c814da3c221efc831a48, type: 2}
-  zhenMultiplier: 0.7
-  zhenBuffMultiplier: 0.1
-  liBuffAdder: 1
+  value: 0
+  defaultTarget: 2
+  currentTarget: 2
+  diagramData: {fileID: 11400000, guid: 5df2ef9137a6c814da3c221efc831a48, type: 2}

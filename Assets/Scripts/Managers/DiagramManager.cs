@@ -39,11 +39,13 @@ public class DiagramManager : MonoBehaviour
     public void ApplyDiagramEffect(DiagramDataSO triggered, CardDataSO upYao = null, CardDataSO midYao = null, CardDataSO downYao = null)
     {
         Debug.Log("Applying Diagram Effect");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+        CharacterBase target = null;
         if (upYao != null)
         {
             foreach (var effect in upYao.effects)
             {
-                // 爻的效果要么直接作用在玩家身上，要么把自己的effect直接给下面的卦
+                // 爻的效果要么直接作用在玩家身上，要么作用在所属的卦
                 effect.Execute(player, triggered, upYao.cardType);
                 activateCardEvent.RaiseEvent(upYao, this);
             }
@@ -64,9 +66,30 @@ public class DiagramManager : MonoBehaviour
                 activateCardEvent.RaiseEvent(downYao, this);
             }
         }
-        foreach (var effect in triggered.effects)
+        foreach (var effect in triggered.effects) // 目标选择
         {
-            effect.Execute(player, triggered);
+            if (effect.currentTarget == EffectTargetType.Self)
+                effect.Execute(player, triggered);
+            else if (effect.currentTarget == EffectTargetType.Single)
+            {
+                foreach (var enemy in enemies) // 优先攻击嘲讽敌人
+                {
+                    if (enemy.GetComponent<EnemyBase>().isTaunting)
+                    {
+                        effect.Execute(enemy.GetComponent<CharacterBase>(), triggered);
+                        return;
+                    }
+                }
+                target = enemies[Random.Range(0, enemies.Length)].GetComponent<CharacterBase>();
+                effect.Execute(target, triggered);
+            }else if (effect.currentTarget == EffectTargetType.All)
+            {
+                foreach (var enemy in enemies)
+                {
+                    effect.Execute(enemy.GetComponent<CharacterBase>(), triggered);
+                }
+            }
         }
     }
+
 }

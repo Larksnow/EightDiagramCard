@@ -6,7 +6,12 @@ using UnityEngine;
 public enum CardType
 {
     Yin,
-    Yang
+    Yang,
+    Any,
+    ShaoYin,
+    ShaoYang,
+    LaoYin,
+    LaoYang
 }
 
 public enum DiagramType

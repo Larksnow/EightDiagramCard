@@ -88,9 +88,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         costManaEvent.RaiseEvent(cardCost, this);
         discardCardEvent.RaiseEvent(this, this);
-        foreach (var effect in cardData.effects)
+        if (cardData.effects.Count > 0)
         {
-            effect.Execute(target, null);
+            foreach (var effect in cardData.effects)
+            {
+                effect.Execute(target, null);
+            }
         }
     }
 

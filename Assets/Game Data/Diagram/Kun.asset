@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b0836e18f80fc45a2a5d4b5a6ae688, type: 3}
   m_Name: Kun
   m_EditorClassIdentifier: 
+  basicEffect: {fileID: 0}
   diagramName: "\u5764"
-  diagramColor: {r: 0.9607843, g: 0.8509804, b: 0.36078432, a: 1}
+  diagramColor: {r: 0.3019608, g: 0.22352941, b: 0.13725491, a: 1}
   patternSprite: {fileID: 0}
   nameSprite: {fileID: 0}
-  description: 
+  basicValue: 1
+  buffedValue: 0
+  tempValue: 0
+  description: "\u83B7\u5F971\u94DC\u94B1"
   diagramType: 1
   diagramPattern: 000000000000000000000000
   yinBuff: 0

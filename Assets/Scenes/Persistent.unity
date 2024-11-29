@@ -137,12 +137,10 @@ GameObject:
   m_Component:
   - component: {fileID: 123222011}
   - component: {fileID: 123222010}
-  - component: {fileID: 123222018}
   - component: {fileID: 123222012}
-  - component: {fileID: 123222016}
-  - component: {fileID: 123222017}
   - component: {fileID: 123222014}
   - component: {fileID: 123222015}
+  - component: {fileID: 123222016}
   m_Layer: 0
   m_Name: CardDeck
   m_TagString: Untagged
@@ -285,64 +283,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSO: {fileID: 11400000, guid: 0c388b29e37027b4296b8549061c1bd6, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 123222010}
-        m_TargetAssemblyTypeName: CardDeck, Assembly-CSharp
-        m_MethodName: DrawCardByType
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  priority: 0
---- !u!114 &123222017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123222009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSO: {fileID: 11400000, guid: 6f12887f60fd6684691607065a080619, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 123222010}
-        m_TargetAssemblyTypeName: CardDeck, Assembly-CSharp
-        m_MethodName: DrawCardByType
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  priority: 0
---- !u!114 &123222018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123222009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11aaca2c4d2094845a43601fa82900e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   eventSO: {fileID: 11400000, guid: 2bed7af5d47d5464ba47cd28d209882d, type: 2}
@@ -2512,11 +2452,20 @@ MonoBehaviour:
   vulnAppliedRound: -1
   weakAppliedRound: -1
   poisonAppliedRound: -1
+  updateShieldedEvent: {fileID: 0}
+  updateMitiEvent: {fileID: 0}
+  updateSereEvent: {fileID: 0}
+  updateDodgeEvent: {fileID: 0}
+  updateRageEvent: {fileID: 0}
+  updateThornEvent: {fileID: 0}
+  updateVulnEvent: {fileID: 0}
+  updateWeakEvent: {fileID: 0}
+  updatePoisonEvent: {fileID: 0}
   isDead: 0
   cardDeck: {fileID: 123222010}
   playerMana: {fileID: 11400000, guid: 29337ea89cf66dd4a96606d86d78705d, type: 2}
   playerMoney: {fileID: 11400000, guid: 679fcb9602dbcc34d862671b82e05d11, type: 2}
-  maxMana: 3
+  maxMana: 999
 --- !u!1001 &4741043562658219262
 PrefabInstance:
   m_ObjectHideFlags: 0

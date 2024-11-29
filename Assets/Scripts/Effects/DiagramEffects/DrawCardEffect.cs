@@ -1,34 +1,26 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "DrawCardEffect", menuName = "Diagram Effects/Draw Card Effect")]
 public class DrawCardEffect : Effect
 {
-    public IntEventSO drawCardEvent;
-    public ObjectEventSO drawYinCardEvent;
-    public ObjectEventSO drawYangCardEvent;
-    public DiagramDataSO xunData;   // 专属于巽卦
-    public int yinBuffCardNumber = 1;
-    public int yangBuffCardNumber = 1;
-
-    public struct Draws
-    {
-        public int amount;
-        public CardType cardType;
-        public Draws(int amount, CardType cardType) { this.amount = amount; this.cardType = cardType; }
-    }
+    public ObjectEventSO drawCardEvent;
+    public XunDataSO xunData;
 
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
-        drawCardEvent.RaiseEvent(value, this);
-        if (xunData.yinBuff)
+        // deal with any type drawing first
+        int normalCards = xunData.basicValue + xunData.buffedValue + xunData.tempValue;
+        CardRequest request = new CardRequest(normalCards, CardType.Any);
+        drawCardEvent.RaiseEvent(request, this);
+        // deal with specific type drawing
+        foreach (var pair in xunData.specialCardsToDraw)
         {
-            Draws draws = new (yinBuffCardNumber, CardType.Yin);
-            drawYinCardEvent.RaiseEvent(draws, this);
-        }
-        if (xunData.yangBuff)
-        {
-            Draws draws = new (yangBuffCardNumber, CardType.Yang);
-            drawYangCardEvent.RaiseEvent(draws, this);
+            CardType wantedType = pair.Key;
+            int count = pair.Value;
+
+            CardRequest specialCardRequest = new CardRequest(count, wantedType);
+            drawCardEvent.RaiseEvent(specialCardRequest, this);
         }
     }
 }

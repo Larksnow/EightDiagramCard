@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d619d6e178a3ee643ba6777c360f7948, type: 3}
+  m_Script: {fileID: 11500000, guid: 589d6281563883542816f5bf71e9a4da, type: 3}
   m_Name: DrawCardEvent
   m_EditorClassIdentifier: 
-  description: "\u62BD\u724C\u65F6\u62BDvalue\u5F20\u724C"
+  description: "\u9700\u8981\u62BD\u724C\u65F6\u89E6\u53D1\uFF0C\u901A\u77E5\u724C\u5E93\u62BD\u724C\uFF0C\uFF08\u724C\u79CD\u548C\u6570\u91CF\u5DF2\u7ECF\u4F20\u8FDB\u53BB\u4E86\uFF09"
   lastSender: 

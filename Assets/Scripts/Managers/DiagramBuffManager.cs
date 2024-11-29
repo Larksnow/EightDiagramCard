@@ -19,8 +19,8 @@ public class DiagramBuffManager : MonoBehaviour
         dataList.Add(kunData);
         foreach (var data in dataList)
         {
-            data.yinBuff = false;
-            data.yangBuff = false;
+            // data.yinBuff = false;
+            // data.yangBuff = false;
         }
     }
 }

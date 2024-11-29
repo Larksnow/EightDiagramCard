@@ -27,21 +27,21 @@ public class CopyDiagramEffect : Effect
         {
             Debug.Log("DiagramManager not found");
         }
-        diagramManager.StartCoroutine(WaitForCopyDiagram());
+        diagramManager.StartCoroutine(WaitForCopyDiagramAndExecute());
     }
 
-    private IEnumerator WaitForCopyDiagram()
+    private IEnumerator WaitForCopyDiagramAndExecute()
     {
         diagramDataToCopy = null;
         selectDiagramEvent.RaiseEvent(null, this);
         yield return new WaitUntil(() => diagramDataToCopy != null);
         // 如果此时触发的是被复制加成过的卦象，则触发两次
-        if ((qianData.yangBuff || qianData.yinBuff) && enhancedCopyTypes.Contains(diagramDataToCopy.diagramType))
+        if (enhancedCopyTypes.Contains(diagramDataToCopy.diagramType))
         {
             diagramManager.ApplyDiagramEffect(diagramDataToCopy);
             // TODO: buff重置
         }
         diagramManager.ApplyDiagramEffect(diagramDataToCopy);
+        enhancedCopyTypes.Clear();
     }
-
 }
