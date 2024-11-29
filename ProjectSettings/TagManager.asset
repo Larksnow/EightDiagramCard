@@ -49,6 +49,9 @@ TagManager:
   - name: Character
     uniqueID: 585267547
     locked: 0
-  - name: Front
+  - name: BaseUI
     uniqueID: 3149183165
+    locked: 0
+  - name: Panel
+    uniqueID: 92985891
     locked: 0

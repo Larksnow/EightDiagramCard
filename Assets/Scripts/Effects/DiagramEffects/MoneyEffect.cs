@@ -10,6 +10,6 @@ public class MoneyEffect : Effect
         Player player = target as Player;
         if (player == null)
             Debug.Log("Money effect can only be applied to player characters.");
-        player.CurrentMoney += value;
+        player.UpdateMoney(value);
     }
 }

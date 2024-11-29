@@ -17,5 +17,6 @@ public class MitiEffect : Effect
             mitiAmount += buffNumber;
         }
         target.UpdateBuffNumber(BuffType.Miti, mitiAmount);
+        Debug.Log("Miti Effect applied");
     }
 }

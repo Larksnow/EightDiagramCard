@@ -3,29 +3,37 @@ using UnityEngine;
 public class Player : CharacterBase
 {
 public CardDeck cardDeck;
-    public IntVariable playerMana;
-    public IntVariable playerMoney;
     public int maxMana;
 
-    public int CurrentMana {get => playerMana.currentValue; set => playerMana.SetValue(value); }
-    public int CurrentMoney {get => playerMoney.currentValue; set => playerMoney.SetValue(value); }
+    [Header("Broadcast Events")]
+    public IntEventSO updateManaEvent;
+    public IntEventSO updateMoneyEvent;
+
+
+    public int currentMana; 
+    public int currentMoney; 
 
     private void OnEnable()
     {
-        playerMana.maxValue = maxMana;
-        CurrentMana = playerMana.maxValue;
-        // TODO: buff更新（现在在PlayerTurnBegin事件中更新)
+        currentMana = maxMana;
     }
 
     public override void OnTurnBegin()
     {
         base.OnTurnBegin();
-        CurrentMana = maxMana;
+        UpdateMana(maxMana);
     }
 
-    public void UpdateMana(int cost)
+    public void UpdateMana(int amount)
     {
-        CurrentMana = Mathf.Clamp(CurrentMana - cost, 0, maxMana);
+        currentMana = Mathf.Clamp(currentMana + amount, 0, maxMana);
         cardDeck.CheckAllCardsState();
+        updateManaEvent.RaiseEvent(currentMana, this);
+    }
+
+    public void UpdateMoney(int amount)
+    {
+        currentMoney += amount;
+        updateMoneyEvent.RaiseEvent(currentMoney, this);
     }
 }

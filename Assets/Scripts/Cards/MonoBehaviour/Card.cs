@@ -86,7 +86,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void ExecuteCardEffect(CharacterBase target)
     {
-        costManaEvent.RaiseEvent(cardCost, this);
+        costManaEvent.RaiseEvent(-cardCost, this);
         discardCardEvent.RaiseEvent(this, this);
         foreach (var effect in cardData.effects)
         {
@@ -126,7 +126,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void CheckCardAvailable()
     {
-        isAvailable = player.CurrentMana >= cardCost;
+        isAvailable = player.currentMana >= cardCost;
         UpdateCardCostColor();
     }
 

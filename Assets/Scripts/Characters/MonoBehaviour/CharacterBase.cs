@@ -6,15 +6,37 @@ using UnityEngine.UIElements;
 
 public class CharacterBase : MonoBehaviour
 {
-    public struct Damage
+    public struct DamagePosition
     {
         public Vector3 position;
         public int amount;
-        public Damage(Vector3 pos, int amount)
+        public DamagePosition(Vector3 pos, int amount)
         {
             this.position = pos;
             this.amount = amount;
         }
+    }
+
+    public struct HPChange
+    {
+        public CharacterBase target;
+        public int updated;
+        public HPChange(CharacterBase target, int amount) { this.target = target; this.updated = amount; }
+    }
+
+    public struct ShieldChange
+    {
+        public CharacterBase target;
+        public int updated;
+        public ShieldChange(CharacterBase target, int amount) { this.target = target; this.updated = amount; }
+    }
+
+    public struct BuffChange
+    {
+        public CharacterBase target;
+        public BuffType buffType;
+        public int updated;
+        public BuffChange(CharacterBase target, BuffType buffType, int amount) { this.target = target; this.buffType = buffType; this.updated = amount; }
     }
 
     [Header("Broadcast Events")]
@@ -49,15 +71,9 @@ public class CharacterBase : MonoBehaviour
     public int poisonAppliedRound = -1;
 
     [Header("Broadcast Events")]
-    public IntEventSO updateShieldedEvent;
-    public IntEventSO updateMitiEvent;
-    public IntEventSO updateSereEvent;
-    public IntEventSO updateDodgeEvent;
-    public IntEventSO updateRageEvent;
-    public IntEventSO updateThornEvent;
-    public IntEventSO updateVulnEvent;
-    public IntEventSO updateWeakEvent;
-    public IntEventSO updatePoisonEvent;
+    public ObjectEventSO updateHPEvent;
+    public ObjectEventSO updateShieldedEvent;
+    public ObjectEventSO updateBuffEvent;
 
     // This list store all the buff SOs which stores the number
     public bool isDead;
@@ -74,7 +90,7 @@ public class CharacterBase : MonoBehaviour
         currentVuln = 0;
         currentWeak = 0;
         currentPoison = 0;
-        roundsNumber = 0;
+        roundsNumber = 1;
         isDead = false;
         //TODO: Load all buff SO using addressable asset (virtual, player and enemy have their own SOs)
     }
@@ -100,6 +116,7 @@ public class CharacterBase : MonoBehaviour
                 damageRate -= 0.25f;
                 // 受伤后减伤减少一层
                 UpdateBuffNumber(BuffType.Miti, -1);
+                Debug.Log("Decrease Miti by 1 by taking damage");
             }
             if (currentVuln > 0)
             {
@@ -123,19 +140,19 @@ public class CharacterBase : MonoBehaviour
         }
 
         // 施加伤害
-        if (currentHP > amount)
-        {
-            currentHP -= amount;
-        }
-        else
-        {
-            currentHP = 0;
-            //TODO: Die
-            isDead = true;
-        }
+        UpdateHP(-amount);
 
-        Damage damage = new(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), amount);
-        takeDamageEvent.RaiseEvent(damage, amount); // 呼叫ui更新
+        DamagePosition damage = new(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), amount);
+        takeDamageEvent.RaiseEvent(damage, amount); // 呼叫ui更新(伤害数字)
+    }
+
+    public virtual void UpdateHP(int amount)
+    {
+        currentHP = Mathf.Clamp(currentHP + amount, 0, maxHP);
+        if (currentHP == 0)
+            isDead = true;
+        updateHPEvent.RaiseEvent(new HPChange(this, currentHP), this);
+
     }
 
     public virtual void UpdateShield(int value)
@@ -145,7 +162,7 @@ public class CharacterBase : MonoBehaviour
         currentShield += value;
         if (currentShield < 0) currentShield = 0;
         Debug.Log($"After Update: CurrentShield = {currentShield}");
-        updateShieldedEvent.RaiseEvent(currentShield, this);
+        updateShieldedEvent.RaiseEvent(new ShieldChange(this, currentShield), this);
     }
 
     public virtual void Heal(int healAmount) { }
@@ -158,23 +175,29 @@ public class CharacterBase : MonoBehaviour
         roundsNumber++;
         // 重置化劲
         currentShield = 0;
-        // 如果上一回合新被施加buff，则buffs减1
-        if (mitiAppliedRound != roundsNumber - 1)
-            UpdateBuffNumber(BuffType.Miti, -1);
-        if (sereAppliedRound != roundsNumber - 1)
-            UpdateBuffNumber(BuffType.Sere, -1);
-        if (dodgeAppliedRound != roundsNumber - 1)
-            UpdateBuffNumber(BuffType.Dodge, -1);
-        if (rageAppliedRound != roundsNumber - 1)
-            UpdateBuffNumber(BuffType.Rage, -1);
-        if (thornAppliedRound != roundsNumber - 1)
-            UpdateBuffNumber(BuffType.Thorn, -1);
+        Debug.Log("Decrease Miti by 1");
+        UpdateBuffNumber(BuffType.Miti, -1);
+        UpdateBuffNumber(BuffType.Sere, -1);
+        UpdateBuffNumber(BuffType.Dodge, -1);
+        UpdateBuffNumber(BuffType.Rage, -1);
+        UpdateBuffNumber(BuffType.Thorn, -1);
+
+        // 如果不是上一回合新被敌人施加debuff，则buffs减1
         if (vulnAppliedRound != roundsNumber - 1)
+        {
+            Debug.Log("Decrease Vuln by 1");
             UpdateBuffNumber(BuffType.Vuln, -1);
+        }
         if (weakAppliedRound != roundsNumber - 1)
+        {
+            Debug.Log("Decrease Weak by 1");
             UpdateBuffNumber(BuffType.Weak, -1);
+        }
         if (poisonAppliedRound != roundsNumber - 1)
+        {
+            Debug.Log("Decrease Poison by 1");
             UpdateBuffNumber(BuffType.Poison, -1);
+        }
     }
 
     // 监听TurnEndEvent
@@ -200,42 +223,42 @@ public class CharacterBase : MonoBehaviour
             case BuffType.Miti:
                 if (currentMiti == 0 && value > 0) mitiAppliedRound = roundsNumber;
                 currentMiti = Mathf.Clamp(currentMiti + value, 0, 9);
-                updateMitiEvent.RaiseEvent(currentMiti, this);
+                updateBuffEvent.RaiseEvent(new BuffChange(this, BuffType.Miti, currentMiti), this);
                 break;
             case BuffType.Sere:
                 if (currentSere == 0 && value > 0) sereAppliedRound = roundsNumber;
                 currentSere = Mathf.Clamp(currentSere + value, 0, 9);
-                updateSereEvent.RaiseEvent(currentSere, this);
+                updateBuffEvent.RaiseEvent(new BuffChange(this, BuffType.Sere, currentSere), this);
                 break;
             case BuffType.Dodge:
                 if (currentDodge == 0 && value > 0) dodgeAppliedRound = roundsNumber;
                 currentDodge = Mathf.Clamp(currentDodge + value, 0, 9);
-                updateDodgeEvent.RaiseEvent(currentDodge, this);
+                updateBuffEvent.RaiseEvent(new BuffChange(this, BuffType.Dodge, currentDodge), this);
                 break;
             case BuffType.Rage:
                 if (currentRage == 0 && value > 0) rageAppliedRound = roundsNumber;
                 currentRage = Mathf.Clamp(currentRage + value, 0, 9);
-                updateRageEvent.RaiseEvent(currentRage, this);
+                updateBuffEvent.RaiseEvent(new BuffChange(this, BuffType.Rage, currentRage), this);
                 break;
             case BuffType.Thorn:
                 if (currentThorn == 0 && value > 0) thornAppliedRound = roundsNumber;
                 currentThorn = Mathf.Clamp(currentThorn + value, 0, 9);
-                updateThornEvent.RaiseEvent(currentThorn, this);
+                updateBuffEvent.RaiseEvent(new BuffChange(this, BuffType.Thorn, currentThorn), this);
                 break;
             case BuffType.Vuln:
                 if (currentVuln == 0 && value > 0) vulnAppliedRound = roundsNumber;
                 currentVuln = Mathf.Clamp(currentVuln + value, 0, 9);
-                updateVulnEvent.RaiseEvent(currentVuln, this);
+                updateBuffEvent.RaiseEvent(new BuffChange(this, BuffType.Vuln, currentVuln), this);
                 break;
             case BuffType.Weak:
                 if (currentWeak == 0 && value > 0) weakAppliedRound = roundsNumber;
                 currentWeak = Mathf.Clamp(currentWeak + value, 0, 9);
-                updateWeakEvent.RaiseEvent(currentWeak, this);
+                updateBuffEvent.RaiseEvent(new BuffChange(this, BuffType.Weak, currentWeak), this);
                 break;
             case BuffType.Poison:
                 if (currentPoison == 0 && value > 0) poisonAppliedRound = roundsNumber;
                 currentPoison = Mathf.Clamp(currentPoison + value, 0, 9);
-                updatePoisonEvent.RaiseEvent(currentPoison, this);
+                updateBuffEvent.RaiseEvent(new BuffChange(this, BuffType.Poison, currentPoison), this);
                 break;
         }
     }
