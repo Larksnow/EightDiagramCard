@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class EnemyBase : CharacterBase
 {
-    public void NewTurn()
+    [Header("Buffs")]
+    public bool isTaunting;    // 嘲讽(使敌方只能攻击此单位)
+
+    public override void OnTurnBegin()
     {
-        currentShield = 0;
+        base.OnTurnBegin();
+        // TODO: 嘲讽只生效一回合
+        if (isTaunting) isTaunting = false;
     }
 }

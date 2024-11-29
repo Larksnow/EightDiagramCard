@@ -8,7 +8,7 @@ public class CopyDiagramEffect : Effect
     public DiagramManager diagramManager;
     public ObjectEventSO selectDiagramEvent;
     public DiagramDataSO diagramDataToCopy = null;
-    public DiagramDataSO qianData;
+    public DiagramDataSO qianData;  // 专属于乾卦
     public HashSet<DiagramType> enhancedCopyTypes = new();
 
 

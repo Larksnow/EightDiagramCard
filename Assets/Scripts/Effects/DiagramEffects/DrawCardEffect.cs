@@ -6,7 +6,7 @@ public class DrawCardEffect : Effect
     public IntEventSO drawCardEvent;
     public ObjectEventSO drawYinCardEvent;
     public ObjectEventSO drawYangCardEvent;
-    public DiagramDataSO xunData;
+    public DiagramDataSO xunData;   // 专属于巽卦
     public int yinBuffCardNumber = 1;
     public int yangBuffCardNumber = 1;
 

@@ -1463,7 +1463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e0cb814a6127142883f18800aaf236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiFadeDuration: 1
+  uiFadeDuration: 0.5
 --- !u!1 &972398918 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3090335315373865133, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
@@ -2494,8 +2494,24 @@ MonoBehaviour:
   takeDamageEvent: {fileID: 11400000, guid: 9237822ab6080dc4fa5d52a7651c586b, type: 2}
   maxHP: 66
   currentHP: 66
-  currentMiti: 0
   currentShield: 0
+  currentMiti: 0
+  currentSere: 0
+  currentDodge: 0
+  currentRage: 0
+  currentThorn: 0
+  currentVuln: 0
+  currentWeak: 0
+  currentPoison: 0
+  roundsNumber: 0
+  mitiAppliedRound: -1
+  sereAppliedRound: -1
+  dodgeAppliedRound: -1
+  rageAppliedRound: -1
+  thornAppliedRound: -1
+  vulnAppliedRound: -1
+  weakAppliedRound: -1
+  poisonAppliedRound: -1
   isDead: 0
   cardDeck: {fileID: 123222010}
   playerMana: {fileID: 11400000, guid: 29337ea89cf66dd4a96606d86d78705d, type: 2}
@@ -2572,7 +2588,8 @@ GameObject:
   - component: {fileID: 1198210019697215434}
   - component: {fileID: 4159704446289960109}
   - component: {fileID: 7177020580710331343}
-  - component: {fileID: 7177020580710331342}
+  - component: {fileID: 7177020580710331344}
+  - component: {fileID: 7177020580710331345}
   - component: {fileID: 1039990635726146836}
   m_Layer: 7
   m_Name: Player
@@ -2657,7 +2674,21 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bda70ac892e22b5499352bcf7b170c60, type: 3}
---- !u!114 &7177020580710331342
+--- !u!114 &7177020580710331343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932974873154258021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f222c6206f08840b05830f43afdcb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillBarObj: {fileID: 1883049516}
+  amountObj: {fileID: 1305937961}
+--- !u!114 &7177020580710331344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2675,7 +2706,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4159704446289960109}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: NewTurn
+        m_MethodName: OnTurnBegin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2685,20 +2716,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4159704446289960109}
-        m_TargetAssemblyTypeName: CharacterBase, Assembly-CSharp
-        m_MethodName: UpdateMitiNumber
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   priority: 0
---- !u!114 &7177020580710331343
+--- !u!114 &7177020580710331345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2707,11 +2726,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 4932974873154258021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f222c6206f08840b05830f43afdcb0, type: 3}
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillBarObj: {fileID: 1883049516}
-  amountObj: {fileID: 1305937961}
+  eventSO: {fileID: 11400000, guid: b70699de3920f8f43bdf2a54645b4173, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4159704446289960109}
+        m_TargetAssemblyTypeName: CharacterBase, Assembly-CSharp
+        m_MethodName: OnTurnEnd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
 --- !u!1001 &7912220575968286300
 PrefabInstance:
   m_ObjectHideFlags: 0

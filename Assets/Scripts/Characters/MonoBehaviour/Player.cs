@@ -17,10 +17,10 @@ public CardDeck cardDeck;
         // TODO: buff更新（现在在PlayerTurnBegin事件中更新)
     }
 
-    public void NewTurn()
+    public override void OnTurnBegin()
     {
+        base.OnTurnBegin();
         CurrentMana = maxMana;
-        currentShield = 0;
     }
 
     public void UpdateMana(int cost)

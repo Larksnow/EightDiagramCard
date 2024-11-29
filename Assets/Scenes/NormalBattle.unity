@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 393218278}
   - component: {fileID: 393218279}
   - component: {fileID: 393218280}
+  - component: {fileID: 393218281}
   m_Layer: 7
   m_Name: Enemy01
   m_TagString: enemy
@@ -317,9 +318,26 @@ MonoBehaviour:
   takeDamageEvent: {fileID: 11400000, guid: 9237822ab6080dc4fa5d52a7651c586b, type: 2}
   maxHP: 30
   currentHP: 30
-  currentMiti: 0
   currentShield: 0
+  currentMiti: 0
+  currentSere: 0
+  currentDodge: 0
+  currentRage: 0
+  currentThorn: 0
+  currentVuln: 0
+  currentWeak: 0
+  currentPoison: 0
+  roundsNumber: 0
+  mitiAppliedRound: -1
+  sereAppliedRound: -1
+  dodgeAppliedRound: -1
+  rageAppliedRound: -1
+  thornAppliedRound: -1
+  vulnAppliedRound: -1
+  weakAppliedRound: -1
+  poisonAppliedRound: -1
   isDead: 0
+  isTaunting: 0
 --- !u!114 &393218279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,7 +370,36 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 393218278}
         m_TargetAssemblyTypeName: EnemyBase, Assembly-CSharp
-        m_MethodName: NewTurn
+        m_MethodName: OnTurnBegin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &393218281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393218275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 191246896757a8645bae7e702e09229a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 393218278}
+        m_TargetAssemblyTypeName: CharacterBase, Assembly-CSharp
+        m_MethodName: OnTurnEnd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

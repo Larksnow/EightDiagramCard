@@ -7,7 +7,7 @@ public class MitiEffect : Effect
 {
     // 坚硬（受到伤害降低25%，受击后减少一层）
     public int buffNumber = 1; // 有buff时额外层数
-    public DiagramDataSO genData;
+    public DiagramDataSO genData;   // 专属于艮卦
 
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
@@ -16,6 +16,6 @@ public class MitiEffect : Effect
         {
             mitiAmount += buffNumber;
         }
-        target.UpdateMitiNumber(mitiAmount);
+        target.UpdateBuffNumber(ref target.currentMiti, ref target.mitiAppliedRound, mitiAmount);
     }
 }

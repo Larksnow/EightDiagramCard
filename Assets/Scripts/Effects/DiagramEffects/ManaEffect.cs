@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ManaEffect", menuName = "Diagram Effects/Mana Effect")]
 public class ManaEffect : Effect
 {
-    public DiagramDataSO duiData;
+    public DiagramDataSO duiData;   // 专属于兑卦
     public int buffValue = 1;
 
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
