@@ -35,3 +35,15 @@ public enum EffectTargetType
     All,
     Single
 }
+
+public enum BuffType
+{
+    Miti,
+    Sere,
+    Dodge,
+    Rage,
+    Thorn,
+    Vuln,
+    Weak,
+    Poison
+}

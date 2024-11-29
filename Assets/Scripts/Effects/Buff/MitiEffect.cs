@@ -16,6 +16,6 @@ public class MitiEffect : Effect
         {
             mitiAmount += buffNumber;
         }
-        target.UpdateBuffNumber(ref target.currentMiti, ref target.mitiAppliedRound, mitiAmount);
+        target.UpdateBuffNumber(BuffType.Miti, mitiAmount);
     }
 }
