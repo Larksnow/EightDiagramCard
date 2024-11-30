@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class HealthBarContorller : MonoBehaviour
 {
-    private CharacterBase currentCharacter;
+    public CharacterBase currentCharacter;
 
     [Header("Health Bar")]
     public GameObject fillBarObj;
@@ -19,9 +19,9 @@ public class HealthBarContorller : MonoBehaviour
 
     private void Awake()
     {
-        currentCharacter = GetComponent<CharacterBase>();
         fillBar = fillBarObj.GetComponent<SpriteRenderer>();
         amountText = amountObj.GetComponent<TextMeshPro>();
+        currentCharacter = GetComponentInParent<CharacterBase>();
     }
 
     private void Start()
@@ -37,13 +37,12 @@ public class HealthBarContorller : MonoBehaviour
         amountText.text = $"{currentCharacter.maxHP}/{currentCharacter.maxHP}";
     }
 
-    private void Update()
+    public void UpdateHealth(object obj)
     {
-        UpdateHealth();
-    }
+        CharacterBase.HPChange hPChange= (CharacterBase.HPChange)obj;
+        if (hPChange.target != currentCharacter) return;
 
-    public void UpdateHealth()
-    {
+        int currentHealth = hPChange.updated;
         if (currentCharacter.isDead)
         {
             fillBar.enabled = false;
@@ -53,8 +52,8 @@ public class HealthBarContorller : MonoBehaviour
         {
             fillBar.enabled = true;
             // 需要保证Sprite的Pivot为(X = 0, Y = 0,5)
-            fillBar.transform.localScale = new Vector3(currentCharacter.currentHP / (float)currentCharacter.maxHP * originalFilledScale.x, originalFilledScale.y, originalFilledScale.z);
-            amountText.text = $"{currentCharacter.currentHP}/{currentCharacter.maxHP}";
+            fillBar.transform.localScale = new Vector3(currentHealth / (float)currentCharacter.maxHP * originalFilledScale.x, originalFilledScale.y, originalFilledScale.z);
+            amountText.text = $"{currentHealth}/{currentCharacter.maxHP}";
         }
     }
 }

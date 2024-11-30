@@ -14,6 +14,6 @@ public class MitiEffect : Effect
         Player player = target as Player;
         if (player == null)
             Debug.Log("Gen Gua can only be applied to player characters.");
-        player.currentMiti += mitiAmount;
+        player.UpdateBuffNumber(BuffType.Miti, mitiAmount);
     }
 }

@@ -65,7 +65,7 @@ public class CardDeck : MonoBehaviour
 
     public void NewTurnDrawCard(int amount)
     {
-        // TODO, 这个数量从player那里读取
+        // TODO, 这个数量从player那里读取, 新建变量
         CardRequest newTurnDrawRequest = new(5, CardType.Any);
         DrawCard(newTurnDrawRequest);
     }

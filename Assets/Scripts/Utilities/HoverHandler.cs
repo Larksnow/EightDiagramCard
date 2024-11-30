@@ -7,14 +7,20 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class HoverHandler : MonoBehaviour
 {
+    [Header("Enlargeable")]
+    public bool enlargable;
     public float scaleMultiplier;
-    public List<Transform> targetTransforms;
+    public List<Transform> enlargedTransforms;
+
+    [Header("Hover Panel")]
+    public bool hasHoverPanel;
+    public GameObject hoverPanel;
 
     private List<Vector3> originalScales = new();
 
     private void Awake()
     {
-        foreach (Transform t in targetTransforms)
+        foreach (Transform t in enlargedTransforms)
         {
             originalScales.Add(t.localScale);
         }
@@ -22,17 +28,31 @@ public class HoverHandler : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        for (int i = 0; i < targetTransforms.Count; i++)
+        if (enlargable)
         {
-            targetTransforms[i].localScale = originalScales[i] * scaleMultiplier;
+            for (int i = 0; i < enlargedTransforms.Count; i++)
+            {
+                enlargedTransforms[i].localScale = originalScales[i] * scaleMultiplier;
+            }
+        }
+        if (hasHoverPanel)
+        {
+            hoverPanel.SetActive(true);
         }
     }
 
     private void OnMouseExit()
     {
-        for (int i = 0; i < targetTransforms.Count; i++)
+        if (enlargable)
         {
-            targetTransforms[i].localScale = originalScales[i];
+            for (int i = 0; i < enlargedTransforms.Count; i++)
+            {
+                enlargedTransforms[i].localScale = originalScales[i];
+            }
+        }
+        if (hasHoverPanel)
+        {
+            hoverPanel.SetActive(false);
         }
     }
 }

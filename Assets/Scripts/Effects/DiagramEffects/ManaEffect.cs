@@ -12,11 +12,11 @@ public class ManaEffect : Effect
         Player player = target as Player;
         if (player == null) Debug.Log("Mana effect can only be applied to player");
         // value 为增加的魔力值
-        int currentMana = player.CurrentMana;
+        int currentMana = player.currentMana;
         if (currentMana + manaAmount > player.maxMana && !unlimit) // 未解禁时法力无法超过上限
         {
             manaAmount = player.maxMana - currentMana;
         }
-        player.UpdateMana(-manaAmount);
+        player.UpdateMana(manaAmount);
     }
 }
