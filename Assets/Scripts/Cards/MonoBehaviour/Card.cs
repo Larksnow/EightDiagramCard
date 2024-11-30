@@ -13,7 +13,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public CardDataSO cardData;
     public TextMeshPro nameText, costText, descriptionTest;
     public int cardCost;
-    public SpriteRenderer cardSprite;
+    public SpriteRenderer cardSprite, cardFrame;
 
     [Header("Card Original Layout")]
     public Vector3 originalPosition;
@@ -44,6 +44,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         cardData = data;
         cardCost = data.cost - reducedCostValue;
         cardSprite.sprite = data.cardSprite;
+        cardFrame.color = data.color;
         costText.text = data.cost.ToString();
         nameText.text = data.cardName;
         descriptionTest.text = data.cardDescription;

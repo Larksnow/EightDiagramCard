@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: "(\u5151)\u9633\u723B"
   cardDescription: "\u4F60\u7684\u5151\u5366\u4E0B\u4E00\u6B21\u989D\u5916\u56DE\u590D1\u70B9\u6CD5\u529B"
-  cardSprite: {fileID: 21300000, guid: a03b8ae569faa2d41984752c13f52147, type: 3}
+  cardSprite: {fileID: 21300000, guid: 909add7014349d7418b32f10af03d86e, type: 3}
   cardType: 1
-  color: {r: 0.4745098, g: 0.4509804, b: 0.45882353, a: 1}
+  color: {r: 0.2509804, g: 0.8784314, b: 0.8156863, a: 1}
   cost: 2
   effects:
   - {fileID: 11400000, guid: 89c55636e9bf69b4da3ebf7b3f6921d3, type: 2}
