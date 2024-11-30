@@ -87,7 +87,8 @@ public class DiagramManager : MonoBehaviour
                 }
                 target = enemies[Random.Range(0, enemies.Length)].GetComponent<CharacterBase>();
                 effect.Execute(target, triggered);
-            }else if (effect.currentTarget == EffectTargetType.All)
+            }
+            else if (effect.currentTarget == EffectTargetType.All)
             {
                 foreach (var enemy in enemies)
                 {

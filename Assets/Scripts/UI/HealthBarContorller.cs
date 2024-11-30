@@ -40,15 +40,10 @@ public class HealthBarContorller : MonoBehaviour
     #region Event Listening
     public void UpdateHealth(object obj)
     {
-        CharacterBase.HPChange hPChange = (CharacterBase.HPChange)obj;
+        HPChange hPChange = (HPChange)obj;
         if (hPChange.target != currentCharacter) return;
 
         int currentHealth = hPChange.updated;
-        if (currentCharacter.isDead)
-        {
-            fillBar.enabled = false;
-            return;
-        }
         if (fillBar != null)
         {
             fillBar.enabled = true;

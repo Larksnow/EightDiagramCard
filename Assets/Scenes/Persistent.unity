@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &57765096 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3090335315373865133, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
+  m_PrefabInstance: {fileID: 714383040}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &57765097 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4561779671740556017, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
@@ -411,7 +416,7 @@ MonoBehaviour:
   manaUI: {fileID: 1791597802}
   diagramPannel: {fileID: 1721429166}
   dialogBox: {fileID: 257936497}
-  selectDiagramPannel: {fileID: 0}
+  selectDiagramPannel: {fileID: 57765096}
   selectCardPannel: {fileID: 882954046}
   damageNumberPool: {fileID: 1927460051}
   uiFadeDuration: 2
@@ -2723,27 +2728,11 @@ MonoBehaviour:
   maxHP: 66
   currentHP: 66
   currentShield: 0
-  currentMiti: 0
-  currentSere: 0
-  currentDodge: 0
-  currentRage: 0
-  currentThorn: 0
-  currentVuln: 0
-  currentWeak: 0
-  currentPoison: 0
   roundsNumber: 0
-  mitiAppliedRound: -1
-  sereAppliedRound: -1
-  dodgeAppliedRound: -1
-  rageAppliedRound: -1
-  thornAppliedRound: -1
-  vulnAppliedRound: -1
-  weakAppliedRound: -1
-  poisonAppliedRound: -1
+  isDead: 0
   updateHPEvent: {fileID: 11400000, guid: 1e2a10bb919ec1f4caab0099cacc2599, type: 2}
   updateShieldedEvent: {fileID: 11400000, guid: 4abd274a3eab2e14d95c6d1a30ad522c, type: 2}
   updateBuffEvent: {fileID: 11400000, guid: a057bc43d235c224f97adc2445146989, type: 2}
-  isDead: 0
   cardDeck: {fileID: 123222010}
   maxMana: 3
   updateManaEvent: {fileID: 11400000, guid: 5ce3e1703d204164292b4648759b96ad, type: 2}

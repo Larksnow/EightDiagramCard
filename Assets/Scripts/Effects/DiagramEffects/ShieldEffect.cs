@@ -14,6 +14,6 @@ public class ShieldEffect : Effect
         Player player = target as Player;
         if (player == null)
             Debug.Log("Kan Gua can only be applied to player characters.");
-        player.UpdateShield(shieldAmount);
+        player.AddShield(shieldAmount);
     }
 }

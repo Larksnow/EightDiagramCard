@@ -21,7 +21,7 @@ public class DiagramDataSO : ScriptableObject
 
     public List<Effect> effects;// 存储卦的所有效果，基础，祝福，卡牌增益等
 
-    public virtual void RestToDefault()
+    public virtual void ResetToDefault()
     {
         buffedValue = 0;
         tempValue = 0;

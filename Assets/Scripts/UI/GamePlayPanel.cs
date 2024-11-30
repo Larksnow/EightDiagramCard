@@ -198,7 +198,7 @@ public class GamePlayPanel : MonoBehaviour
         float descentDuration = 1f;
         int descentHeight = 5;
         GameObject damageNumber = damageNumberPool.GetObjectFromPool();
-        CharacterBase.DamagePosition damage = (CharacterBase.DamagePosition)obj;
+        DamagePosition damage = (DamagePosition)obj;
         TextMeshPro text = damageNumber.GetComponent<TextMeshPro>();
         Vector3 originPosition = damageNumber.transform.position;
         Vector3 originScale = damageNumber.transform.localScale;

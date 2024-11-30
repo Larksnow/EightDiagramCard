@@ -11,7 +11,8 @@ public class BuffUIController : MonoBehaviour
     private Vector3 beginPos;
     private GameObject mitiUI, sereUI, dodgeUI, rageUI, thornUI, vulnUI, weakUI, poisonUI;
     // TODO: 敌人和玩家独特buffUI
-    private List<GameObject> buffUIs = new();
+    private List<GameObject> buffsInDisplay = new();
+    private Dictionary<BuffType, GameObject> buffUIs = new();
 
     private void Awake()
     {
@@ -24,54 +25,31 @@ public class BuffUIController : MonoBehaviour
         vulnUI = transform.Find("Vuln").gameObject;
         weakUI = transform.Find("Weak").gameObject;
         poisonUI = transform.Find("Poison").gameObject;
+        buffUIs.Add(BuffType.Miti, mitiUI);
+        buffUIs.Add(BuffType.Sere, sereUI);
+        buffUIs.Add(BuffType.Dodge, dodgeUI);
+        buffUIs.Add(BuffType.Rage, rageUI);
+        buffUIs.Add(BuffType.Thorn, thornUI);
+        buffUIs.Add(BuffType.Vuln, vulnUI);
+        buffUIs.Add(BuffType.Weak, weakUI);
+        buffUIs.Add(BuffType.Poison, poisonUI);
     }
 
     #region Event Listening
     public void UpdateBuffUI(object obj)
     {
-        CharacterBase.BuffChange buffChange = (CharacterBase.BuffChange)obj;
+        BuffChange buffChange = (BuffChange)obj;
         if (buffChange.target != currentCharacter) return;
 
         int updatedValue = buffChange.updated;
-        GameObject target;
-        switch (buffChange.buffType)
-        {
-            case BuffType.Miti:
-                target = mitiUI;
-                break;
-            case BuffType.Sere:
-                target = sereUI;
-                break;
-            case BuffType.Dodge:
-                target = dodgeUI;
-                break;
-            case BuffType.Rage:
-                target = rageUI;
-                break;
-            case BuffType.Thorn:
-                target = thornUI;
-                break;
-            case BuffType.Vuln:
-                target = vulnUI;
-                break;
-            case BuffType.Weak:
-                target = weakUI;
-                break;
-            case BuffType.Poison:
-                target = poisonUI;
-                break;
-            default:
-                target = null;
-                Debug.LogError("BuffType not found");
-                break;
-        }
+        GameObject target = buffUIs[buffChange.buffType];
 
         if (updatedValue != 0)
         {
             if (!target.activeSelf)
             {
                 target.SetActive(true);
-                buffUIs.Add(target);
+                buffsInDisplay.Add(target);
             }
         }
         else
@@ -79,7 +57,7 @@ public class BuffUIController : MonoBehaviour
             if (target.activeSelf)
             {
                 target.SetActive(false);
-                buffUIs.Remove(target);
+                buffsInDisplay.Remove(target);
             }
         }
         target.GetComponentInChildren<TextMeshPro>().text = updatedValue.ToString();
@@ -89,10 +67,10 @@ public class BuffUIController : MonoBehaviour
 
     private void UpdateList()
     {
-        int count = buffUIs.Count;
+        int count = buffsInDisplay.Count;
         for (int i = 0; i < count; i++)
         {
-            buffUIs[i].transform.position = new Vector3(leftToRight ? beginPos.x + i * uiInterval : beginPos.x - i * uiInterval, beginPos.y, beginPos.z);
+            buffsInDisplay[i].transform.position = new Vector3(leftToRight ? beginPos.x + i * uiInterval : beginPos.x - i * uiInterval, beginPos.y, beginPos.z);
         }
     }
 }
