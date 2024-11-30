@@ -169,7 +169,7 @@ public class CharacterBase : MonoBehaviour
 
     public virtual void Die() { }
 
-    // 监听TurnBeginEvent
+    #region Event Listening
     public virtual void OnTurnBegin()
     {
         roundsNumber++;
@@ -200,7 +200,6 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
-    // 监听TurnEndEvent
     public virtual void OnTurnEnd()
     {
         // 中毒伤害
@@ -210,11 +209,11 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
-    // TODO: 监听新的战斗开始
     public virtual void OnNewBattle()
     {
         roundsNumber = 0;
     }
+    #endregion
 
     public virtual void UpdateBuffNumber(BuffType buffType, int value)
     {

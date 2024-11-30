@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8322780423345084287}
   - component: {fileID: 1342023066251138636}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4802860934411330943}
   - component: {fileID: 4728839245198347932}
-  m_Layer: 0
+  - component: {fileID: 535859357376218238}
+  m_Layer: 8
   m_Name: CardPos3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,12 +129,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 1
-  scaleMultiplier: 1.1
-  enlargedTransforms:
-  - {fileID: 4802860934411330943}
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
+  interactable: 1
+  scaleOnHover: 1.1
+  scaleOnClick: 1.15
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
+--- !u!61 &535859357376218238
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2469531295424022004}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 1
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.8514748, y: 5.3002796}
+  m_EdgeRadius: 0
 --- !u!1 &2726861522824500635
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +191,8 @@ GameObject:
   - component: {fileID: 5171317196828952843}
   - component: {fileID: 1216838811511435158}
   - component: {fileID: 6598963572135594128}
+  - component: {fileID: 1793130904096128415}
+  - component: {fileID: 7587493224559200443}
   m_Layer: 0
   m_Name: SelectCardPanel
   m_TagString: Untagged
@@ -207,6 +255,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 0.8
+--- !u!210 &1793130904096128415
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2726861522824500635}
+  m_Enabled: 1
+  m_SortingLayerID: 92985891
+  m_SortingLayer: 4
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+--- !u!114 &7587493224559200443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2726861522824500635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1216838811511435158}
+        m_TargetAssemblyTypeName: SelectCardPanel, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
 --- !u!1 &3774603356587542637
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +307,7 @@ GameObject:
   - component: {fileID: 7834923254122500646}
   - component: {fileID: 1854886220172889966}
   - component: {fileID: 2351017178409647060}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SkipButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,11 +343,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 1
-  scaleMultiplier: 1.1
-  enlargedTransforms:
-  - {fileID: 260636408786738849}
-  - {fileID: 8322780423345084287}
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
+  interactable: 1
+  scaleOnHover: 1.1
+  scaleOnClick: 1.15
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &2351017178409647060
@@ -316,7 +404,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2841087889448487860}
   - component: {fileID: 1912382123848200679}
-  m_Layer: 0
+  - component: {fileID: 3314250381831279082}
+  m_Layer: 8
   m_Name: CardPos1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,12 +439,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 1
-  scaleMultiplier: 1.1
-  enlargedTransforms:
-  - {fileID: 2841087889448487860}
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
+  interactable: 1
+  scaleOnHover: 1.1
+  scaleOnClick: 1.15
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
+--- !u!61 &3314250381831279082
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3789198912344562677}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 1
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.9162767, y: 5.4170227}
+  m_EdgeRadius: 0
 --- !u!1 &4792463487378340479
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +501,7 @@ GameObject:
   - component: {fileID: 260636408786738849}
   - component: {fileID: 78733690334515520}
   - component: {fileID: 2338539385453468375}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +755,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6607349538141640140}
   - component: {fileID: 8378894702000641046}
-  m_Layer: 0
+  - component: {fileID: 1782000099351735427}
+  m_Layer: 8
   m_Name: CardPos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -655,12 +790,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 1
-  scaleMultiplier: 1.1
-  enlargedTransforms:
-  - {fileID: 6607349538141640140}
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
+  interactable: 1
+  scaleOnHover: 1.1
+  scaleOnClick: 1.15
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
+--- !u!61 &1782000099351735427
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003550413178237854}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 1
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.6163266, y: 5.2755537}
+  m_EdgeRadius: 0
 --- !u!1 &7099673236805141687
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,9 +14,8 @@ public class SelectDiagramPanel : MonoBehaviour
 
     private Dictionary<string, DiagramDataSO> diagramDataMapping;
     private SpriteRenderer panelBackground;
-    private TextMeshPro[] diagramTexts;
-    private TextMeshPro[] diagramEnhancedTexts;
-    private SpriteRenderer[] diagramImages;
+    private List<TextMeshPro> diagramEnhancedTexts = new();
+    private List<SpriteRenderer> diagramImages = new();
 
     private void Awake()
     {
@@ -33,9 +32,14 @@ public class SelectDiagramPanel : MonoBehaviour
             { duiData.diagramName, duiData }
         };
         panelBackground = GetComponent<SpriteRenderer>();
-        diagramTexts = transform.Find("Text").GetComponents<TextMeshPro>();
-        diagramEnhancedTexts = transform.Find("EnhancedText").GetComponents<TextMeshPro>();
-        diagramImages = GetComponentsInChildren<SpriteRenderer>();
+        foreach (Transform child in transform)
+        {
+            if (child != null)
+            {
+                diagramImages.Add(child.transform.GetComponent<SpriteRenderer>());
+                diagramEnhancedTexts.Add(child.transform.Find("EnhancedText").GetComponent<TextMeshPro>());
+            }
+        }
         InitializeDiagramVisuals();
     }
     private void OnEnable()
@@ -49,43 +53,23 @@ public class SelectDiagramPanel : MonoBehaviour
         pauseManager.UnpauseGame();
     }
 
-    private void Update()
+    #region Event Listening
+    public void OnClick(object obj)
     {
-        if (Input.GetMouseButtonDown(0)) // 检测鼠标左键点击
+        PointerEventData pointerEventData = (PointerEventData)obj;
+        GameObject selected = pointerEventData.pointerPress;
+        // 检查点击的是否是 SelectDiagramPanel 的子物体
+        if (selected.transform.IsChildOf(transform))
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-
-            if (hit.collider != null && hit.collider.transform.IsChildOf(transform))
+            string diagramName = selected.name;
+            if (diagramDataMapping.TryGetValue(diagramName, out var diagramData))
             {
-                // 检查点击的是否是 SelectDiagramPanel 的子物体
-                string diagramName = hit.collider.gameObject.name;
-
-                if (diagramDataMapping.TryGetValue(diagramName, out var diagramData))
-                {
-                    copyDiagramEffect.diagramDataToCopy = diagramData; // 处理子物体点击逻辑
-                    HighlightButton(hit.collider.gameObject);
-                }
+                copyDiagramEffect.diagramDataToCopy = diagramData; // 处理子物体点击逻辑
+                StartCoroutine(FadeOutCoroutine());
             }
         }
     }
-
-    // 玩家选择按钮后关闭面板
-    private void HighlightButton(GameObject diagram)
-    {
-        var text = diagram.GetComponentInChildren<TextMeshPro>();
-        var sr = diagram.GetComponentInChildren<SpriteRenderer>();
-        Vector3 textOriginalScale = text.transform.localScale;
-        Vector3 srOriginalScale = sr.transform.localScale;
-
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(text.transform.DOScale(textOriginalScale * 1.2f, 0.5f)).Join(sr.transform.DOScale(srOriginalScale * 1.2f, 0.5f)).OnComplete(() =>
-        {
-            text.transform.localScale = textOriginalScale;
-            sr.transform.localScale = srOriginalScale;
-            StartCoroutine(FadeOutCoroutine());
-        });
-    }
+    #endregion
 
     private IEnumerator FadeOutCoroutine()
     {

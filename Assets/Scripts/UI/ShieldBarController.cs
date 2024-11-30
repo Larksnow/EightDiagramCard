@@ -15,7 +15,7 @@ public class ShieldBarController : MonoBehaviour
         currentCharacter = GetComponentInParent<CharacterBase>();
     }
 
-    // 监听函数
+    #region Event Listening
     public void UpdateShield(object obj)
     {
         CharacterBase.ShieldChange shieldChange = (CharacterBase.ShieldChange)obj;
@@ -35,4 +35,5 @@ public class ShieldBarController : MonoBehaviour
             amountText.text = currentShield.ToString();
         }
     }
+    #endregion
 }

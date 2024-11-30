@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5570655098518190705}
   - component: {fileID: 8799211240517205493}
   - component: {fileID: 8996134854138444708}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: EnhancedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,8 @@ GameObject:
   - component: {fileID: 2268700461328054558}
   - component: {fileID: -4342438834676463435}
   - component: {fileID: 2774682611717808232}
-  m_Layer: 5
+  - component: {fileID: 5955975121320087818}
+  m_Layer: 8
   m_Name: SelectDiagramPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,6 +299,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 0.8
+--- !u!114 &5955975121320087818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3090335315373865133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -4342438834676463435}
+        m_TargetAssemblyTypeName: SelectDiagramPanel, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
 --- !u!1 &3728430305712805928
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +339,7 @@ GameObject:
   - component: {fileID: 1062774816071234122}
   - component: {fileID: 4578204271685485062}
   - component: {fileID: 3013236308028356455}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: EnhancedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +510,7 @@ GameObject:
   - component: {fileID: 1881875459291245558}
   - component: {fileID: 3948318859865209916}
   - component: {fileID: 741514949076218510}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: EnhancedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +681,7 @@ GameObject:
   - component: {fileID: 4290354926935613023}
   - component: {fileID: 7221258843946641915}
   - component: {fileID: 5245620466906985893}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: EnhancedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +852,7 @@ GameObject:
   - component: {fileID: 4088665916439569381}
   - component: {fileID: 6126474020088423057}
   - component: {fileID: 4302062443393965543}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: EnhancedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -993,7 +1023,7 @@ GameObject:
   - component: {fileID: 2177110090736491623}
   - component: {fileID: 1981490265885887097}
   - component: {fileID: 3109966924165288982}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: EnhancedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1164,7 +1194,7 @@ GameObject:
   - component: {fileID: 7004821711533218868}
   - component: {fileID: 8436245126882504931}
   - component: {fileID: 4149049039639169316}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: EnhancedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1386,7 +1416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1828099242948099927, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Name
@@ -1394,7 +1424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3540739541770335929, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1462,7 +1492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5665969935275056737, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1540,12 +1570,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 1
-  scaleMultiplier: 1.1
-  enlargedTransforms:
-  - {fileID: 5789719471371504864}
-  - {fileID: 7228583770388925303}
-  - {fileID: 1881875459291245558}
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
+  interactable: 1
+  scaleOnHover: 1.1
+  scaleOnClick: 1.15
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &291923825079144320
@@ -1596,11 +1624,6 @@ BoxCollider2D:
 --- !u!4 &3984748264640522009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3540739541770335929, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
-  m_PrefabInstance: {fileID: 463748396996809120}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7228583770388925303 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
   m_PrefabInstance: {fileID: 463748396996809120}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1128501515415443463
@@ -1665,7 +1688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1828099242948099927, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Name
@@ -1673,7 +1696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3540739541770335929, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1741,7 +1764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5665969935275056737, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1819,12 +1842,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 1
-  scaleMultiplier: 1.1
-  enlargedTransforms:
-  - {fileID: 4749287159712139628}
-  - {fileID: 7896982987946492624}
-  - {fileID: 1062774816071234122}
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
+  interactable: 1
+  scaleOnHover: 1.1
+  scaleOnClick: 1.15
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &6735823885580830582
@@ -1875,16 +1896,6 @@ BoxCollider2D:
 --- !u!4 &4506420960109637310 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3540739541770335929, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
-  m_PrefabInstance: {fileID: 1128501515415443463}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &4749287159712139628 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5639040702997631339, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
-  m_PrefabInstance: {fileID: 1128501515415443463}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7896982987946492624 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
   m_PrefabInstance: {fileID: 1128501515415443463}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2168714716638502283
@@ -1949,7 +1960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1828099242948099927, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Name
@@ -1957,7 +1968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3540739541770335929, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2025,7 +2036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5665969935275056737, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2108,12 +2119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 1
-  scaleMultiplier: 1.1
-  enlargedTransforms:
-  - {fileID: 5789719471371504864}
-  - {fileID: 8945930744504452956}
-  - {fileID: 2177110090736491623}
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
+  interactable: 1
+  scaleOnHover: 1.1
+  scaleOnClick: 1.15
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &6206020849944975475
@@ -2161,16 +2170,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4268103, y: 2.5294046}
   m_EdgeRadius: 0
---- !u!224 &5789719471371504864 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5639040702997631339, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
-  m_PrefabInstance: {fileID: 2168714716638502283}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8945930744504452956 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
-  m_PrefabInstance: {fileID: 2168714716638502283}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3628704404435370100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2233,7 +2232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1828099242948099927, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Name
@@ -2241,7 +2240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3540739541770335929, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2309,7 +2308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5665969935275056737, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2388,12 +2387,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 1
-  scaleMultiplier: 1.1
-  enlargedTransforms:
-  - {fileID: 8942559835428262175}
-  - {fileID: 5793099684017691299}
-  - {fileID: 4290354926935613023}
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
+  interactable: 1
+  scaleOnHover: 1.1
+  scaleOnClick: 1.15
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &8971785000439463467
@@ -2441,16 +2438,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4029695, y: 2.311194}
   m_EdgeRadius: 0
---- !u!4 &5793099684017691299 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
-  m_PrefabInstance: {fileID: 3628704404435370100}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &8942559835428262175 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5639040702997631339, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
-  m_PrefabInstance: {fileID: 3628704404435370100}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3660536470703932870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2513,7 +2500,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1828099242948099927, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Name
@@ -2521,7 +2508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3540739541770335929, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2589,7 +2576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5665969935275056737, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2672,12 +2659,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 1
-  scaleMultiplier: 1.1
-  enlargedTransforms:
-  - {fileID: 5789719471371504864}
-  - {fileID: 5832813049565863697}
-  - {fileID: 7004821711533218868}
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
+  interactable: 1
+  scaleOnHover: 1.1
+  scaleOnClick: 1.15
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &2876168024251564256
@@ -2725,11 +2710,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3849444, y: 2.5387433}
   m_EdgeRadius: 0
---- !u!4 &5832813049565863697 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
-  m_PrefabInstance: {fileID: 3660536470703932870}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7676341982618143362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2792,7 +2772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1828099242948099927, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Name
@@ -2800,7 +2780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3540739541770335929, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2868,7 +2848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5665969935275056737, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2929,16 +2909,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4450299282599122467}
   m_SourcePrefab: {fileID: 100100000, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
---- !u!4 &628637297253158997 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
-  m_PrefabInstance: {fileID: 7676341982618143362}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &2649873569344642025 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5639040702997631339, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
-  m_PrefabInstance: {fileID: 7676341982618143362}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5584670444374631810 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
@@ -2956,12 +2926,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 1
-  scaleMultiplier: 1.1
-  enlargedTransforms:
-  - {fileID: 2649873569344642025}
-  - {fileID: 628637297253158997}
-  - {fileID: 5570655098518190705}
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
+  interactable: 1
+  scaleOnHover: 1.1
+  scaleOnClick: 1.15
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &4450299282599122467
@@ -3076,7 +3044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1828099242948099927, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Name
@@ -3084,7 +3052,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812326935534628608, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3540739541770335929, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -3152,7 +3120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5665969935275056737, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
       propertyPath: m_LocalScale.x
@@ -3213,11 +3181,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7289819310455494510}
   m_SourcePrefab: {fileID: 100100000, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
---- !u!4 &2053515773866392921 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7079243094176651991, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
-  m_PrefabInstance: {fileID: 9097565509775189902}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5720187785170161975 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3540739541770335929, guid: 165eb4051ba0fa54a9962e1b2696a37e, type: 3}
@@ -3240,12 +3203,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 1
-  scaleMultiplier: 1.1
-  enlargedTransforms:
-  - {fileID: 5789719471371504864}
-  - {fileID: 2053515773866392921}
-  - {fileID: 4088665916439569381}
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
+  interactable: 1
+  scaleOnHover: 1.1
+  scaleOnClick: 1.15
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &7289819310455494510

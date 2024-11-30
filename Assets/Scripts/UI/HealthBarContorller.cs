@@ -37,9 +37,10 @@ public class HealthBarContorller : MonoBehaviour
         amountText.text = $"{currentCharacter.maxHP}/{currentCharacter.maxHP}";
     }
 
+    #region Event Listening
     public void UpdateHealth(object obj)
     {
-        CharacterBase.HPChange hPChange= (CharacterBase.HPChange)obj;
+        CharacterBase.HPChange hPChange = (CharacterBase.HPChange)obj;
         if (hPChange.target != currentCharacter) return;
 
         int currentHealth = hPChange.updated;
@@ -56,4 +57,5 @@ public class HealthBarContorller : MonoBehaviour
             amountText.text = $"{currentHealth}/{currentCharacter.maxHP}";
         }
     }
+    #endregion
 }

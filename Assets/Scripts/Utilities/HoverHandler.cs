@@ -5,35 +5,31 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// 处理鼠标悬停事件
 /// </summary>
-public class HoverHandler : MonoBehaviour
+public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerClickHandler
 {
-    [Header("Enlargeable")]
-    public bool enlargable;
-    public float scaleMultiplier;
-    public List<Transform> enlargedTransforms;
+    [Header("Broadcast Events")]
+    public ObjectEventSO onClickedEvent;
+
+    public bool interactable;
+    public float scaleOnHover;
+    public float scaleOnClick;
 
     [Header("Hover Panel")]
     public bool hasHoverPanel;
     public GameObject hoverPanel;
 
-    private List<Vector3> originalScales = new();
+    private Vector3 originalScale;
 
     private void Awake()
     {
-        foreach (Transform t in enlargedTransforms)
-        {
-            originalScales.Add(t.localScale);
-        }
+        originalScale = transform.localScale;
     }
 
-    private void OnMouseEnter()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        if (enlargable)
+        if (interactable)
         {
-            for (int i = 0; i < enlargedTransforms.Count; i++)
-            {
-                enlargedTransforms[i].localScale = originalScales[i] * scaleMultiplier;
-            }
+            transform.localScale *= scaleOnHover;
         }
         if (hasHoverPanel)
         {
@@ -41,19 +37,32 @@ public class HoverHandler : MonoBehaviour
         }
     }
 
-    private void OnMouseExit()
+    public void OnPointerExit(PointerEventData eventData)
     {
-        if (enlargable)
+        if (interactable)
         {
-            for (int i = 0; i < enlargedTransforms.Count; i++)
-            {
-                enlargedTransforms[i].localScale = originalScales[i];
-            }
+            transform.localScale = originalScale;
         }
         if (hasHoverPanel)
         {
             hoverPanel.SetActive(false);
         }
     }
-    // TODO:鼠标点击放大动画
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (interactable)
+        {
+            transform.localScale = originalScale * scaleOnClick;
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (interactable)
+        {
+            transform.localScale = originalScale;
+            onClickedEvent.RaiseEvent(eventData, this);
+        }
+    }
 }

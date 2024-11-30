@@ -26,6 +26,7 @@ public class BuffUIController : MonoBehaviour
         poisonUI = transform.Find("Poison").gameObject;
     }
 
+    #region Event Listening
     public void UpdateBuffUI(object obj)
     {
         CharacterBase.BuffChange buffChange = (CharacterBase.BuffChange)obj;
@@ -84,6 +85,7 @@ public class BuffUIController : MonoBehaviour
         target.GetComponentInChildren<TextMeshPro>().text = updatedValue.ToString();
         UpdateList();
     }
+    #endregion
 
     private void UpdateList()
     {

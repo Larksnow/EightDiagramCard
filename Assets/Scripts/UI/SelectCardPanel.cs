@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class SelectCardPanel : MonoBehaviour
 {
@@ -34,7 +36,7 @@ public class SelectCardPanel : MonoBehaviour
 
     private void OnDisable()
     {
-        foreach(var cardObj in cardPosObjs)
+        foreach (var cardObj in cardPosObjs)
         {
             GameObject card = cardObj.transform.GetChild(0).gameObject;
             cardManager.DiscardCard(card);
@@ -42,37 +44,34 @@ public class SelectCardPanel : MonoBehaviour
         pauseManager.UnpauseGame();
     }
 
-    private void Update()
+    #region Event Listening
+    public void OnClick(object obj)
     {
-        if (Input.GetMouseButtonDown(0)) // 检测鼠标左键点击
+        PointerEventData pointerEventData = (PointerEventData)obj;
+        GameObject selected = pointerEventData.pointerPress;
+        if (selected.transform.IsChildOf(transform))
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-
-            if (hit.collider != null && hit.collider.gameObject.transform)
+            if (selected == skipButton)
             {
-                if (hit.collider.gameObject == skipButton)
+                nextLevelEvent.RaiseEvent(null, this);
+            }
+            else
+            {
+                // 选择一张卡牌加入手牌
+                for (int i = 0; i < cardPosObjs.Count; i++)
                 {
-                    nextLevelEvent.RaiseEvent(null, this);
-                }
-                else 
-                {
-                    // 选择一张卡牌加入手牌
-                    for (int i = 0; i < cardPosObjs.Count; i++)
+                    if (selected == cardPosObjs[i])
                     {
-                        if (hit.collider.gameObject == cardPosObjs[i])
-                        {
-                            cardManager.playerHoldDeck.AddCard(cardsForSelection[i], 1);
-                            //TODO: 播放卡牌动画
-                        }
+                        cardManager.playerHoldDeck.AddCard(cardsForSelection[i], 1);
+                        //TODO: 播放卡牌动画
                     }
-                    Debug.Log("Click on card" + hit.collider.gameObject.name + ", to the next level");
-                    nextLevelEvent.RaiseEvent(null,this);
-                    StartCoroutine(FadeOutCoroutine());
                 }
+                nextLevelEvent.RaiseEvent(null, this);
+                StartCoroutine(FadeOutCoroutine());
             }
         }
     }
+    #endregion
 
     private IEnumerator FadeOutCoroutine()
     {
@@ -96,7 +95,6 @@ public class SelectCardPanel : MonoBehaviour
             {
                 index = Random.Range(0, cardManager.cardDataList.Count);
             } while (cardIndexes.Contains(index));
-            Debug.Log("Selected card " + index + " for award");
             cardIndexes.Add(index);
 
             CardDataSO cardData = cardManager.cardDataList[index];
