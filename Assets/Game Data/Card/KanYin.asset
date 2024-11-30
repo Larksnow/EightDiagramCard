@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7030717f4aa801f41947c7e901d18baa, type: 3}
   m_Name: KanYin
   m_EditorClassIdentifier: 
-  cardName: "(\u574E)\u9634\u723B"
+  cardName: "\u65E0\u5F62"
   cardDescription: "\u672C\u573A\u6218\u6597\u4F60\u7684\u574E\u5366\u83B7\u5F97+1\u5316\u52B2"
   cardSprite: {fileID: 21300000, guid: 151c1820101754e4faac62b9560fa027, type: 3}
   cardType: 0
