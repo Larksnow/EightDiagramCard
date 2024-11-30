@@ -15,7 +15,7 @@ public class DiagramDataSO : ScriptableObject
 
     [TextArea]
     public string description;
-    public DiagramType diagramType;
+    public DiagramSO diagramType;
     public List<CardType> diagramPattern; // 卦的图案
 
     public List<Effect> effects;// 存储卦的所有效果，基础，祝福，卡牌增益等

@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 public class CardManager : MonoBehaviour
 {
     public PoolTool poolTool;
-    public List<CardDataSO> cardDataList; //Store all cards in the game
+    public List<CardDataSO> cardDataList = new(); //Store all cards in the game
 
     [Header("Card Deck")]
     public CardDeckSO baseCardDeck; //base card deck

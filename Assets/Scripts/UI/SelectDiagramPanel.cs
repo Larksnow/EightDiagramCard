@@ -10,11 +10,12 @@ public class SelectDiagramPanel : MonoBehaviour
     private PauseManager pauseManager;
     public CopyDiagramEffect copyDiagramEffect;
     public DiagramDataSO kunData, zhenData, xunData, kanData, liData, genData, duiData;
-    private float fadeDuration = 0.8f;
+    public FadeInOutHander fadeInOutHander;
 
     private Dictionary<string, DiagramDataSO> diagramDataMapping;
     private SpriteRenderer panelBackground;
     private TextMeshPro[] diagramTexts;
+    private TextMeshPro[] diagramEnhancedTexts;
     private SpriteRenderer[] diagramImages;
 
     private void Awake()
@@ -23,28 +24,31 @@ public class SelectDiagramPanel : MonoBehaviour
         // 初始化字典映射
         diagramDataMapping = new Dictionary<string, DiagramDataSO>
         {
-            { "Kun", kunData },
-            { "Zhen", zhenData },
-            { "Xun", xunData },
-            { "Kan", kanData },
-            { "Li", liData },
-            { "Gen", genData },
-            { "Dui", duiData }
+            { kunData.diagramName, kunData },
+            { zhenData.diagramName, zhenData },
+            { xunData.diagramName, xunData },
+            { kanData.diagramName, kanData },
+            { liData.diagramName, liData },
+            { genData.diagramName, genData },
+            { duiData.diagramName, duiData }
         };
         panelBackground = GetComponent<SpriteRenderer>();
-        diagramTexts = GetComponentsInChildren<TextMeshPro>();
+        diagramTexts = transform.Find("Text").GetComponents<TextMeshPro>();
+        diagramEnhancedTexts = transform.Find("EnhancedText").GetComponents<TextMeshPro>();
         diagramImages = GetComponentsInChildren<SpriteRenderer>();
         InitializeDiagramVisuals();
     }
     private void OnEnable()
     {
-        FadeIn();
+        SetEnhancedTexts();
+        fadeInOutHander.FadeIn();
         pauseManager.PauseGame();
     }
     private void OnDisable()
     {
         pauseManager.UnpauseGame();
     }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0)) // 检测鼠标左键点击
@@ -82,7 +86,14 @@ public class SelectDiagramPanel : MonoBehaviour
             StartCoroutine(FadeOutCoroutine());
         });
     }
-    
+
+    private IEnumerator FadeOutCoroutine()
+    {
+        fadeInOutHander.FadeOut();
+        yield return new WaitForSeconds(fadeInOutHander.fadeDuration);
+        gameObject.SetActive(false);
+    }
+
     /// <summary>
     /// Load data (color, text, sprite) from DiagramDataSO
     /// </summary>
@@ -115,51 +126,16 @@ public class SelectDiagramPanel : MonoBehaviour
         }
     }
 
-    private void FadeIn()
+    private void SetEnhancedTexts()
     {
-        SetAllElementsAlpha(0); // 初始化透明度
-        Sequence sequence = DOTween.Sequence().SetEase(Ease.InOutExpo);
-        sequence.Append(panelBackground.DOFade(1, fadeDuration));
-        foreach (var text in diagramTexts)
+        foreach (var text in diagramEnhancedTexts)
         {
-            sequence.Join(text.DOFade(1, fadeDuration));
+            text.enabled = false;
         }
-        foreach (var image in diagramImages)
-        {
-            sequence.Join(image.DOFade(1, fadeDuration));
-        }
-    }
-    private IEnumerator FadeOutCoroutine()
-    {
-        FadeOut();
-        yield return new WaitForSeconds(fadeDuration);
-        gameObject.SetActive(false); // 隐藏面板
-    }
-    private void FadeOut()
-    {
-        SetAllElementsAlpha(1); // 还原透明度
-        Sequence sequence = DOTween.Sequence().SetEase(Ease.InOutExpo);
-        sequence.Append(panelBackground.DOFade(0, fadeDuration));
-        foreach (var text in diagramTexts)
-        {
-            sequence.Join(text.DOFade(0, fadeDuration));
-        }
-        foreach (var image in diagramImages)
-        {
-            sequence.Join(image.DOFade(0, fadeDuration));
-        }
-    }
 
-    private void SetAllElementsAlpha(float alpha)
-    {
-        panelBackground.color = new Color(panelBackground.color.r, panelBackground.color.g, panelBackground.color.b, alpha);
-        foreach (var text in diagramTexts)
+        foreach (var diagramData in copyDiagramEffect.enhancedCopyDiagram)
         {
-            text.color = new Color(text.color.r, text.color.g, text.color.b, alpha);
-        }
-        foreach (var image in diagramImages)
-        {
-            image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
+            transform.Find(diagramData.diagramName).Find("EnhancedText").GetComponent<TextMeshPro>().enabled = true;
         }
     }
 }

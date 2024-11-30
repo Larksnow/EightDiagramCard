@@ -9,7 +9,7 @@ public class CopyDiagramEffect : Effect
     public ObjectEventSO selectDiagramEvent;
     public DiagramDataSO diagramDataToCopy = null;
     public DiagramDataSO qianData;  // 专属于乾卦
-    public HashSet<DiagramType> enhancedCopyTypes = new();
+    public HashSet<DiagramDataSO> enhancedCopyDiagram = new();
 
 
     // 复制除乾卦外的其他任何一种卦象打出
@@ -36,12 +36,12 @@ public class CopyDiagramEffect : Effect
         selectDiagramEvent.RaiseEvent(null, this);
         yield return new WaitUntil(() => diagramDataToCopy != null);
         // 如果此时触发的是被复制加成过的卦象，则触发两次
-        if (enhancedCopyTypes.Contains(diagramDataToCopy.diagramType))
+        if (enhancedCopyDiagram.Contains(diagramDataToCopy))
         {
             diagramManager.ApplyDiagramEffect(diagramDataToCopy);
             // TODO: buff重置
         }
         diagramManager.ApplyDiagramEffect(diagramDataToCopy);
-        enhancedCopyTypes.Clear();
+        enhancedCopyDiagram.Clear();
     }
 }

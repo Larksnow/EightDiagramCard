@@ -14,7 +14,7 @@ public enum CardType
     LaoYang
 }
 
-public enum DiagramType
+public enum DiagramSO
 {
     // 乾
     Qian,

@@ -17,6 +17,7 @@ public class GamePlayPanel : MonoBehaviour
     public GameObject diagramPannel;
     public GameObject dialogBox;
     public GameObject selectDiagramPannel;
+    public GameObject selectCardPannel;
     public DamageNumberPool damageNumberPool;
 
     public float uiFadeDuration;
@@ -158,6 +159,14 @@ public class GamePlayPanel : MonoBehaviour
     public void SelectDiagram()
     {
         selectDiagramPannel.SetActive(true);
+    }
+    #endregion
+
+    #region Select Card Pannel
+    // 监听胜利事件
+    public void SelectCardForAward()
+    {
+        selectCardPannel.SetActive(true);
     }
     #endregion
 

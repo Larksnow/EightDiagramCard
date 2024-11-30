@@ -10,7 +10,7 @@ public class QianYinEffect : Effect
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
         if (triggered == null) return;
-        copyDiagramEffect.enhancedCopyTypes.Add(triggered.diagramType);
+        copyDiagramEffect.enhancedCopyDiagram.Add(triggered);
         Debug.Log($"{triggered.name} was enhanced with Qian Yin.");
     }
 }

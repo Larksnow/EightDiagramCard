@@ -69,7 +69,6 @@ public class BuffUIController : MonoBehaviour
         {
             if (!target.activeSelf)
             {
-                Debug.Log("获得" + buffChange.buffType);
                 target.SetActive(true);
                 buffUIs.Add(target);
             }
@@ -78,11 +77,9 @@ public class BuffUIController : MonoBehaviour
         {
             if (target.activeSelf)
             {
-                Debug.Log("耗尽并移除" + buffChange.buffType);
                 target.SetActive(false);
                 buffUIs.Remove(target);
             }
-            Debug.Log("耗尽但未移除");
         }
         target.GetComponentInChildren<TextMeshPro>().text = updatedValue.ToString();
         UpdateList();
