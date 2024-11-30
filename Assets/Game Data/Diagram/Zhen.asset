@@ -16,6 +16,7 @@ MonoBehaviour:
   diagramName: "\u9707"
   diagramColor: {r: 0.29411766, g: 0, b: 0.50980395, a: 1}
   patternSprite: {fileID: 21300000, guid: 585d71f5054b62347ae1c05fb138f45d, type: 3}
+  triggerTime: 1
   basicValue: 7
   buffedValue: 0
   tempValue: 0
@@ -23,4 +24,4 @@ MonoBehaviour:
   diagramType: 2
   diagramPattern: 000000000000000001000000
   effects:
-  - {fileID: 11400000, guid: 64896f0668dfb5d4c903d450e521b823, type: 2}
+  - {fileID: 11400000, guid: b2a34cc1ec8c4dc4ebcc0e4b8f8e93ba, type: 2}
