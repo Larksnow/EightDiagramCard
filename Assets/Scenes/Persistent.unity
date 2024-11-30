@@ -1678,7 +1678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.3, y: 3.86}
+  m_AnchoredPosition: {x: -6.3, y: 3.15}
   m_SizeDelta: {x: 5.7701, y: 2.3106}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &949537711
@@ -2608,7 +2608,7 @@ SpriteRenderer:
   m_SortingLayerID: 585267547
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ede8d2640c8c8e54ca4591a11b2594f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 64f944b86c7d5c94895b065dd15af2bd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2713,7 +2713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7434384184575535651, guid: 7ece59e8fdaaf944c9a107939bcaf2e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.17
+      value: -0.86
       objectReference: {fileID: 0}
     - target: {fileID: 7434384184575535651, guid: 7ece59e8fdaaf944c9a107939bcaf2e1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2754,7 +2754,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6255042402645974794, guid: 7ece59e8fdaaf944c9a107939bcaf2e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 7ece59e8fdaaf944c9a107939bcaf2e1, type: 3}
 --- !u!114 &4159704446289960109
 MonoBehaviour:
@@ -2966,13 +2969,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2405444746317471586}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.21, y: 0.06, z: 0}
-  m_LocalScale: {x: -0.117412105, y: 0.10899669, z: 0.08360282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.47, y: -0.21, z: 0}
+  m_LocalScale: {x: 0.13, y: 0.13, z: 0.13}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1198210019697215434}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6833411525760445729
 PrefabInstance:
   m_ObjectHideFlags: 0
