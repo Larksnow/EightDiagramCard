@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: XunYin
   m_EditorClassIdentifier: 
   cardName: "(\u5DFD)\u9634\u723B"
-  cardDescription: "\u53EF\u4F5C\u4E3A<color=\"blue\">\u9634\u723B</color>\u7EC4\u6210<color=\"grey\">\u5366\u8C61</color>"
+  cardDescription: "\u4F60\u7684\u5DFD\u5366\u4E0B\u4E00\u6B21\u989D\u5916\u62BD\u4E00\u5F20\u9634\u724C"
   cardSprite: {fileID: 21300000, guid: fef087fa88c0c42459f5dba2589259e1, type: 3}
   cardType: 0
   color: {r: 0.34901962, g: 0.5058824, b: 0.23137255, a: 1}
   cost: 1
   effects:
-  - {fileID: 11400000, guid: 4885fcf284ad83947a046107b6009984, type: 2}
+  - {fileID: 11400000, guid: 759ff8f24d9bed546a318106b25d353e, type: 2}

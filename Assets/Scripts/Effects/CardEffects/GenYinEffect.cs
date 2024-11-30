@@ -9,7 +9,7 @@ public class GenYinEffect : Effect
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
         if (triggered == null) return;
-        GenData.buffedValue += 1;
+        GenData.buffedValue += value;
         Debug.Log($"{triggered.name} was enhanced with Gen Yin.");
     }
 }

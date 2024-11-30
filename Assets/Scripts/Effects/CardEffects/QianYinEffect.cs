@@ -1,6 +1,5 @@
 using UnityEngine;
 
-// 乾卦阳/阴符buff效果
 [CreateAssetMenu(fileName = "QianYinEffect", menuName = "Card Effects/Qian Yin Effect")]
 public class QianYinEffect : Effect
 {

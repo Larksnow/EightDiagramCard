@@ -9,7 +9,7 @@ public class LiYangEffect : Effect
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
         if (triggered == null) return;
-        LiData.buffedValue += 1;
+        LiData.buffedValue += value;
         Debug.Log($"{triggered.name} was enhanced with Li Yang.");
     }
 }

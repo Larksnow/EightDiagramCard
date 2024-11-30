@@ -44,6 +44,7 @@ public class DiagramManager : MonoBehaviour
         triggerDiagramEvent.RaiseEvent(triggered, this);
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
         CharacterBase target = null;
+        // 先激活所有组成的爻的效果
         if (upYao != null)
         {
             foreach (var effect in upYao.effects)
@@ -69,6 +70,7 @@ public class DiagramManager : MonoBehaviour
                 activateCardEvent.RaiseEvent(downYao, this);
             }
         }
+        // 最后触发卦附带的所有效果
         foreach (var effect in triggered.effects) // 目标选择
         {
             if (effect.currentTarget == EffectTargetType.Self)

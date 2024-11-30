@@ -9,7 +9,8 @@ using UnityEngine.UIElements;
 public class CardManager : MonoBehaviour
 {
     public PoolTool poolTool;
-    public List<CardDataSO> cardDataList = new(); //Store all cards in the game
+    public List<CardDataSO> cardDataList; //Store all cards in the game
+    public CardDataSO previousCard; //Store the previous card
 
     [Header("Card Deck")]
     public CardDeckSO baseCardDeck; //base card deck
@@ -59,5 +60,10 @@ public class CardManager : MonoBehaviour
 
     public void DiscardCard(GameObject card){
         poolTool.ReleaseObjectToPool(card);
+    }
+
+    public void UpdatePreviousCard(object obj){
+        Card card = obj as Card;
+        previousCard = card.cardData;
     }
 }

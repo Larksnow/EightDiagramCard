@@ -9,7 +9,7 @@ public class ZhenYinEffect : Effect
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
         if (triggered == null) return;
-        //TODO: add a trigger numbers in diagramdataso
+        ZhenData.triggerTime += value;
         Debug.Log($"{triggered.name} was enhanced with Zhen Yin.");
     }
 }

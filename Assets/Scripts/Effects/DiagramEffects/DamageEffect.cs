@@ -12,6 +12,10 @@ public class DamageEffect : Effect
         CharacterBase attacker = GameObject.FindGameObjectWithTag("player").GetComponent<CharacterBase>();
         // 伤害向上取整
         var damageValue = Mathf.CeilToInt(diagramData.basicValue + diagramData.buffedValue + diagramData.tempValue);
-        target.TakeDamage(damageValue, attacker, false);
+        for (int i = 0; i < diagramData.triggerTime; i++)
+        {
+            target.TakeDamage(damageValue, attacker, false);
+        }
+        diagramData.triggerTime = 1; //重置触发次数
     }
 }

@@ -9,7 +9,7 @@ public class ZhenYangEffect : Effect
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
         if (triggered == null) return;
-        ZhenData.buffedValue += 1;
+        ZhenData.buffedValue += value;
         Debug.Log($"{triggered.name} was enhanced with Zhen Yang.");
     }
 }

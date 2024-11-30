@@ -88,13 +88,13 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         costManaEvent.RaiseEvent(-cardCost, this);
         discardCardEvent.RaiseEvent(this, this);
-        if (cardData.effects.Count > 0)
-        {
-            foreach (var effect in cardData.effects)
-            {
-                effect.Execute(target, null);
-            }
-        }
+        // if (cardData.effects?.Count > 0)
+        // {
+        //     foreach (var effect in cardData.effects)
+        //     {
+        //         effect.Execute(target, null);
+        //     }
+        // }
     }
 
     // 保险函数

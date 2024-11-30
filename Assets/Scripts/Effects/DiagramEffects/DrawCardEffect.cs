@@ -7,7 +7,7 @@ public class DrawCardEffect : Effect
     public ObjectEventSO drawCardEvent;
     public DiagramDataSO xunData;
     // This dict used to store extra cards to draw (added through cards effect)
-    public Dictionary<CardType, int> specialCardsToDraw;
+    public Dictionary<CardType, int> specialCardsToDraw = new();
 
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
@@ -16,7 +16,7 @@ public class DrawCardEffect : Effect
         CardRequest request = new CardRequest(normalCards, CardType.Any);
         drawCardEvent.RaiseEvent(request, this);
         // deal with specific type drawing
-        if (specialCardsToDraw != null)
+        if (specialCardsToDraw?.Count > 0)
         {
             foreach (var pair in specialCardsToDraw)
             {
@@ -26,7 +26,7 @@ public class DrawCardEffect : Effect
                 CardRequest specialCardRequest = new CardRequest(count, wantedType);
                 drawCardEvent.RaiseEvent(specialCardRequest, this);
             }
-            specialCardsToDraw.Clear();
         }
+        specialCardsToDraw.Clear();
     }
 }
