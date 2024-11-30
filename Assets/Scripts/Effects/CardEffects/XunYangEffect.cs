@@ -10,7 +10,14 @@ public class XunYangEffect : Effect
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
         if (triggered == null) return;
-        drawCardEffect.specialCardsToDraw.Add(CardType.Yang, value);
+        if (drawCardEffect.specialCardsToDraw.TryGetValue(CardType.Yang, out int currentValue))
+        {
+            drawCardEffect.specialCardsToDraw[CardType.Yang] = currentValue + 1;
+        }
+        else
+        {
+            drawCardEffect.specialCardsToDraw.Add(CardType.Yang, value);  // Add if the key does not exist
+        }
         Debug.Log($"{triggered.name} was enhanced with Xun Yang.");
     }
 }

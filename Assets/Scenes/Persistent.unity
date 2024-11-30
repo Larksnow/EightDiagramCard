@@ -1183,7 +1183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSO: {fileID: 11400000, guid: 2bed7af5d47d5464ba47cd28d209882d, type: 2}
+  eventSO: {fileID: 11400000, guid: 44f0722ed078e5e41bf03a6b52c3b3d5, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1806,37 +1806,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2268700461328054558, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2268700461328054558, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2268700461328054558, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 92985891
-      objectReference: {fileID: 0}
-    - target: {fileID: 2808528441627504930, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3090335315373865133, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
       propertyPath: m_Name
       value: SelectDiagramPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 3090335315373865133, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561779671740556017, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561779671740556017, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4561779671740556017, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1876,10 +1848,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4561779671740556017, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8971785000439463467, guid: 0bc4fc512f58b6b488e356cdb90eb5bd, type: 3}
-      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

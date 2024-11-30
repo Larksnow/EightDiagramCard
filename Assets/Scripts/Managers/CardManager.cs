@@ -64,6 +64,6 @@ public class CardManager : MonoBehaviour
 
     public void UpdatePreviousCard(object obj){
         Card card = obj as Card;
-        previousCard =card .cardData;
+        previousCard = card.cardData;
     }
 }
