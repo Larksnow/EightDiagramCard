@@ -20,47 +20,56 @@ MonoBehaviour:
   - m_GUID: 0f02ad1385c3e744b857756ef7a20690
     m_Address: GenYang
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 18e2751ad0e7413458d06401c4f3857b
     m_Address: KunYin
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 22025af09681a13478e71c28c537dae0
     m_Address: KanYang
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 32bc61a5e97e98e43b7206de85bcc78a
     m_Address: DuiYang
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3778c1d447a479b428bc92e3c383a530
     m_Address: QianYin
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6f6bada764b9f8540abfe28932ed8101
     m_Address: KunYang
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7dec6131e7ff83a428de1d3d26259d3d
     m_Address: KanYin
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7e5775c27e21810418d894e70791799e
     m_Address: QianYang
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9c0f4714c468462479f629fe37612e1b
     m_Address: GenYin
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a041c611c80cb3041999b077a1aac15d
     m_Address: BaseYin
@@ -77,27 +86,32 @@ MonoBehaviour:
   - m_GUID: af6e7b93b6d1a7344964e073e23fd0f5
     m_Address: LiYin
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b8399595b692ca34187e7bd610a598b2
     m_Address: XunYang
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d80e0fe96c29a2d47a8a3c9a48be827b
     m_Address: XunYin
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e5012084468abb54481f699ae643002f
     m_Address: LiYang
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f3b3b449e39c090448af17060895051f
     m_Address: DuiYin
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardData
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3016e4d86021f9c489abed3c5e31642e, type: 2}

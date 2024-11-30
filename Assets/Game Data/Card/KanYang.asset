@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: KanYang
   m_EditorClassIdentifier: 
   cardName: "(\u574E)\u9633\u723B"
-  cardDescription: "\u53EF\u4F5C\u4E3A<color=\"red\">\u9633\u723B</color>\u7EC4\u6210<color=\"grey\">\u5366\u8C61</color>"
+  cardDescription: "\u4F60\u7684\u574E\u5366\u4E0B\u4E00\u6B21\u83B7\u5F97+2\u5316\u52B2"
   cardSprite: {fileID: 21300000, guid: a03b8ae569faa2d41984752c13f52147, type: 3}
   cardType: 1
   color: {r: 0, g: 0, b: 0, a: 1}
-  cost: 1
+  cost: 0
   effects:
-  - {fileID: 11400000, guid: cab2acb393a943b448153076661601ee, type: 2}
+  - {fileID: 11400000, guid: 5e550c6c0755e2640924ec60356c03af, type: 2}

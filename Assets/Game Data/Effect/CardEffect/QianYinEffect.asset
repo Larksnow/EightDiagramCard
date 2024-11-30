@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: QianYinEffect
   m_EditorClassIdentifier: 
   value: 0
+  defaultTarget: 0
+  currentTarget: 0
+  description: "\u7531\u6B64\u724C\u7EC4\u6210\u7684\u5366\u8C61\u88AB\u4E7E\u5366\u590D\u5236\u65F6\u989D\u5916\u89E6\u53D1\u4E00\u6B21"
   qianData: {fileID: 11400000, guid: ca794eceb0d007241b69e13ad893cd57, type: 2}
   copyDiagramEffect: {fileID: 11400000, guid: eebbfc7a97c3a03419710d56cbbe878b, type: 2}

@@ -10,7 +10,7 @@ public class XunYangEffect : Effect
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
         if (triggered == null) return;
-        drawCardEffect.specialCardsToDraw.Add(CardType.Yang, 1);
+        drawCardEffect.specialCardsToDraw.Add(CardType.Yang, value);
         Debug.Log($"{triggered.name} was enhanced with Xun Yang.");
     }
 }

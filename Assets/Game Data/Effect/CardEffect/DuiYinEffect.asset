@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f41ee8163559db488d5ddbeeeef84d5, type: 3}
-  m_Name: ZhenBuffEffect
+  m_Script: {fileID: 11500000, guid: 65cd7470cf5146c409249dae7828dfea, type: 3}
+  m_Name: DuiYinEffect
   m_EditorClassIdentifier: 
-  value: 0
-  zhenData: {fileID: 11400000, guid: cdb8af52253528c4890d44b82dfcbc21, type: 2}
+  value: 1
+  defaultTarget: 0
+  currentTarget: 0
+  description: "\u4F60\u7684\u4E0B\u4E00\u5F20\u7B26\u6253\u51FA\u6240\u9700\u6CD5\u529B-1"
+  cardDeck: {fileID: 0}
+  numOfReduced: 1

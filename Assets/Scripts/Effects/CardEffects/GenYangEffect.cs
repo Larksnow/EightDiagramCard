@@ -9,7 +9,7 @@ public class GenYangEffect : Effect
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
         if (triggered == null) return;
-        GenData.tempValue += 2;
+        GenData.tempValue += value;
         Debug.Log($"{triggered.name} was enhanced with Gen Yang.");
     }
 }

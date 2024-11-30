@@ -17,6 +17,6 @@ MonoBehaviour:
   cardSprite: {fileID: 21300000, guid: fef087fa88c0c42459f5dba2589259e1, type: 3}
   cardType: 0
   color: {r: 0.95686275, g: 0.02745098, b: 0.011764706, a: 1}
-  cost: 1
+  cost: 2
   effects:
   - {fileID: 11400000, guid: 530df6c1277494b458ba4643937140dc, type: 2}
