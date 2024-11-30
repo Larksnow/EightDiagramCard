@@ -16,7 +16,7 @@ public class DrawCardEffect : Effect
         CardRequest request = new CardRequest(normalCards, CardType.Any);
         drawCardEvent.RaiseEvent(request, this);
         // deal with specific type drawing
-        if (specialCardsToDraw != null)
+        if (specialCardsToDraw?.Count > 0)
         {
             foreach (var pair in specialCardsToDraw)
             {
