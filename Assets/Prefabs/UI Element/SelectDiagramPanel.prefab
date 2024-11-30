@@ -112,7 +112,7 @@ MonoBehaviour:
   liData: {fileID: 11400000, guid: 5df2ef9137a6c814da3c221efc831a48, type: 2}
   genData: {fileID: 11400000, guid: 4145540640d8f6247a3cf0eebfded0fc, type: 2}
   duiData: {fileID: 11400000, guid: 9bab22bf9e88fa14589ccd7ba470f487, type: 2}
-  fadeDuration: 0.5
+  fadeDuration: 0.8
 --- !u!1001 &463748396996809120
 PrefabInstance:
   m_ObjectHideFlags: 0

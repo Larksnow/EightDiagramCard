@@ -10,7 +10,7 @@ public class SelectDiagramPanel : MonoBehaviour
     private PauseManager pauseManager;
     public CopyDiagramEffect copyDiagramEffect;
     public DiagramDataSO kunData, zhenData, xunData, kanData, liData, genData, duiData;
-    public float fadeDuration = 0.5f;
+    private float fadeDuration = 0.8f;
 
     private Dictionary<string, DiagramDataSO> diagramDataMapping;
     private SpriteRenderer panelBackground;
@@ -34,6 +34,7 @@ public class SelectDiagramPanel : MonoBehaviour
         panelBackground = GetComponent<SpriteRenderer>();
         diagramTexts = GetComponentsInChildren<TextMeshPro>();
         diagramImages = GetComponentsInChildren<SpriteRenderer>();
+        InitializeDiagramVisuals();
     }
     private void OnEnable()
     {
@@ -81,11 +82,43 @@ public class SelectDiagramPanel : MonoBehaviour
             StartCoroutine(FadeOutCoroutine());
         });
     }
+    
+    /// <summary>
+    /// Load data (color, text, sprite) from DiagramDataSO
+    /// </summary>
+    private void InitializeDiagramVisuals()
+    {
+        foreach (var pair in diagramDataMapping)
+        {
+            string diagramName = pair.Key;
+            DiagramDataSO diagramData = pair.Value;
+
+            // Find the corresponding child GameObject by name
+            Transform diagramTransform = transform.Find(diagramName);
+            if (diagramTransform == null) continue;
+
+            // Set the diagram's color, name, and pattern
+            var text = diagramTransform.GetComponentInChildren<TextMeshPro>();
+            var image = diagramTransform.GetComponentInChildren<SpriteRenderer>();
+
+            if (text != null)
+            {
+                text.text = diagramData.diagramName; // Update the diagram name
+                text.color = diagramData.diagramColor;
+                text.outlineWidth = 0.05f;
+                text.outlineColor = Color.black;
+            }
+            if (image != null)
+            {
+                image.sprite = diagramData.patternSprite; // Update the pattern
+            }
+        }
+    }
 
     private void FadeIn()
     {
         SetAllElementsAlpha(0); // 初始化透明度
-        Sequence sequence = DOTween.Sequence();
+        Sequence sequence = DOTween.Sequence().SetEase(Ease.InOutExpo);
         sequence.Append(panelBackground.DOFade(1, fadeDuration));
         foreach (var text in diagramTexts)
         {
@@ -105,7 +138,7 @@ public class SelectDiagramPanel : MonoBehaviour
     private void FadeOut()
     {
         SetAllElementsAlpha(1); // 还原透明度
-        Sequence sequence = DOTween.Sequence();
+        Sequence sequence = DOTween.Sequence().SetEase(Ease.InOutExpo);
         sequence.Append(panelBackground.DOFade(0, fadeDuration));
         foreach (var text in diagramTexts)
         {

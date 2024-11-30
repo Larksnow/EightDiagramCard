@@ -12,18 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b0836e18f80fc45a2a5d4b5a6ae688, type: 3}
   m_Name: Zhen
   m_EditorClassIdentifier: 
-  basicEffect: {fileID: 0}
+  basicEffect: {fileID: 11400000, guid: b2a34cc1ec8c4dc4ebcc0e4b8f8e93ba, type: 2}
   diagramName: "\u9707"
   diagramColor: {r: 0.29411766, g: 0, b: 0.50980395, a: 1}
-  patternSprite: {fileID: 0}
-  nameSprite: {fileID: 0}
+  patternSprite: {fileID: 21300000, guid: 585d71f5054b62347ae1c05fb138f45d, type: 3}
   basicValue: 7
   buffedValue: 0
   tempValue: 0
   description: "\u5BF9\u6240\u6709\u654C\u4EBA\u9020\u62100.7X\u70B9\u4F24\u5BB3"
   diagramType: 2
   diagramPattern: 000000000000000001000000
-  yinBuff: 0
-  yangBuff: 0
   effects:
   - {fileID: 11400000, guid: 64896f0668dfb5d4c903d450e521b823, type: 2}

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953615193df03cc4e9a20cc0fcdaaf01, type: 3}
   m_Name: ShieldEffect
   m_EditorClassIdentifier: 
-  value: 3
-  buffNumber: 1
+  value: 0
+  defaultTarget: 0
+  currentTarget: 0
+  description: 
   kanData: {fileID: 11400000, guid: 0b87f56ae84ee8c438edf2353a91688c, type: 2}

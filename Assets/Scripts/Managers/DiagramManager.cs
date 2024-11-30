@@ -10,6 +10,7 @@ public class DiagramManager : MonoBehaviour
     public Player player;
     // public CharacterBase targetCharacter;
     public ObjectEventSO activateCardEvent;
+    public ObjectEventSO triggerDiagramEvent;
 
     private void Awake()
     {
@@ -39,6 +40,8 @@ public class DiagramManager : MonoBehaviour
     public void ApplyDiagramEffect(DiagramDataSO triggered, CardDataSO upYao = null, CardDataSO midYao = null, CardDataSO downYao = null)
     {
         Debug.Log("Applying Diagram Effect");
+        // 显示卦象UI文字
+        triggerDiagramEvent.RaiseEvent(triggered, this);
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
         CharacterBase target = null;
         if (upYao != null)
@@ -90,6 +93,8 @@ public class DiagramManager : MonoBehaviour
                 }
             }
         }
+        // 触发完清空临时buff
+        triggered.buffedValue = 0;
     }
 
 }

@@ -12,18 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b0836e18f80fc45a2a5d4b5a6ae688, type: 3}
   m_Name: Kan
   m_EditorClassIdentifier: 
-  basicEffect: {fileID: 0}
+  basicEffect: {fileID: 11400000, guid: 2208be2c172948a4f9b0926378bbc4a1, type: 2}
   diagramName: "\u574E"
   diagramColor: {r: 0, g: 0, b: 0, a: 1}
-  patternSprite: {fileID: 0}
-  nameSprite: {fileID: 0}
+  patternSprite: {fileID: 21300000, guid: 7fe9712e9bfeb31419bffbf90534cc9a, type: 3}
   basicValue: 8
   buffedValue: 0
   tempValue: 0
   description: "\u83B7\u5F970.8X\u70B9\u5316\u52B2"
   diagramType: 4
   diagramPattern: 000000000100000000000000
-  yinBuff: 0
-  yangBuff: 0
   effects:
   - {fileID: 11400000, guid: 2208be2c172948a4f9b0926378bbc4a1, type: 2}

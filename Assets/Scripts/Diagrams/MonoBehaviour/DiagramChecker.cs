@@ -9,7 +9,6 @@ public class DiagramChecker : MonoBehaviour
     private int maxCount = 6;
     public DiagramManager diagramManager;
     public IntEventSO addOneYaoEvent;
-    public ObjectEventSO triggerDiagramEvent;
 
     public void updateDiagramChecker(CardDataSO cardData)
     {
@@ -35,7 +34,6 @@ public class DiagramChecker : MonoBehaviour
             var downYao = yaoList[2];
             if (upYao.cardType == item.diagramPattern[0] && midYao.cardType == item.diagramPattern[1] && downYao.cardType == item.diagramPattern[2])
             {
-                triggerDiagramEvent.RaiseEvent(item, this);
                 diagramManager.ApplyDiagramEffect(item, upYao, midYao, downYao);
             }
         }

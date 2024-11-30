@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: MoneyEffect
   m_EditorClassIdentifier: 
   value: 1
-  targetType: 0
+  defaultTarget: 0
+  currentTarget: 0
+  description: 
+  diagramData: {fileID: 11400000, guid: cb5792b6320488942b06261e6cdca4c4, type: 2}

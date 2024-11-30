@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public class DrawCardEffect : Effect
 {
     public ObjectEventSO drawCardEvent;
-    public XunDataSO xunData;
+    public DiagramDataSO xunData;
+    // This dict used to store extra cards to draw (added through cards effect)
+    public Dictionary<CardType, int> specialCardsToDraw;
 
     public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
     {
@@ -14,13 +16,17 @@ public class DrawCardEffect : Effect
         CardRequest request = new CardRequest(normalCards, CardType.Any);
         drawCardEvent.RaiseEvent(request, this);
         // deal with specific type drawing
-        foreach (var pair in xunData.specialCardsToDraw)
+        if (specialCardsToDraw != null)
         {
-            CardType wantedType = pair.Key;
-            int count = pair.Value;
+            foreach (var pair in specialCardsToDraw)
+            {
+                CardType wantedType = pair.Key;
+                int count = pair.Value;
 
-            CardRequest specialCardRequest = new CardRequest(count, wantedType);
-            drawCardEvent.RaiseEvent(specialCardRequest, this);
+                CardRequest specialCardRequest = new CardRequest(count, wantedType);
+                drawCardEvent.RaiseEvent(specialCardRequest, this);
+            }
+            specialCardsToDraw.Clear();
         }
     }
 }

@@ -9,7 +9,6 @@ public class DiagramDataSO : ScriptableObject
     public string diagramName;
     public Color diagramColor;
     public Sprite patternSprite;
-    public Sprite nameSprite;
     public int basicValue; // 卦的基础数值, 重置后的初始值
     public int buffedValue; // 卦的增益数值，每场战斗后重置
     public int tempValue; // 卦的临时增益，触发一次卦象后清零

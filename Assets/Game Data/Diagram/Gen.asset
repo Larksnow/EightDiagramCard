@@ -12,18 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b0836e18f80fc45a2a5d4b5a6ae688, type: 3}
   m_Name: Gen
   m_EditorClassIdentifier: 
-  basicEffect: {fileID: 0}
+  basicEffect: {fileID: 11400000, guid: 9bb0bcdfb656bf646a8ceef4058a35e7, type: 2}
   diagramName: "\u826E"
   diagramColor: {r: 0, g: 0.39215687, b: 0, a: 1}
-  patternSprite: {fileID: 0}
-  nameSprite: {fileID: 0}
+  patternSprite: {fileID: 21300000, guid: 7c38a7aa4a968844c8bfa42fa07d97db, type: 3}
   basicValue: 1
   buffedValue: 0
   tempValue: 0
   description: "\u83B7\u5F97\u4E00\u5C42\u575A\u786C"
   diagramType: 7
   diagramPattern: 010000000000000000000000
-  yinBuff: 0
-  yangBuff: 0
   effects:
   - {fileID: 11400000, guid: 9bb0bcdfb656bf646a8ceef4058a35e7, type: 2}

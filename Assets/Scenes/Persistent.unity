@@ -1159,7 +1159,6 @@ MonoBehaviour:
   yaoList: []
   diagramManager: {fileID: 1489945570}
   addOneYaoEvent: {fileID: 11400000, guid: 277b1c6e7be848449858cd8717d1b8fc, type: 2}
-  triggerDiagramEvent: {fileID: 11400000, guid: 5bd532fdf05ab2241b32816ccb3df9b1, type: 2}
 --- !u!114 &857652148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1679,6 +1678,7 @@ MonoBehaviour:
   diagramDataList: []
   player: {fileID: 4159704446289960109}
   activateCardEvent: {fileID: 11400000, guid: 19d46b828353f5347b0c8257f2deebbd, type: 2}
+  triggerDiagramEvent: {fileID: 11400000, guid: 5bd532fdf05ab2241b32816ccb3df9b1, type: 2}
 --- !u!4 &1489945571
 Transform:
   m_ObjectHideFlags: 0

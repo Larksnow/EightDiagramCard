@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AllDamageEffect
   m_EditorClassIdentifier: 
   value: 0
-  defaultTarget: 0
-  currentTarget: 0
-  diagramData: {fileID: 0}
+  defaultTarget: 1
+  currentTarget: 1
+  description: 
+  diagramData: {fileID: 11400000, guid: cdb8af52253528c4890d44b82dfcbc21, type: 2}

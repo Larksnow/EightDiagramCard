@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-
+// 卦象计数器UI显示
 public class DiagramPanel : MonoBehaviour
 {
     public float verticalSpace;
@@ -41,7 +41,7 @@ public class DiagramPanel : MonoBehaviour
         Sequence textAnimationSequence = DOTween.Sequence();
         triggerDiagramText.text = diagramData.diagramName;
         triggerDiagramText.color = diagramData.diagramColor;
-        textAnimationSequence.Append(triggerDiagramText.transform.DOScale(originalTextScale * 1.2f, animationDuration).SetEase(Ease.OutCubic)).SetId(triggerDiagramText).Join(triggerDiagramText.DOFade(0f, fadeDuration)).SetId(triggerDiagramText).onComplete = () =>
+        textAnimationSequence.Append(triggerDiagramText.transform.DOScale(originalTextScale * 1.5f, animationDuration).SetEase(Ease.OutCubic)).SetId(triggerDiagramText).Join(triggerDiagramText.DOFade(0f, fadeDuration)).SetId(triggerDiagramText).onComplete = () =>
         {
             triggerDiagramText.text = "";
             triggerDiagramText.transform.localScale = originalTextScale;
