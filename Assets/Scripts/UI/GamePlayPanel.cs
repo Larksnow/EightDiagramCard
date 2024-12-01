@@ -15,10 +15,12 @@ public class GamePlayPanel : MonoBehaviour
     public GameObject discardDeckUI;
     public GameObject endTurnButton;
     public GameObject manaUI;
+    public TextMeshPro moneyUI;
     public GameObject diagramPannel;
     public GameObject dialogBox;
     public GameObject selectDiagramPannel;
     public GameObject selectCardPannel;
+    
     public CardListPanelController cardListPanelController;
 
     public float uiFadeDuration;
@@ -50,7 +52,7 @@ public class GamePlayPanel : MonoBehaviour
 
     public void OnPlayerTurnBegin()
     {
-        endTurnButton.GetComponent<EndTurnButton>().RotateEndTurnButton();
+        // endTurnButton.GetComponent<EndTurnButton>().RotateEndTurnButton();
         endTurnButton.GetComponent<EndTurnButton>().pressEnabled = true;
     }
     #endregion
@@ -185,4 +187,8 @@ public class GamePlayPanel : MonoBehaviour
     }
     #endregion
 
+    public void UpdateMoney(int money)
+    {
+        moneyUI.text = money.ToString();
+    }
 }

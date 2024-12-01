@@ -30,7 +30,7 @@ public class EndTurnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         sequence.Append(transform.DOScale(originalScale * clickScaleMultiplier, animationDuration).SetEase(Ease.OutExpo));
         // Scale back to original size
         sequence.Append(transform.DOScale(originalScale, 1).SetEase(Ease.OutExpo));
-        RotateEndTurnButton();
+        // RotateEndTurnButton();
         gamePlayPannel.OnEndTurnButtonClicked();
     }
 

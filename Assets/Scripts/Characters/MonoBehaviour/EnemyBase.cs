@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class EnemyBase : CharacterBase
@@ -8,18 +10,34 @@ public class EnemyBase : CharacterBase
     [Header("Buffs")]
     public bool isTaunting;    // 嘲讽(使敌方只能攻击此单位)
     CharacterBase player;
-    SwitchManager switchManager;
+    Indicator indicator;
     [SerializeField] ObjectEventSO enemyTrunEndEvent; // 敌人回合结束事件
     [SerializeField] Sprite daySprite;
     [SerializeField] Sprite nightSprite;
-    public Transform image;
+    public SpriteRenderer dayImage;
+    public SpriteRenderer nightImage;
     protected virtual void Awake()
     {
-        switchManager = FindObjectOfType<SwitchManager>();
+        indicator = FindObjectOfType<Indicator>();
         player = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
-        image.GetComponent<SpriteRenderer>().sprite = switchManager.isDay ? daySprite : nightSprite;
+        dayImage.sprite = daySprite;
+        nightImage.sprite = nightSprite;
+        if (indicator.isDay)
+        {
+            SetSpriteRendererAlpha(dayImage, 1f);
+            SetSpriteRendererAlpha(nightImage, 0f);
+        } else
+        {
+            SetSpriteRendererAlpha(dayImage, 0f);
+            SetSpriteRendererAlpha(nightImage, 1f);
+        }
     }
-
+    private void SetSpriteRendererAlpha(SpriteRenderer spriteRenderer, float alpha)
+    {
+        Color color = spriteRenderer.color;
+        color.a = alpha;
+        spriteRenderer.color = color;
+    }    
     public override void OnTurnBegin()
     {
         base.OnTurnBegin();
@@ -29,7 +47,7 @@ public class EnemyBase : CharacterBase
 
     public virtual void TakeActions()
     {
-        if(SwitchManager.main.isDay) // If is day, execute Day intends
+        if(indicator.isDay) // If is day, execute Day intends
         {
             int index = (roundsNumber - 1) % enemyData.dayIntends.Count;
             foreach (var item in enemyData.dayIntends[index].actionList)
@@ -49,5 +67,19 @@ public class EnemyBase : CharacterBase
         enemyTrunEndEvent.RaiseEvent(null, this);
     }
 
+    public void SwitchSprite()
+    {
+        if (!indicator.isDay)
+        {
+            dayImage.DOFade(0, 0.5f).SetEase(Ease.InOutQuart);
+            nightImage.DOFade(1, 0.5f).SetEase(Ease.InOutQuart);
+            
+        }
+        else if (indicator.isDay)
+        {
+            dayImage.DOFade(1, 0.5f).SetEase(Ease.InOutQuart);
+            nightImage.DOFade(0, 0.5f).SetEase(Ease.InOutQuart);
+        }
+    }
     // 敌人被动效果写在自己的Class里
 }
