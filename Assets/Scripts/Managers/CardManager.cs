@@ -15,6 +15,8 @@ public class CardManager : MonoBehaviour
     [Header("Card Deck")]
     public CardDeckSO baseCardDeck; //base card deck
     public CardDeckSO playerHoldDeck; //player's card deck
+    public ObjectEventSO playYangCard;
+    public ObjectEventSO playYinCard;
     private void Awake()
     {
         InitializeCardDataList();
@@ -69,6 +71,13 @@ public class CardManager : MonoBehaviour
     public void UpdatePreviousCard(object obj)
     {
         Card card = obj as Card;
+        if (card.cardData.cardType == CardType.Yang)
+        {
+            playYangCard.RaiseEvent(null, this);
+        }else if(card.cardData.cardType == CardType.Yin)
+        {
+            playYinCard.RaiseEvent(null, this);
+        }
         previousCard = card.cardData;
     }
 
