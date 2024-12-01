@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
-  m_Name: Default Local Group_ContentUpdateGroupSchema
+  m_Script: {fileID: 11500000, guid: 4ff0405d84222a54a81429f169316c66, type: 3}
+  m_Name: NormalBattle
   m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: 1383a09aafca1f54b9da5071ee15bc9a, type: 2}
-  m_StaticContent: 0
+  sceneReference:
+    m_AssetGUID: a238487d593231f41add93c3b85b1c67
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  sceneType: 1
+  sceneName: "\u6218\u6597"

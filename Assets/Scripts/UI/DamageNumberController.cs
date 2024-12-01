@@ -8,7 +8,7 @@ using UnityEngine;
 public class DamageNumberController : MonoBehaviour
 {
     public DamageNumberPool damageNumberPool;
-    private List<Vector3> damagePositions;
+    private List<Vector3> damagePositions = new();
 
     public void ShowDamageNumber(object obj)
     {

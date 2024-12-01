@@ -98,8 +98,24 @@ public class CharacterBase : MonoBehaviour
             attacker.TakeDamage(buffNumbers[BuffType.Thorn], this);
         }
 
-        // 施加伤害
-        AddHP(-amount);
+        // 先减少护盾, 再减少HP
+        if (!isAbsolute)
+        {
+            if (currentShield >= amount)
+            {
+                AddShield(-amount);
+            }
+            else
+            {
+                AddShield(-currentShield);
+                AddHP(-(amount - currentShield));
+            }
+        }
+        else
+        {
+            // 施加伤害
+            AddHP(-amount);
+        }
 
         DamagePosition damage = new(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), amount);
         takeDamageEvent.RaiseEvent(damage, amount); // 呼叫ui更新(伤害数字)

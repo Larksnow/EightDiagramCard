@@ -59,3 +59,9 @@ public enum CardListType
     DrawDeck,
     DiscardDeck
 }
+
+public enum SceneType
+{
+    Menu,
+    Battle
+}
