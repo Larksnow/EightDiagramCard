@@ -26,7 +26,8 @@ public class EnemyBase : CharacterBase
         {
             SetSpriteRendererAlpha(dayImage, 1f);
             SetSpriteRendererAlpha(nightImage, 0f);
-        } else
+        }
+        else
         {
             SetSpriteRendererAlpha(dayImage, 0f);
             SetSpriteRendererAlpha(nightImage, 1f);
@@ -37,7 +38,7 @@ public class EnemyBase : CharacterBase
         Color color = spriteRenderer.color;
         color.a = alpha;
         spriteRenderer.color = color;
-    }    
+    }
     public override void OnTurnBegin()
     {
         base.OnTurnBegin();
@@ -47,24 +48,22 @@ public class EnemyBase : CharacterBase
 
     public virtual void TakeActions()
     {
-        if (!isDead)
+        if (indicator.isDay) // If is day, execute Day intends
         {
-            if(indicator.isDay) // If is day, execute Day intends
+            int index = (roundsNumber - 1) % enemyData.dayIntends.Count;
+            foreach (var item in enemyData.dayIntends[index].actionList)
             {
-                int index = (roundsNumber - 1) % enemyData.dayIntends.Count;
-                foreach (var item in enemyData.dayIntends[index].actionList)
-                {
-                    Debug.Log($"Enmey {enemyData.name} Action: " + item.name);
-                    item.Execute(this, player);
-                }
-            }else // If is night, execute night intends
+                Debug.Log($"Enmey {enemyData.name} Action: " + item.name);
+                item.Execute(this, player);
+            }
+        }
+        else // If is night, execute night intends
+        {
+            int index = (roundsNumber - 1) % enemyData.nightIntends.Count;
+            foreach (var item in enemyData.nightIntends[index - 1].actionList)
             {
-                int index = (roundsNumber - 1) % enemyData.nightIntends.Count;
-                foreach (var item in enemyData.nightIntends[index - 1].actionList)
-                {
-                    Debug.Log($"Enmey {enemyData.name} Action: " + item.name);
-                    item.Execute(this, player);
-                }
+                Debug.Log($"Enmey {enemyData.name} Action: " + item.name);
+                item.Execute(this, player);
             }
         }
         enemyTrunEndEvent.RaiseEvent(null, this);
@@ -76,7 +75,7 @@ public class EnemyBase : CharacterBase
         {
             dayImage.DOFade(0, 0.5f).SetEase(Ease.InOutQuart);
             nightImage.DOFade(1, 0.5f).SetEase(Ease.InOutQuart);
-            
+
         }
         else if (indicator.isDay)
         {
@@ -85,4 +84,9 @@ public class EnemyBase : CharacterBase
         }
     }
     // 敌人被动效果写在自己的Class里
+    public List<EnemyEffect> GetNextTurnEffects()
+    {
+        return indicator.isDay ? enemyData.dayIntends[roundsNumber % enemyData.dayIntends.Count].actionList
+        : enemyData.nightIntends[roundsNumber % enemyData.nightIntends.Count - 1].actionList;
+    }
 }

@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 public class SelectionsOnMenu : MonoBehaviour {
     public GameObject startButton;
     public GameObject quitButton;
+    public GameObject producerListButton;
+    public GameObject producerList;
     public GameSceneSO firstSceneToLoad;
     public ObjectEventSO loadSceneEvent;
 
@@ -21,6 +23,11 @@ public class SelectionsOnMenu : MonoBehaviour {
             else if (selected == quitButton)
             {
                 Application.Quit();
+            }
+            else if (selected == producerListButton)
+            {
+                producerList.SetActive(!producerList.activeSelf);
+                // TODO:关闭按钮
             }
         }
     }

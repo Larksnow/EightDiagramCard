@@ -1292,6 +1292,7 @@ GameObject:
   - component: {fileID: 660061478}
   - component: {fileID: 660061479}
   - component: {fileID: 660061480}
+  - component: {fileID: 660061481}
   m_Layer: 0
   m_Name: SceneLoadManager
   m_TagString: Untagged
@@ -1326,8 +1327,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c08030acf342e7b4f957cc63040a4fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleScene: {fileID: 11400000, guid: 6761b5f8991a9144fa66ecf7eb42f18e, type: 2}
   menuScene: {fileID: 11400000, guid: a72f0717127c5a445b34971b7bd164c1, type: 2}
+  battleScene1: {fileID: 11400000, guid: 6761b5f8991a9144fa66ecf7eb42f18e, type: 2}
+  battleScene2: {fileID: 11400000, guid: 4214c9246d1bea4449d071a1614a075b, type: 2}
+  battleScene3: {fileID: 11400000, guid: a37d58f734040c5458a66b5c0a881ff8, type: 2}
+  battleScene4: {fileID: 11400000, guid: beaf8bf9e2abacc4b9836c05ad5f545c, type: 2}
   fadeCanvas: {fileID: 1665928880}
   persistentObjectsInBattle:
   - {fileID: 123222009}
@@ -1345,6 +1349,7 @@ MonoBehaviour:
   - {fileID: 2108151712193814803}
   - {fileID: 96805477}
   - {fileID: 1791597802}
+  - {fileID: 1223978812}
   currentLoadedScene: {fileID: 0}
   sceneToLoad: {fileID: 0}
 --- !u!114 &660061480
@@ -1367,6 +1372,35 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: SceneLoadManager, Assembly-CSharp
         m_MethodName: OnLoadRequest
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &660061481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660061477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 2c4d5d1a185aa464aab4df6f19e841cf, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 660061479}
+        m_TargetAssemblyTypeName: SceneLoadManager, Assembly-CSharp
+        m_MethodName: NextLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2148,6 +2182,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1223978812 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 139763219433114881, guid: d4f44cc8baf35ac469b7a07985d0ad45, type: 3}
+  m_PrefabInstance: {fileID: 422721241160729059}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1236004493
 GameObject:
   m_ObjectHideFlags: 0
@@ -2720,7 +2759,7 @@ MonoBehaviour:
   enemyTurnBegin: {fileID: 11400000, guid: 73d8f4af027dd2945907115a955c7147, type: 2}
   enemyTurnEnd: {fileID: 11400000, guid: 191246896757a8645bae7e702e09229a, type: 2}
   enemyList: []
-  battleEndEvent: {fileID: 11400000, guid: 0dd4110f8c34eb04ab0d2d7b4e238733, type: 2}
+  battleEndEvent: {fileID: 0}
 --- !u!114 &2055254224
 MonoBehaviour:
   m_ObjectHideFlags: 0

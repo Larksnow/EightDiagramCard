@@ -16,7 +16,22 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: bb37a735a7b1d8d4d8a1e140c3f24c90
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 216bdd18fc8556747bc1be753fa6ddb6
+    m_Address: Assets/Scenes/NormalBattle 2.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 24796d9fb35e9af4b8f845df71973169
+    m_Address: Assets/Scenes/NormalBattle 3.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e044a5def744ab4bb593fc90c05e6ed
+    m_Address: Assets/Scenes/NormalBattle 1.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3016e4d86021f9c489abed3c5e31642e, type: 2}
   m_SchemaSet:
