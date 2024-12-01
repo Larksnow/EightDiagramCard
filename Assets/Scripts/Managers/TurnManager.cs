@@ -56,6 +56,7 @@ public class TurnManager : MonoBehaviour
         battleEnd = false;
         timeCounter = 0;
         PlayerTurnBegin();
+        enemyList = GameObject.FindGameObjectsWithTag("enemy");
     }
 
     public void PlayerTurnBegin()
@@ -82,9 +83,10 @@ public class TurnManager : MonoBehaviour
     public void CountAllEnemyFinish()
     {
         enemyFinishCount++;
-        enemyList = GameObject.FindGameObjectsWithTag("enemy");
+
         if (enemyFinishCount == enemyList.Count())
         {
+            Debug.Log("All enemy finshed action");
             PlayerTurnBegin();
             enemyFinishCount = 0;
         }
