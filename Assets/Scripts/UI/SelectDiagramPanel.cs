@@ -104,8 +104,6 @@ public class SelectDiagramPanel : MonoBehaviour
             {
                 text.text = diagramData.diagramName; // Update the diagram name
                 text.color = diagramData.diagramColor;
-                text.outlineWidth = 0.05f;
-                text.outlineColor = Color.black;
             }
             if (image != null)
             {

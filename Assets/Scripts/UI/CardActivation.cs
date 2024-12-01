@@ -45,11 +45,11 @@ public class CardActivation : MonoBehaviour
 
             // 更新文本和颜色
             cardActivationText.text = cardData.cardName;
-            cardActivationText.color = cardData.color;
-
+            // cardActivationText.color = cardData.color;
+            cardActivationText.color = Color.white;
             Sequence nextSequence = DOTween.Sequence();
             nextSequence.Append(cardActivationText.transform.DOScale(originalTextScale * 1.2f, uiFadeDuration).SetEase(Ease.OutCubic))
-            .Join(cardActivationText.DOFade(0f, uiFadeDuration)).onComplete += () =>
+            .Join(cardActivationText.DOFade(0f, uiFadeDuration)).SetEase(Ease.InExpo).onComplete += () =>
             {
                 cardActivationText.transform.localScale = originalTextScale;
                 cardActivationText.color = new Color(cardActivationText.color.r, cardActivationText.color.g, cardActivationText.color.b, 1f);

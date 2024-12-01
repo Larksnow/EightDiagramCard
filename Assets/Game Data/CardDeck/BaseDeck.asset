@@ -17,5 +17,35 @@ MonoBehaviour:
     amount: 5
   - cardData: {fileID: 11400000, guid: a041c611c80cb3041999b077a1aac15d, type: 2}
     amount: 5
+  - cardData: {fileID: 11400000, guid: af6e7b93b6d1a7344964e073e23fd0f5, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: e5012084468abb54481f699ae643002f, type: 2}
+    amount: 5
   - cardData: {fileID: 11400000, guid: 7e5775c27e21810418d894e70791799e, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: 3778c1d447a479b428bc92e3c383a530, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: 6f6bada764b9f8540abfe28932ed8101, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: 18e2751ad0e7413458d06401c4f3857b, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: 22025af09681a13478e71c28c537dae0, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: 7dec6131e7ff83a428de1d3d26259d3d, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: 32bc61a5e97e98e43b7206de85bcc78a, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: f3b3b449e39c090448af17060895051f, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: 71baa068a560e7145965b31f83aa38a3, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: 7de01134a553ec14aa870c8a5ef62a7e, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: b8399595b692ca34187e7bd610a598b2, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: d80e0fe96c29a2d47a8a3c9a48be827b, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: 0f02ad1385c3e744b857756ef7a20690, type: 2}
+    amount: 5
+  - cardData: {fileID: 11400000, guid: 9c0f4714c468462479f629fe37612e1b, type: 2}
     amount: 5

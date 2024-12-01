@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: BaseYin
   m_EditorClassIdentifier: 
   cardName: "\u9634\u723B"
-  cardDescription: "\u53EF\u4F5C\u4E3A<color=\"blue\">\u9634\u723B</color>\u7EC4\u6210<color=\"grey\">\u5366\u8C61</color>"
-  cardSprite: {fileID: 21300000, guid: fef087fa88c0c42459f5dba2589259e1, type: 3}
+  cardDescription: "\u65E0\u4EFB\u4F55\u6548\u679C"
+  cardSprite: {fileID: 21300000, guid: 151c1820101754e4faac62b9560fa027, type: 3}
   cardType: 0
+  color: {r: 1, g: 1, b: 1, a: 1}
   cost: 0
   effects: []

@@ -97,7 +97,7 @@ public class DiagramManager : MonoBehaviour
             }
         }
         // 触发完清空临时buff
-        triggered.buffedValue = 0;
+        triggered.tempValue = 0;
     }
 
 }

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicEffect: {fileID: 11400000, guid: e2f5e1172ce0c18408effe5e4e3dcb79, type: 2}
   diagramName: "\u5DFD"
-  diagramColor: {r: 1, g: 0.98039216, b: 0.98039216, a: 1}
+  diagramColor: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
   patternSprite: {fileID: 21300000, guid: 908430d198327ea41add8308161daa8e, type: 3}
+  triggerTime: 0
   basicValue: 1
   buffedValue: 0
   tempValue: 0
