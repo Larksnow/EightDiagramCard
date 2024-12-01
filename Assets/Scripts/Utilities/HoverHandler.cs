@@ -10,7 +10,8 @@ public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [Header("Broadcast Events")]
     public ObjectEventSO onClickedEvent;
 
-    public bool interactable;
+    public bool interactable;// 是否响应鼠标事件
+    public bool largenable; // 鼠标悬停时图标是否变大
     public float scaleOnHover;
     public float scaleOnClick;
 
@@ -18,22 +19,42 @@ public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public bool hasHoverPanel;
     public GameObject hoverPanel;
 
+    private PauseManager pauseManager;
     private Vector3 originalScale;
 
     private void Awake()
     {
         originalScale = transform.localScale;
+        pauseManager = PauseManager.Instance;
+    }
+
+    private void Update()
+    {
+        if (pauseManager.IsPaused())
+        {
+            if (!pauseManager.IsInExcludeList(gameObject))
+            {
+                interactable = false;
+            }
+        }
+        else if (!interactable)
+        {
+            interactable = true;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (interactable)
         {
-            transform.localScale *= scaleOnHover;
-        }
-        if (hasHoverPanel)
-        {
-            hoverPanel.SetActive(true);
+            if (largenable)
+            {
+                transform.localScale *= scaleOnHover;
+            }
+            if (hasHoverPanel)
+            {
+                hoverPanel.SetActive(true);
+            }
         }
     }
 
@@ -41,11 +62,14 @@ public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if (interactable)
         {
-            transform.localScale = originalScale;
-        }
-        if (hasHoverPanel)
-        {
-            hoverPanel.SetActive(false);
+            if (largenable)
+            {
+                transform.localScale = originalScale;
+            }
+            if (hasHoverPanel)
+            {
+                hoverPanel.SetActive(false);
+            }
         }
     }
 
@@ -53,7 +77,10 @@ public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if (interactable)
         {
-            transform.localScale = originalScale * scaleOnClick;
+            if (largenable)
+            {
+                transform.localScale = originalScale * scaleOnClick;
+            }
         }
     }
 
@@ -61,8 +88,12 @@ public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if (interactable)
         {
-            transform.localScale = originalScale;
-            onClickedEvent.RaiseEvent(eventData, this);
+            if (enabled)
+            {
+                transform.localScale = originalScale;
+                onClickedEvent.RaiseEvent(eventData, this);
+            }
         }
     }
+
 }

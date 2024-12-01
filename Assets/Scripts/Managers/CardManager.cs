@@ -33,37 +33,47 @@ public class CardManager : MonoBehaviour
             playerHoldDeck.CardDeckEntryList.Add(item);
         }
     }
-    
+
     #region Load ALL CardDataSO from Addressable
-    private void  InitializeCardDataList()
+    private void InitializeCardDataList()
     {
         Addressables.LoadAssetsAsync<CardDataSO>("CardData", null).Completed += OnCardDataLoaded;
     }
 
     private void OnCardDataLoaded(AsyncOperationHandle<IList<CardDataSO>> handle)
     {
-        if(handle.Status == AsyncOperationStatus.Succeeded)
+        if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             cardDataList = new List<CardDataSO>(handle.Result);
-        }else{
+        }
+        else
+        {
             Debug.LogError("No card Data Found");
         }
     }
     #endregion
 
     // When draw a card, get the card Game Object from pool
-    public GameObject GetCardFromPool(){
+    public GameObject GetCardFromPool()
+    {
         var cardObj = poolTool.GetObjectFromPool();
-        cardObj.transform.localScale = Vector3.zero; 
+        cardObj.transform.localScale = Vector3.zero;
         return cardObj;
     }
 
-    public void DiscardCard(GameObject card){
+    public void DiscardCard(GameObject card)
+    {
         poolTool.ReleaseObjectToPool(card);
     }
 
-    public void UpdatePreviousCard(object obj){
+    public void UpdatePreviousCard(object obj)
+    {
         Card card = obj as Card;
         previousCard = card.cardData;
+    }
+
+    public void AddCardToPlayerHoldDeck(CardDataSO cardData, int amount)
+    {
+        playerHoldDeck.AddCard(cardData, amount);
     }
 }

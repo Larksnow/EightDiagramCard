@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
+  largenable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
   hasHoverPanel: 0
@@ -232,7 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7110d90de9bc5844bee5512820b327c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 7099673236805141687}
   skipButton: {fileID: 3774603356587542637}
   cardPos1Obj: {fileID: 3789198912344562677}
   cardPos2Obj: {fileID: 7003550413178237854}
@@ -242,6 +242,7 @@ MonoBehaviour:
   pauseManager: {fileID: 0}
   fadeInOutHander: {fileID: 6598963572135594128}
   nextLevelEvent: {fileID: 0}
+  addCardToHoldDeckEvent: {fileID: 11400000, guid: 0feddaae5516cf040ac72c67a0d57e28, type: 2}
 --- !u!114 &6598963572135594128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
+  largenable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
   hasHoverPanel: 0
@@ -441,6 +443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
+  largenable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
   hasHoverPanel: 0
@@ -792,6 +795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
+  largenable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
   hasHoverPanel: 0

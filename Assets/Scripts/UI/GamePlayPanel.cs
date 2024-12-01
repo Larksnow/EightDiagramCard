@@ -19,6 +19,7 @@ public class GamePlayPanel : MonoBehaviour
     public GameObject selectDiagramPannel;
     public GameObject selectCardPannel;
     public DamageNumberPool damageNumberPool;
+    public CardListPanelController cardListPanelController;
 
     public float uiFadeDuration;
     public float dialogBoxDuration;

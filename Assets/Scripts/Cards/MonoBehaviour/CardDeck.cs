@@ -268,4 +268,48 @@ public class CardDeck : MonoBehaviour
             card.UpdateCardCost(costChange);
         }
     }
+
+    public List<CardDeckEntry> GetDrawDeck()
+    {
+        Dictionary<CardDataSO, int> drawDeckDict = new();
+        foreach (var card in drawDeck)
+        {
+            if (drawDeckDict.ContainsKey(card))
+            {
+                drawDeckDict[card]++;
+            }
+            else
+            {
+                drawDeckDict.Add(card, 1);
+            }
+        }
+        List<CardDeckEntry> drawCardList = new();
+        foreach (var item in drawDeckDict)
+        {
+            drawCardList.Add(new CardDeckEntry(item.Key, item.Value));
+        }
+        return drawCardList;
+    }
+
+    public List<CardDeckEntry> GetDiscardDeck()
+    {
+        Dictionary<CardDataSO, int> discardDeckDict = new();
+        foreach (var card in discardDeck)
+        {
+            if (discardDeckDict.ContainsKey(card))
+            {
+                discardDeckDict[card]++;
+            }
+            else
+            {
+                discardDeckDict.Add(card, 1);
+            }
+        }
+        List<CardDeckEntry> discardCardList = new();
+        foreach (var item in discardDeckDict)
+        {
+            discardCardList.Add(new CardDeckEntry(item.Key, item.Value));
+        }
+        return discardCardList;
+    }
 }

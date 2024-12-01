@@ -9,6 +9,9 @@ public class PauseManager : MonoBehaviour
     public static PauseManager Instance { get; private set; }
     private bool isPaused;
 
+    // 对于诸如面板卦象，牌堆按钮等可交互UI，打开后暂停除自身外其他所有可交互UI
+    private List<GameObject> excludeFromPause = new();   
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -21,16 +24,23 @@ public class PauseManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    public void PauseGame()
+    public void PauseGame(List<GameObject> excludeList)
     {
+        excludeFromPause.AddRange(excludeList);
         isPaused = true;
     }
     public void UnpauseGame()
     {
+        excludeFromPause.Clear();
         isPaused = false;
     }
     public bool IsPaused()
     {
         return isPaused;
+    }
+
+    public bool IsInExcludeList(GameObject obj)
+    {
+        return excludeFromPause.Contains(obj);
     }
 }

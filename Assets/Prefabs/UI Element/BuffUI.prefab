@@ -521,6 +521,7 @@ GameObject:
   - component: {fileID: 8207129002000967449}
   - component: {fileID: 7451164353134403969}
   - component: {fileID: 959530841252802676}
+  - component: {fileID: -2781812942528625579}
   m_Layer: 5
   m_Name: BuffUI
   m_TagString: Untagged
@@ -595,6 +596,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   priority: 0
+--- !u!210 &-2781812942528625579
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639294956235766260}
+  m_Enabled: 1
+  m_SortingLayerID: 92985891
+  m_SortingLayer: 4
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &659087824636434880
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,9 +656,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 0
-  scaleMultiplier: 0
-  enlargedTransforms: []
+  onClickedEvent: {fileID: 0}
+  interactable: 0
+  scaleOnHover: 0
+  scaleOnClick: 0
   hasHoverPanel: 1
   hoverPanel: {fileID: 659087824636434880}
 --- !u!61 &8306882454387246236
@@ -741,9 +755,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 0
-  scaleMultiplier: 0
-  enlargedTransforms: []
+  onClickedEvent: {fileID: 0}
+  interactable: 0
+  scaleOnHover: 0
+  scaleOnClick: 0
   hasHoverPanel: 1
   hoverPanel: {fileID: 715627867856365503}
 --- !u!61 &2682659236144252897
@@ -872,9 +887,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 0
-  scaleMultiplier: 0
-  enlargedTransforms: []
+  onClickedEvent: {fileID: 0}
+  interactable: 0
+  scaleOnHover: 0
+  scaleOnClick: 0
   hasHoverPanel: 1
   hoverPanel: {fileID: 4780913769462318945}
 --- !u!61 &2046215265956310386
@@ -1225,9 +1241,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 0
-  scaleMultiplier: 0
-  enlargedTransforms: []
+  onClickedEvent: {fileID: 0}
+  interactable: 0
+  scaleOnHover: 0
+  scaleOnClick: 0
   hasHoverPanel: 1
   hoverPanel: {fileID: 2336071788843617004}
 --- !u!61 &2387650831274567401
@@ -1815,9 +1832,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 0
-  scaleMultiplier: 0
-  enlargedTransforms: []
+  onClickedEvent: {fileID: 0}
+  interactable: 0
+  scaleOnHover: 0
+  scaleOnClick: 0
   hasHoverPanel: 1
   hoverPanel: {fileID: 3247241672001104701}
 --- !u!61 &7886896639293450069
@@ -1997,9 +2015,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 0
-  scaleMultiplier: 0
-  enlargedTransforms: []
+  onClickedEvent: {fileID: 0}
+  interactable: 0
+  scaleOnHover: 0
+  scaleOnClick: 0
   hasHoverPanel: 1
   hoverPanel: {fileID: 3546873525881949937}
 --- !u!61 &6092383924232849110
@@ -2641,9 +2660,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 0
-  scaleMultiplier: 0
-  enlargedTransforms: []
+  onClickedEvent: {fileID: 0}
+  interactable: 0
+  scaleOnHover: 0
+  scaleOnClick: 0
   hasHoverPanel: 1
   hoverPanel: {fileID: 4589086868968245757}
 --- !u!61 &4703550903585510991
@@ -2739,9 +2759,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enlargable: 0
-  scaleMultiplier: 0
-  enlargedTransforms: []
+  onClickedEvent: {fileID: 0}
+  interactable: 0
+  scaleOnHover: 0
+  scaleOnClick: 0
   hasHoverPanel: 1
   hoverPanel: {fileID: 4590529802144011466}
 --- !u!61 &521195124324811965

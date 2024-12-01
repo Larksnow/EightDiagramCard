@@ -19,11 +19,11 @@ public class CardDeckSO : ScriptableObject
             }
         }
     }
-
-    [System.Serializable]
-    public struct CardDeckEntry
-    {
-        public CardDataSO cardData;
-        public int amount;
-    }
+}
+[System.Serializable]
+public struct CardDeckEntry
+{
+    public CardDataSO cardData;
+    public int amount;
+    public CardDeckEntry(CardDataSO cardData, int amount) { this.cardData = cardData; this.amount = amount; }
 }

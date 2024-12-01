@@ -1572,6 +1572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
+  largenable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
   hasHoverPanel: 0
@@ -1844,6 +1845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
+  largenable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
   hasHoverPanel: 0
@@ -2121,6 +2123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
+  largenable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
   hasHoverPanel: 0
@@ -2389,6 +2392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
+  largenable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
   hasHoverPanel: 0
@@ -2661,6 +2665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
+  largenable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
   hasHoverPanel: 0
@@ -2928,6 +2933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
+  largenable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
   hasHoverPanel: 0
@@ -3205,6 +3211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
+  largenable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
   hasHoverPanel: 0
