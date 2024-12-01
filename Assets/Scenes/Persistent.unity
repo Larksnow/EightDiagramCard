@@ -2759,7 +2759,7 @@ MonoBehaviour:
   enemyTurnBegin: {fileID: 11400000, guid: 73d8f4af027dd2945907115a955c7147, type: 2}
   enemyTurnEnd: {fileID: 11400000, guid: 191246896757a8645bae7e702e09229a, type: 2}
   enemyList: []
-  battleEndEvent: {fileID: 0}
+  battleEndEvent: {fileID: 11400000, guid: 0dd4110f8c34eb04ab0d2d7b4e238733, type: 2}
 --- !u!114 &2055254224
 MonoBehaviour:
   m_ObjectHideFlags: 0
