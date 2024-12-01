@@ -2166,6 +2166,7 @@ GameObject:
   - component: {fileID: 2055254222}
   - component: {fileID: 2055254223}
   - component: {fileID: 2055254224}
+  - component: {fileID: 2055254225}
   m_Layer: 0
   m_Name: TurnManager
   m_TagString: Untagged
@@ -2201,11 +2202,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleEnd: 1
+  enemyFinishCount: 0
   enemyTurnDuration: 1
   playerTurnDuration: 1.5
   playerTurnBegin: {fileID: 11400000, guid: 586e65e5bda664e48af347e449b1de9d, type: 2}
   enemyTurnBegin: {fileID: 11400000, guid: 73d8f4af027dd2945907115a955c7147, type: 2}
   enemyTurnEnd: {fileID: 11400000, guid: 191246896757a8645bae7e702e09229a, type: 2}
+  enemyList: []
 --- !u!114 &2055254224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2225,6 +2228,35 @@ MonoBehaviour:
       - m_Target: {fileID: 2055254223}
         m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
         m_MethodName: EnemyTurnBegin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &2055254225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055254221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 191246896757a8645bae7e702e09229a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2055254223}
+        m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
+        m_MethodName: CountAllEnemyFinish
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

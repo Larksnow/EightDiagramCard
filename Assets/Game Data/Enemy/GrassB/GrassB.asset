@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5427f41528082d4da9dd521b499ac9e, type: 3}
-  m_Name: GrassA
+  m_Name: GrassB
   m_EditorClassIdentifier: 
   defaultAttack: 5
   currentAttack: 5
   dayIntends:
-  - {fileID: 11400000, guid: 155e1d21ebd4c7e4792372c4ca2a416e, type: 2}
-  - {fileID: 11400000, guid: d5937c13937db0c439180ab89af1b20e, type: 2}
-  - {fileID: 11400000, guid: 8b0352be16e12274d9753b659fb7b837, type: 2}
+  - {fileID: 11400000, guid: 0c4f5a10b057c844b9718c864c27a852, type: 2}
+  - {fileID: 11400000, guid: a87dc6ebbd0aa4c46b842bb762a2ca9f, type: 2}
+  - {fileID: 11400000, guid: bc8f8c6d6e12d0f46ae0f0f2037ff056, type: 2}
   nightIntends:
-  - {fileID: 11400000, guid: 1482a8ba6e64f7c41bc71a2db917c4ab, type: 2}
-  - {fileID: 11400000, guid: 8a00941be6babc141a0c8d6c99e4f2c7, type: 2}
-  - {fileID: 11400000, guid: eba286a9703ade347a53ac4dc5791f01, type: 2}
+  - {fileID: 11400000, guid: 522d3cba969fcc8458085556276d131c, type: 2}
+  - {fileID: 11400000, guid: 6b3e26f5f8fe922498a243545b8178a7, type: 2}
+  - {fileID: 11400000, guid: 44b7e909e1cb040458475bb59b2790ca, type: 2}
   daySprite: {fileID: 21300000, guid: 63502276b3e17874b91ed63fcea1e573, type: 3}
   nightSprite: {fileID: 21300000, guid: 9585a60e948ec114f9b47c0b8f66c9bf, type: 3}
