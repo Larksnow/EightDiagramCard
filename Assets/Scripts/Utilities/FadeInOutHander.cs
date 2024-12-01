@@ -23,7 +23,6 @@ public class FadeInOutHander : MonoBehaviour
         textMeshPros.AddRange(GetComponents<TextMeshPro>());
     }
 
-    // 监听FadeIn事件
     public void FadeIn()
     {
         Init();

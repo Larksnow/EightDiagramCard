@@ -6,42 +6,47 @@ using UnityEngine.UIElements;
 
 public class SelectCardPanel : MonoBehaviour
 {
-    public GameObject title, skipButton, cardPos1Obj, cardPos2Obj, cardPos3Obj;
+    public GameObject skipButton, cardPos1Obj, cardPos2Obj, cardPos3Obj;
     public List<GameObject> cardPosObjs;
     public CardManager cardManager;
-    public PauseManager pauseManager;
-    public FadeInOutHander fadeInOutHander;
 
+    private PauseManager pauseManager;
+    private FadeInOutHander fadeInOutHander;
     private List<CardDataSO> cardsForSelection = new();
+    private List<GameObject> excludeFromPauseList = new();
 
     [Header("Broadcast Events")]
     // TODO: 选择卡牌/跳过后进入下一关
     public ObjectEventSO nextLevelEvent;
+    public ObjectEventSO addCardToHoldDeckEvent;
 
     private void Awake()
     {
+        pauseManager = PauseManager.Instance;
+        fadeInOutHander = GetComponent<FadeInOutHander>();
         cardPosObjs.Add(cardPos1Obj);
         cardPosObjs.Add(cardPos2Obj);
         cardPosObjs.Add(cardPos3Obj);
-        pauseManager = PauseManager.Instance;
-        cardManager = GameObject.Find("CardManager").GetComponent<CardManager>();
+
+        // 将可点击组件加入剔除暂停列表，不受暂停影响
+        excludeFromPauseList.Add(skipButton);
+        excludeFromPauseList.Add(cardPos1Obj);
+        excludeFromPauseList.Add(cardPos2Obj);
+        excludeFromPauseList.Add(cardPos3Obj);
     }
 
     private void OnEnable()
     {
+        Clear();
         SetCardsForAward();
         fadeInOutHander.FadeIn();
-        pauseManager.PauseGame();
+
+        pauseManager.PauseGame(excludeFromPauseList);
     }
 
     private void OnDisable()
     {
-        foreach (var cardObj in cardPosObjs)
-        {
-            GameObject card = cardObj.transform.GetChild(0).gameObject;
-            cardManager.DiscardCard(card);
-        }
-        pauseManager.UnpauseGame();
+        pauseManager.ResumeGame();
     }
 
     #region Event Listening
@@ -62,8 +67,9 @@ public class SelectCardPanel : MonoBehaviour
                 {
                     if (selected == cardPosObjs[i])
                     {
-                        cardManager.playerHoldDeck.AddCard(cardsForSelection[i], 1);
-                        //TODO: 播放卡牌动画
+                        cardManager.AddCardToPlayerHoldDeck(cardsForSelection[i], 1);
+                        // 通知ui更新动画
+                        addCardToHoldDeckEvent.RaiseEvent(selected.transform.GetChild(0).gameObject, this);
                     }
                 }
                 nextLevelEvent.RaiseEvent(null, this);
@@ -76,8 +82,26 @@ public class SelectCardPanel : MonoBehaviour
     private IEnumerator FadeOutCoroutine()
     {
         fadeInOutHander.FadeOut();
+        // TODO: 淡出时防止再次点击
         yield return new WaitForSeconds(fadeInOutHander.fadeDuration);
         gameObject.SetActive(false);
+    }
+
+    // 清空选择面板处上次留下的卡牌
+    private void Clear()
+    {
+        foreach (var cardObj in cardPosObjs)
+        {
+            if (cardObj.transform.childCount > 0)
+            {
+                foreach (Transform child in cardObj.transform)
+                {
+                    Debug.Log(child.gameObject.name);
+                    child.gameObject.GetComponent<CardDragHandler>().enabled = true;   // 丢弃前恢复拖拽组件
+                    cardManager.DiscardCard(child.gameObject);
+                }
+            }
+        }
     }
 
     // 初始化卡牌选择面板
@@ -97,13 +121,17 @@ public class SelectCardPanel : MonoBehaviour
             } while (cardIndexes.Contains(index));
             cardIndexes.Add(index);
 
+            // 从卡池中取出一张卡牌并初始化
             CardDataSO cardData = cardManager.cardDataList[index];
             GameObject cardObj = cardManager.GetCardFromPool();
             Card card = cardObj.GetComponent<Card>();
             card.Init(cardData);
             cardObj.transform.SetParent(cardPosObjs[i].transform, false);
+            cardObj.transform.localPosition = Vector3.zero;
             cardObj.transform.localScale = Vector3.one;
-            cardsForSelection.Add(card.cardData);
+            CardDragHandler cardDragHandler = cardObj.GetComponent<CardDragHandler>();// 禁用拖拽
+            cardDragHandler.enabled = false;
+            cardsForSelection.Add(card.cardData);   // 添加到可选列表
         }
     }
 }

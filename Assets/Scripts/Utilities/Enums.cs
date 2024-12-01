@@ -52,3 +52,10 @@ public enum BuffType
     Weak,   // 力竭(减少攻击力, 25%)
     Poison  // 中毒(回合结束减少HP, 减少等同于层数的生命)
 }
+
+public enum CardListType
+{
+    PlayerHold,
+    DrawDeck,
+    DiscardDeck
+}

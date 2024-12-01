@@ -10,16 +10,17 @@ public class SelectDiagramPanel : MonoBehaviour
     private PauseManager pauseManager;
     public CopyDiagramEffect copyDiagramEffect;
     public DiagramDataSO kunData, zhenData, xunData, kanData, liData, genData, duiData;
-    public FadeInOutHander fadeInOutHander;
 
+    private FadeInOutHander fadeInOutHander;
     private Dictionary<string, DiagramDataSO> diagramDataMapping;
-    private SpriteRenderer panelBackground;
     private List<TextMeshPro> diagramEnhancedTexts = new();
     private List<SpriteRenderer> diagramImages = new();
+    private List<GameObject> excludeFromPauseList = new();
 
     private void Awake()
     {
         pauseManager = PauseManager.Instance;
+        fadeInOutHander = GetComponent<FadeInOutHander>();
         // 初始化字典映射
         diagramDataMapping = new Dictionary<string, DiagramDataSO>
         {
@@ -31,26 +32,30 @@ public class SelectDiagramPanel : MonoBehaviour
             { genData.diagramName, genData },
             { duiData.diagramName, duiData }
         };
-        panelBackground = GetComponent<SpriteRenderer>();
+        // 寻找子物体文本、图像组件
         foreach (Transform child in transform)
         {
             if (child != null)
             {
-                diagramImages.Add(child.transform.GetComponent<SpriteRenderer>());
-                diagramEnhancedTexts.Add(child.transform.Find("EnhancedText").GetComponent<TextMeshPro>());
+                // 将可点击组件加入剔除暂停列表，不受暂停影响
+                excludeFromPauseList.Add(child.gameObject);
+
+                diagramImages.Add(child.GetComponentInChildren<SpriteRenderer>());
+                diagramEnhancedTexts.Add(child.Find("EnhancedText").GetComponent<TextMeshPro>());
             }
         }
+
         InitializeDiagramVisuals();
     }
     private void OnEnable()
     {
         SetEnhancedTexts();
         fadeInOutHander.FadeIn();
-        pauseManager.PauseGame();
+        pauseManager.PauseGame(excludeFromPauseList);
     }
     private void OnDisable()
     {
-        pauseManager.UnpauseGame();
+        pauseManager.ResumeGame();
     }
 
     #region Event Listening

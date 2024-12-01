@@ -1,0 +1,114 @@
+Date : 2024-11-30 19:56:11
+Directory : d:\Unity\EightDiagramCard\Assets\Scripts
+Total : 70 files,  2612 codes, 139 comments, 373 blanks, all 3124 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C#       |         70 |      2,612 |        139 |        373 |      3,124 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                 | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                    |         70 |      2,612 |        139 |        373 |      3,124 |
+| Cards                                                                                |          5 |        453 |         28 |         59 |        540 |
+| Cards\MonoBehaviour                                                                  |          3 |        412 |         27 |         55 |        494 |
+| Cards\ScriptableObjects                                                              |          2 |         41 |          1 |          4 |         46 |
+| Characters                                                                           |          3 |        191 |         14 |         36 |        241 |
+| Characters\MonoBehaviour                                                             |          3 |        191 |         14 |         36 |        241 |
+| Diagrams                                                                             |          2 |         67 |          1 |         12 |         80 |
+| Diagrams\MonoBehaviour                                                               |          1 |         39 |          1 |          7 |         47 |
+| Diagrams\ScriptableObjects                                                           |          1 |         28 |          0 |          5 |         33 |
+| Effects                                                                              |         24 |        381 |         29 |         55 |        465 |
+| Effects (Files)                                                                      |          1 |         11 |          3 |          1 |         15 |
+| Effects\CardEffects                                                                  |         16 |        222 |         16 |         32 |        270 |
+| Effects\DiagramEffects                                                               |          7 |        148 |         10 |         22 |        180 |
+| Events                                                                               |          9 |        155 |          2 |         29 |        186 |
+| Events\Editor                                                                        |          3 |         61 |          0 |          9 |         70 |
+| Events\MonoBehaviour                                                                 |          3 |         41 |          2 |         12 |         55 |
+| Events\ScriptableObject                                                              |          3 |         53 |          0 |          8 |         61 |
+| Managers                                                                             |          7 |        346 |         13 |         48 |        407 |
+| UI                                                                                   |         10 |        709 |         37 |         98 |        844 |
+| Utilities                                                                            |          9 |        296 |         14 |         35 |        345 |
+| Variable                                                                             |          1 |         14 |          1 |          1 |         16 |
++--------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                             | language | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| d:\Unity\EightDiagramCard\Assets\Scripts\Cards\MonoBehaviour\Card.cs                 | C#       |        117 |          8 |         19 |        144 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Cards\MonoBehaviour\CardDeck.cs             | C#       |        228 |         17 |         26 |        271 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Cards\MonoBehaviour\CardDragHandler.cs      | C#       |         67 |          2 |         10 |         79 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Cards\ScriptableObjects\CardDataSO.cs       | C#       |         14 |          1 |          2 |         17 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Cards\ScriptableObjects\CardDeckSO.cs       | C#       |         27 |          0 |          2 |         29 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Characters\MonoBehaviour\CharacterBase.cs   | C#       |        147 |         13 |         24 |        184 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Characters\MonoBehaviour\EnemyBase.cs       | C#       |         13 |          1 |          3 |         17 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Characters\MonoBehaviour\Player.cs          | C#       |         31 |          0 |          9 |         40 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Diagrams\MonoBehaviour\DiagramChecker.cs    | C#       |         39 |          1 |          7 |         47 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Diagrams\ScriptableObjects\DiagramDataSO.cs | C#       |         28 |          0 |          5 |         33 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\DuiYangEffect.cs        | C#       |         12 |          1 |          2 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\DuiYinEffect.cs         | C#       |         13 |          1 |          2 |         16 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\GenYangEffect.cs        | C#       |         12 |          1 |          2 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\GenYinEffect.cs         | C#       |         12 |          1 |          2 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\KanYangEffect.cs        | C#       |         12 |          1 |          2 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\KanYinEffect.cs         | C#       |         12 |          1 |          2 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\KunYangEffect.cs        | C#       |         12 |          1 |          2 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\KunYinEffect.cs         | C#       |         12 |          1 |          2 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\LiYangEffect.cs         | C#       |         12 |          1 |          2 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\LiYinEffect.cs          | C#       |         12 |          1 |          2 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\QianYangEffect.cs       | C#       |         24 |          2 |          2 |         28 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\QianYinEffect.cs        | C#       |         13 |          0 |          2 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\XunYangEffect.cs        | C#       |         20 |          1 |          2 |         23 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\XunYinEffect.cs         | C#       |         20 |          1 |          2 |         23 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\ZhenYangEffect.cs       | C#       |         12 |          1 |          2 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\CardEffects\ZhenYinEffect.cs        | C#       |         12 |          1 |          2 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\DiagramEffects\CopyDiagramEffect.cs | C#       |         40 |          3 |          4 |         47 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\DiagramEffects\DamageEffect.cs      | C#       |         17 |          1 |          3 |         21 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\DiagramEffects\DrawCardEffect.cs    | C#       |         26 |          3 |          4 |         33 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\DiagramEffects\ManaEffect.cs        | C#       |         19 |          1 |          2 |         22 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\DiagramEffects\MitiEffect.cs        | C#       |         16 |          1 |          3 |         20 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\DiagramEffects\MoneyEffect.cs       | C#       |         14 |          0 |          3 |         17 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\DiagramEffects\ShieldEffect.cs      | C#       |         16 |          1 |          3 |         20 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Effects\Effect.cs                           | C#       |         11 |          3 |          1 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Events\Editor\BaseEventSOEditor.cs          | C#       |         45 |          0 |          7 |         52 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Events\Editor\IntEventSOEditor.cs           | C#       |          8 |          0 |          1 |          9 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Events\Editor\ObjectEventSOEditor.cs        | C#       |          8 |          0 |          1 |          9 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Events\MonoBehaviour\BaseEventListener.cs   | C#       |         29 |          2 |          6 |         37 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Events\MonoBehaviour\IntEventListener.cs    | C#       |          6 |          0 |          3 |          9 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Events\MonoBehaviour\ObjectEventListener.cs | C#       |          6 |          0 |          3 |          9 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Events\ScriptableObject\BaseEventSO.cs      | C#       |         41 |          0 |          5 |         46 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Events\ScriptableObject\IntEventSO.cs       | C#       |          5 |          0 |          1 |          6 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Events\ScriptableObject\ObjectEventSO.cs    | C#       |          7 |          0 |          2 |          9 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Managers\CardLayoutManager.cs               | C#       |         66 |          0 |         10 |         76 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Managers\CardManager.cs                     | C#       |         59 |          2 |          9 |         70 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Managers\DiagramBuffManager.cs              | C#       |         21 |          2 |          3 |         26 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Managers\DiagramManager.cs                  | C#       |         91 |          6 |          7 |        104 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Managers\PauseManager.cs                    | C#       |         34 |          0 |          2 |         36 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Managers\SceneLoadManager.cs                | C#       |         12 |          2 |          5 |         19 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Managers\TurnManager.cs                     | C#       |         63 |          1 |         12 |         76 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\UI\BuffUIController.cs                      | C#       |         68 |          1 |          7 |         76 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\UI\CardActivation.cs                        | C#       |         49 |          7 |         13 |         69 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\UI\DiagramPanel.cs                          | C#       |         73 |          2 |          9 |         84 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\UI\EndTurnButton.cs                         | C#       |         52 |          2 |          7 |         61 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\UI\GamePlayPanel.cs                         | C#       |        188 |         11 |         23 |        222 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\UI\HealthBarContorller.cs                   | C#       |         46 |          1 |         10 |         57 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\UI\PanelLoader.cs                           | C#       |          0 |          1 |          0 |          1 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\UI\SelectCardPanel.cs                       | C#       |         93 |          5 |         12 |        110 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\UI\SelectDiagramPanel.cs                    | C#       |        107 |          7 |         11 |        125 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\UI\ShieldBarController.cs                   | C#       |         33 |          0 |          6 |         39 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Utilities\AttributesChange.cs               | C#       |         19 |          0 |          2 |         21 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Utilities\CardRequest.cs                    | C#       |          9 |          0 |          0 |          9 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Utilities\CardTransform.cs                  | C#       |         13 |          0 |          2 |         15 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Utilities\DamageNumberPool.cs               | C#       |         50 |          0 |          7 |         57 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Utilities\DamagePosition.cs                 | C#       |         11 |          0 |          1 |         12 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Utilities\Enums.cs                          | C#       |         42 |          8 |          4 |         54 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Utilities\FadeInOutHander.cs                | C#       |         59 |          2 |          6 |         67 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Utilities\HoverHandler.cs                   | C#       |         56 |          3 |          9 |         68 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Utilities\PoolTool.cs                       | C#       |         37 |          1 |          4 |         42 |
+| d:\Unity\EightDiagramCard\Assets\Scripts\Variable\IntVariable.cs                     | C#       |         14 |          1 |          1 |         16 |
+| Total                                                                                |          |      2,612 |        139 |        373 |      3,124 |
++--------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
