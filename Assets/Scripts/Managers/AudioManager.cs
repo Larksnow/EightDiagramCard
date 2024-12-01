@@ -11,12 +11,12 @@ public class AudioManager : MonoBehaviour
     {
         if (Indicator.main.isDay)
         {
-            night.DOFade(0, 5f).SetEase(Ease.InOutSine);
-            day.DOFade(1, 5f).SetEase(Ease.InOutSine);
+            night.DOFade(0, 2f).SetEase(Ease.InOutSine);
+            day.DOFade(1, 2f).SetEase(Ease.InOutSine);
         }else
         {
-            night.DOFade(1, 0.8f).SetEase(Ease.InOutSine);
-            day.DOFade(0, 5f).SetEase(Ease.InOutSine);
+            night.DOFade(1, 2f).SetEase(Ease.InOutSine);
+            day.DOFade(0, 2f).SetEase(Ease.InOutSine);
         }
     }
 }

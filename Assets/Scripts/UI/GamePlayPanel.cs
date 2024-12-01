@@ -52,7 +52,7 @@ public class GamePlayPanel : MonoBehaviour
 
     public void OnPlayerTurnBegin()
     {
-        endTurnButton.GetComponent<EndTurnButton>().RotateEndTurnButton();
+        // endTurnButton.GetComponent<EndTurnButton>().RotateEndTurnButton();
         endTurnButton.GetComponent<EndTurnButton>().pressEnabled = true;
     }
     #endregion
