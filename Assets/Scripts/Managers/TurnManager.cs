@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class TurnManager : MonoBehaviour
     private bool isEnemyTurn;
 
     public bool battleEnd = true;
+    public int enemyFinishCount;
     
 
     // These time counter are used to wait a short time in trun change
@@ -20,29 +22,30 @@ public class TurnManager : MonoBehaviour
     public ObjectEventSO playerTurnBegin;
     public ObjectEventSO enemyTurnBegin;
     public ObjectEventSO enemyTurnEnd;
+    public GameObject[] enemyList;
 
     private void Update()
     {
-        if (battleEnd) return;
-        if (isEnemyTurn) {
-            timeCounter += Time.deltaTime;
-            if (timeCounter >= enemyTurnDuration) 
-            {
-                timeCounter = 0f;
-                EnemyTurnEnd();
-                isPlayTurn = true;
-            }
-        }
-        else if (isPlayTurn)
-        {
-            timeCounter += Time.deltaTime;
-            if (timeCounter >= playerTurnDuration)
-            {
-                timeCounter = 0f;
-                PlayerTurnBegin();
-                isPlayTurn = false;
-            }
-        }
+        // if (battleEnd) return;
+        // if (isEnemyTurn) {
+        //     timeCounter += Time.deltaTime;
+        //     if (timeCounter >= enemyTurnDuration) 
+        //     {
+        //         timeCounter = 0f;
+        //         EnemyTurnBegin();
+        //         isEnemyTurn = false;
+        //     }
+        // }
+        // else if (isPlayTurn)
+        // {
+        //     timeCounter += Time.deltaTime;
+        //     if (timeCounter >= playerTurnDuration)
+        //     {
+        //         timeCounter = 0f;
+        //         PlayerTurnBegin();
+        //         isPlayTurn = false;
+        //     }
+        // }
     }
 
     [ContextMenu("Battle Start")]
@@ -52,10 +55,12 @@ public class TurnManager : MonoBehaviour
         isEnemyTurn = false;
         battleEnd = false;
         timeCounter = 0;
+        PlayerTurnBegin();
     }
 
     public void PlayerTurnBegin()
     {
+        Debug.Log("Player Turn Begin");
         playerTurnBegin.RaiseEvent(null, this);
     }
 
@@ -66,10 +71,22 @@ public class TurnManager : MonoBehaviour
         enemyTurnBegin.RaiseEvent(null, this);
     }
 
+    [ContextMenu("EnemyTurnEnd")]
     public void EnemyTurnEnd()
     {
         isEnemyTurn = false;
         Debug.Log("Enemy Turn End");
         enemyTurnEnd.RaiseEvent(null, this);
+    }
+
+    public void CountAllEnemyFinish()
+    {
+        enemyFinishCount++;
+        enemyList = GameObject.FindGameObjectsWithTag("enemy");
+        if (enemyFinishCount == enemyList.Count())
+        {
+            PlayerTurnBegin();
+            enemyFinishCount = 0;
+        }
     }
 }
