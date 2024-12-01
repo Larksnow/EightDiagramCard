@@ -15,8 +15,6 @@ public class CardDeck : MonoBehaviour
     public Transform deckPosition;
     public Transform discardPosition;
 
-    public GameObject deckUI;
-    public GameObject discardUI;
     public float animationTime;
 
     [Header("Broadcast Events")]

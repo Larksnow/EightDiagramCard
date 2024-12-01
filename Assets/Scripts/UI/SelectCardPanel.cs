@@ -9,9 +9,9 @@ public class SelectCardPanel : MonoBehaviour
     public GameObject skipButton, cardPos1Obj, cardPos2Obj, cardPos3Obj;
     public List<GameObject> cardPosObjs;
     public CardManager cardManager;
-    public PauseManager pauseManager;
-    public FadeInOutHander fadeInOutHander;
 
+    private PauseManager pauseManager;
+    private FadeInOutHander fadeInOutHander;
     private List<CardDataSO> cardsForSelection = new();
     private List<GameObject> excludeFromPauseList = new();
 
@@ -23,7 +23,7 @@ public class SelectCardPanel : MonoBehaviour
     private void Awake()
     {
         pauseManager = PauseManager.Instance;
-        cardManager = GameObject.Find("CardManager").GetComponent<CardManager>();
+        fadeInOutHander = GetComponent<FadeInOutHander>();
         cardPosObjs.Add(cardPos1Obj);
         cardPosObjs.Add(cardPos2Obj);
         cardPosObjs.Add(cardPos3Obj);
@@ -46,7 +46,7 @@ public class SelectCardPanel : MonoBehaviour
 
     private void OnDisable()
     {
-        pauseManager.UnpauseGame();
+        pauseManager.ResumeGame();
     }
 
     #region Event Listening
@@ -127,6 +127,7 @@ public class SelectCardPanel : MonoBehaviour
             Card card = cardObj.GetComponent<Card>();
             card.Init(cardData);
             cardObj.transform.SetParent(cardPosObjs[i].transform, false);
+            cardObj.transform.localPosition = Vector3.zero;
             cardObj.transform.localScale = Vector3.one;
             CardDragHandler cardDragHandler = cardObj.GetComponent<CardDragHandler>();// 禁用拖拽
             cardDragHandler.enabled = false;

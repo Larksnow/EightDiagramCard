@@ -29,7 +29,7 @@ public class PauseManager : MonoBehaviour
         excludeFromPause.AddRange(excludeList);
         isPaused = true;
     }
-    public void UnpauseGame()
+    public void ResumeGame()
     {
         excludeFromPause.Clear();
         isPaused = false;

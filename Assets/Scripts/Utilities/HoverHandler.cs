@@ -7,13 +7,13 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerClickHandler
 {
-    [Header("Broadcast Events")]
-    public ObjectEventSO onClickedEvent;
+    public bool interactable;   // 是否响应鼠标事件
 
-    public bool interactable;// 是否响应鼠标事件
-    public bool largenable; // 鼠标悬停时图标是否变大
+    [Header("Clickable")]
+    public bool clickable;      // 是否可点击，鼠标悬停是否变大
     public float scaleOnHover;
     public float scaleOnClick;
+    public ObjectEventSO onClickedEvent;
 
     [Header("Hover Panel")]
     public bool hasHoverPanel;
@@ -47,7 +47,7 @@ public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if (interactable)
         {
-            if (largenable)
+            if (clickable)
             {
                 transform.localScale *= scaleOnHover;
             }
@@ -62,7 +62,7 @@ public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if (interactable)
         {
-            if (largenable)
+            if (clickable)
             {
                 transform.localScale = originalScale;
             }
@@ -77,7 +77,7 @@ public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if (interactable)
         {
-            if (largenable)
+            if (clickable)
             {
                 transform.localScale = originalScale * scaleOnClick;
             }
@@ -88,7 +88,7 @@ public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if (interactable)
         {
-            if (enabled)
+            if (clickable)
             {
                 transform.localScale = originalScale;
                 onClickedEvent.RaiseEvent(eventData, this);

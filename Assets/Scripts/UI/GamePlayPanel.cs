@@ -4,13 +4,14 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using System.Linq;
+using UnityEngine.EventSystems;
 //This script controls all the UI elements in the battle scene
 public class GamePlayPanel : MonoBehaviour
 {
     // 在这里引用各种UI Object
     // 比如 public GameObject cardDeckUI = cardDeck(Prefab) 
     [Header("UI Objects")]
-    public GameObject cardDeckUI;
+    public GameObject drawDeckUI;
     public GameObject discardDeckUI;
     public GameObject endTurnButton;
     public GameObject manaUI;
@@ -18,7 +19,6 @@ public class GamePlayPanel : MonoBehaviour
     public GameObject dialogBox;
     public GameObject selectDiagramPannel;
     public GameObject selectCardPannel;
-    public DamageNumberPool damageNumberPool;
     public CardListPanelController cardListPanelController;
 
     public float uiFadeDuration;
@@ -27,7 +27,6 @@ public class GamePlayPanel : MonoBehaviour
     private SpriteRenderer manaImage;
     private TextMeshPro manaAmountText;
     private bool hasAvailableCard;
-    private bool isDamageNumberAnimating;    // 是否有DamageNumber正在播放动画
 
     [Header("Broadcast Events")]
     public ObjectEventSO playerTurnEndEvent;
@@ -59,13 +58,13 @@ public class GamePlayPanel : MonoBehaviour
     #region Card Deck UI
     public void UpdateDrawDeckAmount(int amount)
     {
-        TextMeshPro number = cardDeckUI.GetComponentInChildren<TextMeshPro>();
+        TextMeshPro number = drawDeckUI.GetComponentInChildren<TextMeshPro>();
         int currentAmount = int.Parse(number.text);
         if (currentAmount == amount) return;
         number.text = amount.ToString();
 
         // 先放大，然后恢复到原大小
-        Transform uiTransform = cardDeckUI.transform;
+        Transform uiTransform = drawDeckUI.transform;
         uiTransform.DOScale(1.1f, uiFadeDuration / 6).SetEase(Ease.OutCubic)
             .OnComplete(() =>
             {
@@ -88,6 +87,21 @@ public class GamePlayPanel : MonoBehaviour
                 uiTransform.DOScale(1f, uiFadeDuration / 6).SetEase(Ease.OutCubic);
             });
     }
+
+    public void OnClickDeck(object obj)
+    {
+        PointerEventData pointerEventData = (PointerEventData)obj;
+        GameObject selected = pointerEventData.pointerPress;
+        if (selected == drawDeckUI)
+        {
+            cardListPanelController.ToggleCardListPanel(CardListType.DrawDeck);
+        }
+        else if (selected == drawDeckUI)
+        {
+            cardListPanelController.ToggleCardListPanel(CardListType.DiscardDeck);
+        }
+    }
+
     #endregion
 
     #region Diagram Pannel
@@ -171,52 +185,4 @@ public class GamePlayPanel : MonoBehaviour
     }
     #endregion
 
-    #region Damage Number
-    public void ShowDamageNumber(object obj)
-    {
-        if (isDamageNumberAnimating)
-        {
-            // 如果正在动画中，延迟执行
-            StartCoroutine(DelayedShowDamageNumber(obj));
-            return;
-        }
-
-        StartShowDamageNumber(obj);
-    }
-
-    private IEnumerator DelayedShowDamageNumber(object obj)
-    {
-        yield return new WaitForSeconds(0.5f);
-        StartShowDamageNumber(obj);
-    }
-
-    private void StartShowDamageNumber(object obj)
-    {
-        // TODO: 如果有三次连续伤害，可能需要优化
-        isDamageNumberAnimating = true;
-
-        float diminishDuration = 0.5f;
-        float descentDuration = 1f;
-        int descentHeight = 5;
-        GameObject damageNumber = damageNumberPool.GetObjectFromPool();
-        DamagePosition damage = (DamagePosition)obj;
-        TextMeshPro text = damageNumber.GetComponent<TextMeshPro>();
-        Vector3 originPosition = damageNumber.transform.position;
-        Vector3 originScale = damageNumber.transform.localScale;
-
-        damageNumber.transform.position = damage.position;
-        text.text = damage.amount.ToString();
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(damageNumber.transform.DOScale(damageNumber.transform.localScale * 0.4f, diminishDuration))
-            .Join(text.DOColor(Color.white, diminishDuration))
-            .Join(damageNumber.transform.DOMove(damageNumber.transform.position + new Vector3(1, -0.5f, 0), diminishDuration))
-            .Append(damageNumber.transform.DOMove(new Vector3(damageNumber.transform.position.x + 1, damageNumber.transform.position.y - descentHeight, damageNumber.transform.position.z), descentDuration))
-            .Join(text.DOFade(0f, descentDuration))
-            .OnComplete(() =>
-            {
-                isDamageNumberAnimating = false;
-                damageNumberPool.ReleaseObjectToPool(damageNumber);
-            });
-    }
-    #endregion
 }

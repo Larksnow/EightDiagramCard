@@ -10,8 +10,8 @@ public class SelectDiagramPanel : MonoBehaviour
     private PauseManager pauseManager;
     public CopyDiagramEffect copyDiagramEffect;
     public DiagramDataSO kunData, zhenData, xunData, kanData, liData, genData, duiData;
-    public FadeInOutHander fadeInOutHander;
 
+    private FadeInOutHander fadeInOutHander;
     private Dictionary<string, DiagramDataSO> diagramDataMapping;
     private List<TextMeshPro> diagramEnhancedTexts = new();
     private List<SpriteRenderer> diagramImages = new();
@@ -20,6 +20,7 @@ public class SelectDiagramPanel : MonoBehaviour
     private void Awake()
     {
         pauseManager = PauseManager.Instance;
+        fadeInOutHander = GetComponent<FadeInOutHander>();
         // 初始化字典映射
         diagramDataMapping = new Dictionary<string, DiagramDataSO>
         {
@@ -54,7 +55,7 @@ public class SelectDiagramPanel : MonoBehaviour
     }
     private void OnDisable()
     {
-        pauseManager.UnpauseGame();
+        pauseManager.ResumeGame();
     }
 
     #region Event Listening

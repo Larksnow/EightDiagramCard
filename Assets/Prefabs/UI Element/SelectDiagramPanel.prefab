@@ -1570,11 +1570,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
-  largenable: 1
+  clickable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &291923825079144320
@@ -1843,11 +1843,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
-  largenable: 1
+  clickable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &6735823885580830582
@@ -2121,11 +2121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
-  largenable: 1
+  clickable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &6206020849944975475
@@ -2390,11 +2390,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
-  largenable: 1
+  clickable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &8971785000439463467
@@ -2663,11 +2663,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
-  largenable: 1
+  clickable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &2876168024251564256
@@ -2931,11 +2931,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
-  largenable: 1
+  clickable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &4450299282599122467
@@ -3209,11 +3209,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   interactable: 1
-  largenable: 1
+  clickable: 1
   scaleOnHover: 1.1
   scaleOnClick: 1.15
+  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
   hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &7289819310455494510
