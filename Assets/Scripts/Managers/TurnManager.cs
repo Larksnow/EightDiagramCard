@@ -26,16 +26,16 @@ public class TurnManager : MonoBehaviour
 
     private void Update()
     {
-        // if (battleEnd) return;
-        // if (isEnemyTurn) {
-        //     timeCounter += Time.deltaTime;
-        //     if (timeCounter >= enemyTurnDuration) 
-        //     {
-        //         timeCounter = 0f;
-        //         EnemyTurnBegin();
-        //         isEnemyTurn = false;
-        //     }
-        // }
+        if (battleEnd) return;
+        if (isEnemyTurn) {
+            timeCounter += Time.deltaTime;
+            if (timeCounter >= enemyTurnDuration) 
+            {
+                timeCounter = 0f;
+                EnemyTurnBegin();
+                isEnemyTurn = false;
+            }
+        }
         // else if (isPlayTurn)
         // {
         //     timeCounter += Time.deltaTime;
@@ -64,10 +64,13 @@ public class TurnManager : MonoBehaviour
         Debug.Log("Player Turn Begin");
         playerTurnBegin.RaiseEvent(null, this);
     }
-
-    public void EnemyTurnBegin()
+    
+    public void SetEnemyTurnTrue()
     {
         isEnemyTurn = true;
+    }
+    public void EnemyTurnBegin()
+    {
         Debug.Log("Enemy Turn Begin");
         enemyTurnBegin.RaiseEvent(null, this);
     }
