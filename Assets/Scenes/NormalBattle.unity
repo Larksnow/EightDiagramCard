@@ -255,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   day: {fileID: 266762431}
   night: {fileID: 1583997208}
+  battleStart: {fileID: 11400000, guid: 508b484279522f243b9b1b62c730c413, type: 2}
 --- !u!114 &424016039
 MonoBehaviour:
   m_ObjectHideFlags: 0

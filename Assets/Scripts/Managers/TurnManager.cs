@@ -23,10 +23,17 @@ public class TurnManager : MonoBehaviour
     public ObjectEventSO enemyTurnBegin;
     public ObjectEventSO enemyTurnEnd;
     public GameObject[] enemyList;
+    public ObjectEventSO battleEndEvent;
+    
 
     private void Update()
     {
         if (battleEnd) return;
+        if (AreAllEnemiesDead())
+        {
+            battleEndEvent.RaiseEvent(null, this);
+            battleEnd = true;
+        }
         if (isEnemyTurn) {
             timeCounter += Time.deltaTime;
             if (timeCounter >= enemyTurnDuration) 
@@ -36,16 +43,23 @@ public class TurnManager : MonoBehaviour
                 isEnemyTurn = false;
             }
         }
-        // else if (isPlayTurn)
-        // {
-        //     timeCounter += Time.deltaTime;
-        //     if (timeCounter >= playerTurnDuration)
-        //     {
-        //         timeCounter = 0f;
-        //         PlayerTurnBegin();
-        //         isPlayTurn = false;
-        //     }
-        // }
+
+    }
+    private bool AreAllEnemiesDead()
+    {
+        foreach (var enemy in enemyList)
+        {
+            if (enemy != null)
+            {
+                // Assuming each enemy has a script with a 'isDead' property
+                var enemyScript = enemy.GetComponent<EnemyBase>();
+                if (enemyScript != null && !enemyScript.isDead)
+                {
+                    return false; // If any enemy is not dead, return false
+                }
+            }
+        }
+        return true; // All enemies are dead
     }
 
     [ContextMenu("Battle Start")]
@@ -86,7 +100,6 @@ public class TurnManager : MonoBehaviour
     public void CountAllEnemyFinish()
     {
         enemyFinishCount++;
-
         if (enemyFinishCount == enemyList.Count())
         {
             Debug.Log("All enemy finshed action");

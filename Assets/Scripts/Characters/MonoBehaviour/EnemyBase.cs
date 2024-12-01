@@ -47,21 +47,24 @@ public class EnemyBase : CharacterBase
 
     public virtual void TakeActions()
     {
-        if(indicator.isDay) // If is day, execute Day intends
+        if (!isDead)
         {
-            int index = (roundsNumber - 1) % enemyData.dayIntends.Count;
-            foreach (var item in enemyData.dayIntends[index].actionList)
+            if(indicator.isDay) // If is day, execute Day intends
             {
-                Debug.Log($"Enmey {enemyData.name} Action: " + item.name);
-                item.Execute(this, player);
-            }
-        }else // If is night, execute night intends
-        {
-            int index = (roundsNumber - 1) % enemyData.nightIntends.Count;
-            foreach (var item in enemyData.nightIntends[index - 1].actionList)
+                int index = (roundsNumber - 1) % enemyData.dayIntends.Count;
+                foreach (var item in enemyData.dayIntends[index].actionList)
+                {
+                    Debug.Log($"Enmey {enemyData.name} Action: " + item.name);
+                    item.Execute(this, player);
+                }
+            }else // If is night, execute night intends
             {
-                Debug.Log($"Enmey {enemyData.name} Action: " + item.name);
-                item.Execute(this, player);
+                int index = (roundsNumber - 1) % enemyData.nightIntends.Count;
+                foreach (var item in enemyData.nightIntends[index - 1].actionList)
+                {
+                    Debug.Log($"Enmey {enemyData.name} Action: " + item.name);
+                    item.Execute(this, player);
+                }
             }
         }
         enemyTrunEndEvent.RaiseEvent(null, this);
