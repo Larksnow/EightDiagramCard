@@ -2683,7 +2683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleEnd: 1
   enemyFinishCount: 0
-  enemyTurnDuration: 1
+  enemyTurnDuration: 3
   playerTurnDuration: 1.5
   playerTurnBegin: {fileID: 11400000, guid: 586e65e5bda664e48af347e449b1de9d, type: 2}
   enemyTurnBegin: {fileID: 11400000, guid: 73d8f4af027dd2945907115a955c7147, type: 2}
@@ -2707,7 +2707,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2055254223}
         m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
-        m_MethodName: EnemyTurnBegin
+        m_MethodName: SetEnemyTurnTrue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
