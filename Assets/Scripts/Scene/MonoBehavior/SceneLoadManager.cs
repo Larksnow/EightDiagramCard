@@ -9,25 +9,17 @@ public class SceneLoadManager : MonoBehaviour
 {
     [Header("Scenes")]
     public GameSceneSO menuScene;
-    public GameSceneSO battleScene1;
-    public GameSceneSO battleScene2;
-    public GameSceneSO battleScene3;
-    public GameSceneSO battleScene4;
-    List<GameSceneSO> battleScenes = new();
+    public List<GameSceneSO> battleScenes;  // 在inspector中添加battleScenes
 
     public GameObject fadeCanvas;
-    public List<GameObject> persistentObjectsInBattle;
+    public List<GameObject> persistentObjectsInBattle; // 在战斗场景中持久化的object，无需重复加载，且在菜单场景中先设为inactive
     private int currentLevel = 0;
 
-    [SerializeField] private GameSceneSO currentLoadedScene;
-    [SerializeField] private GameSceneSO sceneToLoad;
+    private GameSceneSO currentLoadedScene;
+    private GameSceneSO sceneToLoad;
 
     private void Start()
     {
-        battleScenes.Add(battleScene1);
-        battleScenes.Add(battleScene2);
-        battleScenes.Add(battleScene3); 
-        battleScenes.Add(battleScene4);
         // 刚开始加载菜单场景
         OnLoadRequest(menuScene);
     }
@@ -35,6 +27,11 @@ public class SceneLoadManager : MonoBehaviour
     #region Event Listening
     public void NextLevel()
     {
+        if (battleScenes.Count < currentLevel + 1)
+        {
+            Debug.LogError("No more levels to load");
+            return;
+        }
         OnLoadRequest(battleScenes[++currentLevel]);
     }
 
@@ -48,7 +45,6 @@ public class SceneLoadManager : MonoBehaviour
                 sceneToLoad = menuScene;
                 break;
             case SceneType.Battle:
-                // TODO: 多个战斗场景
                 sceneToLoad = gameSceneToGo;
                 break;
         }
@@ -68,27 +64,24 @@ public class SceneLoadManager : MonoBehaviour
     {
         fadeCanvas.SetActive(true);
         FadeInOutHander fadeInOutHander = fadeCanvas.GetComponent<FadeInOutHander>();
-        Debug.Log("Start to unload scene: " + currentLoadedScene.sceneName);
         fadeInOutHander.FadeIn();
         yield return new WaitForSeconds(fadeInOutHander.fadeDuration);
         yield return currentLoadedScene.sceneReference.UnLoadScene();
+        if (currentLoadedScene.sceneType == SceneType.Menu)
+        {
+            SetBattlePersistentObjectsActive(true);
+        }
         LoadNewScene();
     }
 
     private void LoadNewScene()
     {
-        if (sceneToLoad.sceneType != SceneType.Menu)
-        {
-            SetBattlePersistentObjectsActive(true);
-        }
-        Debug.Log("Start to load scene: " + sceneToLoad.sceneName);
         var loadingOption = sceneToLoad.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
         loadingOption.Completed += OnLoadCompleted;
     }
 
     private void OnLoadCompleted(AsyncOperationHandle<SceneInstance> handle)
     {
-        Debug.Log("Scene Loaded: " + handle.Result.Scene);
         currentLoadedScene = sceneToLoad;
         StartCoroutine(FadeOutCoroutine());
     }

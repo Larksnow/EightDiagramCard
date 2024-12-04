@@ -1328,17 +1328,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuScene: {fileID: 11400000, guid: a72f0717127c5a445b34971b7bd164c1, type: 2}
-  battleScene1: {fileID: 11400000, guid: 6761b5f8991a9144fa66ecf7eb42f18e, type: 2}
-  battleScene2: {fileID: 11400000, guid: 4214c9246d1bea4449d071a1614a075b, type: 2}
-  battleScene3: {fileID: 11400000, guid: a37d58f734040c5458a66b5c0a881ff8, type: 2}
-  battleScene4: {fileID: 11400000, guid: beaf8bf9e2abacc4b9836c05ad5f545c, type: 2}
+  battleScenes:
+  - {fileID: 11400000, guid: 6761b5f8991a9144fa66ecf7eb42f18e, type: 2}
+  - {fileID: 11400000, guid: 4214c9246d1bea4449d071a1614a075b, type: 2}
+  - {fileID: 11400000, guid: a37d58f734040c5458a66b5c0a881ff8, type: 2}
+  - {fileID: 11400000, guid: beaf8bf9e2abacc4b9836c05ad5f545c, type: 2}
   fadeCanvas: {fileID: 1665928880}
   persistentObjectsInBattle:
-  - {fileID: 123222009}
-  - {fileID: 2142600638}
-  - {fileID: 857652145}
-  - {fileID: 1200602510}
-  - {fileID: 479771553}
   - {fileID: 193565714}
   - {fileID: 4932974873154258021}
   - {fileID: 949537707}
@@ -1350,8 +1346,6 @@ MonoBehaviour:
   - {fileID: 96805477}
   - {fileID: 1791597802}
   - {fileID: 1223978812}
-  currentLoadedScene: {fileID: 0}
-  sceneToLoad: {fileID: 0}
 --- !u!114 &660061480
 MonoBehaviour:
   m_ObjectHideFlags: 0

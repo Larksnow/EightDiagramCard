@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
-public class SelectCardPanel : MonoBehaviour
+public class SelectCardPanel : MonoBehaviour, ButtonClickHandler
 {
     public GameObject skipButton, cardPos1Obj, cardPos2Obj, cardPos3Obj;
     public List<GameObject> cardPosObjs;
@@ -16,7 +16,6 @@ public class SelectCardPanel : MonoBehaviour
     private List<GameObject> excludeFromPauseList = new();
 
     [Header("Broadcast Events")]
-    // TODO: 选择卡牌/跳过后进入下一关
     public ObjectEventSO nextLevelEvent;
     public ObjectEventSO addCardToHoldDeckEvent;
 

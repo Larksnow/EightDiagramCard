@@ -3,17 +3,11 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerHoldDeck : MonoBehaviour
+public class PlayerHoldDeck : MonoBehaviour, ButtonClickHandler
 {
     public CardListPanelController cardListPanelController;
     public float animationDuration = 1f;
 
-    private PauseManager pauseManager;
-
-    private void Awake()
-    {
-        pauseManager = PauseManager.Instance;
-    }
 
     #region Event Listening
     public void OnClick(object obj)

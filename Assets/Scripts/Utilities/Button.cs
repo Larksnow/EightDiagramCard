@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// 处理鼠标悬停事件
 /// </summary>
-public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerClickHandler
+public class Button : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerClickHandler
 {
     public bool interactable;   // 是否响应鼠标事件
 

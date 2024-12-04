@@ -239,9 +239,7 @@ MonoBehaviour:
   cardPos3Obj: {fileID: 2469531295424022004}
   cardPosObjs: []
   cardManager: {fileID: 0}
-  pauseManager: {fileID: 0}
-  fadeInOutHander: {fileID: 6598963572135594128}
-  nextLevelEvent: {fileID: 0}
+  nextLevelEvent: {fileID: 11400000, guid: 2c4d5d1a185aa464aab4df6f19e841cf, type: 2}
   addCardToHoldDeckEvent: {fileID: 11400000, guid: 0feddaae5516cf040ac72c67a0d57e28, type: 2}
 --- !u!114 &6598963572135594128
 MonoBehaviour:

@@ -98,7 +98,7 @@ public class GamePlayPanel : MonoBehaviour
         {
             cardListPanelController.ToggleCardListPanel(CardListType.DrawDeck);
         }
-        else if (selected == drawDeckUI)
+        else if (selected == discardDeckUI)
         {
             cardListPanelController.ToggleCardListPanel(CardListType.DiscardDeck);
         }

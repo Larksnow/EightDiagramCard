@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SelectDiagramPanel : MonoBehaviour
+public class SelectDiagramPanel : MonoBehaviour, ButtonClickHandler
 {
     private PauseManager pauseManager;
     public CopyDiagramEffect copyDiagramEffect;

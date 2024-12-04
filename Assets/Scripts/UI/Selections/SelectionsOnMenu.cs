@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SelectionsOnMenu : MonoBehaviour {
+public class SelectionsOnMenu : MonoBehaviour, ButtonClickHandler
+{
     public GameObject startButton;
     public GameObject quitButton;
     public GameObject producerListButton;
