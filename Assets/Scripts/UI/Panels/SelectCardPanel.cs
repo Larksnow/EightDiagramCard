@@ -55,11 +55,7 @@ public class SelectCardPanel : MonoBehaviour, ButtonClickHandler
         GameObject selected = pointerEventData.pointerPress;
         if (selected.transform.IsChildOf(transform))
         {
-            if (selected == skipButton)
-            {
-                nextLevelEvent.RaiseEvent(null, this);
-            }
-            else
+            if (selected != skipButton)
             {
                 // 选择一张卡牌加入手牌
                 for (int i = 0; i < cardPosObjs.Count; i++)
@@ -71,20 +67,13 @@ public class SelectCardPanel : MonoBehaviour, ButtonClickHandler
                         addCardToHoldDeckEvent.RaiseEvent(selected.transform.GetChild(0).gameObject, this);
                     }
                 }
-                nextLevelEvent.RaiseEvent(null, this);
-                StartCoroutine(FadeOutCoroutine());
             }
+            selected.GetComponent<Button>().FadeOutAfterClick(fadeInOutHander,
+            () => { gameObject.SetActive(false); });
+            nextLevelEvent.RaiseEvent(null, this);
         }
     }
     #endregion
-
-    private IEnumerator FadeOutCoroutine()
-    {
-        fadeInOutHander.FadeOut();
-        // TODO: 淡出时防止再次点击
-        yield return new WaitForSeconds(fadeInOutHander.fadeDuration);
-        gameObject.SetActive(false);
-    }
 
     // 清空选择面板处上次留下的卡牌
     private void Clear()
@@ -124,7 +113,7 @@ public class SelectCardPanel : MonoBehaviour, ButtonClickHandler
             CardDataSO cardData = cardManager.cardDataList[index];
             GameObject cardObj = cardManager.GetCardFromPool();
             Card card = cardObj.GetComponent<Card>();
-            card.Init(cardData);
+            card.Init(cardData, false);
             cardObj.transform.SetParent(cardPosObjs[i].transform, false);
             cardObj.transform.localPosition = Vector3.zero;
             cardObj.transform.localScale = Vector3.one;

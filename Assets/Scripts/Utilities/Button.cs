@@ -1,10 +1,11 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-/// <summary>
-/// 处理鼠标悬停事件
-/// </summary>
+[RequireComponent(typeof(BoxCollider2D))]
 public class Button : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerClickHandler
 {
     public bool interactable;   // 是否响应鼠标事件
@@ -26,6 +27,8 @@ public class Button : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     {
         originalScale = transform.localScale;
         pauseManager = PauseManager.Instance;
+
+        if (GetComponent<BoxCollider2D>() == null) SetupCollider();
     }
 
     private void Update()
@@ -96,4 +99,42 @@ public class Button : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         }
     }
 
+    // 在监听处调用(点击后自动淡出效果)
+    public void FadeOutAfterClick(FadeInOutHander fadeInOutHander, Action onComplete = null)
+    {
+        StartCoroutine(FadeOutAfterClickCoroutine(fadeInOutHander, onComplete));
+    }
+    private IEnumerator FadeOutAfterClickCoroutine(FadeInOutHander fadeInOutHander, Action onComplete = null)
+    {
+        interactable = false;
+        fadeInOutHander.FadeOut();
+        yield return new WaitForSeconds(fadeInOutHander.fadeDuration);
+        interactable = true;
+        onComplete?.Invoke();
+    }
+
+    // 自动添加Button所需的BoxCollider2D组件
+    private void SetupCollider()
+    {
+        var collider = gameObject.AddComponent<BoxCollider2D>();
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        TextMeshPro textMeshPro = GetComponent<TextMeshPro>();
+        if (spriteRenderer != null)
+        {
+            Rect spriteRect = spriteRenderer.sprite.rect;
+            Vector2 actualSize = new(
+                spriteRect.width / spriteRenderer.sprite.pixelsPerUnit,
+                spriteRect.height / spriteRenderer.sprite.pixelsPerUnit
+            );
+            collider.size = actualSize;
+        }
+        else if (textMeshPro != null)
+        {
+            collider.size = textMeshPro.bounds.size;
+        }
+        else
+        {
+            collider.size = transform.lossyScale;
+        }
+    }
 }

@@ -70,18 +70,12 @@ public class SelectDiagramPanel : MonoBehaviour, ButtonClickHandler
             if (diagramDataMapping.TryGetValue(diagramName, out var diagramData))
             {
                 copyDiagramEffect.diagramDataToCopy = diagramData; // 处理子物体点击逻辑
-                StartCoroutine(FadeOutCoroutine());
+                selected.GetComponent<Button>().FadeOutAfterClick(fadeInOutHander, 
+                () => { gameObject.SetActive(false); });
             }
         }
     }
     #endregion
-
-    private IEnumerator FadeOutCoroutine()
-    {
-        fadeInOutHander.FadeOut();
-        yield return new WaitForSeconds(fadeInOutHander.fadeDuration);
-        gameObject.SetActive(false);
-    }
 
     /// <summary>
     /// Load data (color, text, sprite) from DiagramDataSO

@@ -39,19 +39,24 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         pauseManager = PauseManager.Instance;
         Init(cardData);
     }
-    public void Init(CardDataSO data, bool reducedCost = false, int reducedCostValue = 0)
+
+    public void Init(CardDataSO data, bool toHand = true, bool reducedCost = false, int reducedCostValue = 0)
     {
         cardData = data;
-        cardCost = data.cost - reducedCostValue;
+        cardCost = toHand ? data.cost - reducedCostValue : data.cost;
         cardSprite.sprite = data.cardSprite;
         cardFrame.color = data.color;
         costText.text = data.cost.ToString();
+        costText.color = Color.white;
         nameText.text = data.cardName;
         descriptionTest.text = data.cardDescription;
         player = FindObjectOfType<Player>();
         isMouseOver = false;
-        isReducedCost = reducedCost;
-        UpdateCardCost(reducedCostValue);
+        if (toHand)
+        {
+            isReducedCost = reducedCost;
+            UpdateCardCost(reducedCostValue);
+        }
     }
 
     public void UpdateCardPositionRotation(Vector3 position, Quaternion rotation)

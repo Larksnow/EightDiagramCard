@@ -62,6 +62,7 @@ public class FadeInOutHander : MonoBehaviour
         {
             sequence.Join(image.DOFade(0, fadeDuration));
         }
+        SetAllElementsAlpha(1);
     }
 
     private void SetAllElementsAlpha(float alpha)
