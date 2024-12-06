@@ -180,9 +180,9 @@ public class GamePlayPanel : MonoBehaviour
     #endregion
 
     #region Select Card Pannel
-    // 监听胜利事件
     public void SelectCardForAward()
     {
+
         selectCardPannel.SetActive(true);
     }
     #endregion

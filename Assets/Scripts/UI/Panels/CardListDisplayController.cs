@@ -62,7 +62,7 @@ public class CardListDisplayController : MonoBehaviour
             fadeInOutHander.FadeIn();
 
             // 暂停游戏
-            pauseManager.PauseGame(new List<GameObject> { selectedDeck });
+            pauseManager.PauseGame(new List<Button> { selectedDeck.GetComponent<Button>() });
         }
         else
         {

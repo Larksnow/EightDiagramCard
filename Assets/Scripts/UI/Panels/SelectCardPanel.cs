@@ -4,82 +4,59 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
-public class SelectCardPanel : MonoBehaviour, ButtonClickHandler
+public class SelectCardPanel : FadablePanel, ButtonClickHandler
 {
     public GameObject skipButton, cardPos1Obj, cardPos2Obj, cardPos3Obj;
     public List<GameObject> cardPosObjs;
     public CardManager cardManager;
 
-    private PauseManager pauseManager;
-    private FadeInOutHander fadeInOutHander;
     private List<CardDataSO> cardsForSelection = new();
-    private List<GameObject> excludeFromPauseList = new();
 
     [Header("Broadcast Events")]
     public ObjectEventSO nextLevelEvent;
     public ObjectEventSO addCardToHoldDeckEvent;
 
-    private void Awake()
+    protected override void Awake()
     {
-        pauseManager = PauseManager.Instance;
-        fadeInOutHander = GetComponent<FadeInOutHander>();
+        base.Awake();
         cardPosObjs.Add(cardPos1Obj);
         cardPosObjs.Add(cardPos2Obj);
         cardPosObjs.Add(cardPos3Obj);
-
-        // 将可点击组件加入剔除暂停列表，不受暂停影响
-        excludeFromPauseList.Add(skipButton);
-        excludeFromPauseList.Add(cardPos1Obj);
-        excludeFromPauseList.Add(cardPos2Obj);
-        excludeFromPauseList.Add(cardPos3Obj);
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        Clear();
+        ClearCards();
         SetCardsForAward();
-        fadeInOutHander.FadeIn();
-
-        pauseManager.PauseGame(excludeFromPauseList);
+        base.OnEnable();
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
-        pauseManager.ResumeGame();
+        base.OnDisable();
     }
 
-    #region Event Listening
-    public void OnClick(object obj)
+    protected override void OnClickSelected(GameObject selected)
     {
-        PointerEventData pointerEventData = (PointerEventData)obj;
-        GameObject selected = pointerEventData.pointerPress;
-        if (selected.transform.IsChildOf(transform))
+        base.OnClickSelected(selected);
+        if (selected != skipButton)
         {
-            if (selected != skipButton)
+            // 选择一张卡牌加入手牌
+            for (int i = 0; i < cardPosObjs.Count; i++)
             {
-                // 选择一张卡牌加入手牌
-                for (int i = 0; i < cardPosObjs.Count; i++)
+                if (selected == cardPosObjs[i])
                 {
-                    if (selected == cardPosObjs[i])
-                    {
-                        cardManager.AddCardToPlayerHoldDeck(cardsForSelection[i], 1);
-                        // 通知ui更新动画
-                        addCardToHoldDeckEvent.RaiseEvent(selected.transform.GetChild(0).gameObject, this);
-                    }
+                    cardManager.AddCardToPlayerHoldDeck(cardsForSelection[i], 1);
+                    // 通知ui更新动画
+                    addCardToHoldDeckEvent.RaiseEvent(selected.transform.GetChild(0).gameObject, this);
                 }
             }
-            SetAllButtonsInteractable(false);
-            fadeInOutHander.FadeOut(() =>
-            {
-                SetAllButtonsInteractable(true);
-            });
-            nextLevelEvent.RaiseEvent(null, this);
         }
+        nextLevelEvent.RaiseEvent(null, this);
     }
-    #endregion
 
     // 清空选择面板处上次留下的卡牌
-    private void Clear()
+    private void ClearCards()
     {
         foreach (var cardObj in cardPosObjs)
         {
@@ -88,7 +65,8 @@ public class SelectCardPanel : MonoBehaviour, ButtonClickHandler
                 foreach (Transform child in cardObj.transform)
                 {
                     Debug.Log(child.gameObject.name);
-                    child.gameObject.GetComponent<CardDragHandler>().enabled = true;   // 丢弃前恢复拖拽组件
+                    child.gameObject.GetComponent<CardDragHandler>().enabled = true;   // 丢弃前恢复拖拽和卡牌脚本
+                    child.gameObject.GetComponent<Card>().enabled = true;
                     cardManager.DiscardCard(child.gameObject);
                 }
             }
@@ -120,18 +98,9 @@ public class SelectCardPanel : MonoBehaviour, ButtonClickHandler
             cardObj.transform.SetParent(cardPosObjs[i].transform, false);
             cardObj.transform.localPosition = Vector3.zero;
             cardObj.transform.localScale = Vector3.one;
-            CardDragHandler cardDragHandler = cardObj.GetComponent<CardDragHandler>();// 禁用拖拽
-            cardDragHandler.enabled = false;
+            cardObj.GetComponent<CardDragHandler>().enabled = false;// 禁用拖拽
+            cardObj.GetComponent<Card>().enabled = false;          // 禁用卡牌脚本
             cardsForSelection.Add(card.cardData);   // 添加到可选列表
-        }
-    }
-
-    private void SetAllButtonsInteractable(bool interactable)
-    {
-        skipButton.GetComponent<Button>().SetInteractable(interactable);
-        foreach (var cardObj in cardPosObjs)
-        {
-            cardObj.GetComponent<Button>().SetInteractable(interactable);
         }
     }
 }

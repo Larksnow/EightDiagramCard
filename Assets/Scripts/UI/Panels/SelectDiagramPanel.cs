@@ -5,22 +5,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SelectDiagramPanel : MonoBehaviour, ButtonClickHandler
+public class SelectDiagramPanel : FadablePanel, ButtonClickHandler
 {
-    private PauseManager pauseManager;
     public CopyDiagramEffect copyDiagramEffect;
     public DiagramDataSO kunData, zhenData, xunData, kanData, liData, genData, duiData;
 
-    private FadeInOutHander fadeInOutHander;
     private Dictionary<string, DiagramDataSO> diagramDataMapping;
     private List<TextMeshPro> diagramEnhancedTexts = new();
-    private List<SpriteRenderer> diagramImages = new();
     private List<GameObject> excludeFromPauseList = new();
 
-    private void Awake()
+    protected override void Awake()
     {
-        pauseManager = PauseManager.Instance;
-        fadeInOutHander = GetComponent<FadeInOutHander>();
+        base.Awake();
         // 初始化字典映射
         diagramDataMapping = new Dictionary<string, DiagramDataSO>
         {
@@ -40,45 +36,32 @@ public class SelectDiagramPanel : MonoBehaviour, ButtonClickHandler
                 // 将可点击组件加入剔除暂停列表，不受暂停影响
                 excludeFromPauseList.Add(child.gameObject);
 
-                diagramImages.Add(child.GetComponentInChildren<SpriteRenderer>());
                 diagramEnhancedTexts.Add(child.Find("EnhancedText").GetComponent<TextMeshPro>());
             }
         }
 
         InitializeDiagramVisuals();
     }
-    private void OnEnable()
+
+    protected override void OnEnable()
     {
         SetEnhancedTexts();
-        fadeInOutHander.FadeIn();
-        pauseManager.PauseGame(excludeFromPauseList);
+        base.OnEnable();
     }
-    private void OnDisable()
+    protected override void OnDisable()
     {
-        pauseManager.ResumeGame();
+        base.OnDisable();
     }
 
-    #region Event Listening
-    public void OnClick(object obj)
+    protected override void OnClickSelected(GameObject selected)
     {
-        PointerEventData pointerEventData = (PointerEventData)obj;
-        GameObject selected = pointerEventData.pointerPress;
-        // 检查点击的是否是 SelectDiagramPanel 的子物体
-        if (selected.transform.IsChildOf(transform))
+        base.OnClickSelected(selected);
+        string diagramName = selected.name;
+        if (diagramDataMapping.TryGetValue(diagramName, out var diagramData))
         {
-            string diagramName = selected.name;
-            if (diagramDataMapping.TryGetValue(diagramName, out var diagramData))
-            {
-                copyDiagramEffect.diagramDataToCopy = diagramData; // 处理子物体点击逻辑
-                SetAllButtonsInteractable(false);
-                fadeInOutHander.FadeOut(() =>
-                {
-                    SetAllButtonsInteractable(true);
-                });
-            }
+            copyDiagramEffect.diagramDataToCopy = diagramData;
         }
     }
-    #endregion
 
     /// <summary>
     /// Load data (color, text, sprite) from DiagramDataSO
@@ -120,14 +103,6 @@ public class SelectDiagramPanel : MonoBehaviour, ButtonClickHandler
         foreach (var diagramData in copyDiagramEffect.enhancedCopyDiagram)
         {
             transform.Find(diagramData.diagramName).Find("EnhancedText").GetComponent<TextMeshPro>().enabled = true;
-        }
-    }
-
-    private void SetAllButtonsInteractable(bool interactable)
-    {
-        foreach (var button in GetComponentsInChildren<Button>())
-        {
-            button.SetInteractable(interactable);
         }
     }
 }

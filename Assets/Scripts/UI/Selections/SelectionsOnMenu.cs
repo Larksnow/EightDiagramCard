@@ -34,7 +34,7 @@ public class SelectionsOnMenu : MonoBehaviour, ButtonClickHandler
         else if (selected == producerListButton)
         {
             producerList.SetActive(true);
-            pauseManager.PauseGame(new List<GameObject> { plCloseButton });
+            pauseManager.PauseGame(new List<Button> { plCloseButton.GetComponent<Button>() });
         }
         else if (selected == plCloseButton)
         {

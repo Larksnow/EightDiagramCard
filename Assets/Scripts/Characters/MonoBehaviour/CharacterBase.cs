@@ -128,7 +128,6 @@ public class CharacterBase : MonoBehaviour
         if (currentHP == 0)
             isDead = true;
         updateHPEvent.RaiseEvent(new HPChange(this, currentHP), this);
-
     }
 
     public virtual void AddShield(int value)
@@ -143,7 +142,8 @@ public class CharacterBase : MonoBehaviour
 
     public virtual void Heal(int healAmount) { }
 
-    public virtual void Die() { }
+    [ContextMenu("Die")]
+    public virtual void Die() { AddHP(-maxHP); }
 
     #region Event Listening
     public virtual void OnTurnBegin()
