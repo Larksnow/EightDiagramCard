@@ -43,11 +43,12 @@ public class GamePlayPanel : MonoBehaviour
     {
         // Rest DiagramePannel When player turn ended
         diagramPannel.GetComponent<DiagramPanel>().ResetDiagramPannel();
+        endTurnButton.GetComponent<EndTurnButton>().pressEnabled = false;
         playerTurnEndEvent.RaiseEvent(null, this);
     }
     public void OnEnemyTurnBegin()
     {
-        endTurnButton.GetComponent<EndTurnButton>().pressEnabled = false;
+        // endTurnButton.GetComponent<EndTurnButton>().pressEnabled = false;
     }
 
     public void OnPlayerTurnBegin()

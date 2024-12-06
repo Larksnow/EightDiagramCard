@@ -50,7 +50,7 @@ public class CharacterBase : MonoBehaviour
         newlyAppliedRounds.Add(BuffType.Weak, -1);
         newlyAppliedRounds.Add(BuffType.Poison, -1);
 
-        roundsNumber = 1;
+        roundsNumber = 0;
         isDead = false;
         //TODO: Load all buff SO using addressable asset (virtual, player and enemy have their own SOs)
     }

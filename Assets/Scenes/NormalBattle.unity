@@ -761,6 +761,14 @@ PrefabInstance:
       propertyPath: currentCharacter
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2464103821521661879, guid: 35a44b72a0ba3244a9a375fd0be99879, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2464103821521661879, guid: 35a44b72a0ba3244a9a375fd0be99879, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1145784131
+      objectReference: {fileID: 0}
     - target: {fileID: 3574404757971850499, guid: 35a44b72a0ba3244a9a375fd0be99879, type: 3}
       propertyPath: currentCharacter
       value: 
