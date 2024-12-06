@@ -11,7 +11,7 @@ public class SceneLoadManager : MonoBehaviour
     public GameSceneSO menuScene;
     public List<GameSceneSO> battleScenes;  // 在inspector中添加battleScenes
 
-    public GameObject fadeCanvas;
+    public GameObject fadeImage;
     public List<GameObject> persistentObjectsInBattle; // 在战斗场景中持久化的object，无需重复加载，且在菜单场景中先设为inactive
     private int currentLevel = 0;
 
@@ -20,6 +20,8 @@ public class SceneLoadManager : MonoBehaviour
 
     private void Start()
     {
+        fadeImage.SetActive(true);
+
         // 刚开始加载菜单场景
         OnLoadRequest(menuScene);
     }
@@ -62,8 +64,8 @@ public class SceneLoadManager : MonoBehaviour
 
     private IEnumerator UnloadPreviousScene()
     {
-        fadeCanvas.SetActive(true);
-        FadeInOutHander fadeInOutHander = fadeCanvas.GetComponent<FadeInOutHander>();
+        fadeImage.SetActive(true);
+        FadeInOutHander fadeInOutHander = fadeImage.GetComponent<FadeInOutHander>();
         fadeInOutHander.FadeIn();
         yield return new WaitForSeconds(fadeInOutHander.fadeDuration);
         yield return currentLoadedScene.sceneReference.UnLoadScene();
@@ -88,10 +90,10 @@ public class SceneLoadManager : MonoBehaviour
 
     private IEnumerator FadeOutCoroutine()
     {
-        FadeInOutHander fadeInOutHander = fadeCanvas.GetComponent<FadeInOutHander>();
+        FadeInOutHander fadeInOutHander = fadeImage.GetComponent<FadeInOutHander>();
         fadeInOutHander.FadeOut();
         yield return new WaitForSeconds(fadeInOutHander.fadeDuration);
-        fadeCanvas.SetActive(false);
+        fadeImage.SetActive(false);
     }
 
     private void SetBattlePersistentObjectsActive(bool isActive)

@@ -70,8 +70,11 @@ public class SelectDiagramPanel : MonoBehaviour, ButtonClickHandler
             if (diagramDataMapping.TryGetValue(diagramName, out var diagramData))
             {
                 copyDiagramEffect.diagramDataToCopy = diagramData; // 处理子物体点击逻辑
-                selected.GetComponent<Button>().FadeOutAfterClick(fadeInOutHander, 
-                () => { gameObject.SetActive(false); });
+                SetAllButtonsInteractable(false);
+                fadeInOutHander.FadeOut(() =>
+                {
+                    SetAllButtonsInteractable(true);
+                });
             }
         }
     }
@@ -117,6 +120,14 @@ public class SelectDiagramPanel : MonoBehaviour, ButtonClickHandler
         foreach (var diagramData in copyDiagramEffect.enhancedCopyDiagram)
         {
             transform.Find(diagramData.diagramName).Find("EnhancedText").GetComponent<TextMeshPro>().enabled = true;
+        }
+    }
+
+    private void SetAllButtonsInteractable(bool interactable)
+    {
+        foreach (var button in GetComponentsInChildren<Button>())
+        {
+            button.SetInteractable(interactable);
         }
     }
 }

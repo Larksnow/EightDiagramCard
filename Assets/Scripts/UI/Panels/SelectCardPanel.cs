@@ -68,8 +68,11 @@ public class SelectCardPanel : MonoBehaviour, ButtonClickHandler
                     }
                 }
             }
-            selected.GetComponent<Button>().FadeOutAfterClick(fadeInOutHander,
-            () => { gameObject.SetActive(false); });
+            SetAllButtonsInteractable(false);
+            fadeInOutHander.FadeOut(() =>
+            {
+                SetAllButtonsInteractable(true);
+            });
             nextLevelEvent.RaiseEvent(null, this);
         }
     }
@@ -120,6 +123,15 @@ public class SelectCardPanel : MonoBehaviour, ButtonClickHandler
             CardDragHandler cardDragHandler = cardObj.GetComponent<CardDragHandler>();// 禁用拖拽
             cardDragHandler.enabled = false;
             cardsForSelection.Add(card.cardData);   // 添加到可选列表
+        }
+    }
+
+    private void SetAllButtonsInteractable(bool interactable)
+    {
+        skipButton.GetComponent<Button>().SetInteractable(interactable);
+        foreach (var cardObj in cardPosObjs)
+        {
+            cardObj.GetComponent<Button>().SetInteractable(interactable);
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerHoldDeck : MonoBehaviour, ButtonClickHandler
 {
-    public CardListPanelController cardListPanelController;
+    public CardListDisplayController cardListDisplayController;
     public float animationDuration = 1f;
 
 
@@ -14,10 +14,11 @@ public class PlayerHoldDeck : MonoBehaviour, ButtonClickHandler
     {
         PointerEventData pointerEventData = (PointerEventData)obj;
         GameObject selected = pointerEventData.pointerPress;
-        if (selected != this) return;
+        if (selected != gameObject) return;
 
         // 展示玩家牌组
-        cardListPanelController.ToggleCardListPanel(CardListType.PlayerHold);
+        Debug.Log("PlayerHoldDeck clicked");
+        cardListDisplayController.ToggleCardListPanel(CardListType.PlayerHold);
     }
 
     // 卡牌进入牌组动画

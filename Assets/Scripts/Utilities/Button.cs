@@ -1,134 +1,114 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class Button : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerClickHandler
+public class Button : MonoBehaviour, IPointerInteractionHandler
 {
-    public bool interactable;   // 是否响应鼠标事件
+    [System.Serializable]
+    private class ButtonSettings
+    {
+        public bool interactable = true;
+        public bool clickable = true;
+        public float scaleOnHover = 1.1f;
+        public float scaleOnClick = 1.15f;
+    }
 
-    [Header("Clickable")]
-    public bool clickable;      // 是否可点击，鼠标悬停是否变大
-    public float scaleOnHover;
-    public float scaleOnClick;
-    public ObjectEventSO onClickedEvent;
+    [SerializeField] private ButtonSettings settings;
+    [SerializeField] private ObjectEventSO onClickedEvent;
+    [SerializeField] private GameObject hoverPanel;
 
-    [Header("Hover Panel")]
-    public bool hasHoverPanel;
-    public GameObject hoverPanel;
-
-    private PauseManager pauseManager;
     private Vector3 originalScale;
+    private PauseManager pauseManager;
 
     private void Awake()
+    {
+        Initialize();
+    }
+
+    private void Initialize()
     {
         originalScale = transform.localScale;
         pauseManager = PauseManager.Instance;
 
-        if (GetComponent<BoxCollider2D>() == null) SetupCollider();
+        if (GetComponent<BoxCollider2D>() == null)
+            SetupCollider();
     }
 
     private void Update()
     {
-        if (pauseManager.IsPaused())
-        {
-            if (!pauseManager.IsInExcludeList(gameObject))
-            {
-                interactable = false;
-            }
-        }
-        else if (!interactable)
-        {
-            interactable = true;
-        }
+        UpdateInteractableState();
     }
 
+    private void UpdateInteractableState()
+    {
+        settings.interactable = !pauseManager.IsPaused() ||
+                               pauseManager.IsInExcludeList(gameObject);
+    }
+
+    #region Pointer Event Handlers
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (interactable)
-        {
-            if (clickable)
-            {
-                transform.localScale *= scaleOnHover;
-            }
-            if (hasHoverPanel)
-            {
-                hoverPanel.SetActive(true);
-            }
-        }
+        if (!settings.interactable) return;
+
+        if (settings.clickable)
+            transform.localScale *= settings.scaleOnHover;
+
+        if (hoverPanel != null)
+            hoverPanel.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (interactable)
-        {
-            if (clickable)
-            {
-                transform.localScale = originalScale;
-            }
-            if (hasHoverPanel)
-            {
-                hoverPanel.SetActive(false);
-            }
-        }
+        if (!settings.interactable) return;
+
+        if (settings.clickable)
+            transform.localScale = originalScale;
+
+        if (hoverPanel != null)
+            hoverPanel.SetActive(false);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (interactable)
-        {
-            if (clickable)
-            {
-                transform.localScale = originalScale * scaleOnClick;
-            }
-        }
+        if (!settings.interactable || !settings.clickable) return;
+        transform.localScale = originalScale * settings.scaleOnClick;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (interactable)
-        {
-            if (clickable)
-            {
-                transform.localScale = originalScale;
-                onClickedEvent.RaiseEvent(eventData, this);
-            }
-        }
-    }
+        if (!settings.interactable || !settings.clickable) return;
 
-    // 在监听处调用(点击后自动淡出效果)
+        transform.localScale = originalScale;
+        onClickedEvent?.RaiseEvent(eventData, this);
+    }
+    #endregion
+
     public void FadeOutAfterClick(FadeInOutHander fadeInOutHander, Action onComplete = null)
     {
-        StartCoroutine(FadeOutAfterClickCoroutine(fadeInOutHander, onComplete));
+        StartCoroutine(FadeOutRoutine(fadeInOutHander, onComplete));
     }
-    private IEnumerator FadeOutAfterClickCoroutine(FadeInOutHander fadeInOutHander, Action onComplete = null)
+
+    private IEnumerator FadeOutRoutine(FadeInOutHander fadeInOutHander, Action onComplete)
     {
-        interactable = false;
+        settings.interactable = false;
         fadeInOutHander.FadeOut();
         yield return new WaitForSeconds(fadeInOutHander.fadeDuration);
-        interactable = true;
+        settings.interactable = true;
         onComplete?.Invoke();
     }
 
-    // 自动添加Button所需的BoxCollider2D组件
     private void SetupCollider()
     {
         var collider = gameObject.AddComponent<BoxCollider2D>();
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        TextMeshPro textMeshPro = GetComponent<TextMeshPro>();
-        if (spriteRenderer != null)
+
+        if (TryGetComponent<SpriteRenderer>(out var spriteRenderer))
         {
-            Rect spriteRect = spriteRenderer.sprite.rect;
-            Vector2 actualSize = new(
-                spriteRect.width / spriteRenderer.sprite.pixelsPerUnit,
-                spriteRect.height / spriteRenderer.sprite.pixelsPerUnit
-            );
-            collider.size = actualSize;
+            SetupSpriteCollider(collider, spriteRenderer);
         }
-        else if (textMeshPro != null)
+        else if (TryGetComponent<TextMeshPro>(out var textMeshPro))
         {
             collider.size = textMeshPro.bounds.size;
         }
@@ -137,4 +117,28 @@ public class Button : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             collider.size = transform.lossyScale;
         }
     }
+
+    private void SetupSpriteCollider(BoxCollider2D collider, SpriteRenderer spriteRenderer)
+    {
+        Rect spriteRect = spriteRenderer.sprite.rect;
+        float pixelsPerUnit = spriteRenderer.sprite.pixelsPerUnit;
+        Vector2 actualSize = new(
+            spriteRect.width / pixelsPerUnit,
+            spriteRect.height / pixelsPerUnit
+        );
+        collider.size = actualSize;
+    }
+
+    public void SetInteractable(bool interactable)
+    {
+        settings.interactable = interactable;
+    }
+}
+
+public interface IPointerInteractionHandler :
+    IPointerEnterHandler,
+    IPointerExitHandler,
+    IPointerDownHandler,
+    IPointerClickHandler
+{
 }

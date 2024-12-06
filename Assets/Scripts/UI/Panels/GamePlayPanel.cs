@@ -21,7 +21,7 @@ public class GamePlayPanel : MonoBehaviour
     public GameObject selectDiagramPannel;
     public GameObject selectCardPannel;
     
-    public CardListPanelController cardListPanelController;
+    public CardListDisplayController cardListDisplayController;
 
     public float uiFadeDuration;
     public float dialogBoxDuration;
@@ -96,11 +96,11 @@ public class GamePlayPanel : MonoBehaviour
         GameObject selected = pointerEventData.pointerPress;
         if (selected == drawDeckUI)
         {
-            cardListPanelController.ToggleCardListPanel(CardListType.DrawDeck);
+            cardListDisplayController.ToggleCardListPanel(CardListType.DrawDeck);
         }
         else if (selected == discardDeckUI)
         {
-            cardListPanelController.ToggleCardListPanel(CardListType.DiscardDeck);
+            cardListDisplayController.ToggleCardListPanel(CardListType.DiscardDeck);
         }
     }
 
