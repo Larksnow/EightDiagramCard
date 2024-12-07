@@ -1374,6 +1374,7 @@ MonoBehaviour:
   - {fileID: 96805477}
   - {fileID: 1791597802}
   - {fileID: 1223978812}
+  sceneLoadCompleteEvent: {fileID: 11400000, guid: 04ac0f64cb1fec3429aef4c764623168, type: 2}
 --- !u!114 &660061480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2165,6 +2166,144 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1173290995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1173290997}
+  - component: {fileID: 1173290996}
+  - component: {fileID: 1173291000}
+  - component: {fileID: 1173290999}
+  - component: {fileID: 1173290998}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1173290996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173290995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28456aa41b25a154eb30e087c317c547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyList: []
+  battleEndEvent: {fileID: 11400000, guid: 0dd4110f8c34eb04ab0d2d7b4e238733, type: 2}
+  battleStartEvent: {fileID: 11400000, guid: 508b484279522f243b9b1b62c730c413, type: 2}
+  gameOverEvent: {fileID: 11400000, guid: 0dd4110f8c34eb04ab0d2d7b4e238733, type: 2}
+--- !u!4 &1173290997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173290995}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1173290998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173290995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: d6016fad272bd4e44ac34970e110b9ce, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1173290996}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnEnemySpawnEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &1173290999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173290995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 27ad02973c463df4895fef2f0cd9b1cc, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1173290996}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnCharacterDeathEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &1173291000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173290995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 04ac0f64cb1fec3429aef4c764623168, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1173290996}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnSceneLoadCompleteEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
 --- !u!1 &1200602510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2821,13 +2960,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleEnd: 1
   enemyFinishCount: 0
+  gameManager: {fileID: 1173290996}
   enemyTurnDuration: 3
   playerTurnDuration: 1.5
   playerTurnBegin: {fileID: 11400000, guid: 586e65e5bda664e48af347e449b1de9d, type: 2}
   enemyTurnBegin: {fileID: 11400000, guid: 73d8f4af027dd2945907115a955c7147, type: 2}
   enemyTurnEnd: {fileID: 11400000, guid: 191246896757a8645bae7e702e09229a, type: 2}
-  enemyList: []
-  battleEndEvent: {fileID: 11400000, guid: 0dd4110f8c34eb04ab0d2d7b4e238733, type: 2}
 --- !u!114 &2055254224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2869,13 +3007,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSO: {fileID: 11400000, guid: 191246896757a8645bae7e702e09229a, type: 2}
+  eventSO: {fileID: 11400000, guid: a5210fd32bdc01349bd81b94d4c6c55d, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2055254223}
         m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
-        m_MethodName: CountAllEnemyFinish
+        m_MethodName: CheckAllEnemiesFinished
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3695,6 +3833,7 @@ MonoBehaviour:
   updateHPEvent: {fileID: 11400000, guid: 1e2a10bb919ec1f4caab0099cacc2599, type: 2}
   updateShieldedEvent: {fileID: 11400000, guid: 4abd274a3eab2e14d95c6d1a30ad522c, type: 2}
   updateBuffEvent: {fileID: 11400000, guid: a057bc43d235c224f97adc2445146989, type: 2}
+  characterDeathEvent: {fileID: 11400000, guid: 27ad02973c463df4895fef2f0cd9b1cc, type: 2}
   cardDeck: {fileID: 123222010}
   maxMana: 3
   updateManaEvent: {fileID: 11400000, guid: 5ce3e1703d204164292b4648759b96ad, type: 2}
@@ -4340,6 +4479,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 2093460219}
   - {fileID: 315631385}
+  - {fileID: 1173290997}
   - {fileID: 660061478}
   - {fileID: 932669421}
   - {fileID: 1029215190}

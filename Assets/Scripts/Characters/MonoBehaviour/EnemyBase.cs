@@ -11,7 +11,7 @@ public class EnemyBase : CharacterBase
     public bool isTaunting;    // 嘲讽(使敌方只能攻击此单位)
     CharacterBase player;
     Indicator indicator;
-    [SerializeField] ObjectEventSO enemyTrunEndEvent; // 敌人回合结束事件
+    [SerializeField] ObjectEventSO enemyEndActionEvent; // 敌人行动结束事件
     [SerializeField] Sprite daySprite;
     [SerializeField] Sprite nightSprite;
     public SpriteRenderer dayImage;
@@ -66,9 +66,23 @@ public class EnemyBase : CharacterBase
                 item.Execute(this, player);
             }
         }
-        enemyTrunEndEvent.RaiseEvent(null, this);
+        enemyEndActionEvent.RaiseEvent(null, this);
     }
 
+    [ContextMenu("Die")]
+    public override void Die()
+    {
+        // Fade out all the renderers of the dead enemy first
+        SpriteRenderer[] deadEnemyRenderers = GetComponentsInChildren<SpriteRenderer>();
+        foreach (var renderer in deadEnemyRenderers)
+        {
+            renderer.DOFade(0f, 0.5f).OnComplete(() => {
+                gameObject.SetActive(false); // Hide dead enemy after 
+                base.Die();
+            });
+        }
+    }
+    
     public void SwitchSprite()
     {
         if (!indicator.isDay)

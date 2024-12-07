@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589d6281563883542816f5bf71e9a4da, type: 3}
   m_Name: TakeDamageEvent
   m_EditorClassIdentifier: 
-  description: "\u5F53CharacterBase\u53D7\u5230\u4F24\u5BB3\u65F6\u53D1\u8D77"
-  lastSender: Enemy01 (EnemyBase)
+  description: "\u5F53CharacterBase\u53D7\u5230\u4F24\u5BB3\u65F6\u53D1\u8D77\uFF0C\u66F4\u65B0UI"
+  lastSender: 5

@@ -25,6 +25,7 @@ public class CharacterBase : MonoBehaviour
     public ObjectEventSO updateHPEvent;
     public ObjectEventSO updateShieldedEvent;
     public ObjectEventSO updateBuffEvent;
+    public ObjectEventSO characterDeathEvent;
 
     protected virtual void Start()
     {
@@ -122,11 +123,13 @@ public class CharacterBase : MonoBehaviour
         takeDamageEvent.RaiseEvent(damage, amount); // 呼叫ui更新(伤害数字)
     }
 
-    public virtual void AddHP(int amount)
+    public virtual void AddHP(int amount) // Heal and take damage both use this function
     {
         currentHP = Mathf.Clamp(currentHP + amount, 0, maxHP);
         if (currentHP == 0)
-            isDead = true;
+        {
+            Die();
+        }  
         updateHPEvent.RaiseEvent(new HPChange(this, currentHP), this);
     }
 
@@ -140,10 +143,13 @@ public class CharacterBase : MonoBehaviour
         updateShieldedEvent.RaiseEvent(new ShieldChange(this, currentShield), this);
     }
 
-    public virtual void Heal(int healAmount) { }
-
-    [ContextMenu("Die")]
-    public virtual void Die() { AddHP(-maxHP); }
+    public virtual void Die() 
+    {
+        //TODO: play death animation (If have)
+        //TODO: play death sound (If have)
+        isDead = true;
+        characterDeathEvent.RaiseEvent(this, this);
+    }
 
     #region Event Listening
     public virtual void OnTurnBegin()

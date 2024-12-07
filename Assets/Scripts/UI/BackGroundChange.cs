@@ -7,12 +7,8 @@ public class BackGroundChange : MonoBehaviour
 {
     public SpriteRenderer day;
     public SpriteRenderer night;
-    public ObjectEventSO battleStart;
-    void Awake()
-    {
-        battleStart.RaiseEvent(null, this);
-    }
-    [ContextMenu("Test")]
+
+    [ContextMenu("TestSwitch")]
     public void SwitchBackround()
     {
         if (Indicator.main.isDay)

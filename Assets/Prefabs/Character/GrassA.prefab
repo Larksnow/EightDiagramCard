@@ -147,9 +147,10 @@ MonoBehaviour:
   updateHPEvent: {fileID: 11400000, guid: 1e2a10bb919ec1f4caab0099cacc2599, type: 2}
   updateShieldedEvent: {fileID: 11400000, guid: 4abd274a3eab2e14d95c6d1a30ad522c, type: 2}
   updateBuffEvent: {fileID: 11400000, guid: a057bc43d235c224f97adc2445146989, type: 2}
+  characterDeathEvent: {fileID: 11400000, guid: 27ad02973c463df4895fef2f0cd9b1cc, type: 2}
   enemyData: {fileID: 11400000, guid: ae8149b1b6f171e4586c5db5751bd541, type: 2}
   isTaunting: 0
-  enemyTrunEndEvent: {fileID: 11400000, guid: 191246896757a8645bae7e702e09229a, type: 2}
+  enemyEndActionEvent: {fileID: 11400000, guid: a5210fd32bdc01349bd81b94d4c6c55d, type: 2}
   daySprite: {fileID: 21300000, guid: 63502276b3e17874b91ed63fcea1e573, type: 3}
   nightSprite: {fileID: 21300000, guid: 9585a60e948ec114f9b47c0b8f66c9bf, type: 3}
   dayImage: {fileID: 3442105830423442379}

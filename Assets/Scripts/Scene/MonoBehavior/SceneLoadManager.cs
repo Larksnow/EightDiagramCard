@@ -18,6 +18,9 @@ public class SceneLoadManager : MonoBehaviour
     private GameSceneSO currentLoadedScene;
     private GameSceneSO sceneToLoad;
 
+    [Header("Broadcast Events")]
+    public ObjectEventSO sceneLoadCompleteEvent;
+
     private void Start()
     {
         fadeImage.SetActive(true);
@@ -86,6 +89,7 @@ public class SceneLoadManager : MonoBehaviour
     {
         currentLoadedScene = sceneToLoad;
         StartCoroutine(FadeOutCoroutine());
+        sceneLoadCompleteEvent.RaiseEvent(currentLoadedScene, this);
     }
 
     private IEnumerator FadeOutCoroutine()
