@@ -25,6 +25,7 @@ public class CharacterBase : MonoBehaviour
     public ObjectEventSO updateHPEvent;
     public ObjectEventSO updateShieldedEvent;
     public ObjectEventSO updateBuffEvent;
+    public ObjectEventSO characterDeathEvent;
 
     protected virtual void Start()
     {
@@ -50,7 +51,7 @@ public class CharacterBase : MonoBehaviour
         newlyAppliedRounds.Add(BuffType.Weak, -1);
         newlyAppliedRounds.Add(BuffType.Poison, -1);
 
-        roundsNumber = 1;
+        roundsNumber = 0;
         isDead = false;
         //TODO: Load all buff SO using addressable asset (virtual, player and enemy have their own SOs)
     }
@@ -122,13 +123,14 @@ public class CharacterBase : MonoBehaviour
         takeDamageEvent.RaiseEvent(damage, amount); // 呼叫ui更新(伤害数字)
     }
 
-    public virtual void AddHP(int amount)
+    public virtual void AddHP(int amount) // Heal and take damage both use this function
     {
         currentHP = Mathf.Clamp(currentHP + amount, 0, maxHP);
         if (currentHP == 0)
-            isDead = true;
+        {
+            Die();
+        }  
         updateHPEvent.RaiseEvent(new HPChange(this, currentHP), this);
-
     }
 
     public virtual void AddShield(int value)
@@ -141,9 +143,13 @@ public class CharacterBase : MonoBehaviour
         updateShieldedEvent.RaiseEvent(new ShieldChange(this, currentShield), this);
     }
 
-    public virtual void Heal(int healAmount) { }
-
-    public virtual void Die() { }
+    public virtual void Die() 
+    {
+        //TODO: play death animation (If have)
+        //TODO: play death sound (If have)
+        isDead = true;
+        characterDeathEvent.RaiseEvent(this, this);
+    }
 
     #region Event Listening
     public virtual void OnTurnBegin()

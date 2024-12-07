@@ -8,9 +8,9 @@ public class PauseManager : MonoBehaviour
 {
     public static PauseManager Instance { get; private set; }
     private bool isPaused;
+    public ButtonsManager buttonsManager;
 
-    // 对于诸如面板卦象，牌堆按钮等可交互UI，打开后暂停除自身外其他所有可交互UI
-    private List<GameObject> excludeFromPause = new();   
+    // private List<GameObject> excludeFromPause = new();   
 
     void Awake()
     {
@@ -23,24 +23,35 @@ public class PauseManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        buttonsManager = ButtonsManager.Instance;
     }
-    public void PauseGame(List<GameObject> excludeList)
+
+    /// <summary>
+    /// 暂停游戏，默认将场中所有按钮设为不可交互
+    /// </summary>
+    public void PauseGame(List<Button> excludedBtns = null)
     {
-        excludeFromPause.AddRange(excludeList);
+        // excludeFromPause.Clear();
+        // excludeFromPause.AddRange(excludeList);
         isPaused = true;
+        buttonsManager.SetAllButtonsInteractable(false);
+        if (excludedBtns != null)
+            buttonsManager.SetButtonsInteractable(excludedBtns, true);
     }
     public void ResumeGame()
     {
-        excludeFromPause.Clear();
+        // excludeFromPause.Clear();
         isPaused = false;
+        buttonsManager.SetAllButtonsInteractable(true);
     }
+
     public bool IsPaused()
     {
         return isPaused;
     }
 
-    public bool IsInExcludeList(GameObject obj)
-    {
-        return excludeFromPause.Contains(obj);
-    }
+    // public bool IsInExcludeList(GameObject obj)
+    // {
+    //     return excludeFromPause.Contains(obj);
+    // }
 }

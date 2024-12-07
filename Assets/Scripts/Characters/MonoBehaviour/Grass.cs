@@ -15,10 +15,10 @@ public class Grass : EnemyBase
     
     public void DuplicateSelf()
     {
-        GameObject copygrass = Instantiate(grassPrefab, transform.position, Quaternion.identity, enemyArrangement.transform);
-        copygrass.GetComponent<Grass>().maxHP = Mathf.CeilToInt(currentHP / 2f);
-        copygrass.GetComponent<Grass>().AddHP(0);
-        enemyArrangement.GetComponent<EnemyArrangement>().enemyList.Add(copygrass);
-        enemyArrangement.GetComponent<EnemyArrangement>().UpdateEnemyPosition();
+        // GameObject copygrass = Instantiate(grassPrefab, transform.position, Quaternion.identity, enemyArrangement.transform);
+        // copygrass.GetComponent<Grass>().maxHP = Mathf.CeilToInt(currentHP / 2f);
+        // copygrass.GetComponent<Grass>().AddHP(0);
+        // enemyArrangement.GetComponent<EnemyArrangement>().enemyList.Add(copygrass);
+        // enemyArrangement.GetComponent<EnemyArrangement>().UpdateEnemyPosition();
     }
 }

@@ -30,8 +30,7 @@ Transform:
   m_LocalPosition: {x: -0.8, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8761464551524294161}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4361590939632619820
@@ -48,9 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentEnemy: {fileID: 0}
   effectIconPrefab: {fileID: 6530117378251818891, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
-  centerPosition: {x: -0.8, y: 2.5, z: 0}
-  iconScale: {x: 0.3, y: 0.3, z: 0}
-  spacing: 0.5
+  centerPosition: {x: 0, y: 0, z: 0}
+  spacing: 0
 --- !u!114 &4926086108506517395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,70 +61,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSO: {fileID: 11400000, guid: 73d8f4af027dd2945907115a955c7147, type: 2}
+  eventSO: {fileID: 11400000, guid: 586e65e5bda664e48af347e449b1de9d, type: 2}
   response:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4361590939632619820}
+        m_TargetAssemblyTypeName: EnemyIntentionUI, Assembly-CSharp
+        m_MethodName: ShowUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   priority: 0
---- !u!1001 &8957458383980556873
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6848457126920769673}
-    m_Modifications:
-    - target: {fileID: 421563100006263896, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 421563100006263896, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 421563100006263896, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 421563100006263896, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 421563100006263896, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 421563100006263896, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 421563100006263896, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 421563100006263896, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 421563100006263896, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 421563100006263896, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6530117378251818891, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
-      propertyPath: m_Name
-      value: EnemyIntentionIcon
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
---- !u!4 &8761464551524294161 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 421563100006263896, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
-  m_PrefabInstance: {fileID: 8957458383980556873}
-  m_PrefabAsset: {fileID: 0}
