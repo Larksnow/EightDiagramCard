@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ff0405d84222a54a81429f169316c66, type: 3}
-  m_Name: NormalBattle1
+  m_Name: Scene01 Battle01
   m_EditorClassIdentifier: 
   sceneReference:
-    m_AssetGUID: 9e044a5def744ab4bb593fc90c05e6ed
+    m_AssetGUID: a238487d593231f41add93c3b85b1c67
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   sceneType: 1
-  sceneName: 
+  sceneName: "\u6218\u6597"

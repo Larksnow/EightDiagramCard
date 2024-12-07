@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: bb37a735a7b1d8d4d8a1e140c3f24c90
   m_currentHash:
     serializedVersion: 2
-    Hash: 9ccbad9b17184b8d8b38292cd09190f2
+    Hash: d6e9fcac3102bf0ec8e4d2bcae5d7a56
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -91,6 +91,7 @@ MonoBehaviour:
     - default
     - CardData
     - DiagramData
+    - Scenes
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: d94238a46ad4dc044b70058b7e393918, type: 2}
