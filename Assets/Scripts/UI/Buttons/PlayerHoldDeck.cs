@@ -3,27 +3,22 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerHoldDeck : MonoBehaviour
+public class PlayerHoldDeck : MonoBehaviour, ButtonClickHandler
 {
-    public CardListPanelController cardListPanelController;
+    public CardListDisplayController cardListDisplayController;
     public float animationDuration = 1f;
 
-    private PauseManager pauseManager;
-
-    private void Awake()
-    {
-        pauseManager = PauseManager.Instance;
-    }
 
     #region Event Listening
     public void OnClick(object obj)
     {
         PointerEventData pointerEventData = (PointerEventData)obj;
         GameObject selected = pointerEventData.pointerPress;
-        if (selected != this) return;
+        if (selected != gameObject) return;
 
         // 展示玩家牌组
-        cardListPanelController.ToggleCardListPanel(CardListType.PlayerHold);
+        Debug.Log("PlayerHoldDeck clicked");
+        cardListDisplayController.ToggleCardListPanel(CardListType.PlayerHold);
     }
 
     // 卡牌进入牌组动画

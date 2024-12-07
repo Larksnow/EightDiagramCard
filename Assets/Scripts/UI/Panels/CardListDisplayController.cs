@@ -3,33 +3,36 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardListPanelController : MonoBehaviour
+public class CardListDisplayController : MonoBehaviour
 {
     public GameObject cardEntryPrefab;
-    public Vector3 beginPos = new(0, 0, 0);
-    public float spacing = 70;
+    public Transform scrollContent;    // 滚动条目的父对象
+    public Image backgroundImage;
 
-    public CardDeck cardDeck;
-    public CardManager cardManager;
-    public FadeInOutHander fadeInOutHander;
+    private CardDeck cardDeck;
+    private CardManager cardManager;
+    private FadeInOutHander fadeInOutHander;
     private List<CardDeckEntry> cardList;
-    public Transform scrollContent;    // 滚动的卡牌条目内容
-    public GameObject drawDeckUI;
-    public GameObject discardDeckUI;
-    public GameObject playerHoldDeckUI;
-    public PauseManager pauseManager;
+    private GameObject drawDeckUI;
+    private GameObject discardDeckUI;
+    private GameObject playerHoldDeckUI;
+    private PauseManager pauseManager;
     private bool isDisplaying = false;
-    private Vector3 currentPos;
     private float entryHeight;
 
     private void Awake()
     {
+        cardDeck = GameObject.Find("CardDeck").GetComponent<CardDeck>();
+        cardManager = GameObject.Find("CardManager").GetComponent<CardManager>();
         fadeInOutHander = GetComponent<FadeInOutHander>();
+        drawDeckUI = GameObject.Find("DrawDeckUI");
+        discardDeckUI = GameObject.Find("DiscardDeckUI");
+        playerHoldDeckUI = GameObject.Find("PlayerHoldDeckUI");
         pauseManager = PauseManager.Instance;
-        currentPos = beginPos;
+        backgroundImage.enabled = false;
 
         // 获取卡牌条目的高度（用于计算滚动区域）
-        entryHeight = cardEntryPrefab.GetComponent<RectTransform>().rect.height + spacing;
+        entryHeight = cardEntryPrefab.GetComponent<RectTransform>().rect.height;
     }
 
     public void ToggleCardListPanel(CardListType cardListType)
@@ -55,17 +58,20 @@ public class CardListPanelController : MonoBehaviour
             }
 
             // 将卡牌条目加入列表面板
-            SetAllActive(true);
             SetCardList();
             fadeInOutHander.FadeIn();
 
             // 暂停游戏
-            pauseManager.PauseGame(new List<GameObject> { selectedDeck });
+            pauseManager.PauseGame(new List<Button> { selectedDeck.GetComponent<Button>() });
         }
         else
         {
             // 恢复游戏
-            fadeInOutHander.FadeOut();
+            fadeInOutHander.FadeOut(() =>
+            {
+                backgroundImage.enabled = false;
+                Clear();
+            });
             pauseManager.ResumeGame();
         }
     }
@@ -73,38 +79,22 @@ public class CardListPanelController : MonoBehaviour
 
     private void SetCardList()
     {
+        backgroundImage.enabled = true;
         if (cardList != null)
         {
-            // 清空之前的卡牌条目
-            foreach (Transform child in scrollContent)
-            {
-                Destroy(child.gameObject);
-            }
-
-            currentPos = beginPos;
-
-            // 计算滚动区域的高度
-            float contentHeight = cardList.Count * entryHeight;
-            RectTransform contentRect = scrollContent.GetComponent<RectTransform>();
-            contentRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, contentHeight);
-
             foreach (CardDeckEntry cardEntry in cardList)
             {
                 GameObject cardEntryObj = Instantiate(cardEntryPrefab, scrollContent);
-                cardEntryObj.GetComponent<TextMeshProUGUI>().text = $"{cardEntry.cardData.cardName}: {cardEntry.amount}张";
-                cardEntryObj.transform.localPosition = currentPos;
-                currentPos.y -= spacing;
+                cardEntryObj.GetComponent<TextMeshProUGUI>().text = $"{cardEntry.cardData.cardName}: {cardEntry.amount} 张";
             }
         }
     }
 
-    private void SetAllActive(bool isActive)
+    private void Clear()
     {
-        foreach (Transform child in transform) { child.gameObject.SetActive(isActive); }
-    }
-
-    public bool IsDisplaying()
-    {
-        return isDisplaying;
+        foreach (Transform child in scrollContent)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

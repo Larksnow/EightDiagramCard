@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 9, y: 412}
-  m_SizeDelta: {x: 187.5146, y: 50.0525}
+  m_SizeDelta: {x: 247.0867, y: 55.6354}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6032500120434426830
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u4E7E\u5366:12\u5F20"
+  m_text: "\u4E7E\u5366: 12 \u5F20"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cc4eb33ee255952479348d780c8ea22c, type: 2}
   m_sharedMaterial: {fileID: 5499866496975766196, guid: cc4eb33ee255952479348d780c8ea22c, type: 2}
@@ -92,15 +92,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

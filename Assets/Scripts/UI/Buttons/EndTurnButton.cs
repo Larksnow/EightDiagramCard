@@ -38,6 +38,7 @@ public class EndTurnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (isRotating) return;
         if (pauseManager.IsPaused()) return;
+        if (!pressEnabled) return;
         transform.DOScale(originalScale * hoverScaleMultiplier, animationDuration).SetEase(Ease.OutExpo);
     }
 

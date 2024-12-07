@@ -85,7 +85,10 @@ public class DiagramManager : MonoBehaviour
                         return;
                     }
                 }
-                target = enemies[Random.Range(0, enemies.Length)].GetComponent<CharacterBase>();
+                do
+                {
+                    target = enemies[Random.Range(0, enemies.Length)].GetComponent<CharacterBase>();
+                } while (target.isDead);
                 effect.Execute(target, triggered);
             }
             else if (effect.currentTarget == EffectTargetType.All)

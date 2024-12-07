@@ -21,7 +21,7 @@ public class GamePlayPanel : MonoBehaviour
     public GameObject selectDiagramPannel;
     public GameObject selectCardPannel;
     
-    public CardListPanelController cardListPanelController;
+    public CardListDisplayController cardListDisplayController;
 
     public float uiFadeDuration;
     public float dialogBoxDuration;
@@ -43,11 +43,12 @@ public class GamePlayPanel : MonoBehaviour
     {
         // Rest DiagramePannel When player turn ended
         diagramPannel.GetComponent<DiagramPanel>().ResetDiagramPannel();
+        endTurnButton.GetComponent<EndTurnButton>().pressEnabled = false;
         playerTurnEndEvent.RaiseEvent(null, this);
     }
     public void OnEnemyTurnBegin()
     {
-        endTurnButton.GetComponent<EndTurnButton>().pressEnabled = false;
+        // endTurnButton.GetComponent<EndTurnButton>().pressEnabled = false;
     }
 
     public void OnPlayerTurnBegin()
@@ -96,11 +97,11 @@ public class GamePlayPanel : MonoBehaviour
         GameObject selected = pointerEventData.pointerPress;
         if (selected == drawDeckUI)
         {
-            cardListPanelController.ToggleCardListPanel(CardListType.DrawDeck);
+            cardListDisplayController.ToggleCardListPanel(CardListType.DrawDeck);
         }
-        else if (selected == drawDeckUI)
+        else if (selected == discardDeckUI)
         {
-            cardListPanelController.ToggleCardListPanel(CardListType.DiscardDeck);
+            cardListDisplayController.ToggleCardListPanel(CardListType.DiscardDeck);
         }
     }
 
@@ -180,9 +181,9 @@ public class GamePlayPanel : MonoBehaviour
     #endregion
 
     #region Select Card Pannel
-    // 监听胜利事件
     public void SelectCardForAward()
     {
+
         selectCardPannel.SetActive(true);
     }
     #endregion
