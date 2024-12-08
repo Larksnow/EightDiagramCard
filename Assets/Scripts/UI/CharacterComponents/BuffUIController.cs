@@ -9,10 +9,12 @@ public class BuffUIController : MonoBehaviour
     public bool leftToRight = true;
 
     private Vector3 beginPos;
+
     private GameObject mitiUI, sereUI, dodgeUI, rageUI, thornUI, vulnUI, weakUI, poisonUI;
+
     // TODO: 敌人和玩家独特buffUI
-    private List<GameObject> buffsInDisplay = new();
-    private Dictionary<BuffType, GameObject> buffUIs = new();
+    private readonly List<GameObject> buffsInDisplay = new();
+    private readonly Dictionary<BuffType, GameObject> buffUIs = new();
 
     private void Awake()
     {
@@ -36,6 +38,7 @@ public class BuffUIController : MonoBehaviour
     }
 
     #region Event Listening
+
     public void UpdateBuffUI(object obj)
     {
         BuffChange buffChange = (BuffChange)obj;
@@ -60,17 +63,20 @@ public class BuffUIController : MonoBehaviour
                 buffsInDisplay.Remove(target);
             }
         }
+
         target.GetComponentInChildren<TextMeshPro>().text = updatedValue.ToString();
         UpdateList();
     }
+
     #endregion
 
     private void UpdateList()
     {
-        int count = buffsInDisplay.Count;
-        for (int i = 0; i < count; i++)
+        var count = buffsInDisplay.Count;
+        for (var i = 0; i < count; i++)
         {
-            buffsInDisplay[i].transform.position = new Vector3(leftToRight ? beginPos.x + i * uiInterval : beginPos.x - i * uiInterval, beginPos.y, beginPos.z);
+            buffsInDisplay[i].transform.position = new Vector3(
+                leftToRight ? beginPos.x + i * uiInterval : beginPos.x - i * uiInterval, beginPos.y, beginPos.z);
         }
     }
 }
