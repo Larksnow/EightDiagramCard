@@ -32,15 +32,20 @@ public class BaseEventSO<T> : ScriptableObject
         }
     }
 
-    public void RaiseEvent(T data, object sender)
+   public void RaiseEvent(T data, object sender)
     {
-        foreach (var pair in listeners)
+        // Iterate over the keys of the SortedList in sorted order
+        for (int i = 0; i < listeners.Keys.Count; i++)
         {
-            foreach (var listener in pair.Value)
+            int key = listeners.Keys[i]; // Get the current priority key
+            List<UnityAction<T>> currentListeners = listeners[key]; // Get the listeners for the current priority
+            // Iterate over the listeners for the current priority
+            for (int j = 0; j < currentListeners.Count; j++)
             {
-                listener?.Invoke(data);
+                currentListeners[j]?.Invoke(data);
             }
         }
+        // Update the last sender
         lastSender = sender.ToString();
     }
 }

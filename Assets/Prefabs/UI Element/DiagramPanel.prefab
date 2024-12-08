@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2668107744863159125}
   - component: {fileID: 4804108909816772581}
+  - component: {fileID: 7538470652381085046}
   m_Layer: 8
   m_Name: DiagramPanel
   m_TagString: Untagged
@@ -54,6 +55,35 @@ MonoBehaviour:
   animationDuration: 0.5
   triggerDiagramText: {fileID: 1670546309148740838}
   yaos: []
+--- !u!114 &7538470652381085046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880672103444233341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 0dd4110f8c34eb04ab0d2d7b4e238733, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4804108909816772581}
+        m_TargetAssemblyTypeName: DiagramPanel, Assembly-CSharp
+        m_MethodName: ResetDiagramPannel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
 --- !u!1 &4241853318341736507
 GameObject:
   m_ObjectHideFlags: 0

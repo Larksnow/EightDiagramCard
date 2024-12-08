@@ -101,4 +101,12 @@ public class DiagramManager : MonoBehaviour
         triggeredDiagram.tempValue = 0;
     }
 
+    public void ResetDiagramAfterBattle()
+    {
+        foreach (var diagram in diagramDataList)
+        {
+            diagram.ResetToDefault();
+        }
+    }
+
 }
