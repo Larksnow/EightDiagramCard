@@ -8,8 +8,8 @@ using UnityEngine.EventSystems;
 //This script controls all the UI elements in the battle scene
 public class GamePlayPanel : MonoBehaviour
 {
-    // 在这里引用各种UI Object
-    // 比如 public GameObject cardDeckUI = cardDeck(Prefab) 
+    // 在这里引用各种UI 
+    public GameAwardSO gameAwardData;
     [Header("UI Objects")]
     public GameObject drawDeckUI;
     public GameObject discardDeckUI;
@@ -20,6 +20,7 @@ public class GamePlayPanel : MonoBehaviour
     public GameObject dialogBox;
     public GameObject selectDiagramPannel;
     public GameObject selectCardPannel;
+    public GameObject selectLevelPannel;
     
     public CardListDisplayController cardListDisplayController;
 
@@ -29,6 +30,7 @@ public class GamePlayPanel : MonoBehaviour
     private SpriteRenderer manaImage;
     private TextMeshPro manaAmountText;
     private bool hasAvailableCard;
+
 
     [Header("Broadcast Events")]
     public ObjectEventSO playerTurnEndEvent;
@@ -181,12 +183,26 @@ public class GamePlayPanel : MonoBehaviour
     #endregion
 
     #region Select Card Pannel
-    public void SelectCardForAward()
+    public void SelectAward()
     {
-
-        selectCardPannel.SetActive(true);
+        switch (gameAwardData.awardType)
+        {
+            case AwardType.Card:
+                selectCardPannel.SetActive(true);
+                break;
+            case AwardType.Blessing:
+                //TODO: make select blessing panel active
+                break;
+        }
     }
     #endregion
+    
+    #region Select LevelPannel
+    public void SelectLevel()
+    {
+        selectLevelPannel.SetActive(true);
+    }
+    #endregion 
 
     public void UpdateMoney(int money)
     {
