@@ -11,4 +11,9 @@ public abstract class EnemyEffect : ScriptableObject
 
     public abstract void Execute(EnemyBase sender, CharacterBase player);
     // TODO: reset effect
+    
+    public virtual int GetRuntimeValue()
+    {
+        return value;
+    }
 }

@@ -10,10 +10,15 @@ public class EnemyDamageEffect : EnemyEffect
     public int damageRatio;
     public override void Execute(EnemyBase sender, CharacterBase player) // first parameter is the caller of the effect
     {
-       int damageAmount = Mathf.CeilToInt(damageRatio * enemyData.currentAttack);
+       int damageAmount = GetRuntimeValue();
        for(int i = 0; i < damageTimes; i++)
        {
             player.TakeDamage(damageAmount, sender, false);
        }
+    }
+    
+    public override int GetRuntimeValue()
+    {
+        return Mathf.CeilToInt(damageRatio * enemyData.currentAttack);
     }
 }

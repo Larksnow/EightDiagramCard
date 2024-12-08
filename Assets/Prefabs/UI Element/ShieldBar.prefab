@@ -70,9 +70,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1145784131
-  m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingLayerID: 585267547
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -159,9 +159,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1145784131
-  m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingLayerID: 585267547
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7699594518623504105
 MonoBehaviour:
@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 5480388393454796935}
   - component: {fileID: 8753022037409232127}
   - component: {fileID: 3167374152638974479}
+  - component: {fileID: 1716387923242181866}
   m_Layer: 5
   m_Name: ShieldBar
   m_TagString: Untagged
@@ -334,3 +335,15 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   priority: 0
+--- !u!210 &1716387923242181866
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954099604295893752}
+  m_Enabled: 1
+  m_SortingLayerID: 585267547
+  m_SortingLayer: 2
+  m_SortingOrder: 1
+  m_SortAtRoot: 0

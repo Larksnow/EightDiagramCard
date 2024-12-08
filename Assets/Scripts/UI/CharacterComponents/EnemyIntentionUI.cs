@@ -32,7 +32,7 @@ public class EnemyIntentionUI : MonoBehaviour
             // 创建图标
             var icon = Instantiate(effectIconPrefab, iconPosition, Quaternion.identity);
             icon.GetComponent<SpriteRenderer>().sprite = nextTurnEffects[i].icon;
-            icon.GetComponentInChildren<TextMeshPro>().text = nextTurnEffects[i].value.ToString();
+            icon.GetComponentInChildren<TextMeshPro>().text = nextTurnEffects[i].GetRuntimeValue().ToString();
             icon.transform.SetParent(transform, false);
         }
     }
