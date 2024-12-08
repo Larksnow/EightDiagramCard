@@ -131,12 +131,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactable: 1
-  clickable: 1
-  scaleOnHover: 1.1
-  scaleOnClick: 1.15
+  settings:
+    interactable: 1
+    clickable: 1
+    scaleOnHover: 1.1
+    scaleOnClick: 1.15
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
-  hasHoverPanel: 0
   hoverPanel: {fileID: 0}
 --- !u!61 &7516552876922721914
 BoxCollider2D:
@@ -240,7 +240,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1159076271411260233, guid: 7c6dd1b6e8ef69d4d89b8a0e38efbd25, type: 2}
+  - {fileID: -1066528578295608621, guid: 7c6dd1b6e8ef69d4d89b8a0e38efbd25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_text: 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c6dd1b6e8ef69d4d89b8a0e38efbd25, type: 2}
-  m_sharedMaterial: {fileID: -1159076271411260233, guid: 7c6dd1b6e8ef69d4d89b8a0e38efbd25, type: 2}
+  m_sharedMaterial: {fileID: -1066528578295608621, guid: 7c6dd1b6e8ef69d4d89b8a0e38efbd25, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
