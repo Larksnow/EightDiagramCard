@@ -48,7 +48,7 @@ MonoBehaviour:
   currentEnemy: {fileID: 0}
   effectIconPrefab: {fileID: 6530117378251818891, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
   centerPosition: {x: 0, y: 0, z: 0}
-  spacing: 0
+  spacing: 0.2
 --- !u!114 &4926086108506517395
 MonoBehaviour:
   m_ObjectHideFlags: 0

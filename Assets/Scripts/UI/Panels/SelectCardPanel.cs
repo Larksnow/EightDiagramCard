@@ -83,11 +83,11 @@ public class SelectCardPanel : FadablePanel, ButtonClickHandler
         for (int i = 0; i < cardPosObjs.Count; i++)
         {
             int index;
-            // 不能重复选择相同的卡牌
+            // 不能重复选择相同的卡牌, 且卡牌效果不能为空（不选择基础卡作为奖励）
             do
             {
                 index = Random.Range(0, cardManager.cardDataList.Count);
-            } while (cardIndexes.Contains(index));
+            } while (cardIndexes.Contains(index) || cardManager.cardDataList[index].effects.Count == 0);
             cardIndexes.Add(index);
 
             // 从卡池中取出一张卡牌并初始化

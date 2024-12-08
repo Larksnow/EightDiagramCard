@@ -2,11 +2,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// 一类淡入淡出面板的基类
+/// 包含一系列含`Button`脚本的可交互按钮子物体
+/// 启用时淡入；点击按钮后淡出
+///
+/// 继承类需实现`OnClickSelected`方法，处理点击按钮后的逻辑
+/// </summary>
 public abstract class FadablePanel : MonoBehaviour
 {
-    protected PauseManager pauseManager;
-    protected FadeInOutHander fadeInOutHander;
-    protected List<Button> buttons = new();
+    private PauseManager pauseManager;
+    private FadeInOutHander fadeInOutHandler;
+    private List<Button> buttons = new();
 
     private ButtonsManager buttonsManager;
 
@@ -14,13 +21,13 @@ public abstract class FadablePanel : MonoBehaviour
     {
         pauseManager = PauseManager.Instance;
         buttonsManager = ButtonsManager.Instance;
-        GetFadeInOutHander();
+        GetFadeInOutHandler();
         GetComponentsInChildren(transform, buttons);
     }
 
     protected virtual void OnEnable()
     {
-        fadeInOutHander.FadeIn();
+        fadeInOutHandler.FadeIn();
         pauseManager.PauseGame(buttons);
     }
 
@@ -53,19 +60,19 @@ public abstract class FadablePanel : MonoBehaviour
     {
         // 淡出时先禁用按钮可交互状态，避免重复点击，淡出后再启用
         buttonsManager.SetButtonsInteractable(buttons, false);
-        fadeInOutHander.FadeOut(() =>
+        fadeInOutHandler.FadeOut(() =>
         {
             gameObject.SetActive(false);
         });
     }
 
     #region 初始化
-    private void GetFadeInOutHander()
+    private void GetFadeInOutHandler()
     {
-        fadeInOutHander = GetComponent<FadeInOutHander>();
-        if (fadeInOutHander == null)
+        fadeInOutHandler = GetComponent<FadeInOutHander>();
+        if (fadeInOutHandler == null)
         {
-            fadeInOutHander = gameObject.AddComponent<FadeInOutHander>();
+            fadeInOutHandler = gameObject.AddComponent<FadeInOutHander>();
         }
     }
     #endregion

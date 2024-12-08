@@ -156,7 +156,8 @@ public class CharacterBase : MonoBehaviour
     {
         roundsNumber++;
         // 重置化劲
-        currentShield = 0;
+        AddShield(-currentShield);
+        
         Debug.Log("Decrease Miti by 1");
         AddBuffNumber(BuffType.Miti, -1);
         AddBuffNumber(BuffType.Sere, -1);
