@@ -67,8 +67,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.08, y: 5.57}
-  m_SizeDelta: {x: 0.7208, y: 0.8636}
+  m_AnchoredPosition: {x: 7.8506, y: 5.57}
+  m_SizeDelta: {x: 2.2619, y: 0.8636}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4085007679685027970
 MeshRenderer:
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 9999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cc4eb33ee255952479348d780c8ea22c, type: 2}
   m_sharedMaterial: {fileID: -3282735330613375470, guid: cc4eb33ee255952479348d780c8ea22c, type: 2}

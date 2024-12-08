@@ -67,3 +67,10 @@ public enum SceneType
     Shop,
     Rest
 }
+
+public enum AwardType
+{
+    Card,
+    Money,
+    Blessing,
+}

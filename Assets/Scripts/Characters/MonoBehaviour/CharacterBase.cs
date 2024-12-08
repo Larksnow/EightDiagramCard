@@ -148,6 +148,7 @@ public class CharacterBase : MonoBehaviour
         //TODO: play death animation (If have)
         //TODO: play death sound (If have)
         isDead = true;
+        Debug.Log($"Character {this} is dead");
         characterDeathEvent.RaiseEvent(this, this);
     }
 

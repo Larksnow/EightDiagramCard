@@ -60,7 +60,7 @@ public class EnemyBase : CharacterBase
         else // If is night, execute night intends
         {
             int index = (roundsNumber - 1) % enemyData.nightIntends.Count;
-            foreach (var item in enemyData.nightIntends[index - 1].actionList)
+            foreach (var item in enemyData.nightIntends[index].actionList)
             {
                 Debug.Log($"Enmey {enemyData.name} Action: " + item.name);
                 item.Execute(this, player);
@@ -77,7 +77,6 @@ public class EnemyBase : CharacterBase
         foreach (var renderer in deadEnemyRenderers)
         {
             renderer.DOFade(0f, 0.5f).OnComplete(() => {
-                gameObject.SetActive(false); // Hide dead enemy after 
                 base.Die();
             });
         }
