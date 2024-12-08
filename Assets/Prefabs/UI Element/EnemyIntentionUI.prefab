@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6848457126920769673}
   - component: {fileID: 4361590939632619820}
+  - component: {fileID: 1757030438545697432}
   - component: {fileID: 4926086108506517395}
+  - component: {fileID: -5119710792805734251}
   m_Layer: 7
   m_Name: EnemyIntentionUI
   m_TagString: Untagged
@@ -49,6 +51,19 @@ MonoBehaviour:
   effectIconPrefab: {fileID: 6530117378251818891, guid: 427dc1c624a8c004fa8945ce7865e753, type: 3}
   centerPosition: {x: 0, y: 0, z: 0}
   spacing: 0.2
+--- !u!114 &1757030438545697432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3583838730963558421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054547b51569c2b40830495a5cbb54e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 0.4
 --- !u!114 &4926086108506517395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +77,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventSO: {fileID: 11400000, guid: 586e65e5bda664e48af347e449b1de9d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4361590939632619820}
+        m_TargetAssemblyTypeName: EnemyIntentionUI, Assembly-CSharp
+        m_MethodName: ShowUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &-5119710792805734251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3583838730963558421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: e31717aac61a69f4ca3866344b712626, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
