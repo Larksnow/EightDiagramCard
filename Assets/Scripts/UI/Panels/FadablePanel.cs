@@ -12,7 +12,7 @@ using UnityEngine.EventSystems;
 public abstract class FadablePanel : MonoBehaviour
 {
     private PauseManager pauseManager;
-    private FadeInOutHander fadeInOutHandler;
+    private FadeInOutHandler fadeInOutHandler;
     private List<Button> buttons = new();
 
     private ButtonsManager buttonsManager;
@@ -69,10 +69,10 @@ public abstract class FadablePanel : MonoBehaviour
     #region 初始化
     private void GetFadeInOutHandler()
     {
-        fadeInOutHandler = GetComponent<FadeInOutHander>();
+        fadeInOutHandler = GetComponent<FadeInOutHandler>();
         if (fadeInOutHandler == null)
         {
-            fadeInOutHandler = gameObject.AddComponent<FadeInOutHander>();
+            fadeInOutHandler = gameObject.AddComponent<FadeInOutHandler>();
         }
     }
     #endregion

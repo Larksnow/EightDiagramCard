@@ -23,14 +23,14 @@ public class Indicator : MonoBehaviour
     {
         yin ++;
         UpdateIndicator();
-        CheckSwith();
+        CheckSwitch();
     }
     
     public void UpdateYangCount()
     {
         yang ++;
         UpdateIndicator();
-        CheckSwith();
+        CheckSwitch();
     }
 
     private void UpdateIndicator()
@@ -38,7 +38,7 @@ public class Indicator : MonoBehaviour
         yangCount.text = yang.ToString();
         yinCount.text = yin.ToString();
     }
-    private void CheckSwith()
+    private void CheckSwitch()
     {
         if (yang < yin && isDay)
         {
@@ -53,7 +53,6 @@ public class Indicator : MonoBehaviour
     [ContextMenu("SwitchEvent")]
     public void SwitchEvent()
     {
-        
         switchEvent.RaiseEvent(null, this);
         RotateImage();
     }

@@ -74,3 +74,12 @@ public enum AwardType
     Money,
     Blessing,
 }
+
+public enum EnemyEffectType
+{
+    Damage,
+    Shield,
+    Spawn,
+    Taunt,
+    Enhance
+}

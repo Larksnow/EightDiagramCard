@@ -137,7 +137,7 @@ MonoBehaviour:
   yinCount: {fileID: 7899025941836922181}
   image: {fileID: 3865148017389363805}
   switchEvent: {fileID: 11400000, guid: e31717aac61a69f4ca3866344b712626, type: 2}
-  isDay: 0
+  isDay: 1
 --- !u!114 &4084317400759135348
 MonoBehaviour:
   m_ObjectHideFlags: 0

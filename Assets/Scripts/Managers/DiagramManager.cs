@@ -16,7 +16,6 @@ public class DiagramManager : MonoBehaviour
     private void Awake()
     {
         InitializeDiagramDataList();
-        player = FindObjectOfType<Player>();
         gameManager = FindObjectOfType<GameManager>();
     }
 

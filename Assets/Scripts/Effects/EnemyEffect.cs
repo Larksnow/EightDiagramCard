@@ -8,6 +8,7 @@ public abstract class EnemyEffect : ScriptableObject
     public Sprite icon;
     [TextArea]
     public string description;
+    public EnemyEffectType effectType;
 
     public abstract void Execute(EnemyBase sender, CharacterBase player);
     // TODO: reset effect

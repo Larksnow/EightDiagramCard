@@ -11,7 +11,7 @@ public class CardListDisplayController : MonoBehaviour
 
     private CardDeck cardDeck;
     private CardManager cardManager;
-    private FadeInOutHander fadeInOutHander;
+    private FadeInOutHandler fadeInOutHandler;
     private List<CardDeckEntry> cardList;
     private GameObject drawDeckUI;
     private GameObject discardDeckUI;
@@ -24,7 +24,7 @@ public class CardListDisplayController : MonoBehaviour
     {
         cardDeck = GameObject.Find("CardDeck").GetComponent<CardDeck>();
         cardManager = GameObject.Find("CardManager").GetComponent<CardManager>();
-        fadeInOutHander = GetComponent<FadeInOutHander>();
+        fadeInOutHandler = GetComponent<FadeInOutHandler>();
         drawDeckUI = GameObject.Find("DrawDeckUI");
         discardDeckUI = GameObject.Find("DiscardDeckUI");
         playerHoldDeckUI = GameObject.Find("PlayerHoldDeckUI");
@@ -59,7 +59,7 @@ public class CardListDisplayController : MonoBehaviour
 
             // 将卡牌条目加入列表面板
             SetCardList();
-            fadeInOutHander.FadeIn();
+            fadeInOutHandler.FadeIn();
 
             // 暂停游戏
             pauseManager.PauseGame(new List<Button> { selectedDeck.GetComponent<Button>() });
@@ -67,7 +67,7 @@ public class CardListDisplayController : MonoBehaviour
         else
         {
             // 恢复游戏
-            fadeInOutHander.FadeOut(() =>
+            fadeInOutHandler.FadeOut(() =>
             {
                 backgroundImage.enabled = false;
                 Clear();

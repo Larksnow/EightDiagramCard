@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 969163ff7813b0b44afcb96b4c5ace2f, type: 3}
-  m_Name: GrassB Enhance
+  m_Script: {fileID: 11500000, guid: 589d6281563883542816f5bf71e9a4da, type: 3}
+  m_Name: SceneUnloadCompleteEvent
   m_EditorClassIdentifier: 
-  value: 1
-  icon: {fileID: 21300000, guid: ce4bd13594229154abc2a818d3fd1fee, type: 3}
   description: 
-  effectType: 4
-  enemyData: {fileID: 11400000, guid: 4a3f6f3b69b816047a4020dd3112ea4c, type: 2}
+  lastSender: 

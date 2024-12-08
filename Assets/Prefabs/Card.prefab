@@ -390,7 +390,7 @@ MonoBehaviour:
   isReducedCost: 0
   isMouseOver: 0
   reducedCost: 0
-  player: {fileID: 0}
+  player: {fileID: 4400543694277510328, guid: 46b1d762e3ae6314c9228bfddf2228df, type: 3}
   discardCardEvent: {fileID: 11400000, guid: 44f0722ed078e5e41bf03a6b52c3b3d5, type: 2}
   costManaEvent: {fileID: 11400000, guid: 329fc4d449ba8f04fbf71967cd344ebe, type: 2}
 --- !u!1 &3849375583090171736

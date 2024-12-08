@@ -12,13 +12,13 @@ public class SceneLoadManager : MonoBehaviour
     public List<GameSceneSO> battleScenes;  // 在inspector中添加battleScenes
 
     public GameObject fadeImage;
-    public List<GameObject> persistentObjectsInBattle; // 在战斗场景中持久化的object，无需重复加载，且在菜单场景中先设为inactive
     private int currentLevel = 0;
 
     private GameSceneSO currentLoadedScene;
     private GameSceneSO sceneToLoad;
 
     [Header("Broadcast Events")]
+    public ObjectEventSO sceneUnloadCompleteEvent;
     public ObjectEventSO sceneLoadCompleteEvent;
 
     private void Start()
@@ -46,7 +46,6 @@ public class SceneLoadManager : MonoBehaviour
         switch (gameSceneToGo.sceneType)
         {
             case SceneType.Menu:
-                SetBattlePersistentObjectsActive(false);
                 sceneToLoad = menuScene;
                 break;
             case SceneType.Battle:
@@ -68,14 +67,11 @@ public class SceneLoadManager : MonoBehaviour
     private IEnumerator UnloadPreviousScene()
     {
         fadeImage.SetActive(true);
-        FadeInOutHander fadeInOutHander = fadeImage.GetComponent<FadeInOutHander>();
-        fadeInOutHander.FadeIn();
-        yield return new WaitForSeconds(fadeInOutHander.fadeDuration);
+        FadeInOutHandler fadeInOutHandler = fadeImage.GetComponent<FadeInOutHandler>();
+        fadeInOutHandler.FadeIn();
+        yield return new WaitForSeconds(fadeInOutHandler.fadeDuration);
         yield return currentLoadedScene.sceneReference.UnLoadScene();
-        if (currentLoadedScene.sceneType == SceneType.Menu)
-        {
-            SetBattlePersistentObjectsActive(true);
-        }
+        sceneUnloadCompleteEvent.RaiseEvent(sceneToLoad, this);
         LoadNewScene();
     }
 
@@ -94,17 +90,9 @@ public class SceneLoadManager : MonoBehaviour
 
     private IEnumerator FadeOutCoroutine()
     {
-        FadeInOutHander fadeInOutHander = fadeImage.GetComponent<FadeInOutHander>();
-        fadeInOutHander.FadeOut();
-        yield return new WaitForSeconds(fadeInOutHander.fadeDuration);
+        FadeInOutHandler fadeInOutHandler = fadeImage.GetComponent<FadeInOutHandler>();
+        fadeInOutHandler.FadeOut();
+        yield return new WaitForSeconds(fadeInOutHandler.fadeDuration);
         fadeImage.SetActive(false);
-    }
-
-    private void SetBattlePersistentObjectsActive(bool isActive)
-    {
-        foreach (GameObject obj in persistentObjectsInBattle)
-        {
-            obj.SetActive(isActive);
-        }
     }
 }

@@ -151,6 +151,8 @@ MonoBehaviour:
   characterDeathEvent: {fileID: 11400000, guid: 27ad02973c463df4895fef2f0cd9b1cc, type: 2}
   enemyData: {fileID: 11400000, guid: 4a3f6f3b69b816047a4020dd3112ea4c, type: 2}
   isTaunting: 0
+  player: {fileID: 4400543694277510328, guid: 46b1d762e3ae6314c9228bfddf2228df, type: 3}
+  indicator: {fileID: 5521169918381874529, guid: e5c33c68d4a885b4ba6864752d4fb205, type: 3}
   enemyEndActionEvent: {fileID: 11400000, guid: a5210fd32bdc01349bd81b94d4c6c55d, type: 2}
   daySprite: {fileID: 21300000, guid: 63502276b3e17874b91ed63fcea1e573, type: 3}
   nightSprite: {fileID: 21300000, guid: 9585a60e948ec114f9b47c0b8f66c9bf, type: 3}
