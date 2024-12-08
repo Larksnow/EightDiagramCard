@@ -1867,8 +1867,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cc4eb33ee255952479348d780c8ea22c, type: 2}
+  m_sharedMaterial: {fileID: -3282735330613375470, guid: cc4eb33ee255952479348d780c8ea22c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1957,7 +1957,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -3282735330613375470, guid: cc4eb33ee255952479348d780c8ea22c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2919,7 +2919,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a12764ac97e464d4ca34b145c3428ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleEnd: 1
   enemyFinishCount: 0
   gameManager: {fileID: 1173290996}
   enemyTurnDuration: 3
@@ -2945,7 +2944,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2055254223}
         m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
-        m_MethodName: SetEnemyTurnTrue
+        m_MethodName: EnemyTrunBegin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3695,10 +3694,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6255042402645974794, guid: 7ece59e8fdaaf944c9a107939bcaf2e1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ece59e8fdaaf944c9a107939bcaf2e1, type: 3}
 --- !u!114 &4159704446289960109
 MonoBehaviour:
