@@ -14,6 +14,7 @@ public class EnemyIntentionUI : MonoBehaviour
 
     public void ShowUI()
     {
+        // TODO: 淡入淡出效果
         nextTurnEffects = currentEnemy.GetNextTurnEffects();
 
         ClearUI();

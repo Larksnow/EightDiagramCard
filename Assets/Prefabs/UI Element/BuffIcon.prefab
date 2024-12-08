@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9176526502481663100
 Transform:
   m_ObjectHideFlags: 0
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     interactable: 1
-    clickable: 1
+    clickable: 0
     scaleOnHover: 1.1
     scaleOnClick: 1.15
   onClickedEvent: {fileID: 0}

@@ -403,6 +403,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8753022037409232127, guid: f46effcef9f7ad94785889006767e6c1, type: 3}
+      propertyPath: currentCharacter
+      value: 
+      objectReference: {fileID: 2313633250780592338}
     - target: {fileID: 8954099604295893752, guid: f46effcef9f7ad94785889006767e6c1, type: 3}
       propertyPath: m_Name
       value: ShieldBar
@@ -499,6 +503,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuffUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7451164353134403969, guid: b1ead306418e8bb47a1b5536347b8b74, type: 3}
+      propertyPath: currentCharacter
+      value: 
+      objectReference: {fileID: 2313633250780592338}
     - target: {fileID: 8207129002000967449, guid: b1ead306418e8bb47a1b5536347b8b74, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.4
@@ -597,6 +605,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4843900737466395741, guid: 91fa5ce57960ad04fa25f9e3ef6236b4, type: 3}
+      propertyPath: currentCharacter
+      value: 
+      objectReference: {fileID: 2313633250780592338}
     - target: {fileID: 8750008182588558870, guid: 91fa5ce57960ad04fa25f9e3ef6236b4, type: 3}
       propertyPath: m_Name
       value: HealthBar

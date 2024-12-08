@@ -159,7 +159,6 @@ public class CharacterBase : MonoBehaviour
         // 重置化劲
         AddShield(-currentShield);
         
-        Debug.Log("Decrease Miti by 1");
         AddBuffNumber(BuffType.Miti, -1);
         AddBuffNumber(BuffType.Sere, -1);
         AddBuffNumber(BuffType.Dodge, -1);
@@ -169,17 +168,14 @@ public class CharacterBase : MonoBehaviour
         // 如果不是上一回合新被敌人施加debuff，则buffs减1
         if (newlyAppliedRounds[BuffType.Vuln] != roundsNumber - 1)
         {
-            Debug.Log("Decrease Vuln by 1");
             AddBuffNumber(BuffType.Vuln, -1);
         }
         if (newlyAppliedRounds[BuffType.Weak] != roundsNumber - 1)
         {
-            Debug.Log("Decrease Weak by 1");
             AddBuffNumber(BuffType.Weak, -1);
         }
         if (newlyAppliedRounds[BuffType.Poison] != roundsNumber - 1)
         {
-            Debug.Log("Decrease Poison by 1");
             AddBuffNumber(BuffType.Poison, -1);
         }
     }
@@ -203,6 +199,7 @@ public class CharacterBase : MonoBehaviour
     {
         if (buffNumbers[buffType] == 0 && value > 0) newlyAppliedRounds[buffType] = roundsNumber;
         buffNumbers[buffType] = Mathf.Clamp(buffNumbers[buffType] + value, 0, 9);
+        Debug.Log("Buff " + buffType + " is now " + buffNumbers[buffType]);
         updateBuffEvent.RaiseEvent(new BuffChange(this, buffType, buffNumbers[buffType]), this);
     }
 }

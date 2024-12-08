@@ -100,6 +100,6 @@ public class EnemyBase : CharacterBase
     public List<EnemyEffect> GetNextTurnEffects()
     {
         return indicator.isDay ? enemyData.dayIntends[roundsNumber % enemyData.dayIntends.Count].actionList
-        : enemyData.nightIntends[roundsNumber % enemyData.nightIntends.Count - 1].actionList;
+        : enemyData.nightIntends[roundsNumber % enemyData.nightIntends.Count].actionList;
     }
 }
