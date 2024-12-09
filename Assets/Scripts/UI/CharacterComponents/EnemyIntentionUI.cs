@@ -62,18 +62,23 @@ public class EnemyIntentionUI : MonoBehaviour
 
             icon.transform.SetParent(transform, false);
         }
+
         fadeInOutHandler.FadeIn();
     }
 
     private IEnumerator ClearUICoroutine()
     {
+        bool isFadeOutComplete = false;
         fadeInOutHandler.FadeOut(() =>
         {
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);
             }
+            isFadeOutComplete = true;
         });
-        yield return new WaitForSeconds(fadeInOutHandler.fadeDuration * 1.2f);
+        // TODO: 上面的实现不会报错，下面的是实现会报错
+        yield return new WaitForSeconds(fadeInOutHandler.fadeDuration + 0.1f);
+        // yield return new WaitUntil(() => isFadeOutComplete);
     }
 }

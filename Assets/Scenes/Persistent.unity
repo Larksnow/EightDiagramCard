@@ -1035,7 +1035,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2671681867855519011, guid: 0b9e407d80b5d6f48a6f198020626072, type: 3}
   m_PrefabInstance: {fileID: 2959291248302085362}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 763450597}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e09796b52d8a9db448dce4f7a351775f, type: 3}
@@ -2123,7 +2123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuSceneUis: []
   battleSceneUis:
-  - {fileID: 2022668280}
   - {fileID: 193565714}
   - {fileID: 158413090}
   - {fileID: 949537707}
@@ -2132,6 +2131,7 @@ MonoBehaviour:
   - {fileID: 466201776}
   - {fileID: 1551145621}
   - {fileID: 1028282028}
+  - {fileID: 763450597}
   - {fileID: 96805477}
   - {fileID: 1791597802}
   - {fileID: 1998293498}
@@ -2151,6 +2151,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &763450597 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5186725173989966025, guid: 0b9e407d80b5d6f48a6f198020626072, type: 3}
+  m_PrefabInstance: {fileID: 2959291248302085362}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &822859207
 GameObject:
   m_ObjectHideFlags: 0
@@ -3825,7 +3830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2022668281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4375,6 +4380,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2915855041901711307, guid: 6ac81c8bf7e4a984fbd1872d54742052, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6579905522312616200, guid: 6ac81c8bf7e4a984fbd1872d54742052, type: 3}
       propertyPath: m_Name
       value: DrawDeckUI
@@ -4446,11 +4455,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7755858361807506753, guid: 05c6f950fdf9ca743a0367113c50912a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.13
+      value: 6.31
       objectReference: {fileID: 0}
     - target: {fileID: 7755858361807506753, guid: 05c6f950fdf9ca743a0367113c50912a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.38
+      value: 5.46
       objectReference: {fileID: 0}
     - target: {fileID: 7755858361807506753, guid: 05c6f950fdf9ca743a0367113c50912a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4646,6 +4655,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardListDisplay
       objectReference: {fileID: 0}
+    - target: {fileID: 5186725173989966025, guid: 0b9e407d80b5d6f48a6f198020626072, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6013319850048526760, guid: 0b9e407d80b5d6f48a6f198020626072, type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
@@ -4739,6 +4752,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 521136823009631689, guid: 6a53130434149314eb29b6b14b80d858, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6455397514209282616, guid: 6a53130434149314eb29b6b14b80d858, type: 3}
       propertyPath: m_Name
       value: DiscardDeckUI

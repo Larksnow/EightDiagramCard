@@ -7,9 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadManager : MonoBehaviour
 {
-    [Header("Scenes")]
-    public GameSceneSO menuScene;
-    public List<GameSceneSO> battleScenes;  // 在inspector中添加battleScenes
+    [Header("Scenes")] public GameSceneSO menuScene;
+    public List<GameSceneSO> battleScenes; // 在inspector中添加battleScenes
 
     public GameObject fadeImage;
     private int currentLevel = 0;
@@ -17,8 +16,7 @@ public class SceneLoadManager : MonoBehaviour
     private GameSceneSO currentLoadedScene;
     private GameSceneSO sceneToLoad;
 
-    [Header("Broadcast Events")]
-    public ObjectEventSO sceneUnloadCompleteEvent;
+    [Header("Broadcast Events")] public ObjectEventSO sceneUnloadCompleteEvent;
     public ObjectEventSO sceneLoadCompleteEvent;
 
     private void Start()
@@ -30,6 +28,7 @@ public class SceneLoadManager : MonoBehaviour
     }
 
     #region Event Listening
+
     public void NextLevel()
     {
         if (battleScenes.Count < currentLevel + 1)
@@ -37,6 +36,7 @@ public class SceneLoadManager : MonoBehaviour
             Debug.LogError("No more levels to load");
             return;
         }
+
         OnLoadRequest(battleScenes[++currentLevel]);
     }
 
@@ -62,14 +62,19 @@ public class SceneLoadManager : MonoBehaviour
             StartCoroutine(UnloadPreviousScene());
         }
     }
+
     #endregion
 
     private IEnumerator UnloadPreviousScene()
     {
         fadeImage.SetActive(true);
         FadeInOutHandler fadeInOutHandler = fadeImage.GetComponent<FadeInOutHandler>();
-        fadeInOutHandler.FadeIn();
-        yield return new WaitForSeconds(fadeInOutHandler.fadeDuration);
+
+        // 等待淡入结束
+        bool isFadeInComplete = false;
+        fadeInOutHandler.FadeIn(() => { isFadeInComplete = true; });
+        yield return new WaitUntil(() => isFadeInComplete);
+        
         yield return currentLoadedScene.sceneReference.UnLoadScene();
         sceneUnloadCompleteEvent.RaiseEvent(sceneToLoad, this);
         LoadNewScene();
@@ -91,8 +96,12 @@ public class SceneLoadManager : MonoBehaviour
     private IEnumerator FadeOutCoroutine()
     {
         FadeInOutHandler fadeInOutHandler = fadeImage.GetComponent<FadeInOutHandler>();
-        fadeInOutHandler.FadeOut();
-        yield return new WaitForSeconds(fadeInOutHandler.fadeDuration);
+        
+        // 等待淡出结束
+        bool isFadeOutComplete = false;
+        fadeInOutHandler.FadeOut(() => { isFadeOutComplete = true; });
+        yield return new WaitUntil(() => isFadeOutComplete);
+        
         fadeImage.SetActive(false);
     }
 }

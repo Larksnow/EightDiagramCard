@@ -12,8 +12,7 @@ public class SelectCardPanel : FadablePanel, ButtonClickHandler
 
     private List<CardDataSO> cardsForSelection = new();
 
-    [Header("Broadcast Events")]
-    public ObjectEventSO nextLevelEvent;
+    [Header("Broadcast Events")] public ObjectEventSO nextLevelEvent;
     public ObjectEventSO addCardToHoldDeckEvent;
 
     protected override void Awake()
@@ -29,11 +28,6 @@ public class SelectCardPanel : FadablePanel, ButtonClickHandler
         ClearCards();
         SetCardsForAward();
         base.OnEnable();
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
     }
 
     protected override void OnClickSelected(GameObject selected)
@@ -52,6 +46,7 @@ public class SelectCardPanel : FadablePanel, ButtonClickHandler
                 }
             }
         }
+
         nextLevelEvent.RaiseEvent(null, this);
     }
 
@@ -65,7 +60,7 @@ public class SelectCardPanel : FadablePanel, ButtonClickHandler
                 foreach (Transform child in cardObj.transform)
                 {
                     Debug.Log(child.gameObject.name);
-                    child.gameObject.GetComponent<CardDragHandler>().enabled = true;   // 丢弃前恢复拖拽和卡牌脚本
+                    child.gameObject.GetComponent<CardDragHandler>().enabled = true; // 丢弃前恢复拖拽和卡牌脚本
                     child.gameObject.GetComponent<Card>().enabled = true;
                     cardManager.DiscardCard(child.gameObject);
                 }
@@ -80,7 +75,7 @@ public class SelectCardPanel : FadablePanel, ButtonClickHandler
         if (cardPosObjs.Count > cardManager.cardDataList.Count)
             Debug.LogWarning("Not enough cards for award");
 
-        for (int i = 0; i < cardPosObjs.Count; i++)
+        foreach (var cardPosObj in cardPosObjs)
         {
             int index;
             // 不能重复选择相同的卡牌, 且卡牌效果不能为空（不选择基础卡作为奖励）
@@ -88,6 +83,7 @@ public class SelectCardPanel : FadablePanel, ButtonClickHandler
             {
                 index = Random.Range(0, cardManager.cardDataList.Count);
             } while (cardIndexes.Contains(index) || cardManager.cardDataList[index].effects.Count == 0);
+
             cardIndexes.Add(index);
 
             // 从卡池中取出一张卡牌并初始化
@@ -95,12 +91,12 @@ public class SelectCardPanel : FadablePanel, ButtonClickHandler
             GameObject cardObj = cardManager.GetCardFromPool();
             Card card = cardObj.GetComponent<Card>();
             card.Init(cardData, false);
-            cardObj.transform.SetParent(cardPosObjs[i].transform, false);
+            cardObj.transform.SetParent(cardPosObj.transform, false);
             cardObj.transform.localPosition = Vector3.zero;
             cardObj.transform.localScale = Vector3.one;
-            cardObj.GetComponent<CardDragHandler>().enabled = false;// 禁用拖拽
-            cardObj.GetComponent<Card>().enabled = false;          // 禁用卡牌脚本
-            cardsForSelection.Add(card.cardData);   // 添加到可选列表
+            cardObj.GetComponent<CardDragHandler>().enabled = false; // 禁用拖拽
+            cardObj.GetComponent<Card>().enabled = false; // 禁用卡牌脚本
+            cardsForSelection.Add(card.cardData); // 添加到可选列表
         }
     }
 }

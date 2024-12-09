@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -5,9 +6,10 @@ using UnityEngine.EventSystems;
 
 public class PlayerHoldDeck : MonoBehaviour, ButtonClickHandler
 {
-    public CardListDisplayController cardListDisplayController;
     public float animationDuration = 1f;
 
+    // PlayerHoldDeck在CardListDisplayController之前加载
+    private CardListDisplayController cardListDisplayController;
 
     #region Event Listening
     public void OnClick(object obj)
@@ -18,6 +20,10 @@ public class PlayerHoldDeck : MonoBehaviour, ButtonClickHandler
 
         // 展示玩家牌组
         Debug.Log("PlayerHoldDeck clicked");
+        if (cardListDisplayController == null)
+        {
+            cardListDisplayController = FindObjectOfType<CardListDisplayController>();
+        }
         cardListDisplayController.ToggleCardListPanel(CardListType.PlayerHold);
     }
 

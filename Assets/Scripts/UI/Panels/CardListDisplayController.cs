@@ -6,33 +6,29 @@ using UnityEngine.UI;
 public class CardListDisplayController : MonoBehaviour
 {
     public GameObject cardEntryPrefab;
-    public Transform scrollContent;    // 滚动条目的父对象
+    public Transform scrollContent; // 滚动条目的父对象
     public Image backgroundImage;
 
+    private GameObject drawDeckUI;
+    private GameObject discardDeckUI;
+    private GameObject playerHoldDeckUI;
     private CardDeck cardDeck;
     private CardManager cardManager;
     private FadeInOutHandler fadeInOutHandler;
     private List<CardDeckEntry> cardList;
-    private GameObject drawDeckUI;
-    private GameObject discardDeckUI;
-    private GameObject playerHoldDeckUI;
     private PauseManager pauseManager;
     private bool isDisplaying = false;
-    private float entryHeight;
 
     private void Awake()
     {
-        cardDeck = GameObject.Find("CardDeck").GetComponent<CardDeck>();
-        cardManager = GameObject.Find("CardManager").GetComponent<CardManager>();
-        fadeInOutHandler = GetComponent<FadeInOutHandler>();
         drawDeckUI = GameObject.Find("DrawDeckUI");
         discardDeckUI = GameObject.Find("DiscardDeckUI");
         playerHoldDeckUI = GameObject.Find("PlayerHoldDeckUI");
+        cardDeck = GameObject.Find("CardDeck").GetComponent<CardDeck>();
+        cardManager = GameObject.Find("CardManager").GetComponent<CardManager>();
+        fadeInOutHandler = GetComponent<FadeInOutHandler>();
         pauseManager = PauseManager.Instance;
         backgroundImage.enabled = false;
-
-        // 获取卡牌条目的高度（用于计算滚动区域）
-        entryHeight = cardEntryPrefab.GetComponent<RectTransform>().rect.height;
     }
 
     public void ToggleCardListPanel(CardListType cardListType)
@@ -85,7 +81,8 @@ public class CardListDisplayController : MonoBehaviour
             foreach (CardDeckEntry cardEntry in cardList)
             {
                 GameObject cardEntryObj = Instantiate(cardEntryPrefab, scrollContent);
-                cardEntryObj.GetComponent<TextMeshProUGUI>().text = $"{cardEntry.cardData.cardName}: {cardEntry.amount} 张";
+                cardEntryObj.GetComponent<TextMeshProUGUI>().text =
+                    $"{cardEntry.cardData.cardName}: {cardEntry.amount} 张";
             }
         }
     }
