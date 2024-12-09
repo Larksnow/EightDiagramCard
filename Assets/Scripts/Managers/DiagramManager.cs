@@ -40,7 +40,7 @@ public class DiagramManager : MonoBehaviour
 
     public void ApplyDiagramEffect(DiagramDataSO triggeredDiagram, CardDataSO upYao = null, CardDataSO midYao = null, CardDataSO downYao = null)
     {
-        Debug.Log("Applying Diagram Effect");
+        Debug.Log("Applying Diagram Effect" + triggeredDiagram);
         // 显示卦象UI文字
         triggerDiagramEvent.RaiseEvent(triggeredDiagram, this);
         CharacterBase target = null;
@@ -96,8 +96,8 @@ public class DiagramManager : MonoBehaviour
                 }
             }
         }
-        // 触发完清空临时buff
-        triggeredDiagram.tempValue = 0;
+        // // 触发完清空临时buff
+        // triggeredDiagram.tempValue = 0;
     }
 
     public void ResetDiagramAfterBattle()
