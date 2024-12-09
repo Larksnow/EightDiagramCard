@@ -16,10 +16,12 @@ MonoBehaviour:
   diagramName: "\u826E"
   diagramColor: {r: 0, g: 0.39215687, b: 0, a: 1}
   patternSprite: {fileID: 21300000, guid: 7c38a7aa4a968844c8bfa42fa07d97db, type: 3}
+  triggerTime: 0
+  defaultValue: 1
   basicValue: 1
   buffedValue: 0
   tempValue: 0
-  description: "\u83B7\u5F97\u4E00\u5C42\u575A\u786C"
+  description: "\u83B7\u5F97{value}\u5C42\u575A\u786C"
   diagramType: 7
   diagramPattern: 010000000000000000000000
   effects:

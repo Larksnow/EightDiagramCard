@@ -13,5 +13,5 @@ public class CardDataSO : ScriptableObject
     public int cost;
     // public int canExecuteTimes;
    
-    public List<Effect> effects;
+    public List<CardEffect> effects;
 }

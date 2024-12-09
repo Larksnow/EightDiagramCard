@@ -27,14 +27,16 @@ public class DiagramChecker : MonoBehaviour
     public void checkPattern()
     {
         if (yaoList.Count < 3) return;
-        foreach (var item in diagramManager.diagramDataList)
+        foreach (var diagram in diagramManager.diagramDataList)
         {
             var upYao = yaoList[0];
             var midYao = yaoList[1];
             var downYao = yaoList[2];
-            if (upYao.cardType == item.diagramPattern[0] && midYao.cardType == item.diagramPattern[1] && downYao.cardType == item.diagramPattern[2])
+            if (upYao.cardType == diagram.diagramPattern[0] && midYao.cardType == diagram.diagramPattern[1] && downYao.cardType == diagram.diagramPattern[2])
             {
-                diagramManager.ApplyDiagramEffect(item, upYao, midYao, downYao);
+                var yaoArray = new CardDataSO[3] { yaoList[0], yaoList[1], yaoList[2] };
+                diagramManager.ApplyCardsEffect(yaoArray, diagram);
+                diagramManager.ApplyDiagramEffect(diagram);
             }
         }
     }

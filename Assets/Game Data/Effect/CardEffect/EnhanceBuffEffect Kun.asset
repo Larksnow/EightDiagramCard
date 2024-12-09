@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee8f633cb68e644fae943432a645def, type: 3}
+  m_Name: EnhanceBuffEffect Kun
+  m_EditorClassIdentifier: 
+  value: 1
+  description: "\u672C\u573A\u6218\u6597\u5764\u5366\u83B7\u5F97+1\u94DC\u94B1"
+  enhenceDataType: 0
+  diagramData: {fileID: 11400000, guid: cb5792b6320488942b06261e6cdca4c4, type: 2}

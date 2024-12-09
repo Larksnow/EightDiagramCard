@@ -27,6 +27,7 @@ public class CardManager : MonoBehaviour
     {
         //Make sure card is disbale after game shut down
         playerHoldDeck.CardDeckEntryList.Clear();
+        previousCard = null;
     }
     private void InitializeBaseCardDeck()
     {

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee8f633cb68e644fae943432a645def, type: 3}
+  m_Name: EnhanceTempEffect Gen
+  m_EditorClassIdentifier: 
+  value: 2
+  description: "\u4F60\u7684\u826E\u5366\u4E0B\u4E00\u6B21\u83B7\u5F97+2\u575A\u786C"
+  enhenceDataType: 1
+  diagramData: {fileID: 11400000, guid: 4145540640d8f6247a3cf0eebfded0fc, type: 2}

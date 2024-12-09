@@ -38,7 +38,8 @@ public enum EffectTargetType
 {
     Self,
     All,
-    Single
+    Random,
+    Lowest
 }
 
 public enum BuffType
@@ -82,4 +83,13 @@ public enum EnemyEffectType
     Spawn,
     Taunt,
     Enhance
+}
+
+public enum EnhenceDataType
+{
+    Buffed,
+    Temp,
+    TriggerTime,
+    Basic,
+    
 }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5226791d8230c748b717ffe53112b6e, type: 3}
+  m_Name: MitiEffect
+  m_EditorClassIdentifier: 
+  diagramData: {fileID: 11400000, guid: 4145540640d8f6247a3cf0eebfded0fc, type: 2}
+  isTemp: 1
+  currentTargetType: 0
+  defaultTargetType: 0
+  description: "\u83B7\u5F97{value}\u5C42\u575A\u786C"
+  genData: {fileID: 11400000, guid: 4145540640d8f6247a3cf0eebfded0fc, type: 2}

@@ -1,24 +1,22 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "QianYangEffect", menuName = "Card Effects/Qian Yang Effect")]
-public class QianYangEffect : Effect
+[CreateAssetMenu(fileName = "CopyCardEffect", menuName = "Card Effects/Copy Card Effect")]
+public class CopyCardEffect : CardEffect
 {
-    public DiagramDataSO qianData;
     public CardManager cardManager;
-    public CardDataSO qianYangCard;
+    public CardDataSO copyData;
     public ObjectEventSO activateCardEvent;
 
-    public override void Execute(CharacterBase target, DiagramDataSO triggered, CardType cardType = 0)
+    public override void Execute(DiagramDataSO triggeredDiagram)
     {
-        if (triggered == null) return;
-        if (cardManager == null) cardManager = GameObject.Find("CardManager").GetComponent<CardManager>();
-        CardDataSO copyData = cardManager.previousCard; // Get the previous card played
-        if (copyData == null || copyData == qianYangCard) return;
+        if (cardManager == null) cardManager = FindObjectOfType<CardManager>();
+        copyData = cardManager.previousCard; // Get the previous card played
+        if (copyData == null || copyData.effects.Contains(this)) return;
         Player player = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
         // Excute the effects of the previous card
         foreach (var effect in copyData.effects)
         {
-            effect.Execute(player, triggered, copyData.cardType);
+            effect.Execute(triggeredDiagram);
             activateCardEvent.RaiseEvent(copyData, this);
         }
         // Store the copy card as previous card
