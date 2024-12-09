@@ -19,15 +19,20 @@ public class EndTurnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         pauseManager = PauseManager.Instance;
         originalScale = transform.localScale;
         gamePlayPannel = FindObjectOfType<GamePlayPanel>();
+        pressEnabled = false;
     }
+
     public void OnMouseDown()
     {
         if (isRotating) return;
         if (pauseManager.IsPaused()) return;
         if (!pressEnabled) return;
+        // 立即禁用按钮
+        pressEnabled = false;
         Sequence sequence = DOTween.Sequence();
         // Scale up
-        sequence.Append(transform.DOScale(originalScale * clickScaleMultiplier, animationDuration).SetEase(Ease.OutExpo));
+        sequence.Append(
+            transform.DOScale(originalScale * clickScaleMultiplier, animationDuration).SetEase(Ease.OutExpo));
         // Scale back to original size
         sequence.Append(transform.DOScale(originalScale, 1).SetEase(Ease.OutExpo));
         // RotateEndTurnButton();

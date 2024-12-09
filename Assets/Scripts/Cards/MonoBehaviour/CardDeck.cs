@@ -22,7 +22,7 @@ public class CardDeck : MonoBehaviour
     public IntEventSO discardCountEvent;
     public ObjectEventSO checkAvailableCardEvent;
 
-    private bool discardDeckUIUpdated;
+    private bool shouldUpdateDiscardDeckUI;
     [SerializeField] private int costChangeTimer;  // 卡牌减费计时器（每打一张牌倒数一，为零时还原cost）
     private int costChangeAmount;  // 卡牌减费数值
 
@@ -165,7 +165,7 @@ public class CardDeck : MonoBehaviour
     public void DiscardAllCards()
     {
         discardCountEvent.RaiseEvent(discardDeck.Count + handCardObjectList.Count, this);
-        discardDeckUIUpdated = true;
+        shouldUpdateDiscardDeckUI = false;
 
         int remainingCoroutines = handCardObjectList.Count; // 计数器
         for (int i = handCardObjectList.Count - 1; i >= 0; --i)
@@ -176,7 +176,7 @@ public class CardDeck : MonoBehaviour
                 remainingCoroutines--;
                 if (remainingCoroutines == 0)
                 {
-                    discardDeckUIUpdated = false;
+                    shouldUpdateDiscardDeckUI = true;
                 }
             });
         }
@@ -211,7 +211,7 @@ public class CardDeck : MonoBehaviour
             card.isAnimating = false;
         };
         // Raise IntEvent to update UI number
-        if (!discardDeckUIUpdated) discardCountEvent.RaiseEvent(discardDeck.Count, this);
+        if (shouldUpdateDiscardDeckUI) discardCountEvent.RaiseEvent(discardDeck.Count, this);
 
         // 打出sustainedNumber张牌后，重置卡牌费用
         if (costChangeTimer > 0)
