@@ -98,5 +98,7 @@ public class SelectCardPanel : FadablePanel, ButtonClickHandler
             cardObj.GetComponent<Card>().enabled = false; // 禁用卡牌脚本
             cardsForSelection.Add(card.cardData); // 添加到可选列表
         }
+
+        fadeInOutHandler.UpdateUIElements();
     }
 }

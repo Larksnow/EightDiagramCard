@@ -11,10 +11,10 @@ using UnityEngine.EventSystems;
 /// </summary>
 public abstract class FadablePanel : MonoBehaviour
 {
+    protected FadeInOutHandler fadeInOutHandler;
+    
     private PauseManager pauseManager;
-    private FadeInOutHandler fadeInOutHandler;
     private List<Button> buttons = new();
-
     private ButtonsManager buttonsManager;
 
     protected virtual void Awake()

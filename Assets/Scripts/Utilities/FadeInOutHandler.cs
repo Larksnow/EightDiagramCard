@@ -10,20 +10,29 @@ public class FadeInOutHandler : MonoBehaviour
     public float fadeDuration = 0.8f;
 
     private List<Graphic> graphics = new();
+    private List<SpriteRenderer> spriteRenderers = new();
 
     private void Awake()
     {
         UpdateUIElements();
     }
 
-    // 初始化所有需要透明度变化的UI元素
-    private void UpdateUIElements()
+    #region Event Listening
+
+    // 更新所有需要透明度变化的UI元素
+    // 在需要动态增删子物体的GameObject中调用
+    public void UpdateUIElements()
     {
         graphics.Clear();
+        spriteRenderers.Clear();
 
         graphics.AddRange(GetComponentsInChildren<Graphic>());
         graphics.AddRange(GetComponents<Graphic>());
+        spriteRenderers.AddRange(GetComponentsInChildren<SpriteRenderer>());
+        spriteRenderers.AddRange(GetComponents<SpriteRenderer>());
     }
+
+    #endregion
 
     public void FadeIn(Action onComplete = null)
     {
@@ -46,6 +55,11 @@ public class FadeInOutHandler : MonoBehaviour
             sequence.Join(graphic.DOFade(1, fadeDuration));
         }
 
+        foreach (var render in spriteRenderers)
+        {
+            sequence.Join(render.DOFade(1, fadeDuration));
+        }
+
         yield return sequence.WaitForCompletion();
         onComplete?.Invoke();
     }
@@ -59,6 +73,11 @@ public class FadeInOutHandler : MonoBehaviour
             sequence.Join(graphic.DOFade(0, fadeDuration));
         }
 
+        foreach (var render in spriteRenderers)
+        {
+            sequence.Join(render.DOFade(0, fadeDuration));
+        }
+
         yield return sequence.WaitForCompletion();
         onComplete?.Invoke();
     }
@@ -69,6 +88,12 @@ public class FadeInOutHandler : MonoBehaviour
         foreach (var graphic in graphics)
         {
             graphic.color = new Color(graphic.color.r, graphic.color.g, graphic.color.b, alpha);
+        }
+
+        foreach (var render in spriteRenderers)
+        {
+            render.color = new Color(render.color.r, render.color.g, render.color.b,
+                alpha);
         }
     }
 }

@@ -2970,6 +2970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageNumberPool: {fileID: 1927460051}
+  numbersDelay: 0.2
 --- !u!4 &1236004495
 Transform:
   m_ObjectHideFlags: 0
@@ -3986,7 +3987,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2055254223}
         m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
-        m_MethodName: EnemyTrunBegin
+        m_MethodName: EnemyTurnBegin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

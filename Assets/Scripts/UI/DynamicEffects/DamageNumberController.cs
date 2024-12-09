@@ -1,61 +1,57 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class DamageNumberController : MonoBehaviour
 {
     public DamageNumberPool damageNumberPool;
-    private List<Vector3> damagePositions = new();
+    public float numbersDelay = 0.3f;
+    private Dictionary<Vector3, int> damagePositions = new();
 
-    public void ShowDamageNumber(object obj)
+public void ShowDamageNumber(object obj)
+{
+    DamagePosition damagePos = (DamagePosition)obj;
+
+    if (!damagePositions.TryGetValue(damagePos.position, out int count))
     {
-        DamagePosition damagePos = (DamagePosition)obj;
-
-        if (!damagePositions.Contains(damagePos.position))
-        {
-            StartShowDamageNumber(damagePos);
-        }
-        else
-        {
-            // 如果此处有伤害数字播放, 延迟执行
-            StartCoroutine(DelayedShowDamageNumber(damagePos));
-            return;
-        }
+        count = 0;
+        damagePositions[damagePos.position] = count;
     }
 
-    private IEnumerator DelayedShowDamageNumber(DamagePosition damagePos)
-    {
-        yield return new WaitForSeconds(0.5f);
-        StartShowDamageNumber(damagePos);
-    }
+    StartCoroutine(DelayedShowDamageNumber(damagePos, count));
+    damagePositions[damagePos.position] += 1;
+}
 
-    private void StartShowDamageNumber(DamagePosition damagePos)
+    private IEnumerator DelayedShowDamageNumber(DamagePosition damagePos, int index)
     {
-        damagePositions.Add(damagePos.position);
-
+        yield return new WaitForSeconds(index * numbersDelay);
+        
         float diminishDuration = 0.5f;
         float descentDuration = 1f;
         int descentHeight = 5;
         GameObject damageNumber = damageNumberPool.GetObjectFromPool();
         TextMeshPro text = damageNumber.GetComponent<TextMeshPro>();
-        Vector3 originPosition = damageNumber.transform.position;
-        Vector3 originScale = damageNumber.transform.localScale;
 
         damageNumber.transform.position = damagePos.position;
         text.text = damagePos.amount.ToString();
+        damageNumber.GetComponent<SortingGroup>().sortingOrder = index;
+
+        // 伤害数字动画
         Sequence sequence = DOTween.Sequence();
         sequence.Append(damageNumber.transform.DOScale(damageNumber.transform.localScale * 0.4f, diminishDuration))
             .Join(text.DOColor(Color.white, diminishDuration))
-            .Join(damageNumber.transform.DOMove(damageNumber.transform.position + new Vector3(1, -0.5f, 0), diminishDuration))
-            .Append(damageNumber.transform.DOMove(new Vector3(damageNumber.transform.position.x + 1, damageNumber.transform.position.y - descentHeight, damageNumber.transform.position.z), descentDuration))
-            .Join(text.DOFade(0f, descentDuration))
-            .OnComplete(() =>
-            {
-                damagePositions.Remove(damagePos.position);
-                damageNumberPool.ReleaseObjectToPool(damageNumber);
-            });
+            .Join(damageNumber.transform.DOMove(damageNumber.transform.position + new Vector3(1, -0.5f, 0),
+                diminishDuration))
+            .Append(damageNumber.transform.DOMove(
+                new Vector3(damageNumber.transform.position.x + 1, damageNumber.transform.position.y - descentHeight,
+                    damageNumber.transform.position.z), descentDuration))
+            .Join(text.DOFade(0f, descentDuration));
+        yield return sequence.WaitForCompletion();
+
+        damagePositions.Remove(damagePos.position);
+        damageNumberPool.ReleaseObjectToPool(damageNumber);
     }
 }

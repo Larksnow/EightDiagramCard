@@ -35,7 +35,7 @@ public class TurnManager : MonoBehaviour
         playerTurnBegin.RaiseEvent(null, this);
     }
 
-    public void EnemyTrunBegin()
+    public void EnemyTurnBegin()
     {
         StartCoroutine(EnemyTurnBeginCoroutine());
     }

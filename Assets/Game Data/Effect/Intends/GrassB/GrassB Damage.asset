@@ -15,6 +15,7 @@ MonoBehaviour:
   value: 0
   icon: {fileID: 21300000, guid: a09ffb6d24288d2458fa49b9d4e90d4d, type: 3}
   description: 
-  enemyData: {fileID: 11400000, guid: ae8149b1b6f171e4586c5db5751bd541, type: 2}
+  effectType: 0
+  enemyData: {fileID: 11400000, guid: 4a3f6f3b69b816047a4020dd3112ea4c, type: 2}
   damageTimes: 2
   damageRatio: 1

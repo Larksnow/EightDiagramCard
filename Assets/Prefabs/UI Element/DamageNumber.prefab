@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5176256318793719364}
   - component: {fileID: 8709123714918593632}
   - component: {fileID: 6707754405175389903}
+  - component: {fileID: -4920472171983078047}
   m_Layer: 0
   m_Name: DamageNumber
   m_TagString: Untagged
@@ -171,3 +172,15 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 8709123714918593632}
   m_maskType: 0
+--- !u!210 &-4920472171983078047
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508729426500026371}
+  m_Enabled: 1
+  m_SortingLayerID: -1145784131
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
