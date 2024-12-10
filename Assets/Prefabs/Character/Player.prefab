@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 820249424961649080}
   - component: {fileID: 4400543694277510328}
-  - component: {fileID: 6368809306955329439}
   - component: {fileID: 909023317958877195}
   - component: {fileID: 8908235137822792340}
   - component: {fileID: 1302025854581866476}
@@ -65,25 +64,11 @@ MonoBehaviour:
   characterDeathEvent: {fileID: 11400000, guid: 27ad02973c463df4895fef2f0cd9b1cc, type: 2}
   cardDeck: {fileID: 0}
   maxMana: 3
+  drawCountEachTurn: 5
   updateManaEvent: {fileID: 11400000, guid: 5ce3e1703d204164292b4648759b96ad, type: 2}
   updateMoneyEvent: {fileID: 11400000, guid: 75fabfbb0d346e5469d108d79de16af0, type: 2}
   currentMana: 0
   currentMoney: 0
---- !u!114 &6368809306955329439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672387171402058858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f222c6206f08840b05830f43afdcb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentCharacter: {fileID: 0}
-  fillBarObj: {fileID: 4464445173649377121}
-  amountObj: {fileID: 4190874673830962119}
 --- !u!114 &909023317958877195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,16 +499,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91fa5ce57960ad04fa25f9e3ef6236b4, type: 3}
---- !u!1 &4190874673830962119 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4800281062125848611, guid: 91fa5ce57960ad04fa25f9e3ef6236b4, type: 3}
-  m_PrefabInstance: {fileID: 8698417351326690276}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4464445173649377121 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4990579125442833541, guid: 91fa5ce57960ad04fa25f9e3ef6236b4, type: 3}
-  m_PrefabInstance: {fileID: 8698417351326690276}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6583836688479177624 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2587459734040191100, guid: 91fa5ce57960ad04fa25f9e3ef6236b4, type: 3}

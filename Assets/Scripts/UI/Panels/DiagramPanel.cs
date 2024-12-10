@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net.Mime;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -9,9 +10,9 @@ public class DiagramPanel : MonoBehaviour
     public GameObject yao;
     public Sprite yinSprite;
     public Sprite yangSprite;
-    public Color highlightColor = Color.red;
     public float animationDuration;
 
+    public DiagramChecker diagramChecker;
     public TextMeshPro triggerDiagramText;
     private int maxCount = 6;
 
@@ -22,6 +23,12 @@ public class DiagramPanel : MonoBehaviour
     {
         GameObject newYao = Instantiate(yao, transform);
         newYao.GetComponent<SpriteRenderer>().sprite = cardType == 0 ? yinSprite : yangSprite;
+        
+        // 更新Yao的Hover面板
+        var hoverPanel = newYao.transform.GetChild(0).gameObject;
+        hoverPanel.transform.GetChild(0).GetComponent<TextMeshPro>().text = diagramChecker.yaoList[0].cardName;
+        hoverPanel.transform.GetChild(1).GetComponent<TextMeshPro>().text = diagramChecker.yaoList[0].cardDescription;
+        
         yaos.Add(newYao);
         if (yaos.Count > maxCount)
         {

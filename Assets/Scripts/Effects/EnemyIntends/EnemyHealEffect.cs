@@ -7,6 +7,6 @@ public class EnemyHealEffect : EnemyEffect
 {
     public override void Execute(EnemyBase sender, CharacterBase player)
     {
-       sender.AddHP(value);
+       sender.AddHP(Value);
     }
 }

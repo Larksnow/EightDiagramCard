@@ -8,6 +8,6 @@ public class EnemyEnhenceEffect : EnemyEffect
     public EnemyDataSO enemyData;
     public override void Execute(EnemyBase sender, CharacterBase player)
     {
-       enemyData.currentAttack += value;
+       enemyData.currentAttack += Value;
     }
 }

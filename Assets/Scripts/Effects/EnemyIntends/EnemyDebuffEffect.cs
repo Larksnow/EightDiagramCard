@@ -10,7 +10,7 @@ public class EnemyDebuffEffect : EnemyEffect
     {
        for (int i = 0; i < buffs.Count; i++)
        {
-           player.AddBuffNumber(buffs[i], value);
+           player.AddBuffNumber(buffs[i], Value);
        }
     }
 }

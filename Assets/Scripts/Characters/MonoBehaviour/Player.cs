@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class Player : CharacterBase
 {
-public CardDeck cardDeck;
+    public CardDeck cardDeck;
     public int maxMana;
     public int drawCountEachTurn = 5;
 
-    [Header("Broadcast Events")]
-    public IntEventSO updateManaEvent;
+    [Header("Broadcast Events")] public IntEventSO updateManaEvent;
     public IntEventSO updateMoneyEvent;
 
 
-    public int currentMana; 
-    public int currentMoney; 
+    public int currentMana;
+    public int currentMoney;
 
     private void OnEnable()
     {
         currentMana = maxMana;
+        cardDeck = FindObjectOfType<CardDeck>();
     }
 
     public override void OnTurnBegin()

@@ -10,8 +10,8 @@ public class EnemyBuffEffect : EnemyEffect
     {
        for (int i = 0; i < buffs.Count; i++)
         {
-            sender.AddBuffNumber(buffs[i], value);
-            sender.AddBuffNumber(buffs[i], value);
+            sender.AddBuffNumber(buffs[i], Value);
+            sender.AddBuffNumber(buffs[i], Value);
         }
     }
 }

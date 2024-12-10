@@ -78,7 +78,7 @@ public class EnemyIntentionUI : MonoBehaviour
                 case EnemyEffectType.Damage:
                     var damageEffect = (EnemyDamageEffect)nextEffect;
 
-                    amountText.text = nextEffect.GetRuntimeValue().ToString();
+                    amountText.text = nextEffect.Value.ToString();
                     // 大于1次的攻击显示次数
                     if (damageEffect.damageTimes > 1)
                     {
@@ -88,7 +88,7 @@ public class EnemyIntentionUI : MonoBehaviour
 
                     break;
                 case EnemyEffectType.Shield:
-                    amountText.text = nextEffect.GetRuntimeValue().ToString();
+                    amountText.text = nextEffect.Value.ToString();
                     break;
                 default:
                     // 非数值型意图(除了攻击、防御)不显示数值

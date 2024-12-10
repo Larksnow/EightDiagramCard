@@ -7,6 +7,6 @@ public class EnemyShieldEffect : EnemyEffect
 {
     public override void Execute(EnemyBase sender, CharacterBase player)
     {
-       sender.AddShield(value);
+       sender.AddShield(Value);
     }
 }

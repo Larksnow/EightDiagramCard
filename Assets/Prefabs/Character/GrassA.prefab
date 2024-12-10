@@ -94,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7053858854864597830}
   - component: {fileID: 2313633250780592338}
-  - component: {fileID: 3950263141262477946}
   - component: {fileID: 3876328800892377922}
   - component: {fileID: 2197943612182471841}
   - component: {fileID: 2123759699127300414}
@@ -150,8 +149,6 @@ MonoBehaviour:
   characterDeathEvent: {fileID: 11400000, guid: 27ad02973c463df4895fef2f0cd9b1cc, type: 2}
   enemyData: {fileID: 11400000, guid: ae8149b1b6f171e4586c5db5751bd541, type: 2}
   isTaunting: 0
-  player: {fileID: 4400543694277510328, guid: 46b1d762e3ae6314c9228bfddf2228df, type: 3}
-  indicator: {fileID: 5521169918381874529, guid: e5c33c68d4a885b4ba6864752d4fb205, type: 3}
   enemyEndActionEvent: {fileID: 11400000, guid: a5210fd32bdc01349bd81b94d4c6c55d, type: 2}
   daySprite: {fileID: 21300000, guid: 63502276b3e17874b91ed63fcea1e573, type: 3}
   nightSprite: {fileID: 21300000, guid: 9585a60e948ec114f9b47c0b8f66c9bf, type: 3}
@@ -159,21 +156,6 @@ MonoBehaviour:
   nightImage: {fileID: 2850392552853981415}
   grassPrefab: {fileID: 4030591545744189679}
   enemyArrangement: {fileID: 0}
---- !u!114 &3950263141262477946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4030591545744189679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f222c6206f08840b05830f43afdcb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentCharacter: {fileID: 2313633250780592338}
-  fillBarObj: {fileID: 4026272475497158107}
-  amountObj: {fileID: 3475703656253550973}
 --- !u!114 &3876328800892377922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,16 +602,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91fa5ce57960ad04fa25f9e3ef6236b4, type: 3}
---- !u!1 &3475703656253550973 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4800281062125848611, guid: 91fa5ce57960ad04fa25f9e3ef6236b4, type: 3}
-  m_PrefabInstance: {fileID: 8260208913397266782}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4026272475497158107 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4990579125442833541, guid: 91fa5ce57960ad04fa25f9e3ef6236b4, type: 3}
-  m_PrefabInstance: {fileID: 8260208913397266782}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5857679899398543650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2587459734040191100, guid: 91fa5ce57960ad04fa25f9e3ef6236b4, type: 3}
