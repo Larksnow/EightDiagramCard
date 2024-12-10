@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7030717f4aa801f41947c7e901d18baa, type: 3}
+  m_Script: {fileID: 11500000, guid: 11cbdcfd298432747a55b997257c1468, type: 3}
   m_Name: QianYang
   m_EditorClassIdentifier: 
   cardName: "\u661F\u8FD0"
-  cardDescription: "\u590D\u5236\u4F60\u6253\u51FA\u7684\u4E0A\u4E00\u5F20\u7B26\u7684\u6548\u679C"
+  cardDescription: "\u7B49\u540C\u4E8E\u4F60\u6253\u51FA\u7684\u4E0A\u4E00\u5F20\u7B26"
   cardSprite: {fileID: 21300000, guid: 909add7014349d7418b32f10af03d86e, type: 3}
   cardType: 1
   color: {r: 0.85490197, g: 0.64705884, b: 0.1254902, a: 1}
   cost: 1
   effects:
-  - {fileID: 11400000, guid: 86fcba09dcbe12c4e8e9795222c3d121, type: 2}
+  - {fileID: 11400000, guid: 19d1db76de883ad4b90277e7376e5717, type: 2}
+  cardManager: {fileID: 0}

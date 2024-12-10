@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: BaseDeck
   m_EditorClassIdentifier: 
   CardDeckEntryList:
-  - cardData: {fileID: 11400000, guid: a1b9f4aee8a2f6a44a356d66e9dda062, type: 2}
-    amount: 10
   - cardData: {fileID: 11400000, guid: a041c611c80cb3041999b077a1aac15d, type: 2}
-    amount: 10
-  - cardData: {fileID: 11400000, guid: f3b3b449e39c090448af17060895051f, type: 2}
-    amount: 10
-  - cardData: {fileID: 11400000, guid: 32bc61a5e97e98e43b7206de85bcc78a, type: 2}
-    amount: 10
+    amount: 2
+  - cardData: {fileID: 11400000, guid: e5012084468abb54481f699ae643002f, type: 2}
+    amount: 2
+  - cardData: {fileID: 11400000, guid: 6e1c95ddf685ea64b98285c40cc60b77, type: 2}
+    amount: 1

@@ -129,7 +129,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void ResetCardCost()
     {
-        Debug.Log("Card Reset being called");
         isReducedCost = false;
         cardCost = cardData.cost;
 
@@ -140,6 +139,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void CheckCardAvailable()
     {
         isAvailable = player.currentMana >= cardCost;
+        if (cardData is QianYangDataSO)
+        {
+            descriptionTest.text = ((QianYangDataSO)cardData).GetUpdatedCardDescription();
+        }
         UpdateCardCostColor();
     }
 

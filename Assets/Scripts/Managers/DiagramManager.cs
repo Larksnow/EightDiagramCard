@@ -40,14 +40,21 @@ public class DiagramManager : MonoBehaviour
     }
     #endregion
 
-    public void ApplyCardsEffect(CardDataSO[] cards, DiagramDataSO triggeredDiagram)
+    public void ApplyCardsEffect(List<CardDataSO> cardList, DiagramDataSO triggeredDiagram)
     {
-        foreach (var card in cards)
+        for (int i = 0; i < 3; i++) // Execute First Three cards in the list
         {
+            var card = cardList[i];  // Get the card at index i
+            displayCardNameEvent.RaiseEvent(card, this);  // Raise the event to display the card name
             foreach (var effect in card.effects)
             {
-                effect.Execute(triggeredDiagram);
-                displayCardNameEvent.RaiseEvent(card, this);
+                if (effect is CopyCardEffect copyEffect)
+                {
+                    copyEffect.ExecuteWithIndex(i, cardList, triggeredDiagram);
+                }
+                else {
+                    effect.Execute(triggeredDiagram);  // Execute each effect
+                }
             }
         }
     }

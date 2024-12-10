@@ -34,8 +34,7 @@ public class DiagramChecker : MonoBehaviour
             var downYao = yaoList[2];
             if (upYao.cardType == diagram.diagramPattern[0] && midYao.cardType == diagram.diagramPattern[1] && downYao.cardType == diagram.diagramPattern[2])
             {
-                var yaoArray = new CardDataSO[3] { yaoList[0], yaoList[1], yaoList[2] };
-                diagramManager.ApplyCardsEffect(yaoArray, diagram);
+                diagramManager.ApplyCardsEffect(yaoList, diagram);
                 diagramManager.ApplyDiagramEffect(diagram);
             }
         }

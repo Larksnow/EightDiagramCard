@@ -13,16 +13,16 @@ public class ChangeDiagramDataEffect : CardEffect
             switch (enhenceDataType)
             {
                 case EnhenceDataType.Basic:
-                    triggeredDiagram.basicValue += value;
+                    diagramData.basicValue += value;
                     break;
                 case EnhenceDataType.Buffed:
-                    triggeredDiagram.buffedValue += value;
+                    diagramData.buffedValue += value;
                     break;
                 case EnhenceDataType.Temp:
-                    triggeredDiagram.tempValue += value;
+                    diagramData.tempValue += value;
                     break;
                 case EnhenceDataType.TriggerTime:
-                    triggeredDiagram.triggerTime += value;
+                    diagramData.triggerTime += value;
                     break;
             }
         }

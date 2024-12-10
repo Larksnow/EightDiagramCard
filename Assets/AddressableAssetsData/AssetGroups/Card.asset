@@ -47,20 +47,32 @@ MonoBehaviour:
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6e1c95ddf685ea64b98285c40cc60b77
+    m_Address: QianYang
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6f6bada764b9f8540abfe28932ed8101
     m_Address: KunYang
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7dec6131e7ff83a428de1d3d26259d3d
-    m_Address: KanYin
+  - m_GUID: 71baa068a560e7145965b31f83aa38a3
+    m_Address: ZhenYang
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7e5775c27e21810418d894e70791799e
-    m_Address: QianYang
+  - m_GUID: 7de01134a553ec14aa870c8a5ef62a7e
+    m_Address: ZhenYin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7dec6131e7ff83a428de1d3d26259d3d
+    m_Address: KanYin
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardData
