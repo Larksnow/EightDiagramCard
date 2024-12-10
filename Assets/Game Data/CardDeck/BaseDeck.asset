@@ -17,5 +17,7 @@ MonoBehaviour:
     amount: 10
   - cardData: {fileID: 11400000, guid: a041c611c80cb3041999b077a1aac15d, type: 2}
     amount: 10
-  - cardData: {fileID: 11400000, guid: 3778c1d447a479b428bc92e3c383a530, type: 2}
+  - cardData: {fileID: 11400000, guid: f3b3b449e39c090448af17060895051f, type: 2}
+    amount: 10
+  - cardData: {fileID: 11400000, guid: 32bc61a5e97e98e43b7206de85bcc78a, type: 2}
     amount: 10

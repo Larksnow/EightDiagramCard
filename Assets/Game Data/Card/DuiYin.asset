@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: DuiYin
   m_EditorClassIdentifier: 
   cardName: "\u6D8C\u6D41"
-  cardDescription: "\u4F60\u7684\u4E0B\u4E00\u5F20\u7B26\u6253\u51FA\u6240\u9700\u6CD5\u529B-1(\u4EC5\u4E00\u6B21)"
+  cardDescription: "\u5151\u5366\u4E0B\u4E00\u6B21\u4F1A\u4F7F\u4F60\u4E00\u5F20\u624B\u724C\u6CD5\u529B\u6D88\u8017-1"
   cardSprite: {fileID: 21300000, guid: 151c1820101754e4faac62b9560fa027, type: 3}
   cardType: 0
   color: {r: 0.2509804, g: 0.8784314, b: 0.8156863, a: 1}
-  cost: 0
+  cost: 1
   effects:
-  - {fileID: 11400000, guid: 2f24ca6640620a84586b9e18ca77a594, type: 2}
+  - {fileID: 11400000, guid: b05767aa823e49041b978f676e69cfa0, type: 2}

@@ -4,6 +4,7 @@ public class Player : CharacterBase
 {
 public CardDeck cardDeck;
     public int maxMana;
+    public int drawCountEachTurn = 5;
 
     [Header("Broadcast Events")]
     public IntEventSO updateManaEvent;

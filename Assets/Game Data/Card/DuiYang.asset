@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DuiYang
   m_EditorClassIdentifier: 
   cardName: "\u76C8\u6EE1"
-  cardDescription: "\u4F60\u7684\u5151\u5366\u4E0B\u4E00\u6B21\u989D\u5916\u56DE\u590D1\u70B9\u6CD5\u529B"
+  cardDescription: "\u5151\u5366\u4E0B\u4E00\u6B21\u989D\u5916\u56DE\u590D1\u70B9\u6CD5\u529B"
   cardSprite: {fileID: 21300000, guid: 909add7014349d7418b32f10af03d86e, type: 3}
   cardType: 1
   color: {r: 0.2509804, g: 0.8784314, b: 0.8156863, a: 1}

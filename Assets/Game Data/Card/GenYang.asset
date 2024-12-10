@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GenYang
   m_EditorClassIdentifier: 
   cardName: "\u5C79\u7ACB"
-  cardDescription: "\u4F60\u7684\u826E\u5366\u4E0B\u4E00\u6B21\u83B7\u5F97+2\u575A\u786C"
+  cardDescription: "\u826E\u5366\u4E0B\u4E00\u6B21\u83B7\u5F97+2\u575A\u786C"
   cardSprite: {fileID: 21300000, guid: 909add7014349d7418b32f10af03d86e, type: 3}
   cardType: 1
   color: {r: 0, g: 0.39215687, b: 0, a: 1}

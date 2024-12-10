@@ -173,13 +173,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardManager: {fileID: 828971798}
   cardLayoutManager: {fileID: 1015175757}
+  player: {fileID: 4159704446289960109}
+  validCards: []
   deckPosition: {fileID: 1200602512}
   discardPosition: {fileID: 479771555}
   animationTime: 1
   drawCountEvent: {fileID: 11400000, guid: 896ef2753b089a14fb5ce60e21a286fa, type: 2}
   discardCountEvent: {fileID: 11400000, guid: 045d6d3c916df07478a58b2555a83f30, type: 2}
   checkAvailableCardEvent: {fileID: 11400000, guid: a996c23459b01d74c89b1757388bfc97, type: 2}
-  costChangeTimer: 0
+  costChangeCounter: 0
+  costChangeAmount: 0
 --- !u!4 &123222011
 Transform:
   m_ObjectHideFlags: 0
@@ -272,7 +275,7 @@ MonoBehaviour:
       - m_Target: {fileID: 123222010}
         m_TargetAssemblyTypeName: CardDeck, Assembly-CSharp
         m_MethodName: NewTurnDrawCard
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3259,7 +3262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diagramDataList: []
   player: {fileID: 4159704446289960109}
-  displayCardNameEvent: {fileID: 0}
+  displayCardNameEvent: {fileID: 11400000, guid: 19d46b828353f5347b0c8257f2deebbd, type: 2}
   triggerDiagramEvent: {fileID: 11400000, guid: 5bd532fdf05ab2241b32816ccb3df9b1, type: 2}
 --- !u!4 &1489945571
 Transform:

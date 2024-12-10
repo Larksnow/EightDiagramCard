@@ -9,6 +9,7 @@ public class CardDeck : MonoBehaviour
 {
     public CardManager cardManager;
     public CardLayoutManager cardLayoutManager;
+    public Player player;
     private List<CardDataSO> drawDeck = new();
     private List<CardDataSO> discardDeck = new();
     private List<Card> handCardObjectList = new();
@@ -23,15 +24,15 @@ public class CardDeck : MonoBehaviour
     public ObjectEventSO checkAvailableCardEvent;
 
     private bool shouldUpdateDiscardDeckUI;
-    [SerializeField] private int costChangeTimer;  // 卡牌减费计时器（每打一张牌倒数一，为零时还原cost）
-    private int costChangeAmount;  // 卡牌减费数值
+    public int costChangeCounter;  // 卡牌减费计数器（每打一张牌倒数一，为零时还原cost）
+    public int costChangeAmount;  // 减去的cost数量
 
     // 测试用
     private void Start()
     {
         InitializeDrawDeck();
         InitializeDiscardDeck();
-        costChangeTimer = 0;
+        costChangeCounter = 0;
     }
 
     public void InitializeDrawDeck()
@@ -61,10 +62,10 @@ public class CardDeck : MonoBehaviour
         DrawCard(drawRequest);
     }
 
-    public void NewTurnDrawCard(int amount)
+    public void NewTurnDrawCard()
     {
         // TODO, 这个数量从player那里读取, 新建变量
-        CardRequest newTurnDrawRequest = new(5, CardType.Any);
+        CardRequest newTurnDrawRequest = new(player.drawCountEachTurn, CardType.Any);
         DrawCard(newTurnDrawRequest);
     }
 
@@ -212,17 +213,6 @@ public class CardDeck : MonoBehaviour
         };
         // Raise IntEvent to update UI number
         if (shouldUpdateDiscardDeckUI) discardCountEvent.RaiseEvent(discardDeck.Count, this);
-
-        // 打出sustainedNumber张牌后，重置卡牌费用
-        if (costChangeTimer > 0)
-        {
-            costChangeTimer--;
-            if (costChangeTimer == 0)
-            {
-                UpdateCardCost(true);
-            }
-        }
-
         SetCardLayout(0);
     }
     #endregion
@@ -231,7 +221,6 @@ public class CardDeck : MonoBehaviour
     {
         foreach (var card in handCardObjectList)
         {
-            card.SetIfReducedCost(costChangeTimer != 0);
             card.CheckCardAvailable();
         }
 
@@ -247,25 +236,56 @@ public class CardDeck : MonoBehaviour
         checkAvailableCardEvent.RaiseEvent(false, this);
     }
 
+    #region Change Card Cost
     // 更新手牌花费
     // 持续更新到之后打出'sustainedNumber'张牌
-    public void UpdateCardCost(bool reset, int costChange = -1, int sustaindNumber = 1)
+    // public void UpdateCostChangeCounter()
+    // {
+    //     if (costChangeCounter > 0)
+    //     {
+    //         costChangeCounter--;
+    //         if (costChangeCounter == 0)
+    //         {
+    //             UpdateHandCardsCost(true); // Reset
+    //         }
+    //     }
+    // }
+
+    // public void UpdateHandCardsCost(bool reset, int costChange = -1, int validTimes = 1)
+    // {
+    //     if (!reset) // 刷新持续事件和减少费用
+    //     {
+    //         costChangeAmount = costChange;
+    //         costChangeCounter = validTimes;
+    //     }else
+    //     {
+    //         costChangeAmount = 0;
+    //         costChangeCounter = 0;
+    //     }
+    //     foreach (var card in handCardObjectList)
+    //     {
+    //         if (reset)
+    //         {
+    //             card.ResetCardCost();
+    //             continue;
+    //         }
+    //         card.UpdateCardCost(costChangeAmount);
+    //     }
+    // }
+
+    public void ChangeHandCardsCost(int costChange, int cardNumbers)
     {
-        if (!reset)
-        {
-            costChangeTimer = sustaindNumber;
-            costChangeAmount = costChange;
-        }
-        foreach (var card in handCardObjectList)
-        {
-            if (reset)
-            {
-                card.ResetCardCost();
-                continue;
-            }
+        int cardsNeedToChange = cardNumbers;
+        // randomly choose a card in hand and change its cost
+        while (cardsNeedToChange > 0){
+            var validCards = handCardObjectList.FindAll(card => card.cardCost > 0);
+            if (validCards.Count == 0) return; // 如果没有可减费的牌，就返回
+            Card card = validCards[Random.Range(0, validCards.Count)];
             card.UpdateCardCost(costChange);
+            cardsNeedToChange--;
         }
     }
+    #endregion
 
     public List<CardDeckEntry> GetDrawDeck()
     {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: QianYin
   m_EditorClassIdentifier: 
   cardName: "\u5929\u673A"
-  cardDescription: "\u7531\u6B64\u724C\u7EC4\u6210\u7684\u5366\u8C61\u88AB\u4E7E\u5366\u590D\u5236\u65F6\u989D\u5916\u89E6\u53D1\u4E00\u6B21"
+  cardDescription: "\u7531\u6B64\u724C\u53C2\u4E0E\u7EC4\u6210\u8FC7\u7684\u5366\uFF0C\u88AB\u4E7E\u5366\u590D\u5236\u65F6\u53EF\u989D\u5916\u89E6\u53D1\u4E00\u6B21"
   cardSprite: {fileID: 21300000, guid: 151c1820101754e4faac62b9560fa027, type: 3}
   cardType: 0
   color: {r: 0.85490197, g: 0.64705884, b: 0.1254902, a: 1}

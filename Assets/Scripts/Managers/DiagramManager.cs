@@ -10,7 +10,8 @@ public class DiagramManager : MonoBehaviour
     public List<DiagramDataSO> diagramDataList;
     public Player player;
     private GameManager gameManager;
-    // public CharacterBase targetCharacter;
+
+    [Header("Broadcast Events")]
     public ObjectEventSO displayCardNameEvent;
     public ObjectEventSO triggerDiagramEvent;
 
@@ -46,6 +47,7 @@ public class DiagramManager : MonoBehaviour
             foreach (var effect in card.effects)
             {
                 effect.Execute(triggeredDiagram);
+                displayCardNameEvent.RaiseEvent(card, this);
             }
         }
     }

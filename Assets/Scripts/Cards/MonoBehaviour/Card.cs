@@ -93,6 +93,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void ExecuteCardEffect(CharacterBase target)
     {
         costManaEvent.RaiseEvent(-cardCost, this);
+        ResetCardCost();
         discardCardEvent.RaiseEvent(this, this);
         // if (cardData.effects?.Count > 0)
         // {
@@ -112,20 +113,23 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         else
             ResetCardCost();
     }
-
+    [ContextMenu("TEst")]
+    public void TEst()
+    {
+        UpdateCardCost(-1);
+    }
     public void UpdateCardCost(int costChange)
     {
-        if (costChange > 0) Debug.LogWarning("Card cost cannot be increased.");
         isReducedCost = costChange < 0;
         cardCost = cardData.cost + costChange;
         if (cardCost < 0) cardCost = 0;
-
         costText.text = cardCost.ToString();
         CheckCardAvailable();
     }
 
     public void ResetCardCost()
     {
+        Debug.Log("Card Reset being called");
         isReducedCost = false;
         cardCost = cardData.cost;
 
