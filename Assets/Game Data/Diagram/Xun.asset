@@ -16,7 +16,7 @@ MonoBehaviour:
   diagramName: "\u5DFD"
   diagramColor: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
   patternSprite: {fileID: 21300000, guid: 908430d198327ea41add8308161daa8e, type: 3}
-  triggerTime: 0
+  triggerTime: 1
   defaultValue: 1
   basicValue: 1
   buffedValue: 0

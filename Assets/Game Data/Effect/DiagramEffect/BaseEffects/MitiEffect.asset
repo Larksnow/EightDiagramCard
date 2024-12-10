@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MitiEffect
   m_EditorClassIdentifier: 
   diagramData: {fileID: 11400000, guid: 4145540640d8f6247a3cf0eebfded0fc, type: 2}
-  isTemp: 1
+  isTemp: 0
   currentTargetType: 0
   defaultTargetType: 0
   description: "\u83B7\u5F97{value}\u5C42\u575A\u786C"

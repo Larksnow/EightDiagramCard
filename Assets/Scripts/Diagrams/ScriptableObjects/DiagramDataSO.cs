@@ -45,7 +45,10 @@ public class DiagramDataSO : ScriptableObject
         for (int i = effects.Count - 1; i >= 0; i--)
         {
             if (effects[i].isTemp)
+            {
+                effects[i].RestEffectAfterTrigger();
                 effects.Remove(effects[i]);
+            }
         }
     }
 }

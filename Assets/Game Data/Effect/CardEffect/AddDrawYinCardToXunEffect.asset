@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ee46ee043c7c494b8215941cbe66cd9, type: 3}
-  m_Name: DrawCardEffect
+  m_Script: {fileID: 11500000, guid: 1cd19c94374ef9243a6a812f2999d7f1, type: 3}
+  m_Name: AddDrawYinCardToXunEffect
   m_EditorClassIdentifier: 
+  value: 0
+  description: "\u4F7F\u4F60\u7684\u5DFD\u5366\u989D\u5916\u62BD\u4E00\u5F20\u9634\u724C"
   diagramData: {fileID: 11400000, guid: cc12add7ae241aa4e9c12401a6e95609, type: 2}
-  tempValue: 0
-  isTemp: 0
-  currentTargetType: 0
-  defaultTargetType: 0
-  description: "\u62BD{value}\u5F20\u724C"
-  drawCardEvent: {fileID: 11400000, guid: 2bed7af5d47d5464ba47cd28d209882d, type: 2}
+  effectToAdd: {fileID: 11400000, guid: 4ebe798958b8e1346b62e970fd7f7b23, type: 2}

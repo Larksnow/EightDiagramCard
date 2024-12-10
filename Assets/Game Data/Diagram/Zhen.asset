@@ -20,7 +20,7 @@ MonoBehaviour:
   defaultValue: 7
   basicValue: 7
   buffedValue: 0
-  tempValue: 0
+  tempValue: 1
   description: 
   diagramType: 2
   diagramPattern: 000000000000000001000000

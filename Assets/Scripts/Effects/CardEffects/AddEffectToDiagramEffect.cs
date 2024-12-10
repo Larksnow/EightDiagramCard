@@ -11,7 +11,16 @@ public class AddEffectToDiagramEffect : CardEffect
     {
         if (diagramData != null && effectToAdd != null)
         {
-            diagramData.effects.Insert(0, effectToAdd);
+            // if diagramData.effects don't contains this effect, inset it
+            if (!diagramData.effects.Contains(effectToAdd))
+            {
+                // Insert the effect at the start of the list if it's not already there
+                diagramData.effects.Insert(0, effectToAdd);
+            }
+            else // If it already exists, increase its number by 1
+            {
+                effectToAdd.tempValue += 1;
+            }
         }
         else
         {

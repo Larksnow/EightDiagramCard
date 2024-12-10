@@ -19,4 +19,4 @@ MonoBehaviour:
   color: {r: 0, g: 0.39215687, b: 0, a: 1}
   cost: 1
   effects:
-  - {fileID: 11400000, guid: 18683ee49e104ea41aa7054bb82e0f32, type: 2}
+  - {fileID: 11400000, guid: 2a282b1f077f0f944ae7cb9b76b2beea, type: 2}

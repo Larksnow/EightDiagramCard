@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ee46ee043c7c494b8215941cbe66cd9, type: 3}
-  m_Name: DrawCardEffect
+  m_Script: {fileID: 11500000, guid: 0c49b79e8336d364b8be13daf9f3f8a0, type: 3}
+  m_Name: Draw Yin Card Effect
   m_EditorClassIdentifier: 
   diagramData: {fileID: 11400000, guid: cc12add7ae241aa4e9c12401a6e95609, type: 2}
   tempValue: 0
-  isTemp: 0
+  isTemp: 1
   currentTargetType: 0
   defaultTargetType: 0
-  description: "\u62BD{value}\u5F20\u724C"
+  description: "\u989D\u5916\u62BD{value}\u5F20\u9634\u724C"
   drawCardEvent: {fileID: 11400000, guid: 2bed7af5d47d5464ba47cd28d209882d, type: 2}
+  type: 0

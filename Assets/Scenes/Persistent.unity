@@ -3259,7 +3259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diagramDataList: []
   player: {fileID: 4159704446289960109}
-  activateCardEvent: {fileID: 11400000, guid: 19d46b828353f5347b0c8257f2deebbd, type: 2}
+  displayCardNameEvent: {fileID: 0}
   triggerDiagramEvent: {fileID: 11400000, guid: 5bd532fdf05ab2241b32816ccb3df9b1, type: 2}
 --- !u!4 &1489945571
 Transform:
@@ -4584,6 +4584,10 @@ PrefabInstance:
     - target: {fileID: 820249424961649080, guid: 46b1d762e3ae6314c9228bfddf2228df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400543694277510328, guid: 46b1d762e3ae6314c9228bfddf2228df, type: 3}
+      propertyPath: maxMana
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4400543694277510328, guid: 46b1d762e3ae6314c9228bfddf2228df, type: 3}
       propertyPath: cardDeck
