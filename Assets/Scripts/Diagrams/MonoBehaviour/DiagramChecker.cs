@@ -8,7 +8,11 @@ public class DiagramChecker : MonoBehaviour
     public List<CardDataSO> yaoList;
     private int maxCount = 6;
     public DiagramManager diagramManager;
+    
+    [Header("Broadcast Events")]
     public IntEventSO addOneYaoEvent;
+
+    public ObjectEventSO updateDiagramEffectsEvent;
 
     public void updateDiagramChecker(CardDataSO cardData)
     {
@@ -36,6 +40,8 @@ public class DiagramChecker : MonoBehaviour
             {
                 diagramManager.ApplyCardsEffect(yaoList, diagram);
                 diagramManager.ApplyDiagramEffect(diagram);
+                // 更新卦象效果预览面板
+                updateDiagramEffectsEvent.RaiseEvent(null, this);
             }
         }
     }
