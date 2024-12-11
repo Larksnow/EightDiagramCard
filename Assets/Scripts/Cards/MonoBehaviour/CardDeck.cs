@@ -23,7 +23,7 @@ public class CardDeck : MonoBehaviour
     public IntEventSO discardCountEvent;
     public ObjectEventSO checkAvailableCardEvent;
 
-    private bool shouldUpdateDiscardDeckUI;
+    private bool shouldUpdateDiscardDeckUI = true;
     public int costChangeCounter;  // 卡牌减费计数器（每打一张牌倒数一，为零时还原cost）
     public int costChangeAmount;  // 减去的cost数量
 
