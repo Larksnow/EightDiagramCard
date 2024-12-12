@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3267572974884098701}
   - component: {fileID: 4926086108506517395}
   - component: {fileID: -5119710792805734251}
+  - component: {fileID: 8197604094691005295}
   m_Layer: 7
   m_Name: EnemyIntentionUI
   m_TagString: Untagged
@@ -152,3 +153,15 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   priority: 0
+--- !u!210 &8197604094691005295
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3583838730963558421}
+  m_Enabled: 1
+  m_SortingLayerID: 585267547
+  m_SortingLayer: 2
+  m_SortingOrder: 2
+  m_SortAtRoot: 0

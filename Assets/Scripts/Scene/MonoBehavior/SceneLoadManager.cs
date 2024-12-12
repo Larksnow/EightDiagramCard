@@ -10,7 +10,7 @@ using UnityEngine.Serialization;
 
 public class SceneLoadManager : MonoBehaviour
 {
-    public bool enableTest = true;
+    public bool enableTest;
     public GameObject fadeImage;
 
     [Header("Scenes")] public GameSceneSO testSceneSo;
@@ -47,10 +47,6 @@ public class SceneLoadManager : MonoBehaviour
                 }
 
                 SceneManager.UnloadSceneAsync(testScene);
-            }
-            else
-            {
-                Debug.LogError("Test Scene is not loaded. Make sure it is loaded in Editor.");
             }
 
             // 开始加载菜单场景

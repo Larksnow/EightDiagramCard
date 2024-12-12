@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Linq;
-using UnityEditor;
-using UnityEditor.SearchService;
 
 // This scipt manage character dearth, win condition, and gameover condition
 public class GameManager : MonoBehaviour

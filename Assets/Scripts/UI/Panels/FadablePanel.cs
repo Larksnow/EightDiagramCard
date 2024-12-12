@@ -29,6 +29,7 @@ public abstract class FadablePanel : MonoBehaviour
     {
         fadeInOutHandler.FadeIn();
         pauseManager.PauseGame(buttons);
+        Debug.Log("PauseGame");
     }
 
     protected virtual void OnDisable()

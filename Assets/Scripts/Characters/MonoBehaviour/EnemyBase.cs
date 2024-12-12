@@ -16,6 +16,7 @@ public class EnemyBase : CharacterBase
     [SerializeField] Sprite nightSprite;
     public SpriteRenderer dayImage;
     public SpriteRenderer nightImage;
+    public float fadeDuration = 0.5f;
     protected override void Start()
     {
         base.Start();
@@ -77,7 +78,7 @@ public class EnemyBase : CharacterBase
         SpriteRenderer[] deadEnemyRenderers = GetComponentsInChildren<SpriteRenderer>();
         foreach (var renderer in deadEnemyRenderers)
         {
-            renderer.DOFade(0f, 0.5f).OnComplete(() => {
+            renderer.DOFade(0f, fadeDuration).OnComplete(() => {
                 base.Die();
             });
         }
@@ -87,14 +88,14 @@ public class EnemyBase : CharacterBase
     {
         if (!indicator.isDay)
         {
-            dayImage.DOFade(0, 0.5f).SetEase(Ease.InOutQuart);
-            nightImage.DOFade(1, 0.5f).SetEase(Ease.InOutQuart);
+            dayImage.DOFade(0, fadeDuration).SetEase(Ease.InOutQuart);
+            nightImage.DOFade(1, fadeDuration).SetEase(Ease.InOutQuart);
 
         }
         else if (indicator.isDay)
         {
-            dayImage.DOFade(1, 0.5f).SetEase(Ease.InOutQuart);
-            nightImage.DOFade(0, 0.5f).SetEase(Ease.InOutQuart);
+            dayImage.DOFade(1, fadeDuration).SetEase(Ease.InOutQuart);
+            nightImage.DOFade(0, fadeDuration).SetEase(Ease.InOutQuart);
         }
     }
     // 敌人被动效果写在自己的Class里

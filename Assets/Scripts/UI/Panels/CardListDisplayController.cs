@@ -16,7 +16,7 @@ public class CardListDisplayController : MonoBehaviour
     private CardManager cardManager;
     private FadeInOutHandler fadeInOutHandler;
     private List<CardDeckEntry> cardList;
-    private PauseManager pauseManager;
+    [SerializeField] PauseManager pauseManager;
     private bool isDisplaying = false;
 
     private void Awake()
