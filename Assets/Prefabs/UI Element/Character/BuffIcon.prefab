@@ -111,7 +111,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 585267547
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2524885729605009561
 MonoBehaviour:
@@ -280,9 +280,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 92985891
-  m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingLayerID: -756467799
+  m_SortingLayer: 5
+  m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2199983977187185953
 MonoBehaviour:
@@ -385,7 +385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 579882600096428798}
-  - component: {fileID: 381882210516792421}
+  - component: {fileID: 1273133908193030132}
   - component: {fileID: 6779029004242523467}
   m_Layer: 8
   m_Name: BuffIcon
@@ -412,7 +412,7 @@ Transform:
   - {fileID: 9176526502481663100}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &381882210516792421
+--- !u!114 &1273133908193030132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -421,16 +421,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5786373996805919793}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
+  m_Script: {fileID: 11500000, guid: 41da3068e57b47909a434edf88ed13ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    interactable: 1
-    clickable: 0
-    scaleOnHover: 1.1
-    scaleOnClick: 1.15
-  onClickedEvent: {fileID: 0}
-  hoverPanel: {fileID: 13326876440264536}
+  panel: {fileID: 13326876440264536}
+  scaleOnEnter: 1.1
 --- !u!61 &6779029004242523467
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -546,9 +541,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 92985891
-  m_SortingLayer: 4
-  m_SortingOrder: 1
+  m_SortingLayerID: -756467799
+  m_SortingLayer: 5
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a458dc8ae33d97842a1f12958b1bf6fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -632,7 +627,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 585267547
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a2563f2b8dbc4044b9a50537d3a29962, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -719,9 +714,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 92985891
-  m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingLayerID: -756467799
+  m_SortingLayer: 5
+  m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8114824403691089949
 MonoBehaviour:

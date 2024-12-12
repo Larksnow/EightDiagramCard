@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 5521169918381874529}
   - component: {fileID: 4084317400759135348}
   - component: {fileID: 6467283554938998358}
+  - component: {fileID: 1543152299866965554}
   m_Layer: 0
   m_Name: Indicator
   m_TagString: Untagged
@@ -186,6 +187,35 @@ MonoBehaviour:
       - m_Target: {fileID: 5521169918381874529}
         m_TargetAssemblyTypeName: IndicatorUI, Assembly-CSharp
         m_MethodName: UpdateYinCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &1543152299866965554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6363865616508546406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 04ac0f64cb1fec3429aef4c764623168, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5521169918381874529}
+        m_TargetAssemblyTypeName: Indicator, Assembly-CSharp
+        m_MethodName: ResetIndicator
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

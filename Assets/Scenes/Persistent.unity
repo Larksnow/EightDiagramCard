@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 123222015}
   - component: {fileID: 123222016}
   - component: {fileID: 123222017}
+  - component: {fileID: 123222018}
   m_Layer: 0
   m_Name: CardDeck
   m_TagString: Untagged
@@ -347,6 +348,35 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   priority: 0
+--- !u!114 &123222018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123222009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 04ac0f64cb1fec3429aef4c764623168, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 123222010}
+        m_TargetAssemblyTypeName: CardDeck, Assembly-CSharp
+        m_MethodName: ResetCardDeck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
 --- !u!1 &155433258
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,8 +491,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185267771}
   m_Enabled: 1
-  m_SortingLayerID: 92985891
-  m_SortingLayer: 4
+  m_SortingLayerID: -756467799
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!4 &185267773
@@ -3752,11 +3782,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     interactable: 1
-    clickable: 1
-    scaleOnHover: 1
+    scaleOnEnter: 1.1
     scaleOnClick: 1
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
-  hoverPanel: {fileID: 446998709}
 --- !u!61 &1476001195
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4483,11 +4511,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     interactable: 1
-    clickable: 1
-    scaleOnHover: 1
+    scaleOnEnter: 1.1
     scaleOnClick: 1
   onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
-  hoverPanel: {fileID: 205608620}
 --- !u!61 &1828206784
 BoxCollider2D:
   m_ObjectHideFlags: 0

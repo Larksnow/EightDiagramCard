@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SelectionsOnMenu : MonoBehaviour, ButtonClickHandler
+public class SelectionsOnMenu : MonoBehaviour, IButtonClickHandler
 {
     public GameObject startButton;
     public GameObject quitButton;

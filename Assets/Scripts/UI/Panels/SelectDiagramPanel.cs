@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SelectDiagramPanel : FadablePanel, ButtonClickHandler
+public class SelectDiagramPanel : FadablePanel, IButtonClickHandler
 {
     public CopyDiagramEffect copyDiagramEffect;
     public DiagramDataSO kunData, zhenData, xunData, kanData, liData, genData, duiData;

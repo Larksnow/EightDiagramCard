@@ -56,3 +56,6 @@ TagManager:
   - name: Panel
     uniqueID: 92985891
     locked: 0
+  - name: FrontPanel
+    uniqueID: 3538499497
+    locked: 0

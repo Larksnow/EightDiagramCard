@@ -4,7 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerHoldDeck : MonoBehaviour, ButtonClickHandler
+public class PlayerHoldDeck : MonoBehaviour, IButtonClickHandler
 {
     public float animationDuration = 1f;
 

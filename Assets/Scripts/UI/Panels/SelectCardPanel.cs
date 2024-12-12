@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
-public class SelectCardPanel : FadablePanel, ButtonClickHandler
+public class SelectCardPanel : FadablePanel, IButtonClickHandler
 {
     public GameObject skipButton, cardPos1Obj, cardPos2Obj, cardPos3Obj;
     public List<GameObject> cardPosObjs;

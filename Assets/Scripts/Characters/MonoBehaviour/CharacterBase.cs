@@ -109,8 +109,8 @@ public class CharacterBase : MonoBehaviour
             }
             else
             {
-                AddShield(-currentShield);
                 AddHP(-(amount - currentShield));
+                AddShield(-currentShield);
             }
         }
         else
