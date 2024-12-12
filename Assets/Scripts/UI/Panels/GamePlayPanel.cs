@@ -68,28 +68,26 @@ public class GamePlayPanel : MonoBehaviour
 
     public void UpdateDrawDeckAmount(int amount)
     {
-        TextMeshPro number = drawDeckUI.GetComponentInChildren<TextMeshPro>();
+        UpdateDeckAmount(drawDeckUI, amount);
+    }
+
+    public void UpdateDiscardDeckAmount(int amount)
+    {
+        UpdateDeckAmount(discardDeckUI, amount);
+    }
+
+    private void UpdateDeckAmount(GameObject cardDeck, int amount)
+    {
+        TextMeshPro number = cardDeck.GetComponentInChildren<TextMeshPro>();
         int currentAmount = int.Parse(number.text);
         if (currentAmount == amount) return;
         number.text = amount.ToString();
 
         // 先放大，然后恢复到原大小
-        Transform uiTransform = drawDeckUI.transform;
+        Transform uiTransform = cardDeck.transform;
         uiTransform.DOScale(1.1f, uiFadeDuration / 6).SetEase(Ease.OutCubic)
             .OnComplete(() => { uiTransform.DOScale(1f, uiFadeDuration / 6).SetEase(Ease.OutCubic); });
-    }
-
-    public void UpdateDiscardDeckAmount(int amount)
-    {
-        TextMeshPro number = discardDeckUI.GetComponentInChildren<TextMeshPro>();
-        number.text = amount.ToString();
-        int currentAmount = int.Parse(number.text);
-        if (currentAmount == amount) return;
-        number.text = amount.ToString();
-
-        Transform uiTransform = discardDeckUI.transform;
-        uiTransform.DOScale(1.1f, uiFadeDuration / 6).SetEase(Ease.OutCubic)
-            .OnComplete(() => { uiTransform.DOScale(1f, uiFadeDuration / 6).SetEase(Ease.OutCubic); });
+        Debug.Log("UpdateDeckAmount " + cardDeck.name);
     }
 
     public void OnClickDeck(object obj)

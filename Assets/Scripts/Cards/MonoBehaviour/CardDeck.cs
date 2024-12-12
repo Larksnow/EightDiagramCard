@@ -18,14 +18,13 @@ public class CardDeck : MonoBehaviour
 
     public float animationTime;
 
-    [Header("Broadcast Events")]
-    public IntEventSO drawCountEvent;
+    [Header("Broadcast Events")] public IntEventSO drawCountEvent;
     public IntEventSO discardCountEvent;
     public ObjectEventSO checkAvailableCardEvent;
 
     private bool shouldUpdateDiscardDeckUI = true;
-    public int costChangeCounter;  // 卡牌减费计数器（每打一张牌倒数一，为零时还原cost）
-    public int costChangeAmount;  // 减去的cost数量
+    public int costChangeCounter; // 卡牌减费计数器（每打一张牌倒数一，为零时还原cost）
+    public int costChangeAmount; // 减去的cost数量
 
     // 测试用
     private void Start()
@@ -46,15 +45,26 @@ public class CardDeck : MonoBehaviour
                 drawDeck.Add(item.cardData);
             }
         }
+
         ShuffDeck();
+        drawCountEvent.RaiseEvent(drawDeck.Count, this);
     }
 
     private void InitializeDiscardDeck()
     {
         discardDeck.Clear();
+        discardCountEvent.RaiseEvent(0, this);
+    }
+
+    // 监听sceneLoadCompleteEvent
+    public void ResetCardDeck()
+    {
+        InitializeDrawDeck();
+        InitializeDiscardDeck();
     }
 
     #region Draw Card
+
     [ContextMenu("TestDrawCard")]
     public void TestDrawCard()
     {
@@ -78,12 +88,13 @@ public class CardDeck : MonoBehaviour
 
         for (int i = 0; i < amount; ++i)
         {
-            if (handCardObjectList.Count >= 10) return;  // Max hand limit is 10
+            if (handCardObjectList.Count >= 10) return; // Max hand limit is 10
             if (drawDeck.Count == 0)
             {
                 RefillDrawDeckFromDiscard();
                 ShuffDeck();
             }
+
             // No cards in both deck
             if (drawDeck.Count == 0) return;
             // Find the card with type in deck
@@ -107,6 +118,7 @@ public class CardDeck : MonoBehaviour
             SetCardLayout(delay);
         }
     }
+
     #endregion
 
     private void SetCardLayout(float delay)
@@ -120,17 +132,17 @@ public class CardDeck : MonoBehaviour
             currentCard.isAnimating = true;
             Sequence cardAnimationSequence = DOTween.Sequence();
             cardAnimationSequence
-            .Append(currentCard.transform.DOScale(Vector3.one, animationTime).SetDelay(delay)).SetEase(Ease.InOutQuart)
-            .Join(currentCard.transform.DOMove(cardTransform.position, animationTime)).SetEase(Ease.InOutQuart)
-            .Join(currentCard.transform.DORotateQuaternion(cardTransform.rotation, animationTime)).SetEase(Ease.InOutQuart)
-            .OnComplete(() =>
-            {
-                currentCard.isAnimating = false;
-            });
+                .Append(currentCard.transform.DOScale(Vector3.one, animationTime).SetDelay(delay))
+                .SetEase(Ease.InOutQuart)
+                .Join(currentCard.transform.DOMove(cardTransform.position, animationTime)).SetEase(Ease.InOutQuart)
+                .Join(currentCard.transform.DORotateQuaternion(cardTransform.rotation, animationTime))
+                .SetEase(Ease.InOutQuart)
+                .OnComplete(() => { currentCard.isAnimating = false; });
             // Set card order
             currentCard.GetComponent<SortingGroup>().sortingOrder = i;
             currentCard.UpdateCardPositionRotation(cardTransform.position, cardTransform.rotation);
         }
+
         CheckAllCardsState();
     }
 
@@ -163,6 +175,7 @@ public class CardDeck : MonoBehaviour
     }
 
     #region Discard Card
+
     public void DiscardAllCards()
     {
         discardCountEvent.RaiseEvent(discardDeck.Count + handCardObjectList.Count, this);
@@ -181,6 +194,7 @@ public class CardDeck : MonoBehaviour
                 }
             });
         }
+
         handCardObjectList.Clear();
     }
 
@@ -204,9 +218,9 @@ public class CardDeck : MonoBehaviour
         card.isAnimating = true;
         Sequence cardAnimationSequence = DOTween.Sequence();
         cardAnimationSequence
-        .Append(card.gameObject.transform.DOScale(0, animationTime).SetEase(Ease.InOutQuart)).SetDelay(0.2f)
-        .Join(card.gameObject.transform.DOMove(discardPosition.position, animationTime).SetEase(Ease.InOutQuart))
-        .onComplete = () =>
+            .Append(card.gameObject.transform.DOScale(0, animationTime).SetEase(Ease.InOutQuart)).SetDelay(0.2f)
+            .Join(card.gameObject.transform.DOMove(discardPosition.position, animationTime).SetEase(Ease.InOutQuart))
+            .onComplete = () =>
         {
             cardManager.DiscardCard(card.gameObject);
             card.isAnimating = false;
@@ -215,6 +229,7 @@ public class CardDeck : MonoBehaviour
         if (shouldUpdateDiscardDeckUI) discardCountEvent.RaiseEvent(discardDeck.Count, this);
         SetCardLayout(0);
     }
+
     #endregion
 
     public void CheckAllCardsState()
@@ -233,10 +248,12 @@ public class CardDeck : MonoBehaviour
                 return;
             }
         }
+
         checkAvailableCardEvent.RaiseEvent(false, this);
     }
 
     #region Change Card Cost
+
     // 更新手牌花费
     // 持续更新到之后打出'sustainedNumber'张牌
     // public void UpdateCostChangeCounter()
@@ -277,7 +294,8 @@ public class CardDeck : MonoBehaviour
     {
         int cardsNeedToChange = cardNumbers;
         // randomly choose a card in hand and change its cost
-        while (cardsNeedToChange > 0){
+        while (cardsNeedToChange > 0)
+        {
             var validCards = handCardObjectList.FindAll(card => card.cardCost > 0);
             if (validCards.Count == 0) return; // 如果没有可减费的牌，就返回
             Card card = validCards[Random.Range(0, validCards.Count)];
@@ -285,6 +303,7 @@ public class CardDeck : MonoBehaviour
             cardsNeedToChange--;
         }
     }
+
     #endregion
 
     public List<CardDeckEntry> GetDrawDeck()
@@ -301,11 +320,13 @@ public class CardDeck : MonoBehaviour
                 drawDeckDict.Add(card, 1);
             }
         }
+
         List<CardDeckEntry> drawCardList = new();
         foreach (var item in drawDeckDict)
         {
             drawCardList.Add(new CardDeckEntry(item.Key, item.Value));
         }
+
         return drawCardList;
     }
 
@@ -323,11 +344,13 @@ public class CardDeck : MonoBehaviour
                 discardDeckDict.Add(card, 1);
             }
         }
+
         List<CardDeckEntry> discardCardList = new();
         foreach (var item in discardDeckDict)
         {
             discardCardList.Add(new CardDeckEntry(item.Key, item.Value));
         }
+
         return discardCardList;
     }
 }
