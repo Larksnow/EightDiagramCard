@@ -16,8 +16,9 @@ public class EnemyBase : CharacterBase
     [SerializeField] Sprite nightSprite;
     public SpriteRenderer dayImage;
     public SpriteRenderer nightImage;
-    protected virtual void Awake()
+    protected override void Start()
     {
+        base.Start();
         indicator = FindObjectOfType<Indicator>();
         player = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
         dayImage.sprite = daySprite;

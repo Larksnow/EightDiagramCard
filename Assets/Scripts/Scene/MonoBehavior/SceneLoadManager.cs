@@ -2,52 +2,79 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class SceneLoadManager : MonoBehaviour
 {
-    [Header("Scenes")] public GameSceneSO testScene;
-    public GameSceneSO menuScene;
-    public List<GameSceneSO> battleScenes; // 在inspector中添加battleScenes
-
+    public bool enableTest = true;
     public GameObject fadeImage;
-    private int currentLevel = 0;
 
-    [SerializeField] private GameSceneSO currentLoadedScene;
-    private GameSceneSO sceneToLoad;
+    [Header("Scenes")] public GameSceneSO testSceneSo;
+    public GameSceneSO menuSceneSo;
+    public List<GameSceneSO> battleSceneSos; // 在inspector中添加battleScenes
 
     [Header("Broadcast Events")] public ObjectEventSO sceneUnloadCompleteEvent;
     public ObjectEventSO sceneLoadCompleteEvent;
 
+    private int currentLevel = 0;
+    private GameSceneSO currentLoadedScene;
+    private GameSceneSO sceneToLoad;
+    private Scene testScene;
+
     private void Start()
     {
-        // fadeImage.SetActive(true);
+        if (enableTest)
+        {
+            currentLoadedScene = testSceneSo;
+            sceneLoadCompleteEvent.RaiseEvent(currentLoadedScene, this);
+        }
+        else
+        {
+            fadeImage.SetActive(true);
 
-        // // 刚开始加载菜单场景
-        // OnLoadRequest(menuScene);
-        currentLoadedScene = testScene;
-        sceneLoadCompleteEvent.RaiseEvent(currentLoadedScene, this);
+            // 卸载默认打开的Test Scene
+            testScene = SceneManager.GetSceneByName("Test Scene");
+            if (testScene.IsValid() && testScene.isLoaded)
+            {
+                // 首先将场景所有物体禁用
+                foreach (GameObject obj in testScene.GetRootGameObjects())
+                {
+                    obj.SetActive(false);
+                }
+
+                SceneManager.UnloadSceneAsync(testScene);
+            }
+            else
+            {
+                Debug.LogError("Test Scene is not loaded. Make sure it is loaded in Editor.");
+            }
+
+            // 开始加载菜单场景
+            OnLoadRequest(menuSceneSo);
+        }
     }
 
     [ContextMenu("LoadMenu")]
     public void LoadMenu()
     {
-        OnLoadRequest(menuScene);
+        OnLoadRequest(menuSceneSo);
     }
 
     #region Event Listening
 
     public void NextLevel()
     {
-        if (battleScenes.Count < currentLevel + 1)
+        if (battleSceneSos.Count < currentLevel + 1)
         {
             Debug.LogError("No more levels to load");
             return;
         }
 
-        OnLoadRequest(battleScenes[++currentLevel]);
+        OnLoadRequest(battleSceneSos[++currentLevel]);
     }
 
     public void OnLoadRequest(object obj)
@@ -56,7 +83,7 @@ public class SceneLoadManager : MonoBehaviour
         switch (gameSceneToGo.sceneType)
         {
             case SceneType.Menu:
-                sceneToLoad = menuScene;
+                sceneToLoad = menuSceneSo;
                 break;
             case SceneType.Battle:
                 sceneToLoad = gameSceneToGo;
@@ -86,6 +113,7 @@ public class SceneLoadManager : MonoBehaviour
         yield return new WaitUntil(() => isFadeInComplete);
 
         yield return currentLoadedScene.sceneReference.UnLoadScene();
+
         sceneUnloadCompleteEvent.RaiseEvent(sceneToLoad, this);
         LoadNewScene();
     }

@@ -5,16 +5,30 @@ using UnityEngine.Serialization;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("UI Lists")]
     // 手动添加多种场景ui Lists
+    public List<GameObject> testSceneUis;
     public List<GameObject> menuSceneUis;
     public List<GameObject> battleSceneUis;
-    public SceneType firstLoadedSceneType = SceneType.Menu;
-
+    
+    public SceneLoadManager sceneLoadManager;
+    
+    private SceneType firstLoadedSceneType;
     private Dictionary<SceneType, List<GameObject>> sceneUIs = new();
     private SceneType currentSceneType;
 
     private void Awake()
     {
+        if (!sceneLoadManager.enableTest)
+        {
+            SetUIObjectsActive(testSceneUis,false);
+            firstLoadedSceneType = SceneType.Menu;
+        }
+        else
+        {
+            firstLoadedSceneType = SceneType.Test;
+        }
+        
         currentSceneType = firstLoadedSceneType;
         sceneUIs.Add(SceneType.Menu, menuSceneUis);
         sceneUIs.Add(SceneType.Battle, battleSceneUis);
@@ -26,8 +40,6 @@ public class UIManager : MonoBehaviour
     public void LoadNextSceneUI(object obj)
     {
         var gameSceneSo = (GameSceneSO)obj;
-        // 测试场景默认所有UI都显示
-        if (gameSceneSo.sceneType == SceneType.Test) return;
         if (currentSceneType == gameSceneSo.sceneType)
         {
             // // 确保其他场景UI不显示
