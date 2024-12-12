@@ -63,6 +63,7 @@ public enum CardListType
 
 public enum SceneType
 {
+    Test,
     Menu,
     Battle,
     Shop,

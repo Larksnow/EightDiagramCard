@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ff0405d84222a54a81429f169316c66, type: 3}
-  m_Name: Menu
+  m_Name: Test Scene
   m_EditorClassIdentifier: 
   sceneReference:
-    m_AssetGUID: 1786a183872620d47a14b54faa39f134
+    m_AssetGUID: 26f506bfe3a84e74e9c9f897f68f3d6f
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  sceneType: 1
-  sceneName: "\u83DC\u5355"
+  sceneType: 0
+  sceneName: "\u6D4B\u8BD5"

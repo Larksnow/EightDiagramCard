@@ -18,13 +18,14 @@ public class GameManager : MonoBehaviour
 
     public void OnSceneLoadCompleteEvent(object obj)
     {
-        GameSceneSO currentScene = obj as GameSceneSO;
-        if (currentScene.sceneType == SceneType.Battle)
+        GameSceneSO currentScene = (GameSceneSO)obj;
+        if (currentScene.sceneType is SceneType.Battle or SceneType.Test)
         {
             // If a battle scene loaded, start battle
             enemyList = GameObject.FindGameObjectsWithTag("enemy").ToList();
             if (enemyList.Count <= 0) Debug.LogWarning("No enemies found in the scene.");
             battleStartEvent.RaiseEvent(this, this);
+            Debug.Log("Battle Start");
         }
         //TODO: other type scene action (If have)
     }

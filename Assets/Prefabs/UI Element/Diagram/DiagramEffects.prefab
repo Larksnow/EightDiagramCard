@@ -163,8 +163,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4607229742980719937}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0}
-  m_AnchorMax: {x: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 6.625, y: -4.5299997}
   m_SizeDelta: {x: 13.25, y: 2.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &6295841478862731789
@@ -321,8 +322,7 @@ MonoBehaviour:
   m_text: "\u5151\u5366"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cc4eb33ee255952479348d780c8ea22c, type: 2}
-  m_sharedMaterial: {fileID: -3282735330613375470, guid: cc4eb33ee255952479348d780c8ea22c,
-    type: 2}
+  m_sharedMaterial: {fileID: -3282735330613375470, guid: cc4eb33ee255952479348d780c8ea22c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -423,8 +423,9 @@ RectTransform:
   - {fileID: 3064844835579175736}
   m_Father: {fileID: 4607229742980719937}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0}
-  m_AnchorMax: {x: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 6.625, y: -1.665}
   m_SizeDelta: {x: 13.25, y: 3.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1140237860787384132
@@ -581,8 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectsContent: {fileID: 4607229742980719937}
-  effectEntryPrefab: {fileID: 8636681453432187416, guid: c91f9588d9ce304408fa1d3f4f4f1883,
-    type: 3}
+  effectEntryPrefab: {fileID: 8636681453432187416, guid: c91f9588d9ce304408fa1d3f4f4f1883, type: 3}
   diagramData: {fileID: 0}
   lineCharacterLimit: 14
 --- !u!61 &2804004199013456428
