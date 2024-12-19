@@ -9,7 +9,7 @@ public class PlayerHoldDeck : MonoBehaviour, IButtonClickHandler
     public float animationDuration = 1f;
 
     // PlayerHoldDeck在CardListDisplayController之前加载
-    private CardListDisplayController cardListDisplayController;
+    private CardDeckPreviewController cardDeckPreviewController;
 
     #region Event Listening
     public void OnClick(object obj)
@@ -20,11 +20,11 @@ public class PlayerHoldDeck : MonoBehaviour, IButtonClickHandler
 
         // 展示玩家牌组
         Debug.Log("PlayerHoldDeck clicked");
-        if (cardListDisplayController == null)
+        if (cardDeckPreviewController == null)
         {
-            cardListDisplayController = FindObjectOfType<CardListDisplayController>();
+            cardDeckPreviewController = FindObjectOfType<CardDeckPreviewController>();
         }
-        cardListDisplayController.ToggleCardListPanel(CardListType.PlayerHold);
+        cardDeckPreviewController.ToggleCardListPanel(CardListType.PlayerHold);
     }
 
     // 卡牌进入牌组动画

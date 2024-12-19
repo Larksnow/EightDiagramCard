@@ -6,6 +6,7 @@ using TMPro;
 using DG.Tweening;
 using System.Linq;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 //This script controls all the UI elements in the battle scene
 public class GamePlayPanel : MonoBehaviour
@@ -23,7 +24,7 @@ public class GamePlayPanel : MonoBehaviour
     public GameObject selectCardPannel;
     public GameObject selectLevelPannel;
 
-    public CardListDisplayController cardListDisplayController;
+    [FormerlySerializedAs("cardListDisplayController")] public CardDeckPreviewController cardDeckPreviewController;
 
     public float uiFadeDuration;
     public float dialogBoxDuration;
@@ -96,11 +97,11 @@ public class GamePlayPanel : MonoBehaviour
         GameObject selected = pointerEventData.pointerPress;
         if (selected == drawDeckUI)
         {
-            cardListDisplayController.ToggleCardListPanel(CardListType.DrawDeck);
+            cardDeckPreviewController.ToggleCardListPanel(CardListType.DrawDeck);
         }
         else if (selected == discardDeckUI)
         {
-            cardListDisplayController.ToggleCardListPanel(CardListType.DiscardDeck);
+            cardDeckPreviewController.ToggleCardListPanel(CardListType.DiscardDeck);
         }
     }
 

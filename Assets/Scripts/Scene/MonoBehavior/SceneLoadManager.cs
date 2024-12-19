@@ -34,8 +34,6 @@ public class SceneLoadManager : MonoBehaviour
         }
         else
         {
-            fadeImage.SetActive(true);
-
             // 卸载默认打开的Test Scene
             testScene = SceneManager.GetSceneByName("Test Scene");
             if (testScene.IsValid() && testScene.isLoaded)
@@ -100,7 +98,6 @@ public class SceneLoadManager : MonoBehaviour
 
     private IEnumerator UnloadPreviousScene()
     {
-        fadeImage.SetActive(true);
         FadeInOutHandler fadeInOutHandler = fadeImage.GetComponent<FadeInOutHandler>();
 
         // 等待淡入结束
@@ -135,7 +132,5 @@ public class SceneLoadManager : MonoBehaviour
         bool isFadeOutComplete = false;
         fadeInOutHandler.FadeOut(() => { isFadeOutComplete = true; });
         yield return new WaitUntil(() => isFadeOutComplete);
-
-        fadeImage.SetActive(false);
     }
 }

@@ -34,30 +34,29 @@ public class FadeInOutHandler : MonoBehaviour
 
     #endregion
 
-    public void FadeIn(Action onComplete = null)
+    public void FadeIn(Action onComplete = null, float endAlpha = 1)
     {
         SetAllElementsAlpha(0); // 初始化透明度为0
-        StartCoroutine(FadeInCoroutine(onComplete));
+        StartCoroutine(FadeInCoroutine(onComplete, endAlpha));
     }
 
     public void FadeOut(Action onComplete = null)
     {
-        SetAllElementsAlpha(1); // 初始化透明度为1
         StartCoroutine(FadeOutCoroutine(onComplete));
     }
 
-    private IEnumerator FadeInCoroutine(Action onComplete)
+    private IEnumerator FadeInCoroutine(Action onComplete, float endAlpha)
     {
         Sequence sequence = DOTween.Sequence().SetEase(Ease.InOutExpo);
 
         foreach (var graphic in graphics)
         {
-            sequence.Join(graphic.DOFade(1, fadeDuration));
+            sequence.Join(graphic.DOFade(endAlpha, fadeDuration));
         }
 
         foreach (var render in spriteRenderers)
         {
-            sequence.Join(render.DOFade(1, fadeDuration));
+            sequence.Join(render.DOFade(endAlpha, fadeDuration));
         }
 
         yield return sequence.WaitForCompletion();

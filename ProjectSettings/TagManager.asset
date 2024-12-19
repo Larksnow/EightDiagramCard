@@ -6,7 +6,8 @@ TagManager:
   tags:
   - player
   - enemy
-  - persistent ui
+  - Card
+  - CardPreview
   layers:
   - Default
   - TransparentFX
@@ -56,6 +57,6 @@ TagManager:
   - name: Panel
     uniqueID: 92985891
     locked: 0
-  - name: FrontPanel
+  - name: HoverPanel
     uniqueID: 3538499497
     locked: 0
