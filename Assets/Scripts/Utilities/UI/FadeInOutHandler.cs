@@ -80,6 +80,35 @@ public class FadeInOutHandler : MonoBehaviour
         yield return sequence.WaitForCompletion();
         onComplete?.Invoke();
     }
+    
+    /// <summary>
+    /// 控制具体某个物体的淡入淡出
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="onComplete"></param>
+    /// <param name="endAlpha"></param>
+    /// <param name="duration"></param>
+    public static void FadeObjectIn(GameObject obj, Action onComplete = null, float endAlpha = 1, float duration = 0.8f)
+    {
+        if (!obj.TryGetComponent<FadeInOutHandler>(out var handler))
+        {
+            handler = obj.AddComponent<FadeInOutHandler>();
+        }
+
+        handler.fadeDuration = duration;
+        handler.FadeIn(onComplete, endAlpha);
+    }
+
+    public static void FadeObjectOut(GameObject obj, Action onComplete = null, float duration = 0.8f)
+    {
+        if (!obj.TryGetComponent<FadeInOutHandler>(out var handler))
+        {
+            handler = obj.AddComponent<FadeInOutHandler>();
+        }
+
+        handler.fadeDuration = duration;
+        handler.FadeOut(onComplete);
+    }
 
     // 设置所有UI元素的透明度
     private void SetAllElementsAlpha(float alpha)

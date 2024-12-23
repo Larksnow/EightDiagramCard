@@ -97,11 +97,11 @@ public class GamePlayPanel : MonoBehaviour
         GameObject selected = pointerEventData.pointerPress;
         if (selected == drawDeckUI)
         {
-            cardDeckPreviewController.ToggleCardListPanel(CardListType.DrawDeck);
+            cardDeckPreviewController.OpenCardPreview(CardListType.DrawDeck);
         }
         else if (selected == discardDeckUI)
         {
-            cardDeckPreviewController.ToggleCardListPanel(CardListType.DiscardDeck);
+            cardDeckPreviewController.OpenCardPreview(CardListType.DiscardDeck);
         }
     }
 

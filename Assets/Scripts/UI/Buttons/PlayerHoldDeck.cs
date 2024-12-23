@@ -24,7 +24,7 @@ public class PlayerHoldDeck : MonoBehaviour, IButtonClickHandler
         {
             cardDeckPreviewController = FindObjectOfType<CardDeckPreviewController>();
         }
-        cardDeckPreviewController.ToggleCardListPanel(CardListType.PlayerHold);
+        cardDeckPreviewController.OpenCardPreview(CardListType.PlayerHold);
     }
 
     // 卡牌进入牌组动画

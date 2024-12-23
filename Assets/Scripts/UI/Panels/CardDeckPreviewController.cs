@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -18,11 +19,12 @@ public class CardDeckPreviewController : MonoBehaviour
     [Header("UI Components")] public Image panelBackground;
     public Transform scrollContent;
     public GameObject backgroundDimmer;
+    public GameObject returnButton;
     public float dimmerAlpha = 0.65f;
 
     private FadeInOutHandler fadeInOutHandler;
     private List<CardDeckEntry> cardList;
-    private bool isDisplaying = false;
+    private bool isDisplaying;
 
     private void Awake()
     {
@@ -30,52 +32,56 @@ public class CardDeckPreviewController : MonoBehaviour
         panelBackground.enabled = false; // 隐藏背景
     }
 
-    public void ToggleCardListPanel(CardListType cardListType)
+    // 打开面板
+    public void OpenCardPreview(CardListType cardListType)
     {
-        isDisplaying = !isDisplaying;
-        GameObject selectedDeck = null;
-        if (isDisplaying)
+        isDisplaying = true;
+        switch (cardListType)
         {
-            switch (cardListType)
-            {
-                case CardListType.PlayerHold:
-                    cardList = cardManager.playerHoldDeck.CardDeckEntryList;
-                    selectedDeck = playerHoldDeckUI;
-                    break;
-                case CardListType.DrawDeck:
-                    cardList = cardDeck.GetDrawDeck();
-                    selectedDeck = drawDeckUI;
-                    break;
-                case CardListType.DiscardDeck:
-                    cardList = cardDeck.GetDiscardDeck();
-                    selectedDeck = discardDeckUI;
-                    break;
-            }
-
-            panelBackground.enabled = true;
-
-            // 背景变暗
-            backgroundDimmer.SetActive(true);
-            backgroundDimmer.GetComponent<FadeInOutHandler>().FadeIn(null, dimmerAlpha);
-
-            // 将卡牌条目加入列表面板
-            SetCardList();
-            fadeInOutHandler.FadeIn();
-
-            // 暂停游戏
-            pauseManager.PauseGame();
+            case CardListType.PlayerHold:
+                cardList = cardManager.playerHoldDeck.CardDeckEntryList;
+                break;
+            case CardListType.DrawDeck:
+                cardList = cardDeck.GetDrawDeck();
+                break;
+            case CardListType.DiscardDeck:
+                cardList = cardDeck.GetDiscardDeck();
+                break;
         }
-        else
+
+        panelBackground.enabled = true;
+
+        // 背景变暗
+        backgroundDimmer.SetActive(true);
+        FadeInOutHandler.FadeObjectIn(backgroundDimmer, null, dimmerAlpha);
+
+        // 启用返回按钮
+        returnButton.SetActive(true);
+        FadeInOutHandler.FadeObjectIn(returnButton, null, 1f);
+
+        // 将卡牌条目加入列表面板
+        SetCardList();
+        fadeInOutHandler.FadeIn();
+
+        // 暂停游戏
+        pauseManager.PauseGame(new List<Button> { returnButton.GetComponent<Button>() });
+    }
+
+    // 关闭面板
+    // 直接监听ReturnButton上内置Button组件的OnClick事件, 而不是自定义的OnClickEvent事件
+    public void CloseCardPreview()
+    {
+        if (!isDisplaying) return;
+        isDisplaying = false;
+        // 淡出面板
+        fadeInOutHandler.FadeOut(() =>
         {
-            // 淡出面板
-            fadeInOutHandler.FadeOut(() =>
-            {
-                ClearCards();
-                panelBackground.enabled = false;
-                pauseManager.ResumeGame();
-            });
-            backgroundDimmer.GetComponent<FadeInOutHandler>().FadeOut(() => { backgroundDimmer.SetActive(false); });
-        }
+            ClearCards();
+            panelBackground.enabled = false;
+            pauseManager.ResumeGame();
+        });
+        FadeInOutHandler.FadeObjectOut(backgroundDimmer, () => { backgroundDimmer.SetActive(false); });
+        FadeInOutHandler.FadeObjectOut(returnButton, () => { returnButton.SetActive(false); });
     }
 
 
