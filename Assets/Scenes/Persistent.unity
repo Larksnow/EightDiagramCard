@@ -1390,7 +1390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.627451}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6862745}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4024,15 +4024,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnClick:
-    m_PersistentCalls:
-      m_Calls: []
   settings:
     interactable: 1
     scaleOnEnter: 1.1
     scaleOnClick: 1
-    easeOnEnter: 18
-    easeOnExit: 18
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  mouseOverAnimationSO: {fileID: 0}
 --- !u!61 &1476001195
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4757,15 +4756,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnClick:
-    m_PersistentCalls:
-      m_Calls: []
   settings:
     interactable: 1
     scaleOnEnter: 1.1
     scaleOnClick: 1
-    easeOnEnter: 18
-    easeOnExit: 18
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  mouseOverAnimationSO: {fileID: 0}
 --- !u!61 &1828206784
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5947,11 +5945,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2113529833}
-  - component: {fileID: 2113529838}
   - component: {fileID: 2113529837}
   - component: {fileID: 2113529836}
   - component: {fileID: 2113529835}
   - component: {fileID: 2113529834}
+  - component: {fileID: 2113529838}
   m_Layer: 0
   m_Name: CardDeckPreview
   m_TagString: Untagged
@@ -6042,6 +6040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09796b52d8a9db448dce4f7a351775f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.4
   drawDeckUI: {fileID: 466201776}
   discardDeckUI: {fileID: 1551145621}
   playerHoldDeckUI: {fileID: 1028282028}
@@ -6049,11 +6048,10 @@ MonoBehaviour:
   cardDeck: {fileID: 123222010}
   cardManager: {fileID: 828971798}
   pauseManager: {fileID: 1029215189}
-  panelBackground: {fileID: 2113529838}
   scrollContent: {fileID: 457196314}
   backgroundDimmer: {fileID: 428416103}
   returnButton: {fileID: 744667906}
-  dimmerAlpha: 0.65
+  dimmerAlpha: 0.75
 --- !u!114 &2113529838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6067,7 +6065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.12156863, g: 0.22745098, b: 0.4392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

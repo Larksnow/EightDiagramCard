@@ -1,13 +1,13 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
-public class HoverPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IColliderSetUp, IHoverScalable
+public class HoverPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IColliderSetUp, IScaleOnMouseOver
 {
     public GameObject panel;
     public float scaleOnEnter = 1.1f;
-    public Ease easeOnEnter = Ease.OutExpo;
-    public Ease easeOnExit = Ease.OutExpo;
+    public MouseOverAnimationSO mouseOverAnimationSO; // 鼠标进入/退出该物体时的缓动效果
 
     private Vector3 originalScale;
 
@@ -26,7 +26,8 @@ public class HoverPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (panel != null) panel.SetActive(true);
         if (GetComponent<Button>() == null)
         {
-            ((IHoverScalable)this).OnHoverEnter(gameObject, scaleOnEnter * transform.localScale, easeOnEnter);
+            ((IScaleOnMouseOver)this).OnMouseEnter(gameObject, scaleOnEnter * transform.localScale,
+                mouseOverAnimationSO);
         }
     }
 
@@ -35,7 +36,7 @@ public class HoverPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (panel != null) panel.SetActive(false);
         if (GetComponent<Button>() == null)
         {
-            ((IHoverScalable)this).OnHoverExit(gameObject, originalScale, easeOnExit);
+            ((IScaleOnMouseOver)this).OnMouseExit(gameObject, originalScale, mouseOverAnimationSO);
         }
     }
 

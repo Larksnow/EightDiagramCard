@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public class CardDeckPreviewController : MonoBehaviour
 {
+    public float fadeDuration = 0.4f;
     [Header("Card Deck UI")] public GameObject drawDeckUI;
     public GameObject discardDeckUI;
     public GameObject playerHoldDeckUI;
@@ -16,21 +13,14 @@ public class CardDeckPreviewController : MonoBehaviour
     public CardManager cardManager;
     public PauseManager pauseManager;
 
-    [Header("UI Components")] public Image panelBackground;
-    public Transform scrollContent;
+    [Header("UI Components")] public Transform scrollContent;
     public GameObject backgroundDimmer;
     public GameObject returnButton;
     public float dimmerAlpha = 0.65f;
 
-    private FadeInOutHandler fadeInOutHandler;
     private List<CardDeckEntry> cardList;
     private bool isDisplaying;
-
-    private void Awake()
-    {
-        fadeInOutHandler = GetComponent<FadeInOutHandler>();
-        panelBackground.enabled = false; // 隐藏背景
-    }
+    private int cardAmount = 0;
 
     // 打开面板
     public void OpenCardPreview(GameObject selected)
@@ -49,19 +39,17 @@ public class CardDeckPreviewController : MonoBehaviour
             cardList = cardDeck.GetDiscardDeck();
         }
 
-        panelBackground.enabled = true;
-
         // 背景变暗
         backgroundDimmer.SetActive(true);
-        FadeInOutHandler.FadeObjectIn(backgroundDimmer, null, dimmerAlpha);
 
         // 启用返回按钮
         returnButton.SetActive(true);
-        FadeInOutHandler.FadeObjectIn(returnButton, null, 1f);
 
         // 将卡牌条目加入列表面板
         SetCardList();
-        fadeInOutHandler.FadeIn();
+
+        // 淡入面板
+        FadeInPanel();
 
         // 暂停游戏
         pauseManager.PauseGame(new List<Button> { returnButton.GetComponent<Button>() });
@@ -73,15 +61,9 @@ public class CardDeckPreviewController : MonoBehaviour
     {
         if (!isDisplaying) return;
         isDisplaying = false;
+
         // 淡出面板
-        fadeInOutHandler.FadeOut(() =>
-        {
-            ClearCards();
-            panelBackground.enabled = false;
-            pauseManager.ResumeGame();
-        });
-        FadeInOutHandler.FadeObjectOut(backgroundDimmer, () => { backgroundDimmer.SetActive(false); });
-        FadeInOutHandler.FadeObjectOut(returnButton, () => { returnButton.SetActive(false); });
+        FadeOutPanel();
     }
 
 
@@ -98,6 +80,7 @@ public class CardDeckPreviewController : MonoBehaviour
                     cardPreviewObj.transform.SetParent(scrollContent, false);
                     CardPreview cardPreview = cardPreviewObj.GetComponent<CardPreview>();
                     cardPreview.Init(cardData);
+                    cardAmount++;
                 }
             }
         }
@@ -109,5 +92,46 @@ public class CardDeckPreviewController : MonoBehaviour
         {
             pool.ReleaseObjectToPool("CardPreview", child.gameObject);
         }
+
+        cardAmount = 0;
+    }
+
+
+    // 由于背景Image要固定隐藏（透明度为0），不能使用FadeInOutHandler
+    private void FadeInPanel()
+    {
+        FadeInOutHandler.FadeObjectIn(backgroundDimmer, null, dimmerAlpha, fadeDuration);
+        FadeInOutHandler.FadeObjectIn(returnButton,null, 1f, fadeDuration);
+        foreach (Transform card in scrollContent)
+        {
+            FadeInOutHandler.FadeObjectIn(card.gameObject, null, 1f, fadeDuration);
+        }
+    }
+
+    private void FadeOutPanel()
+    {
+        FadeInOutHandler.FadeObjectOut(backgroundDimmer, () => { backgroundDimmer.SetActive(false); }, fadeDuration);
+        FadeInOutHandler.FadeObjectOut(returnButton, () => { returnButton.SetActive(false); }, fadeDuration);
+        for (int i = 0; i < scrollContent.childCount; i++)
+        {
+            Transform card = scrollContent.GetChild(i);
+            if (i == scrollContent.childCount - 1)
+            {
+                FadeInOutHandler.FadeObjectOut(card.gameObject, () =>
+                {
+                    ClearCards();
+                    pauseManager.ResumeGame();
+                }, fadeDuration);
+            }
+            else
+            {
+                FadeInOutHandler.FadeObjectOut(card.gameObject, null, fadeDuration);
+            }
+        }
+    }
+
+    public int GetCardAmount()
+    {
+        return cardAmount;
     }
 }

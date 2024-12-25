@@ -317,6 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 7932823534511720291}
   scaleOnEnter: 1.1
+  mouseOverAnimationSO: {fileID: 11400000, guid: 23ee5d1bcc2eac342b4dd6b104155e88, type: 2}
 --- !u!1 &7074082828716716223
 GameObject:
   m_ObjectHideFlags: 0

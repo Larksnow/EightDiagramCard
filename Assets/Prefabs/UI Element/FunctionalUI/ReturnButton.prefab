@@ -284,4 +284,7 @@ MonoBehaviour:
     interactable: 1
     scaleOnEnter: 1.1
     scaleOnClick: 1.15
-  onClickedEvent: {fileID: 0}
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  mouseOverAnimationSO: {fileID: 11400000, guid: 5e6f6750921745943b72f7e6a18edd83, type: 2}

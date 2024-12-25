@@ -644,6 +644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 154383754354540476}
   scaleOnEnter: 1.1
+  mouseOverAnimationSO: {fileID: 11400000, guid: 23ee5d1bcc2eac342b4dd6b104155e88, type: 2}
 --- !u!114 &6991467329144279096
 MonoBehaviour:
   m_ObjectHideFlags: 0
