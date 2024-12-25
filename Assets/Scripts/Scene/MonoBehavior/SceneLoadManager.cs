@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
@@ -10,7 +11,6 @@ using UnityEngine.Serialization;
 
 public class SceneLoadManager : MonoBehaviour
 {
-    public bool enableTest;
     public GameObject fadeImage;
 
     [Header("Scenes")] public GameSceneSO testSceneSo;
@@ -24,10 +24,10 @@ public class SceneLoadManager : MonoBehaviour
     private GameSceneSO currentLoadedScene;
     private GameSceneSO sceneToLoad;
     private Scene testScene;
-
+    
     private void Start()
     {
-        if (enableTest)
+        if (TestModeMenu.IsTestModeEnabled())
         {
             currentLoadedScene = testSceneSo;
             sceneLoadCompleteEvent.RaiseEvent(currentLoadedScene, this);

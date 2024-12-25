@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (!sceneLoadManager.enableTest)
+        if (!TestModeMenu.IsTestModeEnabled())
         {
             SetUIObjectsActive(testSceneUis,false);
             firstLoadedSceneType = SceneType.Menu;
