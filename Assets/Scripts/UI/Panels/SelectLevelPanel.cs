@@ -15,9 +15,9 @@ public class LevelSelectUI : FadablePanel
     [Header("Broadcast events")]
     public ObjectEventSO LoadNextLevelEvent;
 
-    protected override void OnClickSelected(GameObject selected)
+    public override void FadeOutAfterClick(GameObject selected)
     {
-        base.OnClickSelected(selected);
+        base.FadeOutAfterClick(selected);
         if (selected == option1)
         {
             gameAwardData.awardType = AwardType.Card;

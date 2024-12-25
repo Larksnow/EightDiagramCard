@@ -2,11 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SelectionsOnMenu : MonoBehaviour, IButtonClickHandler
+public class SelectionsOnMenu : MonoBehaviour
 {
-    public GameObject startButton;
-    public GameObject quitButton;
-    public GameObject producerListButton;
     public GameObject producerList;
     public GameObject plCloseButton;
     public GameSceneSO firstSceneToLoad;
@@ -19,28 +16,28 @@ public class SelectionsOnMenu : MonoBehaviour, IButtonClickHandler
     }
 
     #region Event Listening
-    public void OnClick(object obj)
+
+    public void StartGame()
     {
-        PointerEventData pointerEventData = (PointerEventData)obj;
-        GameObject selected = pointerEventData.pointerPress;
-        if (selected == startButton)
-        {
-            loadSceneEvent.RaiseEvent(firstSceneToLoad, "");
-        }
-        else if (selected == quitButton)
-        {
-            Application.Quit();
-        }
-        else if (selected == producerListButton)
-        {
-            producerList.SetActive(true);
-            pauseManager.PauseGame(new List<Button> { plCloseButton.GetComponent<Button>() });
-        }
-        else if (selected == plCloseButton)
-        {
-            pauseManager.ResumeGame();
-            producerList.SetActive(false);
-        }
+        loadSceneEvent.RaiseEvent(firstSceneToLoad, "");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void OpenProducerList()
+    {
+        producerList.SetActive(true);
+        pauseManager.PauseGame(new List<Button> { plCloseButton.GetComponent<Button>() });
+    }
+
+    public void CloseProducerList()
+    {
+        pauseManager.ResumeGame();
+        producerList.SetActive(false);
+    }
+
     #endregion
 }

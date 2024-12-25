@@ -29,14 +29,14 @@ public class PauseManager : MonoBehaviour
     /// <summary>
     /// 暂停游戏，默认将场中所有按钮设为不可交互
     /// </summary>
-    public void PauseGame(List<Button> excludedBtns = null)
+    public void PauseGame(List<Button> pauseCullBtns = null)
     {
         // excludeFromPause.Clear();
         // excludeFromPause.AddRange(excludeList);
         isPaused = true;
         buttonsManager.SetAllButtonsInteractable(false);
-        if (excludedBtns != null)
-            buttonsManager.SetButtonsInteractable(excludedBtns, true);
+        if (pauseCullBtns != null)
+            buttonsManager.SetButtonsInteractable(pauseCullBtns, true);
     }
     public void ResumeGame()
     {

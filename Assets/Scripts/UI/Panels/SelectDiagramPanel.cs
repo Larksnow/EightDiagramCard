@@ -5,14 +5,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SelectDiagramPanel : FadablePanel, IButtonClickHandler
+public class SelectDiagramPanel : FadablePanel
 {
     public CopyDiagramEffect copyDiagramEffect;
     public DiagramDataSO kunData, zhenData, xunData, kanData, liData, genData, duiData;
 
     private Dictionary<string, DiagramDataSO> diagramDataMapping;
     private List<TextMeshPro> diagramEnhancedTexts = new();
-    private List<GameObject> excludeFromPauseList = new();
 
     protected override void Awake()
     {
@@ -33,9 +32,6 @@ public class SelectDiagramPanel : FadablePanel, IButtonClickHandler
         {
             if (child != null)
             {
-                // 将可点击组件加入剔除暂停列表，不受暂停影响
-                excludeFromPauseList.Add(child.gameObject);
-
                 diagramEnhancedTexts.Add(child.Find("EnhancedText").GetComponent<TextMeshPro>());
             }
         }
@@ -48,20 +44,20 @@ public class SelectDiagramPanel : FadablePanel, IButtonClickHandler
         SetEnhancedTexts();
         base.OnEnable();
     }
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-    }
 
-    protected override void OnClickSelected(GameObject selected)
+    #region Event Listening
+
+    public override void FadeOutAfterClick(GameObject selected)
     {
-        base.OnClickSelected(selected);
+        base.FadeOutAfterClick(selected);
         string diagramName = selected.name;
         if (diagramDataMapping.TryGetValue(diagramName, out var diagramData))
         {
             copyDiagramEffect.diagramDataToCopy = diagramData;
         }
     }
+
+    #endregion
 
     /// <summary>
     /// Load data (color, text, sprite) from DiagramDataSO
@@ -86,6 +82,7 @@ public class SelectDiagramPanel : FadablePanel, IButtonClickHandler
                 text.text = diagramData.diagramName; // Update the diagram name
                 text.color = diagramData.diagramColor;
             }
+
             if (image != null)
             {
                 image.sprite = diagramData.patternSprite; // Update the pattern

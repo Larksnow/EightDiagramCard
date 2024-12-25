@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,6 +6,8 @@ public class HoverPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     public GameObject panel;
     public float scaleOnEnter = 1.1f;
+    public Ease easeOnEnter = Ease.OutExpo;
+    public Ease easeOnExit = Ease.OutExpo;
 
     private Vector3 originalScale;
 
@@ -23,7 +26,7 @@ public class HoverPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (panel != null) panel.SetActive(true);
         if (GetComponent<Button>() == null)
         {
-            ((IHoverScalable)this).OnHoverEnter(gameObject, scaleOnEnter * transform.localScale);
+            ((IHoverScalable)this).OnHoverEnter(gameObject, scaleOnEnter * transform.localScale, easeOnEnter);
         }
     }
 
@@ -32,7 +35,7 @@ public class HoverPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (panel != null) panel.SetActive(false);
         if (GetComponent<Button>() == null)
         {
-            ((IHoverScalable)this).OnHoverExit(gameObject, originalScale);
+            ((IHoverScalable)this).OnHoverExit(gameObject, originalScale, easeOnExit);
         }
     }
 

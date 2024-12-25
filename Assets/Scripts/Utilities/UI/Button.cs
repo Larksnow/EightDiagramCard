@@ -1,17 +1,15 @@
 using System;
-using System.Collections;
-using TMPro;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 /// <summary>
 /// 通用按钮组件, 使用方法：
 /// 一、非Canvas渲染的按钮：
 /// 1. 在编辑器中创建一个空物体，添加Button脚本组件，在Button Settings中设置interactable等相关属性
 /// 2. 创建并调整对应的BoxCollider2D组件
-/// 3. 绑定固定的点击事件`OnClickedEvent`（处理全局点击的事件）
-/// 4. 在Button物体所在的父物体（Panel）中添加监听函数`OnClick`，并在Panel添加`ObjectListener`组件，对`OnClickedEvent`进行监听
+/// 3. 向OnClick(含参数GameObject)中添加需要执行的函数
 ///
 /// 二、Canvas渲染的按钮：
 /// 1. 在编辑器中创建一个UI Button，添加Button脚本组件
@@ -26,10 +24,13 @@ public class Button : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         public bool interactable = true;
         public float scaleOnEnter = 1.1f;
         public float scaleOnClick = 1.15f;
+        public Ease easeOnEnter = Ease.OutExpo;
+        public Ease easeOnExit = Ease.OutExpo;
     }
 
+    public UnityEvent<GameObject> OnClick;
     [SerializeField] private ButtonSettings settings;
-    [SerializeField] private ObjectEventSO onClickedEvent;
+    // [SerializeField] private ObjectEventSO onClickedEvent;
 
     private Vector3 originalScale;
     private ButtonsManager buttonsManager;
@@ -68,27 +69,27 @@ public class Button : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!settings.interactable) return;
-        ((IHoverScalable)this).OnHoverEnter(gameObject, settings.scaleOnEnter * transform.localScale);
+        ((IHoverScalable)this).OnHoverEnter(gameObject, settings.scaleOnEnter * transform.localScale, settings.easeOnEnter);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (!settings.interactable) return;
-        ((IHoverScalable)this).OnHoverExit(gameObject, originalScale);
+        ((IHoverScalable)this).OnHoverExit(gameObject, originalScale, settings.easeOnExit);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         if (!settings.interactable) return;
-        ((IHoverScalable)this).OnHoverEnter(gameObject, settings.scaleOnClick * transform.localScale);
+        ((IHoverScalable)this).OnHoverEnter(gameObject, settings.scaleOnClick * transform.localScale, settings.easeOnEnter);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!settings.interactable) return;
 
-        ((IHoverScalable)this).OnHoverExit(gameObject, originalScale);
-        onClickedEvent?.RaiseEvent(eventData, this);
+        ((IHoverScalable)this).OnHoverExit(gameObject, originalScale, settings.easeOnExit);
+        OnClick.Invoke(gameObject);
     }
 
     #endregion

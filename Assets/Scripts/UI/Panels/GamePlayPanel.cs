@@ -24,7 +24,8 @@ public class GamePlayPanel : MonoBehaviour
     public GameObject selectCardPannel;
     public GameObject selectLevelPannel;
 
-    [FormerlySerializedAs("cardListDisplayController")] public CardDeckPreviewController cardDeckPreviewController;
+    [FormerlySerializedAs("cardListDisplayController")]
+    public CardDeckPreviewController cardDeckPreviewController;
 
     public float uiFadeDuration;
     public float dialogBoxDuration;
@@ -89,20 +90,6 @@ public class GamePlayPanel : MonoBehaviour
         uiTransform.DOScale(1.1f, uiFadeDuration / 6).SetEase(Ease.OutCubic)
             .OnComplete(() => { uiTransform.DOScale(1f, uiFadeDuration / 6).SetEase(Ease.OutCubic); });
         Debug.Log("UpdateDeckAmount " + cardDeck.name);
-    }
-
-    public void OnClickDeck(object obj)
-    {
-        PointerEventData pointerEventData = (PointerEventData)obj;
-        GameObject selected = pointerEventData.pointerPress;
-        if (selected == drawDeckUI)
-        {
-            cardDeckPreviewController.OpenCardPreview(CardListType.DrawDeck);
-        }
-        else if (selected == discardDeckUI)
-        {
-            cardDeckPreviewController.OpenCardPreview(CardListType.DiscardDeck);
-        }
     }
 
     #endregion

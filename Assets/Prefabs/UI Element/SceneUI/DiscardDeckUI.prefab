@@ -131,13 +131,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4188431374438431629, guid: 73e10d44f9fc2c24f9094e179a6786bb, type: 3}
+        m_TargetAssemblyTypeName: CardDeckPreviewController, Assembly-CSharp
+        m_MethodName: OpenCardPreview
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   settings:
     interactable: 1
-    clickable: 1
-    scaleOnHover: 1.1
+    scaleOnEnter: 1.1
     scaleOnClick: 1.15
-  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
-  hoverPanel: {fileID: 0}
+    easeOnEnter: 18
+    easeOnExit: 18
 --- !u!61 &7516552876922721914
 BoxCollider2D:
   m_ObjectHideFlags: 0

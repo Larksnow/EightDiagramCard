@@ -5,13 +5,15 @@ using UnityEngine.EventSystems;
 public interface IHoverScalable
 {
     static float tweenDuration = 0.1f;
-    void OnHoverEnter(GameObject obj, Vector3 scaleOnEnter)
+    void OnHoverEnter(GameObject obj, Vector3 scaleOnEnter, Ease ease)
     {
-        obj.transform.DOScale(scaleOnEnter, tweenDuration).SetEase(Ease.OutExpo);
+        obj.transform.DOKill();
+        obj.transform.DOScale(scaleOnEnter, 0.1f).SetEase(ease);
     }
     
-    void OnHoverExit(GameObject obj, Vector3 scaleOnExit)
+    void OnHoverExit(GameObject obj, Vector3 scaleOnExit, Ease ease)
     {
-        obj.transform.DOScale(scaleOnExit, tweenDuration).SetEase(Ease.OutExpo);
+        obj.transform.DOKill();
+        obj.transform.DOScale(scaleOnExit, 0.5f).SetEase(ease);
     }
 }

@@ -33,20 +33,20 @@ public class CardDeckPreviewController : MonoBehaviour
     }
 
     // 打开面板
-    public void OpenCardPreview(CardListType cardListType)
+    public void OpenCardPreview(GameObject selected)
     {
         isDisplaying = true;
-        switch (cardListType)
+        if (selected == playerHoldDeckUI)
         {
-            case CardListType.PlayerHold:
-                cardList = cardManager.playerHoldDeck.CardDeckEntryList;
-                break;
-            case CardListType.DrawDeck:
-                cardList = cardDeck.GetDrawDeck();
-                break;
-            case CardListType.DiscardDeck:
-                cardList = cardDeck.GetDiscardDeck();
-                break;
+            cardList = cardManager.playerHoldDeck.CardDeckEntryList;
+        }
+        else if (selected == drawDeckUI)
+        {
+            cardList = cardDeck.GetDrawDeck();
+        }
+        else if (selected == discardDeckUI)
+        {
+            cardList = cardDeck.GetDiscardDeck();
         }
 
         panelBackground.enabled = true;

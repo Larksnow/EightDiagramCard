@@ -216,7 +216,6 @@ GameObject:
   m_Component:
   - component: {fileID: 462449745}
   - component: {fileID: 462449744}
-  - component: {fileID: 462449743}
   - component: {fileID: 462449746}
   m_Layer: 8
   m_Name: Selections
@@ -225,35 +224,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &462449743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462449742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a553cecf9a2334a9286afb46ac3261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSO: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 462449744}
-        m_TargetAssemblyTypeName: SelectionsOnMenu, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  priority: 0
 --- !u!114 &462449744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,9 +236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae38178629cf094188ad60c64f5f679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 1081202680}
-  quitButton: {fileID: 1764568303}
-  producerListButton: {fileID: 1477993335}
   producerList: {fileID: 1694952716}
   plCloseButton: {fileID: 514285597}
   firstSceneToLoad: {fileID: 11400000, guid: 6761b5f8991a9144fa66ecf7eb42f18e, type: 2}
@@ -401,13 +368,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 462449744}
+        m_TargetAssemblyTypeName: SelectionsOnMenu, Assembly-CSharp
+        m_MethodName: CloseProducerList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   settings:
     interactable: 1
-    clickable: 1
-    scaleOnHover: 1.1
+    scaleOnEnter: 1.1
     scaleOnClick: 1.15
-  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
-  hoverPanel: {fileID: 0}
+    easeOnEnter: 18
+    easeOnExit: 18
 --- !u!61 &514285601
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -740,13 +721,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 462449744}
+        m_TargetAssemblyTypeName: SelectionsOnMenu, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   settings:
     interactable: 1
-    clickable: 1
-    scaleOnHover: 1.1
+    scaleOnEnter: 1.1
     scaleOnClick: 1.15
-  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
-  hoverPanel: {fileID: 0}
+    easeOnEnter: 18
+    easeOnExit: 18
 --- !u!114 &1081202682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,13 +1188,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 462449744}
+        m_TargetAssemblyTypeName: SelectionsOnMenu, Assembly-CSharp
+        m_MethodName: OpenProducerList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   settings:
     interactable: 1
-    clickable: 1
-    scaleOnHover: 1.1
+    scaleOnEnter: 1.1
     scaleOnClick: 1.15
-  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
-  hoverPanel: {fileID: 0}
+    easeOnEnter: 18
+    easeOnExit: 18
 --- !u!114 &1477993338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1452,13 +1461,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 462449744}
+        m_TargetAssemblyTypeName: SelectionsOnMenu, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   settings:
     interactable: 1
-    clickable: 1
-    scaleOnHover: 1.1
+    scaleOnEnter: 1.1
     scaleOnClick: 1.15
-  onClickedEvent: {fileID: 11400000, guid: cb36e47a22c8d124fbf691c9c76cff23, type: 2}
-  hoverPanel: {fileID: 0}
+    easeOnEnter: 18
+    easeOnExit: 18
 --- !u!114 &1764568306
 MonoBehaviour:
   m_ObjectHideFlags: 0

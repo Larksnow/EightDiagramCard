@@ -37,27 +37,10 @@ public abstract class FadablePanel : MonoBehaviour
         pauseManager.ResumeGame();
     }
 
-    #region Event Listening
     /// <summary>
-    /// 监听点击事件，判断点击的物体是否是子物体
+    /// 点击面板按钮后淡出
     /// </summary>
-    /// <param name="obj"></param>
-    public void OnClick(object obj)
-    {
-        PointerEventData pointerEventData = obj as PointerEventData;
-        GameObject selected = pointerEventData.pointerPress;
-        if (selected.transform.IsChildOf(transform))
-        {
-            OnClickSelected(selected);
-        }
-    }
-    #endregion
-
-    /// <summary>
-    /// 处理点击了选中的Button后的逻辑
-    /// </summary>
-    /// <param name="selected">选择的Button</param>
-    protected virtual void OnClickSelected(GameObject selected)
+    public virtual void FadeOutAfterClick(GameObject selected)
     {
         // 淡出时先禁用按钮可交互状态，避免重复点击，淡出后再启用
         buttonsManager.SetButtonsInteractable(buttons, false);
