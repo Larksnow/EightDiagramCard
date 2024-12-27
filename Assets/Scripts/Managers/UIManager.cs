@@ -11,10 +11,6 @@ public class UIManager : MonoBehaviour
     public List<GameObject> menuSceneUis;
     public List<GameObject> battleSceneUis;
     
-    public SceneLoadManager sceneLoadManager;
-    public GameObject backgroundDimmer;
-    public GameObject returnButton;
-    
     private SceneType firstLoadedSceneType;
     private Dictionary<SceneType, List<GameObject>> sceneUIs = new();
     private SceneType currentSceneType;
@@ -35,9 +31,6 @@ public class UIManager : MonoBehaviour
         sceneUIs.Add(SceneType.Menu, menuSceneUis);
         sceneUIs.Add(SceneType.Battle, battleSceneUis);
         // 创建并添加其他场景 UI Lists
-        
-        if (backgroundDimmer != null) backgroundDimmer.SetActive(false);
-        if (returnButton != null) returnButton.SetActive(false);
     }
 
     #region Event Listening

@@ -1,9 +1,14 @@
+using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class CardDeckPreviewController : MonoBehaviour
 {
     public float fadeDuration = 0.4f;
+    public float moveDurationOnSort = 0.5f;
+    public Ease easeTypeOnSort;
+
     [Header("Card Deck UI")] public GameObject drawDeckUI;
     public GameObject discardDeckUI;
     public GameObject playerHoldDeckUI;
@@ -16,11 +21,28 @@ public class CardDeckPreviewController : MonoBehaviour
     [Header("UI Components")] public Transform scrollContent;
     public GameObject backgroundDimmer;
     public GameObject returnButton;
+    public GameObject sortControlBar;
     public float dimmerAlpha = 0.65f;
 
     private List<CardDeckEntry> cardList;
-    private bool isDisplaying;
+    private bool isDisplaying; // 面板是否正在显示
+    private List<CardPreview> cardPreviews = new();
     private int cardAmount = 0;
+
+    private void Awake()
+    {
+        backgroundDimmer.SetActive(false);
+        returnButton.SetActive(false);
+        sortControlBar.SetActive(false);
+    }
+
+    private void Start()
+    {
+        // 注册事件监听
+        sortControlBar.GetComponent<SortControlBar>().OnSortChanged += OnSortChanged;
+    }
+
+    # region Event Listening
 
     // 打开面板
     public void OpenCardPreview(GameObject selected)
@@ -29,6 +51,7 @@ public class CardDeckPreviewController : MonoBehaviour
         if (selected == playerHoldDeckUI)
         {
             cardList = cardManager.playerHoldDeck.CardDeckEntryList;
+            sortControlBar.SetActive(true); // 只有打开玩家手牌时才显示排序控制栏
         }
         else if (selected == drawDeckUI)
         {
@@ -39,10 +62,8 @@ public class CardDeckPreviewController : MonoBehaviour
             cardList = cardDeck.GetDiscardDeck();
         }
 
-        // 背景变暗
+        // 启用面板组件
         backgroundDimmer.SetActive(true);
-
-        // 启用返回按钮
         returnButton.SetActive(true);
 
         // 将卡牌条目加入列表面板
@@ -66,21 +87,60 @@ public class CardDeckPreviewController : MonoBehaviour
         FadeOutPanel();
     }
 
+    public void OnSortChanged(SortControlBar.SortType sortType, bool isAscending)
+    {
+        switch (sortType)
+        {
+            case SortControlBar.SortType.AcquisitionOrder:
+                cardPreviews.Sort((a, b) => CompareByAcquisitionOrder(a, b, isAscending));
+                break;
+            case SortControlBar.SortType.ManaCost:
+                cardPreviews.Sort((a, b) => CompareByManaCost(a, b, isAscending));
+                break;
+        }
+
+
+        // 重新排列卡牌
+        // 添加缓动效果
+        Sequence sortSequence = DOTween.Sequence();
+        for (int i = 0; i < cardAmount; i++)
+        {
+            RectTransform targetTransform = scrollContent.GetChild(i).GetComponent<RectTransform>();
+            sortSequence.Join(
+                cardPreviews[i].gameObject.GetComponent<RectTransform>()
+                    .DOLocalMove(targetTransform.localPosition, moveDurationOnSort).SetEase(easeTypeOnSort));
+        }
+
+        sortSequence.onComplete += () =>
+        {
+            for (int i = 0; i < cardAmount; i++)
+            {
+                cardPreviews[i].transform.SetSiblingIndex(i);
+            }
+        };
+    }
+
+    #endregion
+
 
     private void SetCardList()
     {
+        // 默认为获得顺序升序排列（后获得的卡牌在下方）
+        cardAmount = 0;
+        cardPreviews.Clear();
         if (cardList != null)
         {
             foreach (CardDeckEntry cardEntry in cardList)
             {
                 for (int i = 0; i < cardEntry.amount; i++)
                 {
-                    CardDataSO cardData = cardEntry.cardData;
+                    // 从对象池中取出CardPreview,并初始化
                     GameObject cardPreviewObj = pool.GetObjectFromPool("CardPreview");
                     cardPreviewObj.transform.SetParent(scrollContent, false);
+                    CardDataSO cardData = cardEntry.cardData;
                     CardPreview cardPreview = cardPreviewObj.GetComponent<CardPreview>();
-                    cardPreview.Init(cardData);
-                    cardAmount++;
+                    cardPreview.Init(cardData, cardAmount++);
+                    cardPreviews.Add(cardPreview);
                 }
             }
         }
@@ -96,15 +156,35 @@ public class CardDeckPreviewController : MonoBehaviour
         cardAmount = 0;
     }
 
+    private int CompareByAcquisitionOrder(CardPreview a, CardPreview b, bool isAscending)
+    {
+        return isAscending
+            ? a.AcquisitionIndex.CompareTo(b.AcquisitionIndex)
+            : b.AcquisitionIndex.CompareTo(a.AcquisitionIndex);
+    }
+
+    private int CompareByManaCost(CardPreview a, CardPreview b, bool isAscending)
+    {
+        return isAscending
+            ? a.cardData.cost.CompareTo(b.cardData.cost)
+            : b.cardData.cost.CompareTo(a.cardData.cost);
+    }
+
+    #region FadeInOut
 
     // 由于背景Image要固定隐藏（透明度为0），不能使用FadeInOutHandler
     private void FadeInPanel()
     {
         FadeInOutHandler.FadeObjectIn(backgroundDimmer, null, dimmerAlpha, fadeDuration);
-        FadeInOutHandler.FadeObjectIn(returnButton,null, 1f, fadeDuration);
+        FadeInOutHandler.FadeObjectIn(returnButton, null, 1f, fadeDuration);
+        if (sortControlBar.activeSelf)
+            FadeInOutHandler.FadeObjectIn(sortControlBar, null, 1f, fadeDuration);
         foreach (Transform card in scrollContent)
         {
-            FadeInOutHandler.FadeObjectIn(card.gameObject, null, 1f, fadeDuration);
+            if (card.gameObject.activeSelf)
+            {
+                FadeInOutHandler.FadeObjectIn(card.gameObject, null, 1f, fadeDuration);
+            }
         }
     }
 
@@ -112,23 +192,30 @@ public class CardDeckPreviewController : MonoBehaviour
     {
         FadeInOutHandler.FadeObjectOut(backgroundDimmer, () => { backgroundDimmer.SetActive(false); }, fadeDuration);
         FadeInOutHandler.FadeObjectOut(returnButton, () => { returnButton.SetActive(false); }, fadeDuration);
-        for (int i = 0; i < scrollContent.childCount; i++)
+        if (sortControlBar.activeSelf)
+            FadeInOutHandler.FadeObjectOut(sortControlBar, () => { sortControlBar.SetActive(false); }, fadeDuration);
+        for (int i = 0; i < cardAmount; i++)
         {
             Transform card = scrollContent.GetChild(i);
-            if (i == scrollContent.childCount - 1)
+            if (card.gameObject.activeSelf)
             {
-                FadeInOutHandler.FadeObjectOut(card.gameObject, () =>
+                if (i == cardAmount - 1)
                 {
-                    ClearCards();
-                    pauseManager.ResumeGame();
-                }, fadeDuration);
-            }
-            else
-            {
-                FadeInOutHandler.FadeObjectOut(card.gameObject, null, fadeDuration);
+                    FadeInOutHandler.FadeObjectOut(card.gameObject, () =>
+                    {
+                        ClearCards();
+                        pauseManager.ResumeGame();
+                    }, fadeDuration);
+                }
+                else
+                {
+                    FadeInOutHandler.FadeObjectOut(card.gameObject, null, fadeDuration);
+                }
             }
         }
     }
+
+    #endregion
 
     public int GetCardAmount()
     {

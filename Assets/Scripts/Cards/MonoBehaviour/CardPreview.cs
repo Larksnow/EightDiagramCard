@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,6 +10,8 @@ using UnityEngine.UI;
 /// </summary>
 public class CardPreview : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IScaleOnMouseOver
 {
+    public int AcquisitionIndex { get; private set; }
+
     [Header("Card Components")] public CardDataSO cardData;
     public TextMeshProUGUI nameText, costText, descriptionTest;
     public Image cardSprite, cardFrame;
@@ -16,9 +19,15 @@ public class CardPreview : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [Header("Mouse Over Animation")] public MouseOverAnimationSO mouseOverAnimationSO;
     public float scaleOnEnter = 1.3f;
 
+    private GameObject cardPosition;
     private Vector3 originalScale;
 
-    public void Init(CardDataSO data)
+    private void Awake()
+    {
+        originalScale = transform.localScale;
+    }
+
+    public void Init(CardDataSO data, int index)
     {
         cardData = data;
         cardSprite.sprite = data.cardSprite;
@@ -27,7 +36,7 @@ public class CardPreview : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         costText.color = Color.white;
         nameText.text = data.cardName;
         descriptionTest.text = data.cardDescription;
-        originalScale = transform.localScale;
+        AcquisitionIndex = index;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

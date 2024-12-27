@@ -9,6 +9,7 @@ public class FadeInOutHandler : MonoBehaviour
 {
     public float fadeDuration = 0.8f;
 
+    private CanvasGroup canvasGroup = null;
     private List<Graphic> graphics = new();
     private List<SpriteRenderer> spriteRenderers = new();
 
@@ -23,13 +24,16 @@ public class FadeInOutHandler : MonoBehaviour
     // 在需要动态增删子物体的GameObject中调用
     public void UpdateUIElements()
     {
-        graphics.Clear();
-        spriteRenderers.Clear();
+        if (!TryGetComponent(out canvasGroup))
+        {
+            graphics.Clear();
+            spriteRenderers.Clear();
 
-        graphics.AddRange(GetComponentsInChildren<Graphic>());
-        graphics.AddRange(GetComponents<Graphic>());
-        spriteRenderers.AddRange(GetComponentsInChildren<SpriteRenderer>());
-        spriteRenderers.AddRange(GetComponents<SpriteRenderer>());
+            graphics.AddRange(GetComponentsInChildren<Graphic>());
+            graphics.AddRange(GetComponents<Graphic>());
+            spriteRenderers.AddRange(GetComponentsInChildren<SpriteRenderer>());
+            spriteRenderers.AddRange(GetComponents<SpriteRenderer>());
+        }
     }
 
     #endregion
@@ -49,14 +53,21 @@ public class FadeInOutHandler : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence().SetEase(Ease.InOutExpo);
 
-        foreach (var graphic in graphics)
+        if (canvasGroup != null)
         {
-            sequence.Join(graphic.DOFade(endAlpha, fadeDuration));
+            sequence.Join(canvasGroup.DOFade(endAlpha, fadeDuration));
         }
-
-        foreach (var render in spriteRenderers)
+        else
         {
-            sequence.Join(render.DOFade(endAlpha, fadeDuration));
+            foreach (var graphic in graphics)
+            {
+                sequence.Join(graphic.DOFade(endAlpha, fadeDuration));
+            }
+
+            foreach (var render in spriteRenderers)
+            {
+                sequence.Join(render.DOFade(endAlpha, fadeDuration));
+            }
         }
 
         yield return sequence.WaitForCompletion();
@@ -67,20 +78,27 @@ public class FadeInOutHandler : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence().SetEase(Ease.InOutExpo);
 
-        foreach (var graphic in graphics)
+        if (canvasGroup != null)
         {
-            sequence.Join(graphic.DOFade(0, fadeDuration));
+            sequence.Join(canvasGroup.DOFade(0, fadeDuration));
         }
-
-        foreach (var render in spriteRenderers)
+        else
         {
-            sequence.Join(render.DOFade(0, fadeDuration));
+            foreach (var graphic in graphics)
+            {
+                sequence.Join(graphic.DOFade(0, fadeDuration));
+            }
+
+            foreach (var render in spriteRenderers)
+            {
+                sequence.Join(render.DOFade(0, fadeDuration));
+            }
         }
 
         yield return sequence.WaitForCompletion();
         onComplete?.Invoke();
     }
-    
+
     /// <summary>
     /// 控制具体某个物体的淡入淡出
     /// </summary>

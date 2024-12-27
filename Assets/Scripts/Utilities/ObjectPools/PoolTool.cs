@@ -7,6 +7,7 @@ public class PoolTool : MonoBehaviour
 {
     public GameObject cardPrefab;
     public GameObject cardPreviewPrefab;
+    public GameObject cardPositionPrefab;
 
     private Dictionary<string, ObjectPool<GameObject>> pools = new();
 
