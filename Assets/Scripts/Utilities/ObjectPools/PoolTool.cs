@@ -51,6 +51,7 @@ public class PoolTool : MonoBehaviour
 
     public GameObject GetObjectFromPool(string tag)
     {
+        Debug.Log("Get object " + tag + " from pool");
         return pools[tag].Get();
     }
 
@@ -59,10 +60,6 @@ public class PoolTool : MonoBehaviour
         if (pools.ContainsKey(tag))
         {
             pools[tag].Release(obj);
-        }
-        else
-        {
-            Debug.LogError($"Pool with tag {tag} does not exist.");
         }
     }
 }

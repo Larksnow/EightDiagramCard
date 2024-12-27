@@ -1533,7 +1533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 23, y: -0.0006713867}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &457196315
@@ -1570,7 +1570,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 264, y: 394}
+  m_CellSize: {x: 257, y: 425}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 5
@@ -4037,7 +4037,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -106}
-  m_SizeDelta: {x: 0, y: -99.7639}
+  m_SizeDelta: {x: 0, y: -54.434}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1406836191
 MonoBehaviour:
@@ -6101,8 +6101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 0.4
-  moveDurationOnSort: 1
-  easeTypeOnSort: 18
+  moveDurationOnSort: 1.2
+  easeTypeOnSort: 12
   drawDeckUI: {fileID: 466201776}
   discardDeckUI: {fileID: 1551145621}
   playerHoldDeckUI: {fileID: 1028282028}
@@ -6114,6 +6114,7 @@ MonoBehaviour:
   backgroundDimmer: {fileID: 428416103}
   returnButton: {fileID: 744667906}
   sortControlBar: {fileID: 527500963}
+  scrollPanel: {fileID: 1406836189}
   dimmerAlpha: 0.75
 --- !u!1001 &2129737795
 PrefabInstance:
@@ -6355,7 +6356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 3558632321445700072, guid: 07017c06dc06dc544a114f781439ce50, type: 3}
   cardPreviewPrefab: {fileID: 2500562999356791817, guid: cba3898a20e9100439e57192c80b3b55, type: 3}
-  cardPositionPrefab: {fileID: 5930100946722663540, guid: 0a9a1d4138643ee42be4fd08442c5955, type: 3}
+  cardPositionPrefab: {fileID: 0}
 --- !u!4 &2142600640
 Transform:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -22,24 +23,26 @@ public class SortControlBar : MonoBehaviour
     [Header("Icons")] public Sprite ascendingIcon;
     public Sprite descendingIcon;
 
-    [Header("Highlight Colors")]
-    public Color highlightColor;
+    [Header("Highlight Colors")] public Color highlightColor;
     public Color normalTextColor;
     public Color normalFlagColor;
-    
+
     private Dictionary<SortType, UnityEngine.UI.Button> sortButtons = new();
-    private Dictionary<SortType, Image> orderFlags = new();
     private Dictionary<SortType, bool> isAscendingBools = new();
+    private Dictionary<SortType, Image> orderFlags = new();
+    private Dictionary<SortType, TextMeshProUGUI> textMeshes = new();
 
     private void Awake()
     {
         sortButtons.Add(SortType.AcquisitionOrder, acquisitionOrderBtn);
         sortButtons.Add(SortType.ManaCost, manaCostBtn);
+        isAscendingBools.Add(SortType.AcquisitionOrder, true);
+        isAscendingBools.Add(SortType.ManaCost, true);
         orderFlags.Add(SortType.AcquisitionOrder,
             acquisitionOrderBtn.transform.Find("OrderFlag").GetComponent<Image>());
         orderFlags.Add(SortType.ManaCost, manaCostBtn.transform.Find("OrderFlag").GetComponent<Image>());
-        isAscendingBools.Add(SortType.AcquisitionOrder, true);
-        isAscendingBools.Add(SortType.ManaCost, true);
+        textMeshes.Add(SortType.AcquisitionOrder, acquisitionOrderBtn.transform.Find("Text").GetComponent<TextMeshProUGUI>());
+        textMeshes.Add(SortType.ManaCost, manaCostBtn.transform.Find("Text").GetComponent<TextMeshProUGUI>());
     }
 
     private void Start()
@@ -69,13 +72,32 @@ public class SortControlBar : MonoBehaviour
 
     private void HighlightButton(SortType sortType)
     {
-        sortButtons[sortType].transform.Find("Text").GetComponent<TextMeshProUGUI>().color = highlightColor;
-        sortButtons[sortType].transform.Find("OrderFlag").GetComponent<Image>().color = highlightColor;
+        textMeshes[sortType].color = highlightColor;
+        orderFlags[sortType].color = highlightColor;
     }
 
     private void CancelHighlightButton(SortType sortType)
     {
-        sortButtons[sortType].transform.Find("Text").GetComponent<TextMeshProUGUI>().color = normalTextColor;
-        sortButtons[sortType].transform.Find("OrderFlag").GetComponent<Image>().color = normalFlagColor;
+        textMeshes[sortType].color = normalTextColor;
+        orderFlags[sortType].color = normalFlagColor;
+    }
+
+    public void ResetSortControlBar()
+    {
+        // 重置为默认排序方式
+        CancelHighlightButton(lastSortType);
+        HighlightButton(SortType.AcquisitionOrder);
+
+        foreach (var sortType in isAscendingBools.Keys.ToList())
+        {
+            isAscendingBools[sortType] = true;
+            orderFlags[sortType].sprite = ascendingIcon;
+        }
+    }
+
+    public void SetInteractable(bool interactable)
+    {
+        acquisitionOrderBtn.interactable = interactable;
+        manaCostBtn.interactable = interactable;
     }
 }

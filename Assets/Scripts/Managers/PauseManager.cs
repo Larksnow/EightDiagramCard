@@ -10,8 +10,6 @@ public class PauseManager : MonoBehaviour
     private bool isPaused;
     public ButtonsManager buttonsManager;
 
-    // private List<GameObject> excludeFromPause = new();   
-
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,6 +21,7 @@ public class PauseManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
         buttonsManager = ButtonsManager.Instance;
     }
 
@@ -31,16 +30,14 @@ public class PauseManager : MonoBehaviour
     /// </summary>
     public void PauseGame(List<Button> pauseCullBtns = null)
     {
-        // excludeFromPause.Clear();
-        // excludeFromPause.AddRange(excludeList);
         isPaused = true;
         buttonsManager.SetAllButtonsInteractable(false);
         if (pauseCullBtns != null)
             buttonsManager.SetButtonsInteractable(pauseCullBtns, true);
     }
+
     public void ResumeGame()
     {
-        // excludeFromPause.Clear();
         isPaused = false;
         buttonsManager.SetAllButtonsInteractable(true);
     }
@@ -49,9 +46,4 @@ public class PauseManager : MonoBehaviour
     {
         return isPaused;
     }
-
-    // public bool IsInExcludeList(GameObject obj)
-    // {
-    //     return excludeFromPause.Contains(obj);
-    // }
 }
