@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -31,3 +32,4 @@ public static class TestModeMenu
         return EnableTest; // 返回保存的值
     }
 }
+#endif

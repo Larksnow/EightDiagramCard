@@ -8,25 +8,32 @@ public class UIManager : MonoBehaviour
     [Header("UI Lists")]
     // 手动添加多种场景ui Lists
     public List<GameObject> testSceneUis;
+
     public List<GameObject> menuSceneUis;
     public List<GameObject> battleSceneUis;
-    
+
     private SceneType firstLoadedSceneType;
     private Dictionary<SceneType, List<GameObject>> sceneUIs = new();
     private SceneType currentSceneType;
 
     private void Awake()
     {
+#if UNITY_EDITOR
         if (!TestModeMenu.IsTestModeEnabled())
         {
-            SetUIObjectsActive(testSceneUis,false);
+            SetUIObjectsActive(testSceneUis, false);
             firstLoadedSceneType = SceneType.Menu;
         }
         else
         {
             firstLoadedSceneType = SceneType.Test;
         }
-        
+#else
+        SetUIObjectsActive(testSceneUis, false);
+        firstLoadedSceneType = SceneType.Menu;
+#endif
+
+
         currentSceneType = firstLoadedSceneType;
         sceneUIs.Add(SceneType.Menu, menuSceneUis);
         sceneUIs.Add(SceneType.Battle, battleSceneUis);

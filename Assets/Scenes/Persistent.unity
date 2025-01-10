@@ -2723,7 +2723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testSceneUis:
-  - {fileID: 0}
+  - {fileID: 2022668280}
   - {fileID: 193565714}
   - {fileID: 185267771}
   - {fileID: 158413090}
@@ -2739,7 +2739,7 @@ MonoBehaviour:
   - {fileID: 1402777765}
   menuSceneUis: []
   battleSceneUis:
-  - {fileID: 0}
+  - {fileID: 2022668280}
   - {fileID: 193565714}
   - {fileID: 185267771}
   - {fileID: 158413090}

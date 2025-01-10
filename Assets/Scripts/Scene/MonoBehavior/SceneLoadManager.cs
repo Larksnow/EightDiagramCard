@@ -24,9 +24,10 @@ public class SceneLoadManager : MonoBehaviour
     private GameSceneSO currentLoadedScene;
     private GameSceneSO sceneToLoad;
     private Scene testScene;
-    
+
     private void Start()
     {
+#if UNITY_EDITOR
         if (TestModeMenu.IsTestModeEnabled())
         {
             currentLoadedScene = testSceneSo;
@@ -50,6 +51,9 @@ public class SceneLoadManager : MonoBehaviour
             // 开始加载菜单场景
             OnLoadRequest(menuSceneSo);
         }
+#else
+        OnLoadRequest(menuSceneSo);
+#endif
     }
 
     [ContextMenu("LoadMenu")]

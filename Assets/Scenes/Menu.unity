@@ -368,6 +368,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings:
+    interactable: 1
+    scaleOnEnter: 1.1
+    scaleOnClick: 1.15
   OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -383,12 +387,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  settings:
-    interactable: 1
-    scaleOnEnter: 1.1
-    scaleOnClick: 1.15
-    easeOnEnter: 18
-    easeOnExit: 18
+  mouseOverAnimationSO: {fileID: 0}
 --- !u!61 &514285601
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -721,6 +720,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings:
+    interactable: 1
+    scaleOnEnter: 1.1
+    scaleOnClick: 1.15
   OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -736,12 +739,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  settings:
-    interactable: 1
-    scaleOnEnter: 1.1
-    scaleOnClick: 1.15
-    easeOnEnter: 18
-    easeOnExit: 18
+  mouseOverAnimationSO: {fileID: 11400000, guid: 5e6f6750921745943b72f7e6a18edd83, type: 2}
 --- !u!114 &1081202682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1188,12 +1186,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings:
+    interactable: 1
+    scaleOnEnter: 1.1
+    scaleOnClick: 1.15
   OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 462449744}
         m_TargetAssemblyTypeName: SelectionsOnMenu, Assembly-CSharp
-        m_MethodName: OpenProducerList
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1203,12 +1205,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  settings:
-    interactable: 1
-    scaleOnEnter: 1.1
-    scaleOnClick: 1.15
-    easeOnEnter: 18
-    easeOnExit: 18
+  mouseOverAnimationSO: {fileID: 11400000, guid: 5e6f6750921745943b72f7e6a18edd83, type: 2}
 --- !u!114 &1477993338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1461,12 +1458,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf9e524a5ec34242ae584acb4635725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings:
+    interactable: 1
+    scaleOnEnter: 1.1
+    scaleOnClick: 1.15
   OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 462449744}
         m_TargetAssemblyTypeName: SelectionsOnMenu, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1476,12 +1477,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  settings:
-    interactable: 1
-    scaleOnEnter: 1.1
-    scaleOnClick: 1.15
-    easeOnEnter: 18
-    easeOnExit: 18
+  mouseOverAnimationSO: {fileID: 11400000, guid: 5e6f6750921745943b72f7e6a18edd83, type: 2}
 --- !u!114 &1764568306
 MonoBehaviour:
   m_ObjectHideFlags: 0
