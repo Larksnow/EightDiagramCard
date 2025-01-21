@@ -52,7 +52,6 @@
     <type fullname="Indicator" preserve="all" />
     <type fullname="IntEventListener" preserve="all" />
     <type fullname="IntEventSO" preserve="all" />
-    <type fullname="LevelSelectUI" preserve="all" />
     <type fullname="ManaEffect" preserve="all" />
     <type fullname="MitiEffect" preserve="all" />
     <type fullname="MoneyEffect" preserve="all" />
@@ -68,6 +67,7 @@
     <type fullname="SelectCardPanel" preserve="all" />
     <type fullname="SelectDiagramPanel" preserve="all" />
     <type fullname="SelectionsOnMenu" preserve="all" />
+    <type fullname="SelectLevelPanel" preserve="all" />
     <type fullname="ShieldBarController" preserve="all" />
     <type fullname="ShieldEffect" preserve="all" />
     <type fullname="SortControlBar" preserve="all" />

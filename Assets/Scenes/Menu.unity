@@ -387,7 +387,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  mouseOverAnimationSO: {fileID: 0}
+  mouseOverAnimationSO: {fileID: 11400000, guid: 5e6f6750921745943b72f7e6a18edd83, type: 2}
 --- !u!61 &514285601
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1195,7 +1195,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 462449744}
         m_TargetAssemblyTypeName: SelectionsOnMenu, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: OpenProducerList
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1467,7 +1467,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 462449744}
         m_TargetAssemblyTypeName: SelectionsOnMenu, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

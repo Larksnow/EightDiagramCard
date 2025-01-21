@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
-public class LevelSelectUI : FadablePanel
+public class SelectLevelPanel : FadablePanel
 {
-    
     // Hardcode for now, option1  is card option2 is blessing
     public GameObject option1;
     public GameObject option2;
     public GameAwardSO gameAwardData;
-    public GameSceneSO sceneToLoad;
 
-    [Header("Broadcast events")]
-    public ObjectEventSO LoadNextLevelEvent;
+    [Header("Broadcast events")] public ObjectEventSO loadNextLevelEvent;
 
     public override void FadeOutAfterClick(GameObject selected)
     {
@@ -21,12 +19,13 @@ public class LevelSelectUI : FadablePanel
         if (selected == option1)
         {
             gameAwardData.awardType = AwardType.Card;
-            LoadNextLevelEvent.RaiseEvent(null, this);
-        }else if (selected == option2)
+            loadNextLevelEvent.RaiseEvent(null, this);
+        }
+        else if (selected == option2)
         {
             //TODO: Change this into blessing after we made blessing
             gameAwardData.awardType = AwardType.Card;
-            LoadNextLevelEvent.RaiseEvent(null, this);
+            loadNextLevelEvent.RaiseEvent(null, this);
         }
     }
 }
