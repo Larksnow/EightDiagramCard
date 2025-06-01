@@ -4,29 +4,15 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerHoldDeck : MonoBehaviour, ButtonClickHandler
+public class PlayerHoldDeck : MonoBehaviour
 {
     public float animationDuration = 1f;
 
     // PlayerHoldDeck在CardListDisplayController之前加载
-    private CardListDisplayController cardListDisplayController;
+    private CardDeckPreviewController cardDeckPreviewController;
 
     #region Event Listening
-    public void OnClick(object obj)
-    {
-        PointerEventData pointerEventData = (PointerEventData)obj;
-        GameObject selected = pointerEventData.pointerPress;
-        if (selected != gameObject) return;
-
-        // 展示玩家牌组
-        Debug.Log("PlayerHoldDeck clicked");
-        if (cardListDisplayController == null)
-        {
-            cardListDisplayController = FindObjectOfType<CardListDisplayController>();
-        }
-        cardListDisplayController.ToggleCardListPanel(CardListType.PlayerHold);
-    }
-
+    
     // 卡牌进入牌组动画
     public void AddCardToDeck(object obj)
     {
@@ -36,12 +22,13 @@ public class PlayerHoldDeck : MonoBehaviour, ButtonClickHandler
 
         Sequence sequence = DOTween.Sequence();
         sequence.Append(card.transform.DOMove(transform.position, animationDuration))
-        .Join(card.transform.DOScale(0, animationDuration))
-        .OnComplete(() =>
-        {
-            card.transform.position = originalPosition;
-            card.transform.localScale = originalScale;
-        });
+            .Join(card.transform.DOScale(0, animationDuration))
+            .OnComplete(() =>
+            {
+                card.transform.position = originalPosition;
+                card.transform.localScale = originalScale;
+            });
     }
+
     #endregion
 }

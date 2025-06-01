@@ -20,6 +20,7 @@ public class EnemyIntentionUI : MonoBehaviour
     {
         iconWidth = effectIconPrefab.GetComponent<SpriteRenderer>().bounds.size.x;
         fadeInOutHandler = GetComponent<FadeInOutHandler>();
+        fadeInOutHandler.fadeDuration = currentEnemy.fadeDuration;
     }
 
     #region Event Listening

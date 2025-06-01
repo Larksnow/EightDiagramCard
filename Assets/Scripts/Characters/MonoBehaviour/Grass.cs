@@ -7,9 +7,9 @@ public class Grass : EnemyBase
     public GameObject grassPrefab;
     [SerializeField] GameObject enemyArrangement;
     // 敌人被动效果写在自己的Class里
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         enemyArrangement = GameObject.Find("EnemyArrangement");
     }
     

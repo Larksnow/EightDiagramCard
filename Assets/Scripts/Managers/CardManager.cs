@@ -4,19 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
 public class CardManager : MonoBehaviour
 {
+    [FormerlySerializedAs("cardPool")] [FormerlySerializedAs("cardPoolTool")]
     public PoolTool poolTool;
+
     public List<CardDataSO> cardDataList; //Store all cards in the game
     public CardDataSO previousCard; //Store the previous card
 
-    [Header("Card Deck")]
-    public CardDeckSO baseCardDeck; //base card deck
+    [Header("Card Deck")] public CardDeckSO baseCardDeck; //base card deck
     public CardDeckSO playerHoldDeck; //player's card deck
     public ObjectEventSO playYangCard;
     public ObjectEventSO playYinCard;
+
     private void Awake()
     {
         InitializeCardDataList();
@@ -29,6 +32,7 @@ public class CardManager : MonoBehaviour
         playerHoldDeck.CardDeckEntryList.Clear();
         previousCard = null;
     }
+
     private void InitializeBaseCardDeck()
     {
         foreach (var item in baseCardDeck.CardDeckEntryList)
@@ -38,6 +42,7 @@ public class CardManager : MonoBehaviour
     }
 
     #region Load ALL CardDataSO from Addressable
+
     private void InitializeCardDataList()
     {
         Addressables.LoadAssetsAsync<CardDataSO>("CardData", null).Completed += OnCardDataLoaded;
@@ -54,19 +59,20 @@ public class CardManager : MonoBehaviour
             Debug.LogError("No card Data Found");
         }
     }
+
     #endregion
 
     // When draw a card, get the card Game Object from pool
     public GameObject GetCardFromPool()
     {
-        var cardObj = poolTool.GetObjectFromPool();
+        var cardObj = poolTool.GetObjectFromPool("Card");
         cardObj.transform.localScale = Vector3.zero;
         return cardObj;
     }
 
     public void DiscardCard(GameObject card)
     {
-        poolTool.ReleaseObjectToPool(card);
+        poolTool.ReleaseObjectToPool("Card", card);
     }
 
     public void UpdatePreviousCard(object obj)
@@ -75,10 +81,12 @@ public class CardManager : MonoBehaviour
         if (card.cardData.cardType == CardType.Yang)
         {
             playYangCard.RaiseEvent(null, this);
-        }else if(card.cardData.cardType == CardType.Yin)
+        }
+        else if (card.cardData.cardType == CardType.Yin)
         {
             playYinCard.RaiseEvent(null, this);
         }
+
         previousCard = card.cardData;
     }
 

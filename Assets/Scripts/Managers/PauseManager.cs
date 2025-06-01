@@ -10,8 +10,6 @@ public class PauseManager : MonoBehaviour
     private bool isPaused;
     public ButtonsManager buttonsManager;
 
-    // private List<GameObject> excludeFromPause = new();   
-
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,24 +21,23 @@ public class PauseManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
         buttonsManager = ButtonsManager.Instance;
     }
 
     /// <summary>
     /// 暂停游戏，默认将场中所有按钮设为不可交互
     /// </summary>
-    public void PauseGame(List<Button> excludedBtns = null)
+    public void PauseGame(List<Button> pauseCullBtns = null)
     {
-        // excludeFromPause.Clear();
-        // excludeFromPause.AddRange(excludeList);
         isPaused = true;
         buttonsManager.SetAllButtonsInteractable(false);
-        if (excludedBtns != null)
-            buttonsManager.SetButtonsInteractable(excludedBtns, true);
+        if (pauseCullBtns != null)
+            buttonsManager.SetButtonsInteractable(pauseCullBtns, true);
     }
+
     public void ResumeGame()
     {
-        // excludeFromPause.Clear();
         isPaused = false;
         buttonsManager.SetAllButtonsInteractable(true);
     }
@@ -49,9 +46,4 @@ public class PauseManager : MonoBehaviour
     {
         return isPaused;
     }
-
-    // public bool IsInExcludeList(GameObject obj)
-    // {
-    //     return excludeFromPause.Contains(obj);
-    // }
 }

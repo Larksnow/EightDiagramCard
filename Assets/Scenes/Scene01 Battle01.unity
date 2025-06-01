@@ -767,6 +767,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8975899624940160219, guid: a913e9e81033e5a4ab1182eb6af77c26, type: 3}
+      propertyPath: enemyArrangement
+      value: 
+      objectReference: {fileID: 679351306}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -790,6 +794,10 @@ PrefabInstance:
       propertyPath: currentCharacter
       value: 
       objectReference: {fileID: 759687922}
+    - target: {fileID: 2313633250780592338, guid: 35a44b72a0ba3244a9a375fd0be99879, type: 3}
+      propertyPath: enemyArrangement
+      value: 
+      objectReference: {fileID: 679351306}
     - target: {fileID: 2464103821521661879, guid: 35a44b72a0ba3244a9a375fd0be99879, type: 3}
       propertyPath: m_SortingLayer
       value: 3

@@ -109,8 +109,8 @@ public class CharacterBase : MonoBehaviour
             }
             else
             {
-                AddShield(-currentShield);
                 AddHP(-(amount - currentShield));
+                AddShield(-currentShield);
             }
         }
         else
@@ -129,6 +129,7 @@ public class CharacterBase : MonoBehaviour
         if (currentHP == 0)
         {
             Die();
+            return;
         }  
         updateHPEvent.RaiseEvent(new HPChange(this, currentHP), this);
     }

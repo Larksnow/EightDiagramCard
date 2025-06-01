@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
-public class SelectCardPanel : FadablePanel, ButtonClickHandler
+public class SelectCardPanel : FadablePanel
 {
     public GameObject skipButton, cardPos1Obj, cardPos2Obj, cardPos3Obj;
     public List<GameObject> cardPosObjs;
@@ -30,9 +30,11 @@ public class SelectCardPanel : FadablePanel, ButtonClickHandler
         base.OnEnable();
     }
 
-    protected override void OnClickSelected(GameObject selected)
+    #region Event Listening
+
+    public override void FadeOutAfterClick(GameObject selected)
     {
-        base.OnClickSelected(selected);
+        base.FadeOutAfterClick(selected);
         if (selected != skipButton)
         {
             // 选择一张卡牌加入手牌
@@ -49,6 +51,8 @@ public class SelectCardPanel : FadablePanel, ButtonClickHandler
 
         nextLevelEvent.RaiseEvent(null, this);
     }
+
+    #endregion
 
     // 清空选择面板处上次留下的卡牌
     private void ClearCards()
