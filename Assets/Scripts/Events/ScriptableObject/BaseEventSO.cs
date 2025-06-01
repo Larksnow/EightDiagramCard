@@ -8,7 +8,7 @@ public class BaseEventSO<T> : ScriptableObject
     public string description;
 
     public UnityAction<T> OnEventRaised;
-    public string lastSender;
+    [HideInInspector] public string lastSender;
     private SortedList<int, List<UnityAction<T>>> listeners = new SortedList<int, List<UnityAction<T>>>();
     public void RegisterListener(UnityAction<T> listener, int priority = 0)
     {
